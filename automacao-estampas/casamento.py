@@ -436,9 +436,15 @@ def similaridade(foto: dict, arte: dict) -> float:
     return round(0.55 * max(ncc, 0.0) + 0.25 * cor + 0.20 * asp, 4)
 
 
-def _resumo_tinta(lab: np.ndarray) -> Optional[dict]:
-    if len(lab) < 30:
+def _resumo_tinta(lab: np.ndarray, fundo_lab: np.ndarray) -> Optional[dict]:
+    """Tinta = pixels bem diferentes do tecido; usa a metade mais contrastante (o miolo dos traços,
+    sem a borda misturada com o tecido)."""
+    d = np.linalg.norm(lab - fundo_lab, axis=1)
+    sel = d > 25
+    if sel.sum() < 30:
         return None
+    lab, d = lab[sel], d[sel]
+    lab = lab[d >= np.median(d)]
     med = np.median(lab, axis=0)
     C = np.hypot(lab[:, 1], lab[:, 2])
     mono = float((np.linalg.norm(lab - med, axis=1) < 20).mean())
@@ -446,29 +452,38 @@ def _resumo_tinta(lab: np.ndarray) -> Optional[dict]:
 
 
 def tinta_foto(arquivo: str, bbox: Tuple[float, float, float, float], rgb_tecido) -> Optional[dict]:
-    """Cor típica da tinta na foto atual (pixels bem diferentes do tecido, dentro da caixa da estampa)."""
+    """Cor típica da tinta na foto atual, dentro da caixa da estampa (no máximo 200 px)."""
     from imagem import rgb_para_lab
     try:
         with Image.open(arquivo) as im:
             rec = im.convert("RGB").crop(tuple(int(round(v)) for v in bbox))
     except Exception:
         return None
+    if min(rec.size) < 24 or max(rec.size) < 60:
+        return None  # estampa pequena demais na foto: a cor medida seria só borda borrada
     rec.thumbnail((200, 200), Image.BILINEAR)
     lab = rgb_para_lab(np.asarray(rec, np.float32) / 255.0).reshape(-1, 3)
     fl = rgb_para_lab(np.array(rgb_tecido, np.float32)[None, None, :] / 255.0)[0, 0]
-    return _resumo_tinta(lab[np.linalg.norm(lab - fl, axis=1) > 25])
+    r = _resumo_tinta(lab, fl)
+    if r is not None:
+        r["tamanho"] = rec.size
+    return r
 
 
-def tinta_arte(mini: Image.Image, rgb_tecido) -> Optional[dict]:
-    """Cor típica da tinta da arte (sem fundo), só pixels opacos que se destacam do tecido."""
+def tinta_arte(mini: Image.Image, rgb_tecido, tamanho: Optional[Tuple[int, int]] = None) -> Optional[dict]:
+    """Cor típica da tinta da arte, aplicada sobre o tecido no MESMO tamanho do recorte da foto
+    (assim as duas medidas têm o mesmo borrão nas bordas dos traços)."""
     from imagem import rgb_para_lab
     m = mini.convert("RGBA")
-    m.thumbnail((200, 200), Image.BILINEAR)
-    arr = np.asarray(m)
-    lab = rgb_para_lab(arr[..., :3].astype(np.float32) / 255.0).reshape(-1, 3)
-    a = arr[..., 3].reshape(-1)
+    if tamanho:
+        m = m.resize((max(1, int(tamanho[0])), max(1, int(tamanho[1]))), Image.LANCZOS)
+    else:
+        m.thumbnail((200, 200), Image.BILINEAR)
+    base = Image.new("RGBA", m.size, tuple(int(v) for v in rgb_tecido) + (255,))
+    base.alpha_composite(m)
+    lab = rgb_para_lab(np.asarray(base.convert("RGB"), np.float32) / 255.0).reshape(-1, 3)
     fl = rgb_para_lab(np.array(rgb_tecido, np.float32)[None, None, :] / 255.0)[0, 0]
-    return _resumo_tinta(lab[(a > 150) & (np.linalg.norm(lab - fl, axis=1) > 25)])
+    return _resumo_tinta(lab, fl)
 
 
 def comparar_tinta(foto: Optional[dict], arte: Optional[dict]) -> Optional[dict]:
@@ -563,8 +578,8 @@ def escolher_arte(cands: List[dict], cor: str, cfg: dict, visual: Optional[Dict[
             boas = [l for l in ls if legivel(l, cor, cfg)]
             if not boas:
                 ls = sorted(ls, key=lambda l: chave_ordem(l, cfg))
-                return ls[0], 4, (f"a arte está marcada para camisa {alvo}, mas a tinta medida quase não aparece "
-                                  f"na {cor} — conferir")
+                marcada = "arte única para todas as cores" if n == 3 else f"a arte está marcada para camisa {alvo}"
+                return ls[0], 4, f"{marcada}, mas a tinta medida quase não aparece na {cor} — conferir"
             ls = boas
         ls = sorted(ls, key=lambda l: (l.get("_outra_cor", 0), chave_ordem(l, cfg)))
         if visual:
@@ -719,7 +734,8 @@ def montar_mapa(produtos: List[Produto], inventario: List[dict], analise: List[d
                 if dif is not None and (dif["dE"] > LIMITE_TINTA_DE or abs(dif["dC"]) > LIMITE_TINTA_DC):
                     desc_dif = (f"tinta {'mais clara' if dif['dL'] > 0 else 'mais escura'} que na foto da loja "
                                 f"(ΔL {dif['dL']:+.0f}, saturação ΔC {dif['dC']:+.0f}, ΔE {dif['dE']:.0f})")
-                    if dif["mono"] >= 0.55 and dif["dE"] <= 45:
+                    # tinta de uma cor só e mesma arte (forma parecida com a foto): dá para ajustar a cor
+                    if dif["mono"] >= 0.55 and (dif["dE"] <= 45 or (dif.get("nota", 0) >= 0.8 and dif["dE"] <= 60)):
                         row["ajuste_tinta"] = texto_ajuste(dif)
                         obs.append(desc_dif + ": cor da tinta ajustada automaticamente para a da loja "
                                    "(coluna ajuste_tinta; apague para usar a cor original)")
@@ -1076,7 +1092,9 @@ def comando(proj, args) -> None:
                     with Image.open(miniaturas[l["caminho"]]) as m:
                         mini_img[l["caminho"]] = m.convert("RGBA")
                 notas[l["caminho"]] = similaridade(af, assinatura_arte(mini_img[l["caminho"]], rgb))
-                dif = comparar_tinta(tf, tinta_arte(mini_img[l["caminho"]], rgb))
+                dif = comparar_tinta(tf, tinta_arte(mini_img[l["caminho"]], rgb, tf["tamanho"] if tf else None))
+                if dif is not None:
+                    dif["nota"] = notas[l["caminho"]]
                 if dif is not None:
                     tintas.setdefault((h, cor, lado), {})[l["caminho"]] = dif
             visual[(h, cor, lado)] = notas

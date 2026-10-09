@@ -114,25 +114,26 @@ CONFIG_PADRAO: dict = {
         "costas_lisa": "pular",
     },
     # Onde a estampa vai quando o produto ainda não tem medida (origem=padrao). Medido nas 12 camisetas
-    # JA FOI (96 fotos): costas = mediana de 48 fotos; frente = logo pequeno no peito esquerdo (36 fotos).
+    # JA FOI (96 fotos, tronco medido na borda nítida do tecido, sem a sombra): costas = mediana de 48
+    # fotos; frente = logo pequeno no peito esquerdo (36 fotos).
     # largura_rel = largura da estampa / largura do tronco; topo_rel = (topo da estampa - gola) / altura do
     # tronco; centro_x_rel = (centro da estampa - centro do tronco) / largura do tronco (+ = direita da foto).
     "geometria_padrao": {
-        "costas": {"largura_rel": 0.64, "topo_rel": 0.190, "centro_x_rel": 0.0,
-                   # arte larga (altura/largura <= 0,9) vai até 0,72 do tronco; arte alta é limitada pela
-                   # altura (no máximo 0,545 da altura do tronco). Tronco da loja: largura/altura = 0,59.
-                   "largura_rel_larga": 0.72, "aspecto_largo": 0.9, "aspecto_alto": 1.3,
-                   "altura_rel_max": 0.545, "razao_torso": 0.59},
-        "frente": {"largura_rel": 0.226, "topo_rel": 0.257, "centro_x_rel": 0.258},
-        "frente_grande": {"largura_rel": 0.60, "topo_rel": 0.20, "centro_x_rel": 0.0},
+        "costas": {"largura_rel": 0.67, "topo_rel": 0.190, "centro_x_rel": 0.0,
+                   # arte larga (altura/largura <= 0,9) vai até 0,75 do tronco; arte alta é limitada pela
+                   # altura (no máximo 0,545 da altura do tronco). Tronco da loja: largura/altura = 0,562.
+                   "largura_rel_larga": 0.75, "aspecto_largo": 0.9, "aspecto_alto": 1.3,
+                   "altura_rel_max": 0.545, "razao_torso": 0.562},
+        "frente": {"largura_rel": 0.238, "topo_rel": 0.257, "centro_x_rel": 0.273},
+        "frente_grande": {"largura_rel": 0.63, "topo_rel": 0.20, "centro_x_rel": 0.0},
     },
     # Ajuste para TODAS as estampas (ex.: escala 1.05 = 5% maiores; deslocar_topo_rel 0.01 = um pouco abaixo).
     "ajuste_global": {"escala": 1.0, "deslocar_topo_rel": 0.0},
     # Tamanho da arte no mockup novo. O tronco do mockup novo é mais estreito para a altura dele
-    # (largura/altura 0,51) que o das fotos da loja (0,56): medir só pela largura deixaria a arte ~10%
+    # (largura/altura 0,513) que o das fotos da loja (0,562): medir só pela largura deixaria a arte ~10%
     # menor na peça. A largura é multiplicada por (razão da loja / razão do mockup) ** peso_altura
     # (0 = só largura, 1 = só altura, 0,5 = meio-termo). razao_tronco_loja é usada quando não há analise.csv.
-    "tamanho": {"razao_tronco_loja": 0.563, "peso_altura": 0.5},
+    "tamanho": {"razao_tronco_loja": 0.562, "peso_altura": 0.5},
     # estampar: o que fazer com linhas pendentes do mapa.csv.
     "estampar": {
         # true = só gera a cor quando frente E costas têm arte; false = gera os lados que têm arte e
@@ -206,7 +207,7 @@ CONFIG_PADRAO: dict = {
         # Fotos atuais no formato "JA FOI" (uma subpasta por produto) usadas pelo analisar sem --fotos.
         "pasta_fotos_extra": "CAMISETAS 100%/JA FOI",
         "confianca_minima": 0.6,       # abaixo disso a linha vai para revisão
-        "contraste_minimo": 28.0,      # diferença de luminosidade (L*) tinta x tecido para ser legível
+        "contraste_minimo": 25.0,      # diferença de luminosidade (L*) tinta x tecido para ser legível
         "hash_visual_distancia": 6,    # duplicata visual: até 6 bits diferentes em 64
     },
 }
