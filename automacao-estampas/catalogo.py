@@ -146,11 +146,11 @@ CONFIG_PADRAO: dict = {
         # Fotos extras das costas: a inclinada (mockup "*-costas-inclinada.png") entra como 03 sempre que
         # existir; o close ("*-close-costas.png") só entra se usar_close for true (vira 04).
         "usar_close": False,
-        # Tamanho da estampa das costas (fotos 01 e 03) em relação à loja: 0.85 = 15% menor.
-        "escala_costas": 0.85,
-        # Ajustes só da foto inclinada: tamanho extra (1.0 = igual à 01) e quanto subir a estampa
+        # Tamanho da estampa das costas (fotos 01 e 03) em relação à loja: 0.92 = 8% menor.
+        "escala_costas": 0.92,
+        # Ajustes só da foto inclinada: tamanho extra (relativo à 01; 0.924 mantém a 03 com 85% do tamanho da loja) e quanto subir a estampa
         # (fração da altura do tronco).
-        "escala_inclinada": 1.0,
+        "escala_inclinada": 0.924,
         "subir_inclinada": 0.03,
     },
     # Estampa da frente com largura_rel acima disso é "grande" (centralizada), abaixo é logo de peito.

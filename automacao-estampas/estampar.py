@@ -280,7 +280,7 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
                             geo, origem = geometria_padrao(lado, cfg, p)
                     # tamanho das costas (01 e 03): "escala_costas" no config (1.0 = igual à loja)
                     if lado == "costas":
-                        ec = float(ecfg.get("escala_costas", 0.85))
+                        ec = float(ecfg.get("escala_costas", 0.92))
                         if abs(ec - 1.0) > 1e-6:
                             geo = (round(geo[0] * ec, 4), geo[1], geo[2])
                     aj = cfg.get("ajuste_global", {})
@@ -491,7 +491,7 @@ def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, 
     # a perspectiva da foto inclinada alarga o corpo; "escala_inclinada" ajusta a estampa só nela,
     # mantendo o topo (1.0 = mesmo tamanho proporcional da foto 01)
     ecfg = cfg.get("estampar", {})
-    ei = float(ecfg.get("escala_inclinada", 1.0))
+    ei = float(ecfg.get("escala_inclinada", 0.924))
     x, y, w, h = x + w * (1 - ei) / 2.0, y, w * ei, h * ei
     # "subir_inclinada": sobe a estampa na foto inclinada (fração da altura do tronco)
     y -= float(ecfg.get("subir_inclinada", 0.03)) * costas.torso.altura
