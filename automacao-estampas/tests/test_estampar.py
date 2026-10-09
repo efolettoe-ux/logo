@@ -1,3 +1,4 @@
+import copy
 """Mockups, compositor e o comando estampar com um projeto sintético completo."""
 import csv
 import sys
@@ -87,7 +88,9 @@ class TestCompositor(unittest.TestCase):
 
     def test_enquadramento_padrao_da_loja(self):
         im = sintetico.mockup_liso(300, 400)
-        final, master = enquadrar(im, CFG, 400)
+        cfg = copy.deepcopy(CFG)
+        cfg["enquadramento"].update(formato="quadrado", fundo="cor")  # o padrão agora é PNG transparente
+        final, master = enquadrar(im, cfg, 400)
         self.assertEqual(final.size, (400, 400))
         self.assertEqual(final.mode, "RGB")
         self.assertEqual(final.getpixel((2, 2)), (237, 237, 237))
@@ -107,7 +110,8 @@ class TestEstampar(unittest.TestCase):
         cfg = carregar_config(self.raiz / "config.json")
         cfg["enquadramento"]["lado"] = 300
         cfg["saida"]["web_lado_max"] = 300
-        cfg.setdefault("estampar", {})["usar_close"] = True  # estes testes cobrem o close (desligado por padrão)
+        cfg.setdefault("estampar", {})["usar_close"] = True
+        cfg["enquadramento"].update(formato="quadrado", fundo="cor")  # estes testes cobrem o close (desligado por padrão)
         self.proj = Projeto(self.raiz, cfg)
         criar_mockups(self.raiz / "mockups")
         sintetico.estampa(120, 160).save(self.raiz / "arte.png")

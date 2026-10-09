@@ -166,9 +166,9 @@ CONFIG_PADRAO: dict = {
     # Medido nas fotos JA FOI (1254x1254): fundo RGB(237,237,237) (230-244 com a vinheta); peça com
     # 57,2% da largura e 59,0% da altura do quadro, centro em (50,1%, 51,2%).
     "enquadramento": {
-        "formato": "quadrado",          # quadrado | original
+        "formato": "original",          # quadrado | original
         "lado": 2048,
-        "fundo": "cor",                 # cor | transparente
+        "fundo": "transparente",                 # cor | transparente
         "cor_fundo": [237, 237, 237],
         "ocupacao_largura": 0.572,
         "ocupacao_altura": 0.590,
@@ -190,16 +190,16 @@ CONFIG_PADRAO: dict = {
     "realismo": {
         # cobertura da tinta: <1 deixa a malha aparecer um pouco nos meios-tons; onde a tinta é bem mais
         # clara que o tecido (tinta branca na camisa preta) a cobertura sobe até 1 (branco fica branco).
-        "opacidade_tinta": 0.93,
-        "forca_sombra": 1.0,
-        "forca_luz": 0.45,
+        "opacidade_tinta": 0.95,
+        "forca_sombra": 0.95,
+        "forca_luz": 0.4,
         "brilho_tecido": 0.25,
-        "forca_textura": 0.9,
+        "forca_textura": 0.6,
         "deslocamento_max_rel": 0.006,
         "deslocamento_max_px": 7.0,
         "forca_deslocamento": 1.0,
-        "suavizar_borda_px": 0.9,
-        "granulado_tinta": 0.035,
+        "suavizar_borda_px": 0.6,
+        "granulado_tinta": 0.018,
         "sigma_dobras_rel": 0.006,
     },
     "saida": {
