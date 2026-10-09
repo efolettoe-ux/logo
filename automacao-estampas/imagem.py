@@ -163,10 +163,21 @@ def recortar_alpha(im: Image.Image, limiar: int = 24) -> Image.Image:
     if im.mode != "RGBA":
         return im
     a = np.asarray(im.getchannel("A"))
-    ys, xs = np.nonzero(a > limiar)
-    if len(xs) == 0:
+    m = a > limiar
+    if not m.any():
         return im
-    return im.crop((int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1))
+
+    def faixa(perfil):
+        # ignora pontinhos soltos nas bordas (resto de fundo): corta as pontas com < 0,15% da tinta
+        c = np.cumsum(perfil, dtype=np.float64)
+        tot = c[-1]
+        i0 = int(np.searchsorted(c, tot * 0.0015))
+        i1 = int(np.searchsorted(c, tot * 0.9985))
+        return i0, min(len(perfil) - 1, i1)
+
+    x0, x1 = faixa(m.sum(axis=0))
+    y0, y1 = faixa(m.sum(axis=1))
+    return im.crop((x0, y0, x1 + 1, y1 + 1))
 
 
 # ---------------------------------------------------------------------------

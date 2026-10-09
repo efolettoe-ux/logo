@@ -149,7 +149,7 @@ class TestEstampar(unittest.TestCase):
         self.assertIsNone(b.vistas[1].estampa)
         self.assertEqual(ts[("prod-a", "Azul Marinho")].status, "sem_mockup")
         self.assertEqual([(v.vista, v.numero) for v in ts[("prod-b", "Branca")].vistas], [("frente", 1)])
-        self.assertEqual(ts[("prod-c", "Branca / Azul Claro")].status, "sem_mockup")
+        self.assertNotEqual(ts[("prod-c", "Branca / Azul Claro")].status, "sem_mockup")  # usa o mockup da Branca
         self.assertEqual(ts[("prod-c", "Preta")].vistas[0].status, "sem_estampa")
         self.assertEqual(ts[("prod-d", "Preta")].status, "sem_estampa")
 

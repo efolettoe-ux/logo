@@ -384,6 +384,19 @@ def residuo_da_estampa(caminho: str, cfg: dict, raiz: str) -> Optional[str]:
     return _RESIDUO[caminho]
 
 
+def geometria_padrao_costas(geo, aspecto: float, torso, cfg: dict):
+    """Padroniza a estampa das costas: mesma altura (topo), centralizada e dentro de uma área fixa
+    (largura padrão, com altura máxima). Desligue com estampar.padronizar_costas.ativo = false."""
+    pc = cfg.get("estampar", {}).get("padronizar_costas", {})
+    if not pc.get("ativo", True):
+        return geo
+    larg = float(pc.get("largura_rel", 0.64))
+    alt_max = float(pc.get("altura_max_rel", 0.40)) * torso.altura  # px
+    if larg * torso.largura * aspecto > alt_max:
+        larg = alt_max / (aspecto * torso.largura)
+    return (larg, float(pc.get("topo_rel", 0.188)), 0.0)
+
+
 def caixa_no_mockup(torso, geo: Tuple[float, float, float], aspecto: float) -> Tuple[float, float, float, float]:
     from imagem import caixa_da_geometria
     return caixa_da_geometria(torso, geo[0], geo[1], geo[2], aspecto)
@@ -444,6 +457,8 @@ def renderizar_vista(tarefa: Tarefa, v: Vista, cfg: dict, raiz: str, previa: boo
         f = fator_tamanho(v.razao_loja, torso_ref, cfg)
         if abs(f - 1.0) > 1e-3:
             geo = (geo[0] * f, geo[1], geo[2])
+        if v.vista in ("costas", "close-costas"):
+            geo = geometria_padrao_costas(geo, aspecto, torso_ref, cfg)
         caixa = caixa_no_mockup(mk.torso, geo, aspecto)
         im = aplicar_estampa(mk, art, caixa, cfg, escala_detalhe=det)
         foco_y = caixa[1] + caixa[3] / 2.0
@@ -493,6 +508,7 @@ def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, 
     f = fator_tamanho(v.razao_loja, costas.torso, cfg)
     if abs(f - 1.0) > 1e-3:
         geo = (geo[0] * f, geo[1], geo[2])
+    geo = geometria_padrao_costas(geo, art.size[1] / float(art.size[0]), costas.torso, cfg)
     x, y, w, h = caixa_no_mockup(costas.torso, geo, art.size[1] / float(art.size[0]))
     # a perspectiva da foto inclinada alarga o corpo; "escala_inclinada" ajusta a estampa só nela,
     # mantendo o topo (1.0 = mesmo tamanho proporcional da foto 01)
@@ -510,7 +526,7 @@ def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, 
         X, Y = reg.ponto(px_ / kc, py_ / kc)
         quad.append((X * ki, Y * ki))
     # "girar_inclinada": giro extra da estampa (graus, positivo = anti-horário), em volta do centro dela
-    gx = float(ecfg.get("girar_inclinada", 7.0))
+    gx = float(ecfg.get("girar_inclinada", 5.0))
     if gx:
         mx, my = sum(q[0] for q in quad) / 4.0, sum(q[1] for q in quad) / 4.0
         tg = math.radians(gx)

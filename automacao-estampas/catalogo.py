@@ -151,13 +151,16 @@ CONFIG_PADRAO: dict = {
         "frente_sem_arte": "liso",
         # Tamanho da estampa das costas (fotos 01 e 03) em relação à loja: 0.92 = 8% menor.
         "escala_costas": 0.92,
+        # Padrão das costas: toda estampa com o mesmo topo, centralizada e na mesma área (largura
+        # padrão, limitada pela altura máxima). Vale para a 01 e a 03; desligue com "ativo": false.
+        "padronizar_costas": {"ativo": True, "largura_rel": 0.64, "altura_max_rel": 0.40, "topo_rel": 0.188},
         # Ajustes só da foto inclinada: tamanho extra (relativo à 01; 0.924 mantém a 03 com 85% do tamanho da loja) e quanto subir a estampa
         # (fração da altura do tronco).
         "escala_inclinada": 0.924,
         "subir_inclinada": 0.015,
         # Giro extra da estampa na inclinada (graus, positivo = anti-horário) e deslocamento horizontal
         # (fração da largura da foto, negativo = esquerda). Calibrados no mockup inclinado atual.
-        "girar_inclinada": 7.0,
+        "girar_inclinada": 5.0,
         "mover_inclinada": -0.011,
         "mover_inclinada_vertical": 0.002,  # fração da altura da foto, positivo = para cima
     },
