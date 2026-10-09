@@ -519,6 +519,22 @@ def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, 
     mvv = float(ecfg.get("mover_inclinada_vertical", 0.002)) * mk.rgb.shape[0]
     if mv or mvv:
         quad = [(qx_ + mv, qy_ - mvv) for qx_, qy_ in quad]
+    # estampa larga: encolhe em volta do centro até os cantos ficarem dentro da peça (com folga)
+    masc = mk.mascara
+    Hm, Wm = masc.shape
+    folga = max(2, int(0.012 * Wm))
+
+    def dentro(px_, py_):
+        xi, yi = int(round(px_)), int(round(py_))
+        if not (folga <= xi < Wm - folga and folga <= yi < Hm - folga):
+            return False
+        return bool(masc[yi - folga:yi + folga + 1, xi - folga:xi + folga + 1].all())
+
+    mx, my = sum(q[0] for q in quad) / 4.0, sum(q[1] for q in quad) / 4.0
+    for _ in range(25):
+        if all(dentro(qx_, qy_) for qx_, qy_ in quad):
+            break
+        quad = [(mx + 0.97 * (qx_ - mx), my + 0.97 * (qy_ - my)) for qx_, qy_ in quad]
     qx = [q[0] for q in quad]
     qy = [q[1] for q in quad]
     bx0, by0 = math.floor(min(qx)), math.floor(min(qy))
