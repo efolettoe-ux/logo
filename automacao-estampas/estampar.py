@@ -23,7 +23,8 @@ from mockups import ResultadoMockups, registro_em_cache
 COLUNAS_RELATORIO = ["handle", "NOME", "cor", "codigo", "vista", "numero", "arquivo", "status", "estampa",
                      "origem_geometria", "largura_rel", "topo_rel", "centro_x_rel", "segundos", "observacao"]
 
-NOME_VISTA_SAIDA = {"costas": "costas", "frente": "frente", "close-costas": "close"}
+NOME_VISTA_SAIDA = {"costas": "costas", "frente": "frente", "close-costas": "close", "costas-inclinada": "inclinada"}
+VISTAS_DAS_COSTAS = ("close-costas", "costas-inclinada")  # vistas extras que mostram a arte das costas
 
 
 @dataclass
@@ -237,10 +238,15 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
             previsto = {lado: tem[lado] or lado in falta for lado in tem}
             nums = numeracao_lados(previsto["costas"], previsto["frente"], cfg)
             vistas = [(lado, n) for lado, n in nums.items()]
-            if tem["costas"] and mk.tem(cor, "close-costas"):
-                vistas.append(("close-costas", 3))
+            # fotos extras das costas: inclinada (03) e, se ligado no config, o close
+            extra = 3
+            if tem["costas"] and mk.tem(cor, "costas-inclinada"):
+                vistas.append(("costas-inclinada", extra))
+                extra += 1
+            if tem["costas"] and ecfg.get("usar_close", False) and mk.tem(cor, "close-costas"):
+                vistas.append(("close-costas", extra))
             for vista, n in sorted(vistas, key=lambda v: v[1]):
-                lado = "costas" if vista == "close-costas" else vista
+                lado = "costas" if vista in VISTAS_DAS_COSTAS else vista
                 linha = linhas.get(lado)
                 nome_v = NOME_VISTA_SAIDA[vista]
                 arq = nome_arquivo_saida(p.nome, codigo, n, nome_v, "png", cfg)
@@ -406,6 +412,8 @@ def renderizar_vista(tarefa: Tarefa, v: Vista, cfg: dict, raiz: str, previa: boo
         mk = _CACHE[chave]
         det = reg.escala * (mk.escala / costas.escala)
         torso_ref = costas.torso
+    elif v.vista == "costas-inclinada":
+        return _renderizar_inclinada(v, cfg, raiz, lado_max, lado_saida, manuais)
     else:
         mk = _mockup(v.mockup, cfg, lado_max, manuais.get(Path(v.mockup).name))
         det = 1.0
@@ -430,6 +438,52 @@ def renderizar_vista(tarefa: Tarefa, v: Vista, cfg: dict, raiz: str, previa: boo
     else:
         im = mk.imagem.copy()
     return enquadrar(im, cfg, lado_saida, foco_y=foco_y, eh_close=(v.vista == "close-costas"))
+
+
+def _arte_da_vista(v: Vista, cfg: dict, raiz: str) -> Image.Image:
+    from imagem import ajustar_tinta, ler_ajuste_tinta
+    art = _estampa(v.estampa, cfg, Path(raiz) / cfg["pastas"].get("analise", "analise") / "estampas_prontas")
+    aj = ler_ajuste_tinta(v.ajuste_tinta)
+    if aj is not None:
+        chave_aj = ("ajuste", v.estampa, aj)
+        if chave_aj not in _CACHE:
+            _CACHE[chave_aj] = ajustar_tinta(art, aj)
+        art = _CACHE[chave_aj]
+    return art
+
+
+def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, manuais):
+    """Costas inclinada: calcula a caixa da estampa nas costas retas e leva para a foto inclinada
+    pelo mesmo giro/escala da peça, então estampa com a luz e as dobras do mockup inclinado."""
+    import numpy as np
+    from compositor import aplicar_estampa, enquadrar, redimensionar_premultiplicado
+    from mockups import registro_inclinada_em_cache
+    costas = _mockup(v.mockup_costas, cfg, lado_max, manuais.get(Path(v.mockup_costas).name))
+    mk = _mockup(v.mockup, cfg, lado_max, manuais.get(Path(v.mockup).name))
+    if not v.estampa:
+        return enquadrar(mk.imagem.copy(), cfg, lado_saida)
+    reg = registro_inclinada_em_cache(Path(v.mockup_costas), Path(v.mockup),
+                                      Path(raiz) / cfg["pastas"].get("analise", "analise") / "registro_inclinada.json",
+                                      cfg["mockups"].get("registro_manual", {}).get(Path(v.mockup).name))
+    art = _arte_da_vista(v, cfg, raiz)
+    geo = v.geometria
+    f = fator_tamanho(v.razao_loja, costas.torso, cfg)
+    if abs(f - 1.0) > 1e-3:
+        geo = (geo[0] * f, geo[1], geo[2])
+    x, y, w, h = caixa_no_mockup(costas.torso, geo, art.size[1] / float(art.size[0]))
+    # px de trabalho das costas -> px do arquivo -> px do arquivo inclinado -> px de trabalho da inclinada
+    kc, ki = costas.escala, mk.escala
+    esc = reg.escala * ki / kc
+    W2, H2 = max(1, round(w * esc)), max(1, round(h * esc))
+    # arte já no tamanho final (pré-multiplicada) e girada em volta do centro
+    rgb, a = redimensionar_premultiplicado(art, W2, H2)
+    arr = np.dstack([np.clip(rgb * 255.0, 0, 255), np.clip(a * 255.0, 0, 255)]).astype(np.uint8)
+    girada = Image.fromarray(arr, "RGBa").rotate(-reg.angulo, resample=Image.BICUBIC, expand=True).convert("RGBA")
+    cx, cy = reg.ponto((x + w / 2.0) / kc, (y + h / 2.0) / kc)
+    cx, cy = cx * ki, cy * ki
+    caixa = (cx - girada.size[0] / 2.0, cy - girada.size[1] / 2.0, float(girada.size[0]), float(girada.size[1]))
+    im = aplicar_estampa(mk, girada, caixa, cfg, escala_detalhe=1.0)
+    return enquadrar(im, cfg, lado_saida, foco_y=cy)
 
 
 def _salvar(final: Image.Image, master: Optional[Image.Image], v: Vista, cfg: dict) -> None:

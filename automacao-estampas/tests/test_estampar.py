@@ -107,6 +107,7 @@ class TestEstampar(unittest.TestCase):
         cfg = carregar_config(self.raiz / "config.json")
         cfg["enquadramento"]["lado"] = 300
         cfg["saida"]["web_lado_max"] = 300
+        cfg.setdefault("estampar", {})["usar_close"] = True  # estes testes cobrem o close (desligado por padrão)
         self.proj = Projeto(self.raiz, cfg)
         criar_mockups(self.raiz / "mockups")
         sintetico.estampa(120, 160).save(self.raiz / "arte.png")

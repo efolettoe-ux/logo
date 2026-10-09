@@ -98,6 +98,7 @@ CONFIG_PADRAO: dict = {
     # Mockups lisos: o nome do arquivo diz cor e vista (ex.: "preta-costas.png", "off-white-close-costas.png").
     "mockups": {
         "palavras_vista": {
+            "costas-inclinada": ["costas inclinada", "inclinada", "inclinado", "diagonal"],
             "close-costas": ["close costas", "close", "detalhe", "zoom"],
             "frente": ["frente", "front", "frontal"],
             "costas": ["costas", "back", "verso"],
@@ -142,6 +143,9 @@ CONFIG_PADRAO: dict = {
         # Confere a arte sem fundo antes de estampar: restos de fundo (nuvens cinza, faixas de degradê
         # nas bordas) bloqueiam a imagem com status "revisar".
         "verificar_residuo": True,
+        # Fotos extras das costas: a inclinada (mockup "*-costas-inclinada.png") entra como 03 sempre que
+        # existir; o close ("*-close-costas.png") só entra se usar_close for true (vira 04).
+        "usar_close": False,
     },
     # Estampa da frente com largura_rel acima disso é "grande" (centralizada), abaixo é logo de peito.
     "limite_frente_grande": 0.40,
