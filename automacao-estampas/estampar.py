@@ -506,6 +506,13 @@ def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, 
     for px_, py_ in cantos:
         X, Y = reg.ponto(px_ / kc, py_ / kc)
         quad.append((X * ki, Y * ki))
+    # "girar_inclinada": giro extra da estampa (graus, positivo = anti-horário), em volta do centro dela
+    gx = float(ecfg.get("girar_inclinada", 0.0))
+    if gx:
+        mx, my = sum(q[0] for q in quad) / 4.0, sum(q[1] for q in quad) / 4.0
+        tg = math.radians(gx)
+        cg, sg = math.cos(tg), math.sin(tg)
+        quad = [(mx + cg * (qx_ - mx) + sg * (qy_ - my), my - sg * (qx_ - mx) + cg * (qy_ - my)) for qx_, qy_ in quad]
     qx = [q[0] for q in quad]
     qy = [q[1] for q in quad]
     bx0, by0 = math.floor(min(qx)), math.floor(min(qy))
