@@ -1,0 +1,6 @@
+handle,NOME,cor,lado,arquivo_estampa,id_normalizado,confianca,largura_rel,topo_rel,centro_x_rel,origem,revisar,observacao
+martini,MARTINI,Branca,costas,ESTAMPAS PRONTAS P: IZZY/MARTINI ESTAMPAS/MARTINI COSTAS BRANCA OFF WHITE.png,,1,0.632,0.158,0.009,manual,nao,arte escura para camiseta clara
+martini,MARTINI,Off White,costas,ESTAMPAS PRONTAS P: IZZY/MARTINI ESTAMPAS/MARTINI COSTAS BRANCA OFF WHITE.png,,1,0.632,0.158,0.009,manual,nao,
+martini,MARTINI,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Rebranding_project_and_artist_names_2K_202609081155.jpeg,,1,,,,manual,nao,sem números: usa a medida da foto atual (analise.csv) ou o padrão
+martini,MARTINI,,frente,ESTAMPAS PRONTAS P: IZZY/MARTINI ESTAMPAS/MARTINI FRENTE BRANCA OFF WHITE.png,,1,0.188,0.221,0.24,manual,nao,cor vazia = vale para todas as cores
+paradise,PARADISE,,frente,,liso,1,,,,manual,nao,"id_normalizado=liso: frente sem estampa de propósito"

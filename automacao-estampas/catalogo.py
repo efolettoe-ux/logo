@@ -70,7 +70,7 @@ CONFIG_PADRAO: dict = {
         # rgb_referencia = cor do tecido medida nas fotos atuais da loja (JA FOI, mediana de 24 fotos por cor)
         {"nome": "Branca", "codigo": "BR", "tom": "claro", "rgb_referencia": [241, 241, 243],
          "apelidos": ["branca", "branco", "white", "br", "wht"]},
-        {"nome": "Off White", "codigo": "OW", "tom": "claro", "rgb_referencia": [240, 234, 221],
+        {"nome": "Off White", "codigo": "OW", "tom": "claro", "rgb_referencia": [241, 235, 224],
          "apelidos": ["off white", "offwhite", "off-white", "off", "ow", "creme", "cream", "perola"]},
         {"nome": "Preta", "codigo": "PT", "tom": "escuro", "rgb_referencia": [23, 23, 22],
          "apelidos": ["preta", "preto", "black", "pt", "blk"]},
@@ -118,25 +118,31 @@ CONFIG_PADRAO: dict = {
     # largura_rel = largura da estampa / largura do tronco; topo_rel = (topo da estampa - gola) / altura do
     # tronco; centro_x_rel = (centro da estampa - centro do tronco) / largura do tronco (+ = direita da foto).
     "geometria_padrao": {
-        "costas": {"largura_rel": 0.63, "topo_rel": 0.196, "centro_x_rel": 0.0},
-        "frente": {"largura_rel": 0.22, "topo_rel": 0.255, "centro_x_rel": 0.255},
+        "costas": {"largura_rel": 0.64, "topo_rel": 0.190, "centro_x_rel": 0.0,
+                   # arte larga (altura/largura <= 0,9) vai até 0,72 do tronco; arte alta é limitada pela
+                   # altura (no máximo 0,545 da altura do tronco). Tronco da loja: largura/altura = 0,59.
+                   "largura_rel_larga": 0.72, "aspecto_largo": 0.9, "aspecto_alto": 1.3,
+                   "altura_rel_max": 0.545, "razao_torso": 0.59},
+        "frente": {"largura_rel": 0.226, "topo_rel": 0.257, "centro_x_rel": 0.258},
         "frente_grande": {"largura_rel": 0.60, "topo_rel": 0.20, "centro_x_rel": 0.0},
     },
+    # Ajuste para TODAS as estampas (ex.: escala 1.05 = 5% maiores; deslocar_topo_rel 0.01 = um pouco abaixo).
+    "ajuste_global": {"escala": 1.0, "deslocar_topo_rel": 0.0},
     # Estampa da frente com largura_rel acima disso é "grande" (centralizada), abaixo é logo de peito.
     "limite_frente_grande": 0.40,
     # Imagem final igual às fotos da loja: quadrado, fundo cinza-claro, peça ocupando a mesma fração.
     # Medido nas fotos JA FOI (1254x1254): fundo RGB(237,237,237) (230-244 com a vinheta); peça com
-    # 58,4% da largura e 60,0% da altura do quadro, centro em (50,1%, 51,2%).
+    # 57,2% da largura e 59,0% da altura do quadro, centro em (50,1%, 51,2%).
     "enquadramento": {
         "formato": "quadrado",          # quadrado | original
         "lado": 2048,
         "fundo": "cor",                 # cor | transparente
         "cor_fundo": [237, 237, 237],
-        "ocupacao_largura": 0.584,
-        "ocupacao_altura": 0.600,
+        "ocupacao_largura": 0.572,
+        "ocupacao_altura": 0.590,
         "centro": [0.501, 0.512],
         "sombra_opacidade": 0.0,        # sombra suave sob a peça (0 = sem; experimente 0.12)
-        "close": "preencher",           # close-costas: preencher (quadrado sem bordas) | inteiro
+        "close": "inteiro",             # close-costas: inteiro (detalhe todo, com fundo nas laterais) | preencher
         "salvar_png_transparente": True,
     },
     "analise": {
@@ -159,6 +165,7 @@ CONFIG_PADRAO: dict = {
         "deslocamento_max_px": 7.0,
         "forca_deslocamento": 1.0,
         "suavizar_borda_px": 0.5,
+        "granulado_tinta": 0.018,
         "sigma_dobras_rel": 0.006,
     },
     "saida": {
@@ -171,6 +178,21 @@ CONFIG_PADRAO: dict = {
         "contato_por_folha": 240,
     },
     "baixar": {"largura": 1500, "workers": 8, "tentativas": 4, "timeout": 40},
+    # casar: onde ficam as artes e como escolher entre versões repetidas.
+    "casar": {
+        # Pasta que contém "CAMISETAS 100%", "NOVAS", "ESTAMPAS PRONTAS P: IZZY", "MATERIAL QUALITY 100%".
+        # Vazio = procura sozinho (a pasta do projeto e a pasta acima dela). Também dá para usar --arquivos.
+        "pasta_arquivos": "",
+        "pastas_estampas": ["CAMISETAS 100%", "NOVAS", "ESTAMPAS PRONTAS P: IZZY", "MATERIAL QUALITY 100%", "estampas"],
+        # Quando há a mesma arte em várias pastas, vence a primeira desta lista (depois: PNG transparente,
+        # texto sem erro, maior resolução).
+        "prioridade_fontes": ["ESTAMPAS PRONTAS P: IZZY", "MATERIAL QUALITY 100%", "CAMISETAS 100%", "estampas", "NOVAS"],
+        # Fotos atuais no formato "JA FOI" (uma subpasta por produto) usadas pelo analisar sem --fotos.
+        "pasta_fotos_extra": "CAMISETAS 100%/JA FOI",
+        "confianca_minima": 0.6,       # abaixo disso a linha vai para revisão
+        "contraste_minimo": 28.0,      # diferença de luminosidade (L*) tinta x tecido para ser legível
+        "hash_visual_distancia": 6,    # duplicata visual: até 6 bits diferentes em 64
+    },
 }
 
 

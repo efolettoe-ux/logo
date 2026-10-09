@@ -193,6 +193,24 @@ def desfocar(a: np.ndarray, sigma: float) -> np.ndarray:
     a = a.astype(np.float32, copy=False)
     if sigma < 0.3:
         return a
+    if sigma < 1.2:
+        # desfoque pequeno: gaussiana de verdade (as caixas borrariam demais, ~1.4 px no mínimo)
+        r = 2 if sigma < 0.8 else 3
+        k = np.exp(-0.5 * (np.arange(-r, r + 1) / sigma) ** 2).astype(np.float32)
+        k /= k.sum()
+        out = a
+        for eixo in (0, 1):
+            pad = [(0, 0)] * a.ndim
+            pad[eixo] = (r, r)
+            p = np.pad(out, pad, mode="edge")
+            acc = np.zeros_like(out)
+            n = out.shape[eixo]
+            for i, kv in enumerate(k):
+                sl = [slice(None)] * a.ndim
+                sl[eixo] = slice(i, i + n)
+                acc += kv * p[tuple(sl)]
+            out = acc
+        return out
     # raio da caixa para 3 passadas aproximarem a gaussiana
     r = max(1, int(round((np.sqrt(4.0 * sigma * sigma + 1.0) - 1.0) / 2.0)))
     out = a
@@ -423,7 +441,7 @@ def _segmentar_fundo_liso(rgb: np.ndarray, acfg: dict) -> np.ndarray:
     o contorno fino da peça vira uma "cerca" que o preenchimento não atravessa.
     """
     h, w, _ = rgb.shape
-    lab = rgb_para_lab(desfocar(rgb.astype(np.float32), 0.7))
+    lab = rgb_para_lab(desfocar(rgb.astype(np.float32), 1.4))
     borda = np.zeros((h, w), bool)
     b = max(2, int(0.006 * max(h, w)))
     borda[:b, :] = borda[-b:, :] = True
@@ -446,6 +464,15 @@ def _segmentar_fundo_liso(rgb: np.ndarray, acfg: dict) -> np.ndarray:
             return _refinar_contorno(peca, lab, fundo)
         if melhor is None or abs(frac - 0.3) < abs(float(melhor.mean()) - 0.3):
             melhor = peca
+    # último recurso: fundo chapado (ex.: nossas próprias imagens novas, cinza liso 237): só a cor,
+    # com tolerância bem justa (camiseta branca fica a ~2-3 unidades do fundo)
+    tol_justa = max(1.2, 3.0 * spread)
+    if tol_justa < tol:
+        cerca = (dist >= tol_justa)
+        fundo_m = propagar(borda & ~cerca, ~cerca)
+        peca = _limpar_mascara(~fundo_m)
+        if 0.03 < float(peca.mean()) < 0.85:
+            return _refinar_contorno(peca, lab, fundo)
     return melhor
 
 
@@ -460,9 +487,21 @@ def _refinar_contorno(peca: np.ndarray, lab: np.ndarray, fundo: np.ndarray) -> n
         return peca
     tecido = np.median(lab[miolo], axis=0)
     sep = float(np.linalg.norm(tecido - fundo))
-    if sep < 12.0:
-        return peca
     faixa = peca & ~erodir(peca, r)
+    if sep < 12.0:
+        # peça clara em fundo claro: a cerca de contorno pega também a sombra suave em volta da peça.
+        # A sombra e o contorno são mais escuros que o fundo; o tecido, mais claro. Corta pela luminância.
+        sep_cor = float(np.linalg.norm(tecido[1:] - fundo[1:]))
+        if sep_cor >= 4.0:
+            # ex.: off white (amarelado) x fundo cinza neutro: decide pela cor (a*, b*), não pela luz
+            d_t = np.linalg.norm(lab[..., 1:] - tecido[1:], axis=-1)
+            d_f = np.linalg.norm(lab[..., 1:] - fundo[1:], axis=-1)
+            return _limpar_mascara(peca & ~(faixa & (d_f < d_t)))
+        if tecido[0] > fundo[0] + 0.4:
+            L = lab[..., 0]
+            tirar = faixa & (L < (tecido[0] + fundo[0]) / 2.0)
+            return _limpar_mascara(peca & ~tirar)
+        return peca
     d_t = np.linalg.norm(lab - tecido, axis=-1)
     d_f = np.linalg.norm(lab - fundo, axis=-1)
     tirar = faixa & (d_f < d_t)
@@ -877,21 +916,29 @@ def remover_fundo(im: Image.Image, tolerancia: float = 16.0, buracos_area_max: f
             if comp.area[i] <= lim:
                 x0, y0, x1, y1 = comp.bbox[i]
                 fora[y0:y1, x0:x1] |= comp.rotulos[y0:y1, x0:x1] == i + 1
-    # alfa: 0 no fundo; transição suave numa faixa estreita em volta do fundo; 1 no resto
-    faixa = dilatar(fora, 2) & ~erodir(fora, 1)
-    a_suave = np.clip((dist - tol * 0.5) / (tol * 1.5), 0.0, 1.0).astype(np.float32)
+    # alfa: 0 no fundo, 1 na arte; numa faixa estreita em volta do fundo, "color to alpha":
+    # cada pixel = mistura da tinta vizinha com o fundo -> alfa = quanto tem de tinta (projeção em RGB linear)
+    faixa = dilatar(fora, 2) & ~erodir(fora, 2)
+    lin = srgb_para_linear(rgb.astype(np.float32) / 255.0)
+    flin = srgb_para_linear(_lab_para_rgb(fundo_lab))
+    miolo = ~fora & ~faixa
+    peso = desfocar(miolo.astype(np.float32), 2.5)
+    tinta = desfocar(lin * miolo[..., None], 2.5) / np.maximum(peso, 1e-4)[..., None]
+    sem_vizinho = peso < 1e-3
+    tinta[sem_vizinho] = lin[sem_vizinho]
+    d_tf = tinta - flin
+    proj = ((lin - flin) * d_tf).sum(-1) / np.maximum((d_tf * d_tf).sum(-1), 1e-6)
     alpha = np.ones((h, w), np.float32)
     alpha[fora] = 0.0
-    alpha[faixa] = np.where(fora[faixa], np.minimum(a_suave[faixa], 0.5) * (a_suave[faixa] > 0.15), a_suave[faixa])
-    alpha[faixa & ~fora] = np.maximum(alpha[faixa & ~fora], 0.0)
+    alpha[faixa] = np.clip(proj[faixa], 0.0, 1.0)
+    alpha[faixa & sem_vizinho] = np.where(fora[faixa & sem_vizinho], 0.0, 1.0)
+    alpha[alpha < 0.04] = 0.0
     # descontaminação: p = a*c + (1-a)*fundo -> c = (p - (1-a)*fundo) / a
-    fundo_rgb = _lab_para_rgb(fundo_lab)
-    cor = rgb.astype(np.float32) / 255.0
     am = np.maximum(alpha, 1e-3)[..., None]
-    lin = srgb_para_linear(cor)
-    flin = srgb_para_linear(fundo_rgb)
     limpo = np.clip((lin - (1 - am) * flin) / am, 0.0, 1.0)
-    cor = np.where((faixa & (alpha < 0.999))[..., None], linear_para_srgb(limpo), cor)
+    trans = faixa & (alpha > 0) & (alpha < 0.999)
+    cor = rgb.astype(np.float32) / 255.0
+    cor = np.where(trans[..., None], linear_para_srgb(limpo), cor)
     out = np.dstack([cor * 255.0, alpha * 255.0]).round().clip(0, 255).astype(np.uint8)
     return Image.fromarray(out, "RGBA"), True
 

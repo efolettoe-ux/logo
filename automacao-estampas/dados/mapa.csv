@@ -1,0 +1,1249 @@
+handle,NOME,titulo,cor,lado,arquivo_estampa,para_camisa,largura_rel,topo_rel,centro_x_rel,origem,confianca,revisar,observacao
+track-t-shirt,TRACK,TRACK T-SHIRT,Branca,costas,,,,,,,0,sim,falta a estampa das costas
+track-t-shirt,TRACK,TRACK T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+track-t-shirt,TRACK,TRACK T-SHIRT,Off White,costas,,,,,,,0,sim,falta a estampa das costas
+track-t-shirt,TRACK,TRACK T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+track-t-shirt,TRACK,TRACK T-SHIRT,Preta,costas,,,,,,,0,sim,falta a estampa das costas
+track-t-shirt,TRACK,TRACK T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+track-t-shirt,TRACK,TRACK T-SHIRT,Azul Marinho,costas,,,,,,,0,sim,falta a estampa das costas
+track-t-shirt,TRACK,TRACK T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+tobacco-t-shirt,TOBACCO,TOBACCO T-SHIRT,Branca,costas,NOVAS/Troque_Spanish_Luxury_Por_Brasil_2K_20260910045618.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+tobacco-t-shirt,TOBACCO,TOBACCO T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+tobacco-t-shirt,TOBACCO,TOBACCO T-SHIRT,Off White,costas,NOVAS/Troque_Spanish_Luxury_Por_Brasil_2K_20260910045618.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+tobacco-t-shirt,TOBACCO,TOBACCO T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+tobacco-t-shirt,TOBACCO,TOBACCO T-SHIRT,Preta,costas,NOVAS/Change_background_and_text_colors_2K_20260910045722 - cópia.png,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+tobacco-t-shirt,TOBACCO,TOBACCO T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+the-sun-t-shirt,THE-SUN,THE SUN T-SHIRT,Branca,costas,NOVAS/deixe_textos_sem_rassuras_2K_20260910051015 - cópia.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.45,sim,"só existe a versão para camisa escura; parece legível na Branca, mas confira"
+the-sun-t-shirt,THE-SUN,THE SUN T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+the-sun-t-shirt,THE-SUN,THE SUN T-SHIRT,Off White,costas,NOVAS/deixe_textos_sem_rassuras_2K_20260910051015 - cópia.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.45,sim,"só existe a versão para camisa escura; parece legível na Off White, mas confira"
+the-sun-t-shirt,THE-SUN,THE SUN T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+the-sun-t-shirt,THE-SUN,THE SUN T-SHIRT,Preta,costas,NOVAS/deixe_textos_sem_rassuras_2K_20260910051015 - cópia.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+the-sun-t-shirt,THE-SUN,THE SUN T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+tequila-t-shirt,TEQUILA,TEQUILA T-SHIRT,Branca,costas,NOVAS/Alterar_cores_da_imagem_2K_20260910015018.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+tequila-t-shirt,TEQUILA,TEQUILA T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+tequila-t-shirt,TEQUILA,TEQUILA T-SHIRT,Off White,costas,NOVAS/Alterar_cores_da_imagem_2K_20260910015018.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+tequila-t-shirt,TEQUILA,TEQUILA T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+tequila-t-shirt,TEQUILA,TEQUILA T-SHIRT,Preta,costas,NOVAS/Isolating_t-shirt_print_graphic_2K_20260910014911.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+tequila-t-shirt,TEQUILA,TEQUILA T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+tequila-t-shirt,TEQUILA,TEQUILA T-SHIRT,Azul Marinho,costas,NOVAS/Isolating_t-shirt_print_graphic_2K_20260910014911.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+tequila-t-shirt,TEQUILA,TEQUILA T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+sunrise-t-shirt,SUNRISE,SUNRISE T-SHIRT,Branca,costas,NOVAS/Troque_Costa_Orggeil_Por_Pallacio_2K_20260910015902.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+sunrise-t-shirt,SUNRISE,SUNRISE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+sunrise-t-shirt,SUNRISE,SUNRISE T-SHIRT,Off White,costas,NOVAS/Troque_Costa_Orggeil_Por_Pallacio_2K_20260910015902.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+sunrise-t-shirt,SUNRISE,SUNRISE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+sunrise-t-shirt,SUNRISE,SUNRISE T-SHIRT,Preta,costas,NOVAS/Darken_background_and_make_text_2K_20260910020019.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+sunrise-t-shirt,SUNRISE,SUNRISE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+sunrise-t-shirt,SUNRISE,SUNRISE T-SHIRT,Azul Marinho,costas,NOVAS/Darken_background_and_make_text_2K_20260910020019.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+sunrise-t-shirt,SUNRISE,SUNRISE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+success-t-shirt,SUCCESS,SUCCESS T-SHIRT,Branca,costas,"ESTAMPAS PRONTAS P: IZZY/ChatGPT Image 27 de set. de 2026, 21_28_10 (1).png",clara,0.6672,0.1900,0.0000,padrao,0.85,nao,
+success-t-shirt,SUCCESS,SUCCESS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+success-t-shirt,SUCCESS,SUCCESS T-SHIRT,Off White,costas,"ESTAMPAS PRONTAS P: IZZY/ChatGPT Image 27 de set. de 2026, 21_28_10 (1).png",clara,0.6672,0.1900,0.0000,padrao,0.85,nao,
+success-t-shirt,SUCCESS,SUCCESS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+success-t-shirt,SUCCESS,SUCCESS T-SHIRT,Preta,costas,"ESTAMPAS PRONTAS P: IZZY/Sucesso, Sono e Risadas (1).png",escura,0.6720,0.1900,0.0000,padrao,0.85,nao,
+success-t-shirt,SUCCESS,SUCCESS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+style-t-shirt,STYLE,STYLE T-SHIRT,Branca,costas,"ESTAMPAS PRONTAS P: IZZY/ChatGPT Image 25 de set. de 2026, 01_29_59 (1).png",clara,0.6978,0.1900,0.0000,padrao,0.85,nao,
+style-t-shirt,STYLE,STYLE T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+style-t-shirt,STYLE,STYLE T-SHIRT,Off White,costas,"ESTAMPAS PRONTAS P: IZZY/ChatGPT Image 25 de set. de 2026, 01_29_59 (1).png",clara,0.6978,0.1900,0.0000,padrao,0.85,nao,
+style-t-shirt,STYLE,STYLE T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+style-t-shirt,STYLE,STYLE T-SHIRT,Preta,costas,NOVAS/Replace_retail_with_private_club_2K_20260910015455.jpeg,escura,0.6981,0.1900,0.0000,padrao,0.85,nao,
+style-t-shirt,STYLE,STYLE T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+style-t-shirt,STYLE,STYLE T-SHIRT,Azul Marinho,costas,NOVAS/Replace_retail_with_private_club_2K_20260910015455.jpeg,escura,0.6981,0.1900,0.0000,padrao,0.85,nao,
+style-t-shirt,STYLE,STYLE T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+stay-late-t-shirt,STAY-LATE,STAY LATE T-SHIRT,Branca,costas,NOVAS/Mude_o_S_texto_vermelho_2K_20260910004633.jpeg,clara,0.6951,0.1900,0.0000,padrao,0.85,nao,
+stay-late-t-shirt,STAY-LATE,STAY LATE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+stay-late-t-shirt,STAY-LATE,STAY LATE T-SHIRT,Off White,costas,NOVAS/Mude_o_S_texto_vermelho_2K_20260910004633.jpeg,clara,0.6951,0.1900,0.0000,padrao,0.85,nao,
+stay-late-t-shirt,STAY-LATE,STAY LATE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+stay-late-t-shirt,STAY-LATE,STAY LATE T-SHIRT,Preta,costas,,,,,,,0,sim,"só existe a versão para camisa clara (tinta escura), que some na Preta ou não bate com a foto atual: falta a versão para camisa escura"
+stay-late-t-shirt,STAY-LATE,STAY LATE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+rich-parents-t-shirt,RICH-PARENTS,RICH PARENTS T-SHIRT,Branca,costas,NOVAS/Mudar_texto_e_fundo_2K_20260910012423.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+rich-parents-t-shirt,RICH-PARENTS,RICH PARENTS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+rich-parents-t-shirt,RICH-PARENTS,RICH PARENTS T-SHIRT,Off White,costas,NOVAS/Mudar_texto_e_fundo_2K_20260910012423.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+rich-parents-t-shirt,RICH-PARENTS,RICH PARENTS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+rich-parents-t-shirt,RICH-PARENTS,RICH PARENTS T-SHIRT,Preta,costas,NOVAS/Isolate_shirt_print_graphic_2K_20260910012331.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+rich-parents-t-shirt,RICH-PARENTS,RICH PARENTS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+rich-parents-t-shirt,RICH-PARENTS,RICH PARENTS T-SHIRT,Azul Marinho,costas,NOVAS/Isolate_shirt_print_graphic_2K_20260910012331.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+rich-parents-t-shirt,RICH-PARENTS,RICH PARENTS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+private-t-shirt,PRIVATE,PRIVATE T-SHIRT,Branca,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_04_21.png",todas,0.6410,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+private-t-shirt,PRIVATE,PRIVATE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+private-t-shirt,PRIVATE,PRIVATE T-SHIRT,Off White,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_04_21.png",todas,0.6410,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+private-t-shirt,PRIVATE,PRIVATE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+private-t-shirt,PRIVATE,PRIVATE T-SHIRT,Preta,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_04_21.png",todas,0.6410,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+private-t-shirt,PRIVATE,PRIVATE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+no-risk-t-shirt,NO-RISK,NO RISK T-SHIRT,Branca,costas,NOVAS/troque_project_wayne_por_PALLACIO℗_2K_20260910012605.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+no-risk-t-shirt,NO-RISK,NO RISK T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+no-risk-t-shirt,NO-RISK,NO RISK T-SHIRT,Off White,costas,NOVAS/troque_project_wayne_por_PALLACIO℗_2K_20260910012605.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+no-risk-t-shirt,NO-RISK,NO RISK T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+no-risk-t-shirt,NO-RISK,NO RISK T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/NO RISK PRETA.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+no-risk-t-shirt,NO-RISK,NO RISK T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+no-risk-t-shirt,NO-RISK,NO RISK T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/NO RISK PRETA.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+no-risk-t-shirt,NO-RISK,NO RISK T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+nautic-t-shirt,NAUTIC,NAUTIC T-SHIRT,Branca,costas,NOVAS/Set_white_background_black_text_2K_20260910050703.jpeg,clara,0.6643,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+nautic-t-shirt,NAUTIC,NAUTIC T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+nautic-t-shirt,NAUTIC,NAUTIC T-SHIRT,Off White,costas,NOVAS/Set_white_background_black_text_2K_20260910050703.jpeg,clara,0.6643,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+nautic-t-shirt,NAUTIC,NAUTIC T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+nautic-t-shirt,NAUTIC,NAUTIC T-SHIRT,Preta,costas,NOVAS/Black_background_white_text_2K_20260910050646.jpeg,escura,0.6680,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+nautic-t-shirt,NAUTIC,NAUTIC T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+nautic-t-shirt,NAUTIC,NAUTIC T-SHIRT,Azul Marinho,costas,NOVAS/Black_background_white_text_2K_20260910050646.jpeg,escura,0.6680,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+nautic-t-shirt,NAUTIC,NAUTIC T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+music-t-shirt,MUSIC,MUSIC T-SHIRT,Branca,costas,NOVAS/Invert_colors_black_and_white_2K_20260910045912.jpeg,clara,0.6869,0.1900,0.0000,padrao,0.85,nao,
+music-t-shirt,MUSIC,MUSIC T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+music-t-shirt,MUSIC,MUSIC T-SHIRT,Off White,costas,NOVAS/Invert_colors_black_and_white_2K_20260910045912.jpeg,clara,0.6869,0.1900,0.0000,padrao,0.85,nao,
+music-t-shirt,MUSIC,MUSIC T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+music-t-shirt,MUSIC,MUSIC T-SHIRT,Preta,costas,NOVAS/INVERTA_CORES_2K_20260910045947.jpeg,escura,0.6869,0.1900,0.0000,padrao,0.85,nao,
+music-t-shirt,MUSIC,MUSIC T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+music-t-shirt,MUSIC,MUSIC T-SHIRT,Azul Marinho,costas,NOVAS/INVERTA_CORES_2K_20260910045947.jpeg,escura,0.6869,0.1900,0.0000,padrao,0.85,nao,
+music-t-shirt,MUSIC,MUSIC T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+money-talks-t-shirt,MONEY-TALKS,MONEY TALKS T-SHIRT,Branca,costas,NOVAS/Change_background_to_white_2K_20260910085231.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+money-talks-t-shirt,MONEY-TALKS,MONEY TALKS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+money-talks-t-shirt,MONEY-TALKS,MONEY TALKS T-SHIRT,Off White,costas,NOVAS/Change_background_to_white_2K_20260910085231.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+money-talks-t-shirt,MONEY-TALKS,MONEY TALKS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+money-talks-t-shirt,MONEY-TALKS,MONEY TALKS T-SHIRT,Preta,costas,NOVAS/Alter_background_black_white_text_2K_20260910054813.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+money-talks-t-shirt,MONEY-TALKS,MONEY TALKS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+money-talks-t-shirt,MONEY-TALKS,MONEY TALKS T-SHIRT,Azul Marinho,costas,NOVAS/Alter_background_black_white_text_2K_20260910054813.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+money-talks-t-shirt,MONEY-TALKS,MONEY TALKS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+mercy-t-shirt,MERCY,MERCY T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/MERCY ESTAMPAS/MERCY COSTAS .png,todas,0.6410,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+mercy-t-shirt,MERCY,MERCY T-SHIRT,Branca,frente,ESTAMPAS PRONTAS P: IZZY/MERCY ESTAMPAS/MERCY FRENTE.png,todas,0.2260,0.2570,0.2580,padrao,0.55,sim,arte única para todas as cores; a descrição não cita estampa na frente
+mercy-t-shirt,MERCY,MERCY T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/MERCY ESTAMPAS/MERCY COSTAS .png,todas,0.6410,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+mercy-t-shirt,MERCY,MERCY T-SHIRT,Off White,frente,ESTAMPAS PRONTAS P: IZZY/MERCY ESTAMPAS/MERCY FRENTE.png,todas,0.2260,0.2570,0.2580,padrao,0.55,sim,arte única para todas as cores; a descrição não cita estampa na frente
+mercy-t-shirt,MERCY,MERCY T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/MERCY ESTAMPAS/MERCY COSTAS .png,todas,0.6410,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+mercy-t-shirt,MERCY,MERCY T-SHIRT,Preta,frente,ESTAMPAS PRONTAS P: IZZY/MERCY ESTAMPAS/MERCY FRENTE.png,todas,0.2260,0.2570,0.2580,padrao,0.55,sim,arte única para todas as cores; a descrição não cita estampa na frente
+making-t-shirt,MAKING,MAKING T-SHIRT,Branca,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 05_50_06.png",clara,0.6948,0.1900,0.0000,padrao,0.85,nao,
+making-t-shirt,MAKING,MAKING T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+making-t-shirt,MAKING,MAKING T-SHIRT,Off White,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 05_50_06.png",clara,0.6948,0.1900,0.0000,padrao,0.85,nao,
+making-t-shirt,MAKING,MAKING T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+making-t-shirt,MAKING,MAKING T-SHIRT,Preta,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 05_50_03.png",escura,0.7042,0.1900,0.0000,padrao,0.85,nao,
+making-t-shirt,MAKING,MAKING T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+luxury-t-shirt,LUXURY,LUXURY T-SHIRT,Branca,costas,NOVAS/DEIXE_TEXTOS_BRANCOS_PRETOS_2K_20260910003739 - cópia.jpeg,clara,0.6803,0.1900,0.0000,padrao,0.85,nao,
+luxury-t-shirt,LUXURY,LUXURY T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+luxury-t-shirt,LUXURY,LUXURY T-SHIRT,Off White,costas,NOVAS/DEIXE_TEXTOS_BRANCOS_PRETOS_2K_20260910003739 - cópia.jpeg,clara,0.6803,0.1900,0.0000,padrao,0.85,nao,
+luxury-t-shirt,LUXURY,LUXURY T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+luxury-t-shirt,LUXURY,LUXURY T-SHIRT,Preta,costas,NOVAS/Darken_background_and_make_text_2K_20260910003731.jpeg,escura,0.6791,0.1900,0.0000,padrao,0.85,nao,
+luxury-t-shirt,LUXURY,LUXURY T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+luxury-t-shirt,LUXURY,LUXURY T-SHIRT,Azul Marinho,costas,NOVAS/Darken_background_and_make_text_2K_20260910003731.jpeg,escura,0.6791,0.1900,0.0000,padrao,0.85,nao,
+luxury-t-shirt,LUXURY,LUXURY T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+limoncello-t-shirt,LIMONCELLO,LIMONCELLO T-SHIRT,Branca,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 04_51_04.png",todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+limoncello-t-shirt,LIMONCELLO,LIMONCELLO T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+limoncello-t-shirt,LIMONCELLO,LIMONCELLO T-SHIRT,Off White,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 04_51_04.png",todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+limoncello-t-shirt,LIMONCELLO,LIMONCELLO T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+limoncello-t-shirt,LIMONCELLO,LIMONCELLO T-SHIRT,Preta,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 04_51_04.png",todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+limoncello-t-shirt,LIMONCELLO,LIMONCELLO T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+limoncello-t-shirt,LIMONCELLO,LIMONCELLO T-SHIRT,Azul Marinho,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 04_51_04.png",todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+limoncello-t-shirt,LIMONCELLO,LIMONCELLO T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+life-t-shirt,LIFE,LIFE T-SHIRT,Branca,costas,NOVAS/DEIXE_TEXTOS_POUCO_MAIS_GROSSOS_2K_20260910005845.jpeg,clara,0.6617,0.1900,0.0000,padrao,0.85,nao,
+life-t-shirt,LIFE,LIFE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+life-t-shirt,LIFE,LIFE T-SHIRT,Off White,costas,NOVAS/DEIXE_TEXTOS_POUCO_MAIS_GROSSOS_2K_20260910005845.jpeg,clara,0.6617,0.1900,0.0000,padrao,0.85,nao,
+life-t-shirt,LIFE,LIFE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+life-t-shirt,LIFE,LIFE T-SHIRT,Preta,costas,NOVAS/Adicionar_festas_abaixo_de_champ…_2K_20260910005741.jpeg,escura,0.6608,0.1900,0.0000,padrao,0.85,nao,
+life-t-shirt,LIFE,LIFE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+life-t-shirt,LIFE,LIFE T-SHIRT,Azul Marinho,costas,NOVAS/Adicionar_festas_abaixo_de_champ…_2K_20260910005741.jpeg,escura,0.6608,0.1900,0.0000,padrao,0.85,nao,
+life-t-shirt,LIFE,LIFE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+le-club-t-shirt,LE-CLUB,LE CLUB T-SHIRT,Branca,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 04_59_14.png",clara,0.7185,0.1900,0.0000,padrao,0.85,nao,
+le-club-t-shirt,LE-CLUB,LE CLUB T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+le-club-t-shirt,LE-CLUB,LE CLUB T-SHIRT,Off White,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 04_59_14.png",clara,0.7185,0.1900,0.0000,padrao,0.85,nao,
+le-club-t-shirt,LE-CLUB,LE CLUB T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+le-club-t-shirt,LE-CLUB,LE CLUB T-SHIRT,Preta,costas,NOVAS/Cartaz Retrô do Pallacio Le Club.png,escura,0.7119,0.1900,0.0000,padrao,0.85,nao,
+le-club-t-shirt,LE-CLUB,LE CLUB T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+le-club-t-shirt,LE-CLUB,LE CLUB T-SHIRT,Azul Marinho,costas,NOVAS/Cartaz Retrô do Pallacio Le Club.png,escura,0.7119,0.1900,0.0000,padrao,0.85,nao,
+le-club-t-shirt,LE-CLUB,LE CLUB T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+lambo-t-shirt,LAMBO,LAMBO T-SHIRT,Branca,costas,NOVAS/Change_text_font_to_match_2K_20260910013548.jpeg,clara,0.7013,0.1900,0.0000,padrao,0.85,nao,
+lambo-t-shirt,LAMBO,LAMBO T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+lambo-t-shirt,LAMBO,LAMBO T-SHIRT,Off White,costas,NOVAS/Change_text_font_to_match_2K_20260910013548.jpeg,clara,0.7013,0.1900,0.0000,padrao,0.85,nao,
+lambo-t-shirt,LAMBO,LAMBO T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+lambo-t-shirt,LAMBO,LAMBO T-SHIRT,Preta,costas,NOVAS/Alterar_cor_do_texto_2K_20260910013847.jpeg,escura,0.7019,0.1900,0.0000,padrao,0.85,nao,
+lambo-t-shirt,LAMBO,LAMBO T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+lambo-t-shirt,LAMBO,LAMBO T-SHIRT,Azul Marinho,costas,NOVAS/Alterar_cor_do_texto_2K_20260910013847.jpeg,escura,0.7019,0.1900,0.0000,padrao,0.85,nao,
+lambo-t-shirt,LAMBO,LAMBO T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+jeans-t-shirt,JEANS,JEANS T-SHIRT,Branca,costas,,,,,,,0,sim,falta a estampa das costas
+jeans-t-shirt,JEANS,JEANS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+jeans-t-shirt,JEANS,JEANS T-SHIRT,Off White,costas,,,,,,,0,sim,falta a estampa das costas
+jeans-t-shirt,JEANS,JEANS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+jeans-t-shirt,JEANS,JEANS T-SHIRT,Preta,costas,,,,,,,0,sim,falta a estampa das costas
+jeans-t-shirt,JEANS,JEANS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+jeans-t-shirt,JEANS,JEANS T-SHIRT,Azul Marinho,costas,,,,,,,0,sim,falta a estampa das costas
+jeans-t-shirt,JEANS,JEANS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+imposto-t-shirt,IMPOSTO,IMPOSTO T-SHIRT,Branca,costas,NOVAS/Change_background_and_text_colors_2K_20260910053502.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+imposto-t-shirt,IMPOSTO,IMPOSTO T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+imposto-t-shirt,IMPOSTO,IMPOSTO T-SHIRT,Off White,costas,NOVAS/Change_background_and_text_colors_2K_20260910053502.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+imposto-t-shirt,IMPOSTO,IMPOSTO T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+imposto-t-shirt,IMPOSTO,IMPOSTO T-SHIRT,Preta,costas,NOVAS/Alter_background_and_text_colors_2K_20260910053529.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+imposto-t-shirt,IMPOSTO,IMPOSTO T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+imposto-t-shirt,IMPOSTO,IMPOSTO T-SHIRT,Azul Marinho,costas,NOVAS/Alter_background_and_text_colors_2K_20260910053529.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+imposto-t-shirt,IMPOSTO,IMPOSTO T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+hotel-t-shirt,HOTEL,HOTEL T-SHIRT,Branca,costas,NOVAS/Amelie_Charme_for_Pallacio_2K_20260910052221.jpeg,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+hotel-t-shirt,HOTEL,HOTEL T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+hotel-t-shirt,HOTEL,HOTEL T-SHIRT,Off White,costas,NOVAS/Amelie_Charme_for_Pallacio_2K_20260910052221.jpeg,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+hotel-t-shirt,HOTEL,HOTEL T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+hotel-t-shirt,HOTEL,HOTEL T-SHIRT,Preta,costas,NOVAS/Amelie_Charme_for_Pallacio_2K_20260910052221.jpeg,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+hotel-t-shirt,HOTEL,HOTEL T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+hotel-t-shirt,HOTEL,HOTEL T-SHIRT,Azul Marinho,costas,NOVAS/Amelie_Charme_for_Pallacio_2K_20260910052221.jpeg,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+hotel-t-shirt,HOTEL,HOTEL T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+hot-season-t-shirt,HOT-SEASON,HOT SEASON T-SHIRT,Branca,costas,NOVAS/Troque_becay_por_pallacio_2K_20260910052413.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: fundo_sujo
+hot-season-t-shirt,HOT-SEASON,HOT SEASON T-SHIRT,Branca,frente,NOVAS/melhore_qualidade_2K_20260910092536.jpeg,clara,0.2260,0.2570,0.2580,padrao,0.55,sim,arte com problema: fundo_sujo
+hot-season-t-shirt,HOT-SEASON,HOT SEASON T-SHIRT,Off White,costas,NOVAS/Troque_becay_por_pallacio_2K_20260910052413.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: fundo_sujo
+hot-season-t-shirt,HOT-SEASON,HOT SEASON T-SHIRT,Off White,frente,NOVAS/melhore_qualidade_2K_20260910092536.jpeg,clara,0.2260,0.2570,0.2580,padrao,0.55,sim,arte com problema: fundo_sujo
+hot-season-t-shirt,HOT-SEASON,HOT SEASON T-SHIRT,Preta,costas,NOVAS/Set_black_background_white_text_2K_20260910053211.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+hot-season-t-shirt,HOT-SEASON,HOT SEASON T-SHIRT,Preta,frente,NOVAS/melhore_qualidade_2K_20260910092536.jpeg,clara,0.2260,0.2570,0.2580,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Preta, mas confira; arte com problema: fundo_sujo"
+heritage-t-shirt,HERITAGE,HERITAGE T-SHIRT,Branca,costas,,,,,,,0,sim,falta a estampa das costas
+heritage-t-shirt,HERITAGE,HERITAGE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+heritage-t-shirt,HERITAGE,HERITAGE T-SHIRT,Off White,costas,,,,,,,0,sim,falta a estampa das costas
+heritage-t-shirt,HERITAGE,HERITAGE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+heritage-t-shirt,HERITAGE,HERITAGE T-SHIRT,Preta,costas,,,,,,,0,sim,falta a estampa das costas
+heritage-t-shirt,HERITAGE,HERITAGE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+heritage-t-shirt,HERITAGE,HERITAGE T-SHIRT,Azul Marinho,costas,,,,,,,0,sim,falta a estampa das costas
+heritage-t-shirt,HERITAGE,HERITAGE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+god-is-a-dj-t-shirt,GOD-IS-A-DJ,GOD IS A DJ T-SHIRT,Branca,costas,NOVAS/Isolating_shirt_print_graphic_de…_2K_20260910003551.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+god-is-a-dj-t-shirt,GOD-IS-A-DJ,GOD IS A DJ T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+god-is-a-dj-t-shirt,GOD-IS-A-DJ,GOD IS A DJ T-SHIRT,Off White,costas,NOVAS/Isolating_shirt_print_graphic_de…_2K_20260910003551.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+god-is-a-dj-t-shirt,GOD-IS-A-DJ,GOD IS A DJ T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+god-is-a-dj-t-shirt,GOD-IS-A-DJ,GOD IS A DJ T-SHIRT,Preta,costas,NOVAS/INVERTA_AS_CORES_2K_20260910003549.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+god-is-a-dj-t-shirt,GOD-IS-A-DJ,GOD IS A DJ T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+garage-t-shirt,GARAGE,GARAGE T-SHIRT,Branca,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 05_14_58.png",clara,0.4994,0.1900,0.0000,padrao,0.85,nao,
+garage-t-shirt,GARAGE,GARAGE T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+garage-t-shirt,GARAGE,GARAGE T-SHIRT,Off White,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 05_14_58.png",clara,0.4994,0.1900,0.0000,padrao,0.85,nao,
+garage-t-shirt,GARAGE,GARAGE T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+garage-t-shirt,GARAGE,GARAGE T-SHIRT,Preta,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 05_14_56.png",escura,0.5037,0.1900,0.0000,padrao,0.85,nao,
+garage-t-shirt,GARAGE,GARAGE T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+garage-t-shirt,GARAGE,GARAGE T-SHIRT,Azul Marinho,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 05_14_56.png",escura,0.5037,0.1900,0.0000,padrao,0.85,nao,
+garage-t-shirt,GARAGE,GARAGE T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+french-t-shirt,FRENCH,FRENCH T-SHIRT,Branca,costas,NOVAS/inverta_cores_2K_20260910001529.jpeg,clara,0.7157,0.1900,0.0000,padrao,0.55,sim,arte com problema: fundo_sujo
+french-t-shirt,FRENCH,FRENCH T-SHIRT,Branca,frente,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Branca ou não bate com a foto atual: falta a versão para camisa clara"
+french-t-shirt,FRENCH,FRENCH T-SHIRT,Off White,costas,NOVAS/inverta_cores_2K_20260910001529.jpeg,clara,0.7157,0.1900,0.0000,padrao,0.55,sim,arte com problema: fundo_sujo
+french-t-shirt,FRENCH,FRENCH T-SHIRT,Off White,frente,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Off White ou não bate com a foto atual: falta a versão para camisa clara"
+french-t-shirt,FRENCH,FRENCH T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/Edit_background_and_straighten_text_2K_20260929195044-Photoroom (1).png,escura,0.6996,0.1900,0.0000,padrao,0.85,nao,
+french-t-shirt,FRENCH,FRENCH T-SHIRT,Preta,frente,ESTAMPAS PRONTAS P: IZZY/Leave_solid_background_straight_…_2K_20260929195052-Photoroom (1).png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+french-t-shirt,FRENCH,FRENCH T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/Edit_background_and_straighten_text_2K_20260929195044-Photoroom (1).png,escura,0.6996,0.1900,0.0000,padrao,0.85,nao,
+french-t-shirt,FRENCH,FRENCH T-SHIRT,Azul Marinho,frente,ESTAMPAS PRONTAS P: IZZY/Leave_solid_background_straight_…_2K_20260929195052-Photoroom (1).png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+expensive-t-shirt,EXPENSIVE,EXPENSIVE T-SHIRT,Branca,costas,NOVAS/Make_text_black_white_background_2K_20260910051744.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+expensive-t-shirt,EXPENSIVE,EXPENSIVE T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+expensive-t-shirt,EXPENSIVE,EXPENSIVE T-SHIRT,Off White,costas,NOVAS/Make_text_black_white_background_2K_20260910051744.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+expensive-t-shirt,EXPENSIVE,EXPENSIVE T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+expensive-t-shirt,EXPENSIVE,EXPENSIVE T-SHIRT,Preta,costas,NOVAS/Isolate_t-shirt_print_design_20260910022347.jpeg_20260910041115.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+expensive-t-shirt,EXPENSIVE,EXPENSIVE T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+expensive-t-shirt,EXPENSIVE,EXPENSIVE T-SHIRT,Azul Marinho,costas,NOVAS/Isolate_t-shirt_print_design_20260910022347.jpeg_20260910041115.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+expensive-t-shirt,EXPENSIVE,EXPENSIVE T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+except-t-shirt,EXCEPT,EXCEPT T-SHIRT,Branca,costas,NOVAS/troque_laurent_por_tropez_2K_20260910002058.jpeg,clara,0.7041,0.1900,0.0000,padrao,0.85,nao,
+except-t-shirt,EXCEPT,EXCEPT T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+except-t-shirt,EXCEPT,EXCEPT T-SHIRT,Off White,costas,NOVAS/troque_laurent_por_tropez_2K_20260910002058.jpeg,clara,0.7041,0.1900,0.0000,padrao,0.85,nao,
+except-t-shirt,EXCEPT,EXCEPT T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+except-t-shirt,EXCEPT,EXCEPT T-SHIRT,Preta,costas,NOVAS/Make_dark_background_white_text_2K_20260910002107.jpeg,escura,0.7034,0.1900,0.0000,padrao,0.85,nao,
+except-t-shirt,EXCEPT,EXCEPT T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+except-t-shirt,EXCEPT,EXCEPT T-SHIRT,Azul Marinho,costas,NOVAS/Make_dark_background_white_text_2K_20260910002107.jpeg,escura,0.7034,0.1900,0.0000,padrao,0.85,nao,
+except-t-shirt,EXCEPT,EXCEPT T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+euro-summer-t-shirt,EURO-SUMMER,EURO SUMMER T-SHIRT,Branca,costas,NOVAS/Inverte_cor_de_fundo_azul_2K_20260910112829.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: fundo_sujo
+euro-summer-t-shirt,EURO-SUMMER,EURO SUMMER T-SHIRT,Branca,frente,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Branca ou não bate com a foto atual: falta a versão para camisa clara"
+euro-summer-t-shirt,EURO-SUMMER,EURO SUMMER T-SHIRT,Off White,costas,NOVAS/Inverte_cor_de_fundo_azul_2K_20260910112829.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: fundo_sujo
+euro-summer-t-shirt,EURO-SUMMER,EURO SUMMER T-SHIRT,Off White,frente,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Off White ou não bate com a foto atual: falta a versão para camisa clara"
+euro-summer-t-shirt,EURO-SUMMER,EURO SUMMER T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/EURO SUMMER ESTAMPAS/EURO SUMMER COSTAS PRETA E AZUL.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+euro-summer-t-shirt,EURO-SUMMER,EURO SUMMER T-SHIRT,Preta,frente,ESTAMPAS PRONTAS P: IZZY/EURO SUMMER ESTAMPAS/EURO SUMMER FRENTE PRETA E AZUL.png,escura,0.2260,0.2570,0.2580,padrao,0.55,sim,a descrição não cita estampa na frente
+euro-summer-t-shirt,EURO-SUMMER,EURO SUMMER T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/EURO SUMMER ESTAMPAS/EURO SUMMER COSTAS PRETA E AZUL.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+euro-summer-t-shirt,EURO-SUMMER,EURO SUMMER T-SHIRT,Azul Marinho,frente,ESTAMPAS PRONTAS P: IZZY/EURO SUMMER ESTAMPAS/EURO SUMMER FRENTE PRETA E AZUL.png,escura,0.2260,0.2570,0.2580,padrao,0.55,sim,a descrição não cita estampa na frente
+driver-s-t-shirt,DRIVERS,DRIVER’S T-SHIRT,Branca,costas,NOVAS/Alterar_fundo_e_textos_2K_20260910114225.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+driver-s-t-shirt,DRIVERS,DRIVER’S T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+driver-s-t-shirt,DRIVERS,DRIVER’S T-SHIRT,Off White,costas,NOVAS/Alterar_fundo_e_textos_2K_20260910114225.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+driver-s-t-shirt,DRIVERS,DRIVER’S T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+driver-s-t-shirt,DRIVERS,DRIVER’S T-SHIRT,Preta,costas,NOVAS/Trocar_Nondemain_por_Pallacio_2K_20260910055133.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+driver-s-t-shirt,DRIVERS,DRIVER’S T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+driver-s-t-shirt,DRIVERS,DRIVER’S T-SHIRT,Azul Marinho,costas,NOVAS/Trocar_Nondemain_por_Pallacio_2K_20260910055133.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+driver-s-t-shirt,DRIVERS,DRIVER’S T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+don-pallacio-t-shirt,DON-PALLACIO,DON PALLACIO T-SHIRT,Branca,costas,NOVAS/Trocar_orggeil_por_pallacio_2K_20260910052018.jpeg,clara,0.6013,0.1900,0.0000,padrao,0.85,nao,
+don-pallacio-t-shirt,DON-PALLACIO,DON PALLACIO T-SHIRT,Branca,frente,NOVAS/Create_Don_Pallacio_image_2K_20260910111655.jpeg,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+don-pallacio-t-shirt,DON-PALLACIO,DON PALLACIO T-SHIRT,Off White,costas,NOVAS/Trocar_orggeil_por_pallacio_2K_20260910052018.jpeg,clara,0.6013,0.1900,0.0000,padrao,0.85,nao,
+don-pallacio-t-shirt,DON-PALLACIO,DON PALLACIO T-SHIRT,Off White,frente,NOVAS/Create_Don_Pallacio_image_2K_20260910111655.jpeg,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+don-pallacio-t-shirt,DON-PALLACIO,DON PALLACIO T-SHIRT,Preta,costas,NOVAS/DEIXE_TEXTOS_AZUIS_MAIS_CLAROS_2K_20260910052153.jpeg,escura,0.6013,0.1900,0.0000,padrao,0.85,nao,
+don-pallacio-t-shirt,DON-PALLACIO,DON PALLACIO T-SHIRT,Preta,frente,NOVAS/Don_Pallacio_logo_and_bottle_2K_20260910111725.jpeg,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+don-pallacio-t-shirt,DON-PALLACIO,DON PALLACIO T-SHIRT,Azul Marinho,costas,NOVAS/DEIXE_TEXTOS_AZUIS_MAIS_CLAROS_2K_20260910052153.jpeg,escura,0.6013,0.1900,0.0000,padrao,0.85,nao,
+don-pallacio-t-shirt,DON-PALLACIO,DON PALLACIO T-SHIRT,Azul Marinho,frente,NOVAS/Don_Pallacio_logo_and_bottle_2K_20260910111725.jpeg,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+dompe-t-shirt,DOMPE,DOMPE T-SHIRT,Branca,costas,"ESTAMPAS PRONTAS P: IZZY/Imagem do ChatGPT 29 de set. de 2026, 16_27_24 (1) (1).png",clara,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+dompe-t-shirt,DOMPE,DOMPE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+dompe-t-shirt,DOMPE,DOMPE T-SHIRT,Off White,costas,"ESTAMPAS PRONTAS P: IZZY/Imagem do ChatGPT 29 de set. de 2026, 16_27_24 (1) (1).png",clara,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+dompe-t-shirt,DOMPE,DOMPE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+dompe-t-shirt,DOMPE,DOMPE T-SHIRT,Preta,costas,"ESTAMPAS PRONTAS P: IZZY/Imagem do ChatGPT 29 de set. de 2026, 16_50_42 (1).png",escura,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+dompe-t-shirt,DOMPE,DOMPE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+dompe-t-shirt,DOMPE,DOMPE T-SHIRT,Azul Marinho,costas,"ESTAMPAS PRONTAS P: IZZY/Imagem do ChatGPT 29 de set. de 2026, 16_50_42 (1).png",escura,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+dompe-t-shirt,DOMPE,DOMPE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+delusional-t-shirt,DELUSIONAL,DELUSIONAL T-SHIRT,Branca,costas,NOVAS/deixe_fundo_claro_e_vermelho_2K_20260910012030.jpeg,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+delusional-t-shirt,DELUSIONAL,DELUSIONAL T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+delusional-t-shirt,DELUSIONAL,DELUSIONAL T-SHIRT,Off White,costas,NOVAS/deixe_fundo_claro_e_vermelho_2K_20260910012030.jpeg,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+delusional-t-shirt,DELUSIONAL,DELUSIONAL T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+delusional-t-shirt,DELUSIONAL,DELUSIONAL T-SHIRT,Preta,costas,NOVAS/deixe_fundo_claro_e_vermelho_2K_20260910012030.jpeg,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+delusional-t-shirt,DELUSIONAL,DELUSIONAL T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+capri-t-shirt,CAPRI,CAPRI T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/CAPRI ESTAMPAS/CAPRI COSTAS BRANCA OFF WHITE.png,clara,0.6373,0.1900,0.0000,padrao,0.85,nao,
+capri-t-shirt,CAPRI,CAPRI T-SHIRT,Branca,frente,ESTAMPAS PRONTAS P: IZZY/CAPRI ESTAMPAS/CAPRI FRENTE BRANCA OFF WHITE.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+capri-t-shirt,CAPRI,CAPRI T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/CAPRI ESTAMPAS/CAPRI COSTAS BRANCA OFF WHITE.png,clara,0.6373,0.1900,0.0000,padrao,0.85,nao,
+capri-t-shirt,CAPRI,CAPRI T-SHIRT,Off White,frente,ESTAMPAS PRONTAS P: IZZY/CAPRI ESTAMPAS/CAPRI FRENTE BRANCA OFF WHITE.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+capri-t-shirt,CAPRI,CAPRI T-SHIRT,Preta,costas,"ESTAMPAS PRONTAS P: IZZY/Cartão-postal pintado de Capri, Itália (1).png",escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+capri-t-shirt,CAPRI,CAPRI T-SHIRT,Preta,frente,ESTAMPAS PRONTAS P: IZZY/184bd508-41cb-4ead-a1eb-93cea0af916e (1).png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+capri-t-shirt,CAPRI,CAPRI T-SHIRT,Azul Marinho,costas,"ESTAMPAS PRONTAS P: IZZY/Cartão-postal pintado de Capri, Itália (1).png",escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+capri-t-shirt,CAPRI,CAPRI T-SHIRT,Azul Marinho,frente,ESTAMPAS PRONTAS P: IZZY/184bd508-41cb-4ead-a1eb-93cea0af916e (1).png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+bring-t-shirt,BRING,BRING T-SHIRT,Branca / Azul Escuro,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_15_53.png",clara,0.7200,0.1900,0.0000,padrao,0.85,nao,cor especial (bicolor) sem mockup liso
+bring-t-shirt,BRING,BRING T-SHIRT,Branca / Azul Escuro,frente,LISO,,,,,,0.8,nao,cor especial (bicolor) sem mockup liso
+bring-t-shirt,BRING,BRING T-SHIRT,Off White,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_15_53.png",clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+bring-t-shirt,BRING,BRING T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+bring-t-shirt,BRING,BRING T-SHIRT,Preta,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_16_48.png",escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+bring-t-shirt,BRING,BRING T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+bring-t-shirt,BRING,BRING T-SHIRT,Branca / Azul Claro,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_15_53.png",clara,0.7200,0.1900,0.0000,padrao,0.85,nao,cor especial (bicolor) sem mockup liso
+bring-t-shirt,BRING,BRING T-SHIRT,Branca / Azul Claro,frente,LISO,,,,,,0.8,nao,cor especial (bicolor) sem mockup liso
+bonjour-t-shirt,BONJOUR,BONJOUR T-SHIRT,Branca,costas,NOVAS/Troque_Maison_Elevenparis_Factor…_2K_20260910044148.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+bonjour-t-shirt,BONJOUR,BONJOUR T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+bonjour-t-shirt,BONJOUR,BONJOUR T-SHIRT,Off White,costas,NOVAS/Troque_Maison_Elevenparis_Factor…_2K_20260910044148.jpeg,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+bonjour-t-shirt,BONJOUR,BONJOUR T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+bonjour-t-shirt,BONJOUR,BONJOUR T-SHIRT,Preta,costas,NOVAS/Change_background_and_text_colors_2K_20260910044214.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+bonjour-t-shirt,BONJOUR,BONJOUR T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+bonjour-t-shirt,BONJOUR,BONJOUR T-SHIRT,Azul Marinho,costas,NOVAS/Change_background_and_text_colors_2K_20260910044214.jpeg,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+bonjour-t-shirt,BONJOUR,BONJOUR T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+bank-t-shirt,BANK,BANK T-SHIRT,Branca,costas,NOVAS/DEIXE_TEXTO_NA_COR_PRETA_2K_20260910012859.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+bank-t-shirt,BANK,BANK T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+bank-t-shirt,BANK,BANK T-SHIRT,Off White,costas,NOVAS/DEIXE_TEXTO_NA_COR_PRETA_2K_20260910012859.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+bank-t-shirt,BANK,BANK T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+bank-t-shirt,BANK,BANK T-SHIRT,Preta,costas,NOVAS/White_text_dark_background_2K_20260910013225.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+bank-t-shirt,BANK,BANK T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+bank-t-shirt,BANK,BANK T-SHIRT,Azul Marinho,costas,NOVAS/White_text_dark_background_2K_20260910013225.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+bank-t-shirt,BANK,BANK T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Branca / Preta,costas,NOVAS/DEIXE_TEXTOS_PRETOS_2K_20260910045037.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,cor especial (bicolor) sem mockup liso
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Branca / Preta,frente,LISO,,,,,,0.8,nao,cor especial (bicolor) sem mockup liso
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Off White,costas,NOVAS/DEIXE_TEXTOS_PRETOS_2K_20260910045037.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Preta,costas,NOVAS/Set_black_background_white_text_2K_20260910045130.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Azul Marinho,costas,NOVAS/Set_black_background_white_text_2K_20260910045130.jpeg,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Branca / Azul,costas,NOVAS/DEIXE_TEXTOS_PRETOS_2K_20260910045037.jpeg,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,cor especial (bicolor) sem mockup liso
+avenue-t-shirt,AVENUE,AVENUE T-SHIRT,Branca / Azul,frente,LISO,,,,,,0.8,nao,cor especial (bicolor) sem mockup liso
+artist-t-shirt,ARTIST,ARTIST T-SHIRT,Branca,costas,NOVAS/Edit_text_under_time_2K_20260910011239.jpeg,clara,0.6856,0.1900,0.0000,padrao,0.85,nao,
+artist-t-shirt,ARTIST,ARTIST T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+artist-t-shirt,ARTIST,ARTIST T-SHIRT,Off White,costas,NOVAS/Edit_text_under_time_2K_20260910011239.jpeg,clara,0.6856,0.1900,0.0000,padrao,0.85,nao,
+artist-t-shirt,ARTIST,ARTIST T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+artist-t-shirt,ARTIST,ARTIST T-SHIRT,Preta,costas,NOVAS/deixe_texto_azul_mais_claro_2K_20260910010839.jpeg,escura,0.6865,0.1900,0.0000,padrao,0.85,nao,
+artist-t-shirt,ARTIST,ARTIST T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+artist-t-shirt,ARTIST,ARTIST T-SHIRT,Azul Marinho,costas,NOVAS/deixe_texto_azul_mais_claro_2K_20260910010839.jpeg,escura,0.6865,0.1900,0.0000,padrao,0.85,nao,
+artist-t-shirt,ARTIST,ARTIST T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+apres-ski-t-shirt,APRES-SKI,APRÈS SKI T-SHIRT,Branca,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_29_16.png",clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+apres-ski-t-shirt,APRES-SKI,APRÈS SKI T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+apres-ski-t-shirt,APRES-SKI,APRÈS SKI T-SHIRT,Off White,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_29_16.png",clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+apres-ski-t-shirt,APRES-SKI,APRÈS SKI T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+apres-ski-t-shirt,APRES-SKI,APRÈS SKI T-SHIRT,Preta,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_30_39.png",escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+apres-ski-t-shirt,APRES-SKI,APRÈS SKI T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+apres-ski-t-shirt,APRES-SKI,APRÈS SKI T-SHIRT,Azul Marinho,costas,"NOVAS/ChatGPT Image 10 de set. de 2026, 01_30_39.png",escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+apres-ski-t-shirt,APRES-SKI,APRÈS SKI T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+airlines-t-shirt,AIRLINES,AIRLINES T-SHIRT,Branca,costas,NOVAS/Troque_or_ggeil_por_pallacio_2K_20260910051227.jpeg,clara,0.6381,0.1900,0.0000,padrao,0.85,nao,
+airlines-t-shirt,AIRLINES,AIRLINES T-SHIRT,Branca,frente,NOVAS/Deixar_textos_um_lado_outro_2K_20260910110836.jpeg,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+airlines-t-shirt,AIRLINES,AIRLINES T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/AIRLINES ESTAMPAS/AIRLINES PRETA COSTAS.png,escura,0.6599,0.1900,0.0000,padrao,0.85,nao,
+airlines-t-shirt,AIRLINES,AIRLINES T-SHIRT,Preta,frente,ESTAMPAS PRONTAS P: IZZY/AIRLINES ESTAMPAS/AIRLINES PRETA FRENTE.png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+airlines-t-shirt,AIRLINES,AIRLINES T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/AIRLINES ESTAMPAS/AIRLINES PRETA COSTAS.png,escura,0.6599,0.1900,0.0000,padrao,0.85,nao,
+airlines-t-shirt,AIRLINES,AIRLINES T-SHIRT,Azul Marinho,frente,ESTAMPAS PRONTAS P: IZZY/AIRLINES ESTAMPAS/AIRLINES PRETA FRENTE.png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+afro-t-shirt,AFRO,AFRO T-SHIRT,Branca,costas,NOVAS/edite_texto_sonders_por_PALLACIO_2K_20260910014159.jpeg,clara,0.6966,0.1900,0.0000,padrao,0.85,nao,
+afro-t-shirt,AFRO,AFRO T-SHIRT,Branca,frente,NOVAS/Change_background_and_text_colors_2K_20260910103952.jpeg,clara,0.2260,0.2570,0.2580,padrao,0.55,sim,arte com problema: fundo_sujo
+afro-t-shirt,AFRO,AFRO T-SHIRT,Off White,costas,NOVAS/edite_texto_sonders_por_PALLACIO_2K_20260910014159.jpeg,clara,0.6966,0.1900,0.0000,padrao,0.85,nao,
+afro-t-shirt,AFRO,AFRO T-SHIRT,Off White,frente,NOVAS/Change_background_and_text_colors_2K_20260910103952.jpeg,clara,0.2260,0.2570,0.2580,padrao,0.55,sim,arte com problema: fundo_sujo
+afro-t-shirt,AFRO,AFRO T-SHIRT,Preta,costas,NOVAS/Change_tree_leaves_green_text_2K_20260910014533 - cópia.jpeg,escura,0.6966,0.1900,0.0000,padrao,0.85,nao,
+afro-t-shirt,AFRO,AFRO T-SHIRT,Preta,frente,NOVAS/Criar_imagem_dos_textos_igual_2K_20260910103716.jpeg,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+martini,MARTINI,MARTINI T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Tennis_racket_and_martini_glasses_2K_202609081436.jpeg,clara,0.6322,0.1576,0.0090,medido,0.93,nao,há 1 outra(s) arte(s) diferentes para este lado
+martini,MARTINI,MARTINI T-SHIRT,Branca,frente,ESTAMPAS PRONTAS P: IZZY/MARTINI ESTAMPAS/MARTINI FRENTE BRANCA OFF WHITE.png,clara,0.1918,0.2189,0.2457,medido,0.93,nao,
+martini,MARTINI,MARTINI T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Tennis_racket_and_martini_glasses_2K_202609081436.jpeg,clara,0.6322,0.1576,0.0090,medido,0.93,nao,há 1 outra(s) arte(s) diferentes para este lado
+martini,MARTINI,MARTINI T-SHIRT,Off White,frente,ESTAMPAS PRONTAS P: IZZY/MARTINI ESTAMPAS/MARTINI FRENTE BRANCA OFF WHITE.png,clara,0.1918,0.2189,0.2457,medido,0.93,nao,
+martini,MARTINI,MARTINI T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Rebranding_project_and_artist_names_2K_202609081155.jpeg,escura,0.6322,0.1576,0.0090,medido,0.93,nao,
+martini,MARTINI,MARTINI T-SHIRT,Preta,frente,,,,,,,0,sim,"só existe a versão para camisa clara (tinta escura), que some na Preta ou não bate com a foto atual: falta a versão para camisa escura"
+martini,MARTINI,MARTINI T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Rebranding_project_and_artist_names_2K_202609081155.jpeg,escura,0.6322,0.1576,0.0090,medido,0.93,nao,
+martini,MARTINI,MARTINI T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,"só existe a versão para camisa clara (tinta escura), que some na Azul Marinho ou não bate com a foto atual: falta a versão para camisa escura"
+sicilian,SICILIAN,SICILIAN T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Replace_text_below_Pallacio_2K_202609081114.png,clara,0.6571,0.1421,0.0377,medido,0.93,nao,
+sicilian,SICILIAN,SICILIAN T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+sicilian,SICILIAN,SICILIAN T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Replace_text_below_Pallacio_2K_202609081114.png,clara,0.6571,0.1421,0.0377,medido,0.93,nao,
+sicilian,SICILIAN,SICILIAN T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+sicilian,SICILIAN,SICILIAN T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/azul_mais_claro_2K_202609081117.png,escura,0.6571,0.1421,0.0377,medido,0.93,nao,
+sicilian,SICILIAN,SICILIAN T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+sicilian,SICILIAN,SICILIAN T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/azul_mais_claro_2K_202609081117.png,escura,0.6571,0.1421,0.0377,medido,0.93,nao,
+sicilian,SICILIAN,SICILIAN T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+caprese,CAPRESE,CAPRESE T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_fundo_mais_claro_2K_202609081220.jpeg,clara,0.6104,0.1940,0.0005,medido,0.93,nao,
+caprese,CAPRESE,CAPRESE T-SHIRT,Branca,frente,"CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_09_02.png",clara,0.2020,0.2638,0.2893,medido,0.93,nao,
+caprese,CAPRESE,CAPRESE T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_fundo_mais_claro_2K_202609081220.jpeg,clara,0.6104,0.1940,0.0005,medido,0.93,nao,
+caprese,CAPRESE,CAPRESE T-SHIRT,Off White,frente,"CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_09_02.png",clara,0.2020,0.2638,0.2893,medido,0.93,nao,
+caprese,CAPRESE,CAPRESE T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Alterar_cores_de_texto_e_2K_202609081504.jpeg,escura,0.6104,0.1940,0.0005,medido,0.93,nao,
+caprese,CAPRESE,CAPRESE T-SHIRT,Preta,frente,"CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_10_03.png",escura,0.2020,0.2638,0.2893,medido,0.93,nao,
+caprese,CAPRESE,CAPRESE T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Alterar_cores_de_texto_e_2K_202609081504.jpeg,escura,0.6104,0.1940,0.0005,medido,0.93,nao,
+caprese,CAPRESE,CAPRESE T-SHIRT,Azul Marinho,frente,"CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_10_03.png",escura,0.2020,0.2638,0.2893,medido,0.93,nao,
+vespa,VESPA,VESPA T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Alterar_texto_e_fundo_2K_202609081513.png,clara,0.6524,0.2027,-0.0013,medido,0.93,nao,
+vespa,VESPA,VESPA T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+vespa,VESPA,VESPA T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Alterar_texto_e_fundo_2K_202609081513.png,clara,0.6524,0.2027,-0.0013,medido,0.93,nao,
+vespa,VESPA,VESPA T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+vespa,VESPA,VESPA T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Pallacio_cursive_text_graphic_2K_202609081200.png,escura,0.6524,0.2027,-0.0013,medido,0.78,nao,
+vespa,VESPA,VESPA T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+vespa,VESPA,VESPA T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Pallacio_cursive_text_graphic_2K_202609081200.png,escura,0.6524,0.2027,-0.0013,medido,0.78,nao,
+vespa,VESPA,VESPA T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+dolce,DOLCE,DOLCE T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_azul_mais_vivo_2K_202609081608.jpeg,clara,0.7097,0.2189,-0.0018,medido,0.93,nao,
+dolce,DOLCE,DOLCE T-SHIRT,Branca,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+dolce,DOLCE,DOLCE T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_azul_mais_vivo_2K_202609081608.jpeg,clara,0.7097,0.2189,-0.0018,medido,0.93,nao,
+dolce,DOLCE,DOLCE T-SHIRT,Off White,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+dolce,DOLCE,DOLCE T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Escurecer_palácio_branco_e_fundo_2K_202609081608.jpeg,escura,0.7097,0.2189,-0.0018,medido,0.93,nao,
+dolce,DOLCE,DOLCE T-SHIRT,Preta,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+dolce,DOLCE,DOLCE T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Escurecer_palácio_branco_e_fundo_2K_202609081608.jpeg,escura,0.7097,0.2189,-0.0018,medido,0.93,nao,
+dolce,DOLCE,DOLCE T-SHIRT,Azul Marinho,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+orange,ORANGE,ORANGE T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Make_background_light_text_black_2K_202609081443.jpeg,clara,0.7160,0.1825,-0.0001,medido,0.48,sim,pouco parecida com a foto atual (nota 0.08); arte com problema: fundo_sujo
+orange,ORANGE,ORANGE T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+orange,ORANGE,ORANGE T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Make_background_light_text_black_2K_202609081443.jpeg,clara,0.7160,0.1825,-0.0001,medido,0.48,sim,pouco parecida com a foto atual (nota 0.08); arte com problema: fundo_sujo
+orange,ORANGE,ORANGE T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+orange,ORANGE,ORANGE T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/remova_o_texto_maior_2K_202609081443.jpeg,escura,0.7160,0.1825,-0.0001,medido,0.93,nao,
+orange,ORANGE,ORANGE T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+orange,ORANGE,ORANGE T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/remova_o_texto_maior_2K_202609081443.jpeg,escura,0.7160,0.1825,-0.0001,medido,0.93,nao,
+orange,ORANGE,ORANGE T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+paradise,PARADISE,PARADISE T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Apply_shirt_graphic_colors_2K_202609081556.jpeg,clara,0.6411,0.1960,0.0067,medido,0.55,sim,arte com problema: fundo_sujo
+paradise,PARADISE,PARADISE T-SHIRT,Branca,frente,CAMISETAS 100%/ESTAMPAS 100%/FOI/Pallacio_Club_2K_202609081602.jpeg,clara,0.2455,0.2475,0.2722,medido,0.93,nao,
+paradise,PARADISE,PARADISE T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Apply_shirt_graphic_colors_2K_202609081556.jpeg,clara,0.6411,0.1960,0.0067,medido,0.55,sim,arte com problema: fundo_sujo
+paradise,PARADISE,PARADISE T-SHIRT,Off White,frente,CAMISETAS 100%/ESTAMPAS 100%/FOI/Pallacio_Club_2K_202609081602.jpeg,clara,0.2455,0.2475,0.2722,medido,0.93,nao,
+paradise,PARADISE,PARADISE T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/PARADISE ESTAMPA/PARADISE COSTAS PRETA AZUL MARINHO.png,escura,0.6411,0.1960,0.0067,medido,0.93,nao,
+paradise,PARADISE,PARADISE T-SHIRT,Preta,frente,CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_branco_e_fundo_escuro_2K_202609081603.jpeg,escura,0.2455,0.2475,0.2722,medido,0.55,sim,arte com problema: fundo_sujo; há 1 outra(s) arte(s) diferentes para este lado
+paradise,PARADISE,PARADISE T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/PARADISE ESTAMPA/PARADISE COSTAS PRETA AZUL MARINHO.png,escura,0.6411,0.1960,0.0067,medido,0.93,nao,
+paradise,PARADISE,PARADISE T-SHIRT,Azul Marinho,frente,CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_branco_e_fundo_escuro_2K_202609081603.jpeg,escura,0.2455,0.2475,0.2722,medido,0.55,sim,arte com problema: fundo_sujo; há 1 outra(s) arte(s) diferentes para este lado
+cote-d-azur,COTE-D-AZUR,COTE D' AZUR T-SHIRT,Branca,costas,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Branca ou não bate com a foto atual: falta a versão para camisa clara"
+cote-d-azur,COTE-D-AZUR,COTE D' AZUR T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+cote-d-azur,COTE-D-AZUR,COTE D' AZUR T-SHIRT,Off White,costas,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Off White ou não bate com a foto atual: falta a versão para camisa clara"
+cote-d-azur,COTE-D-AZUR,COTE D' AZUR T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+cote-d-azur,COTE-D-AZUR,COTE D' AZUR T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/TROQUE_OS_ND_POR_P_2K_202609081235.jpeg,escura,0.5932,0.1757,0.0125,medido,0.55,sim,arte com problema: cor_diferente_da_loja
+cote-d-azur,COTE-D-AZUR,COTE D' AZUR T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+cote-d-azur,COTE-D-AZUR,COTE D' AZUR T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/TROQUE_OS_ND_POR_P_2K_202609081235.jpeg,escura,0.5932,0.1757,0.0125,medido,0.55,sim,arte com problema: cor_diferente_da_loja
+cote-d-azur,COTE-D-AZUR,COTE D' AZUR T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+mediterranee,MEDITERRANEE,MEDITERRANEE T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Trocar_Orggeils_por_Pallacio_2K_202609081212.jpeg,clara,0.6411,0.1905,-0.0024,medido,0.93,nao,
+mediterranee,MEDITERRANEE,MEDITERRANEE T-SHIRT,Branca,frente,CAMISETAS 100%/ESTAMPAS 100%/FOI/recrie_imagem_100%_igual_2K_202609081549.jpeg,todas,0.2707,0.2596,0.2572,medido,0.90,nao,arte única para todas as cores
+mediterranee,MEDITERRANEE,MEDITERRANEE T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Trocar_Orggeils_por_Pallacio_2K_202609081212.jpeg,clara,0.6411,0.1905,-0.0024,medido,0.93,nao,
+mediterranee,MEDITERRANEE,MEDITERRANEE T-SHIRT,Off White,frente,CAMISETAS 100%/ESTAMPAS 100%/FOI/recrie_imagem_100%_igual_2K_202609081549.jpeg,todas,0.2707,0.2596,0.2572,medido,0.90,nao,arte única para todas as cores
+mediterranee,MEDITERRANEE,MEDITERRANEE T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Alter_dark_text_light_gray_2K_202609081542.jpeg,escura,0.6411,0.1905,-0.0024,medido,0.93,nao,
+mediterranee,MEDITERRANEE,MEDITERRANEE T-SHIRT,Preta,frente,CAMISETAS 100%/ESTAMPAS 100%/FOI/recrie_imagem_100%_igual_2K_202609081549.jpeg,todas,0.2707,0.2596,0.2572,medido,0.90,nao,arte única para todas as cores
+mediterranee,MEDITERRANEE,MEDITERRANEE T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Alter_dark_text_light_gray_2K_202609081542.jpeg,escura,0.6411,0.1905,-0.0024,medido,0.93,nao,
+mediterranee,MEDITERRANEE,MEDITERRANEE T-SHIRT,Azul Marinho,frente,CAMISETAS 100%/ESTAMPAS 100%/FOI/recrie_imagem_100%_igual_2K_202609081549.jpeg,todas,0.2707,0.2596,0.2572,medido,0.90,nao,arte única para todas as cores
+stickers,STICKERS,STICKERS T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Reproducing_image_with_maximum_f…_2K_202609081137.jpeg,clara,0.7280,0.1899,0.0022,medido,0.93,nao,
+stickers,STICKERS,STICKERS T-SHIRT,Branca,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+stickers,STICKERS,STICKERS T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Reproducing_image_with_maximum_f…_2K_202609081137.jpeg,clara,0.7280,0.1899,0.0022,medido,0.93,nao,
+stickers,STICKERS,STICKERS T-SHIRT,Off White,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+stickers,STICKERS,STICKERS T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Darken_background_and_light_text_2K_202609081138.jpeg,escura,0.7280,0.1899,0.0022,medido,0.93,nao,
+stickers,STICKERS,STICKERS T-SHIRT,Preta,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+stickers,STICKERS,STICKERS T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Darken_background_and_light_text_2K_202609081138.jpeg,escura,0.7280,0.1899,0.0022,medido,0.93,nao,
+stickers,STICKERS,STICKERS T-SHIRT,Azul Marinho,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+grand-tour,RIVIERA,RIVIERA T-SHIRT,Branca,costas,"CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 9 de set. de 2026, 23_38_19.png",clara,0.4589,0.1834,0.0010,medido,0.93,nao,
+grand-tour,RIVIERA,RIVIERA T-SHIRT,Branca,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+grand-tour,RIVIERA,RIVIERA T-SHIRT,Off White,costas,"CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 9 de set. de 2026, 23_38_19.png",clara,0.4589,0.1834,0.0010,medido,0.93,nao,
+grand-tour,RIVIERA,RIVIERA T-SHIRT,Off White,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+grand-tour,RIVIERA,RIVIERA T-SHIRT,Preta,costas,"CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 9 de set. de 2026, 23_38_21.png",escura,0.4589,0.1834,0.0010,medido,0.93,nao,
+grand-tour,RIVIERA,RIVIERA T-SHIRT,Preta,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+grand-tour,RIVIERA,RIVIERA T-SHIRT,Azul Marinho,costas,"CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 9 de set. de 2026, 23_38_21.png",escura,0.4589,0.1834,0.0010,medido,0.93,nao,
+grand-tour,RIVIERA,RIVIERA T-SHIRT,Azul Marinho,frente,LISO,,,,,medido,0.9,nao,"a descrição cita frente, mas a foto atual não tem estampa na frente"
+mercato,MERCATO,MERCATO T-SHIRT,Branca,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/DEIXE_FUNDO_BRANCO_2K_202609081529.jpeg,clara,0.6261,0.2135,-0.0007,medido,0.93,nao,
+mercato,MERCATO,MERCATO T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+mercato,MERCATO,MERCATO T-SHIRT,Off White,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/DEIXE_FUNDO_BRANCO_2K_202609081529.jpeg,clara,0.6261,0.2135,-0.0007,medido,0.93,nao,
+mercato,MERCATO,MERCATO T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+mercato,MERCATO,MERCATO T-SHIRT,Preta,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Set_dark_background_white_text_2K_202609081527.jpeg,escura,0.6261,0.2135,-0.0007,medido,0.93,nao,
+mercato,MERCATO,MERCATO T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+mercato,MERCATO,MERCATO T-SHIRT,Azul Marinho,costas,CAMISETAS 100%/ESTAMPAS 100%/FOI/Set_dark_background_white_text_2K_202609081527.jpeg,escura,0.6261,0.2135,-0.0007,medido,0.93,nao,
+mercato,MERCATO,MERCATO T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+summer-with-money,SUMMER-WITH-MONEY,SUMMER WITH MONEY T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/SUMMER WITH MONEY ESTAMPAS  100%/SUMMER-WITH-MONEY T-SHIRT.png,clara,0.6590,0.1900,0.0000,padrao,0.85,nao,
+summer-with-money,SUMMER-WITH-MONEY,SUMMER WITH MONEY T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+summer-with-money,SUMMER-WITH-MONEY,SUMMER WITH MONEY T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/SUMMER WITH MONEY ESTAMPAS  100%/SUMMER-WITH-MONEY T-SHIRT.png,clara,0.6590,0.1900,0.0000,padrao,0.85,nao,
+summer-with-money,SUMMER-WITH-MONEY,SUMMER WITH MONEY T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+summer-with-money,SUMMER-WITH-MONEY,SUMMER WITH MONEY T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/SUMMER WITH MONEY ESTAMPAS  100%/SUMMER-WITH-MONEY T-SHIRT.png,clara,0.6590,0.1900,0.0000,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Preta, mas confira"
+summer-with-money,SUMMER-WITH-MONEY,SUMMER WITH MONEY T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+8-billion,8-BILLION,8 BILLION T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/SINGLE T-SHIRT/Change_text_color_2K_202608040134.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+8-billion,8-BILLION,8 BILLION T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+8-billion,8-BILLION,8 BILLION T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/SINGLE T-SHIRT/Change_text_color_2K_202608040134.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+8-billion,8-BILLION,8 BILLION T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+8-billion,8-BILLION,8 BILLION T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/SINGLE T-SHIRT/Image_prompt_with_text_colors_202608040135.png,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+8-billion,8-BILLION,8 BILLION T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+your-bed,YOUR-BED,YOUR BED T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/YOUR BED T-SHIRT/Untitled - 03 de agosto de 2026 às 21.23.41.png,clara,0.7055,0.1900,0.0000,padrao,0.85,nao,
+your-bed,YOUR-BED,YOUR BED T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+your-bed,YOUR-BED,YOUR BED T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/YOUR BED T-SHIRT/Untitled - 03 de agosto de 2026 às 21.23.41.png,clara,0.7055,0.1900,0.0000,padrao,0.85,nao,
+your-bed,YOUR-BED,YOUR BED T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+your-bed,YOUR-BED,YOUR BED T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/YOUR BED T-SHIRT/Untitled - 03 de agosto de 2026 às 21.24.16.png,escura,0.7047,0.1900,0.0000,padrao,0.85,nao,
+your-bed,YOUR-BED,YOUR BED T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+your-bed,YOUR-BED,YOUR BED T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/YOUR BED T-SHIRT/Untitled - 03 de agosto de 2026 às 21.24.16.png,escura,0.7047,0.1900,0.0000,padrao,0.85,nao,
+your-bed,YOUR-BED,YOUR BED T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+you-know,YOU-KNOW,YOU KNOW T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/YOU KNOW T-SHIRT/DEIXE_FUNDO_100%_#000_2K_202607310011.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+you-know,YOU-KNOW,YOU KNOW T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+you-know,YOU-KNOW,YOU KNOW T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/YOU KNOW T-SHIRT/Recreate_image_100%_identical_2K_202607310006.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+you-know,YOU-KNOW,YOU KNOW T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+you-know,YOU-KNOW,YOU KNOW T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/YOU KNOW T-SHIRT/Recreate_image_100%_identical_2K_202607310006.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+you-know,YOU-KNOW,YOU KNOW T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+you-know,YOU-KNOW,YOU KNOW T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/YOU KNOW T-SHIRT/DEIXE_FUNDO_100%_#000_2K_202607310011.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+you-know,YOU-KNOW,YOU KNOW T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+yacht,YACHT,YACHT T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/YATCH T-SHIRT/PORSCHE..png,clara,0.6780,0.1900,0.0000,padrao,0.85,nao,
+yacht,YACHT,YACHT T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+yacht,YACHT,YACHT T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/YATCH T-SHIRT/PORSCHE..png,clara,0.6780,0.1900,0.0000,padrao,0.85,nao,
+yacht,YACHT,YACHT T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+yacht,YACHT,YACHT T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/YATCH T-SHIRT/PORSCHE. (1).png,escura,0.7006,0.1900,0.0000,padrao,0.85,nao,
+yacht,YACHT,YACHT T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+yacht,YACHT,YACHT T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/YATCH T-SHIRT/PORSCHE. (1).png,escura,0.7006,0.1900,0.0000,padrao,0.85,nao,
+yacht,YACHT,YACHT T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+wrong-places,WRONG-PLACES,WRONG PLACES T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/WRONG PLACES T-SHIRT/Recreate_image_100%_identical_2K_202607301817.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+wrong-places,WRONG-PLACES,WRONG PLACES T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+wrong-places,WRONG-PLACES,WRONG PLACES T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/WRONG PLACES T-SHIRT/Recreate_image_100%_identical_2K_202607301817.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+wrong-places,WRONG-PLACES,WRONG PLACES T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+wrong-places,WRONG-PLACES,WRONG PLACES T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/WRONG PLACES T-SHIRT/Recreate_image_100%_identical_2K_202607301818.png,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+wrong-places,WRONG-PLACES,WRONG PLACES T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+world-is-yours,WORLD-IS-YOURS,WORLD IS YOURS T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/WORLD ESTAMPAS/WORLD BRANCA.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+world-is-yours,WORLD-IS-YOURS,WORLD IS YOURS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+world-is-yours,WORLD-IS-YOURS,WORLD IS YOURS T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/WORLD ESTAMPAS/WORLD BRANCA.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+world-is-yours,WORLD-IS-YOURS,WORLD IS YOURS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+world-is-yours,WORLD-IS-YOURS,WORLD IS YOURS T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/THE WORLD IS YOURS T-SHIRT/Sem título - 30 de julho de 2026 às 23.10.04.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+world-is-yours,WORLD-IS-YOURS,WORLD IS YOURS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+world-is-yours,WORLD-IS-YOURS,WORLD IS YOURS T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/THE WORLD IS YOURS T-SHIRT/Sem título - 30 de julho de 2026 às 23.10.04.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+world-is-yours,WORLD-IS-YOURS,WORLD IS YOURS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+virginity,VIRGINITY,VIRGINITY T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/VIRGINITY T-SHIRT/Untitled - 31 de julho de 2026 às 12.33.15.png,clara,0.6807,0.1900,0.0000,padrao,0.85,nao,
+virginity,VIRGINITY,VIRGINITY T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+virginity,VIRGINITY,VIRGINITY T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/VIRGINITY T-SHIRT/Untitled - 31 de julho de 2026 às 12.33.15.png,clara,0.6807,0.1900,0.0000,padrao,0.85,nao,
+virginity,VIRGINITY,VIRGINITY T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+virginity,VIRGINITY,VIRGINITY T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/VIRGINITY T-SHIRT/Untitled - 31 de julho de 2026 às 12.34.52.png,escura,0.6807,0.1900,0.0000,padrao,0.85,nao,
+virginity,VIRGINITY,VIRGINITY T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+virginity,VIRGINITY,VIRGINITY T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/VIRGINITY T-SHIRT/Untitled - 31 de julho de 2026 às 12.34.52.png,escura,0.6807,0.1900,0.0000,padrao,0.85,nao,
+virginity,VIRGINITY,VIRGINITY T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+tuto-passa,TUTO-PASSA,TUTO PASSA T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/TUTTO PASSA ESTAMPAS/TUTTO PASSA COSTAS.png,clara,0.5170,0.1900,0.0000,padrao,0.85,nao,
+tuto-passa,TUTO-PASSA,TUTO PASSA T-SHIRT,Branca,frente,ESTAMPAS PRONTAS P: IZZY/TUTTO PASSA ESTAMPAS/TUTTO PASSA FRENTE.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+tuto-passa,TUTO-PASSA,TUTO PASSA T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/TUTTO PASSA ESTAMPAS/TUTTO PASSA COSTAS.png,clara,0.5170,0.1900,0.0000,padrao,0.85,nao,
+tuto-passa,TUTO-PASSA,TUTO PASSA T-SHIRT,Off White,frente,ESTAMPAS PRONTAS P: IZZY/TUTTO PASSA ESTAMPAS/TUTTO PASSA FRENTE.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+triple-r,TRIPLE-R,TRIPLE R T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/ROLEX ROLLS ROYCE T-SHIRT/Sem título - 31 de julho de 2026 às 06.41.27.png,clara,0.6509,0.1900,0.0000,padrao,0.85,nao,
+triple-r,TRIPLE-R,TRIPLE R T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+triple-r,TRIPLE-R,TRIPLE R T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/ROLEX ROLLS ROYCE T-SHIRT/Sem título - 31 de julho de 2026 às 06.41.27.png,clara,0.6509,0.1900,0.0000,padrao,0.85,nao,
+triple-r,TRIPLE-R,TRIPLE R T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+triple-r,TRIPLE-R,TRIPLE R T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/TRIPLE R ESTAMPAS/TRIPLE R PRETA.png,escura,0.6509,0.1900,0.0000,padrao,0.85,nao,
+triple-r,TRIPLE-R,TRIPLE R T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+triple-r,TRIPLE-R,TRIPLE R T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/TRIPLE R ESTAMPAS/TRIPLE R PRETA.png,escura,0.6509,0.1900,0.0000,padrao,0.85,nao,
+triple-r,TRIPLE-R,TRIPLE R T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+trancoso,TRANCOSO,TRANCOSO T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/TRANCOSO T-SHIRT/Create_image_of_print_2K_202608032256.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+trancoso,TRANCOSO,TRANCOSO T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+trancoso,TRANCOSO,TRANCOSO T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/TRANCOSO T-SHIRT/Create_image_of_print_2K_202608032256.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+trancoso,TRANCOSO,TRANCOSO T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+trancoso,TRANCOSO,TRANCOSO T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/TRANCOSO T-SHIRT/Translate_image_prompt_text_2K_202608032304.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+trancoso,TRANCOSO,TRANCOSO T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+told-you,TOLD-YOU,TOLD YOU T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/TOLD YOU T-SHIRT/Sem título - 31 de julho de 2026 às 05.07.50.png,clara,0.7113,0.1900,0.0000,padrao,0.85,nao,
+told-you,TOLD-YOU,TOLD YOU T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+told-you,TOLD-YOU,TOLD YOU T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/TOLD YOU T-SHIRT/Sem título - 31 de julho de 2026 às 05.07.50.png,clara,0.7113,0.1900,0.0000,padrao,0.85,nao,
+told-you,TOLD-YOU,TOLD YOU T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+told-you,TOLD-YOU,TOLD YOU T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/TOLD YOU T-SHIRT/Sem título - 31 de julho de 2026 às 05.10.20.png,escura,0.7113,0.1900,0.0000,padrao,0.85,nao,
+told-you,TOLD-YOU,TOLD YOU T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+told-you,TOLD-YOU,TOLD YOU T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/TOLD YOU T-SHIRT/Sem título - 31 de julho de 2026 às 05.10.20.png,escura,0.7113,0.1900,0.0000,padrao,0.85,nao,
+told-you,TOLD-YOU,TOLD YOU T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+therapist,THERAPIST,THERAPIST T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/THERAPIST T-SHIRT/Design sem nome (1).png,clara,0.7053,0.1900,0.0000,padrao,0.85,nao,
+therapist,THERAPIST,THERAPIST T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+therapist,THERAPIST,THERAPIST T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/THERAPIST T-SHIRT/Design sem nome (1).png,clara,0.7053,0.1900,0.0000,padrao,0.85,nao,
+therapist,THERAPIST,THERAPIST T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+therapist,THERAPIST,THERAPIST T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/THERAPIST T-SHIRT/Design sem nome.png,escura,0.7053,0.1900,0.0000,padrao,0.85,nao,
+therapist,THERAPIST,THERAPIST T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+the-stadium,THE-STADIUM,THE STADIUM T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/PLC T-SHIRT/Translating_image_prompt_to_English_202608040158.png,clara,0.6564,0.1900,0.0000,padrao,0.85,nao,
+the-stadium,THE-STADIUM,THE STADIUM T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+the-stadium,THE-STADIUM,THE STADIUM T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/PLC T-SHIRT/Translating_image_prompt_to_English_202608040158.png,clara,0.6564,0.1900,0.0000,padrao,0.85,nao,
+the-stadium,THE-STADIUM,THE STADIUM T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+the-stadium,THE-STADIUM,THE STADIUM T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/PLC T-SHIRT/Create_original_text_2K_202608040153.png,escura,0.6533,0.1900,0.0000,padrao,0.85,nao,
+the-stadium,THE-STADIUM,THE STADIUM T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+the-stadium,THE-STADIUM,THE STADIUM T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/PLC T-SHIRT/Create_original_text_2K_202608040153.png,escura,0.6533,0.1900,0.0000,padrao,0.85,nao,
+the-stadium,THE-STADIUM,THE STADIUM T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+text-back,TEXT-BACK,TEXT BACK T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/TEXT BACK T-SHIRT/SORRY MAMA.png,clara,0.7075,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+text-back,TEXT-BACK,TEXT BACK T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+text-back,TEXT-BACK,TEXT BACK T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/TEXT BACK T-SHIRT/SORRY MAMA.png,clara,0.7075,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+text-back,TEXT-BACK,TEXT BACK T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+text-back,TEXT-BACK,TEXT BACK T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/TEXT BACK T-SHIRT/SORRY MAMA - cópia.png,escura,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+text-back,TEXT-BACK,TEXT BACK T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+tennis,TENNIS,TENNIS T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/TENNIS T-SHIRT/Image_prompt_translation_request_2K_202608032339.png,clara,0.7199,0.1900,0.0000,padrao,0.85,nao,
+tennis,TENNIS,TENNIS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+tennis,TENNIS,TENNIS T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/TENNIS T-SHIRT/Image_prompt_translation_request_2K_202608032339.png,clara,0.7199,0.1900,0.0000,padrao,0.85,nao,
+tennis,TENNIS,TENNIS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+tennis,TENNIS,TENNIS T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/TENNIS T-SHIRT/Making_text_white_and_black_202608032340.png,escura,0.7199,0.1900,0.0000,padrao,0.85,nao,
+tennis,TENNIS,TENNIS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+tennis,TENNIS,TENNIS T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/TENNIS T-SHIRT/Making_text_white_and_black_202608032340.png,escura,0.7199,0.1900,0.0000,padrao,0.85,nao,
+tennis,TENNIS,TENNIS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+summer,SUMMER,SUMMER T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/SUMMER T-SHIRT/Untitled - 03 de agosto de 2026 às 22.38.42.png,todas,0.5839,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+summer,SUMMER,SUMMER T-SHIRT,Branca,frente,"MATERIAL QUALITY 100%/SUMMER T-SHIRT/ChatGPT Image 3 de ago. de 2026, 22_43_36 (1).png",todas,0.2260,0.2570,0.2580,padrao,0.80,nao,arte única para todas as cores
+summer,SUMMER,SUMMER T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/SUMMER T-SHIRT/Untitled - 03 de agosto de 2026 às 22.38.42.png,todas,0.5839,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+summer,SUMMER,SUMMER T-SHIRT,Off White,frente,"MATERIAL QUALITY 100%/SUMMER T-SHIRT/ChatGPT Image 3 de ago. de 2026, 22_43_36 (1).png",todas,0.2260,0.2570,0.2580,padrao,0.80,nao,arte única para todas as cores
+summer,SUMMER,SUMMER T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/SUMMER T-SHIRT/Untitled - 03 de agosto de 2026 às 22.38.42.png,todas,0.5839,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+summer,SUMMER,SUMMER T-SHIRT,Preta,frente,"MATERIAL QUALITY 100%/SUMMER T-SHIRT/ChatGPT Image 3 de ago. de 2026, 22_43_36 (1).png",todas,0.2260,0.2570,0.2580,padrao,0.80,nao,arte única para todas as cores
+summer,SUMMER,SUMMER T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/SUMMER T-SHIRT/Untitled - 03 de agosto de 2026 às 22.38.42.png,todas,0.5839,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+summer,SUMMER,SUMMER T-SHIRT,Azul Marinho,frente,"MATERIAL QUALITY 100%/SUMMER T-SHIRT/ChatGPT Image 3 de ago. de 2026, 22_43_36 (1).png",todas,0.2260,0.2570,0.2580,padrao,0.80,nao,arte única para todas as cores
+studios,STUDIOS,STUDIOS T-SHIRT,Branca,costas,LISO,,,,,,0.8,nao,
+studios,STUDIOS,STUDIOS T-SHIRT,Branca,frente,MATERIAL QUALITY 100%/PALLACIO STUDIOS T-SHIRT/Untitled - 03 de agosto de 2026 às 16.56.37.png,clara,0.6000,0.2000,0.0000,padrao,0.85,nao,
+studios,STUDIOS,STUDIOS T-SHIRT,Off White,costas,LISO,,,,,,0.8,nao,
+studios,STUDIOS,STUDIOS T-SHIRT,Off White,frente,MATERIAL QUALITY 100%/PALLACIO STUDIOS T-SHIRT/Untitled - 03 de agosto de 2026 às 16.56.37.png,clara,0.6000,0.2000,0.0000,padrao,0.85,nao,
+studios,STUDIOS,STUDIOS T-SHIRT,Preta,costas,LISO,,,,,,0.8,nao,
+studios,STUDIOS,STUDIOS T-SHIRT,Preta,frente,MATERIAL QUALITY 100%/PALLACIO STUDIOS T-SHIRT/Untitled - 03 de agosto de 2026 às 16.55.30.png,escura,0.6000,0.2000,0.0000,padrao,0.85,nao,
+studios,STUDIOS,STUDIOS T-SHIRT,Azul Marinho,costas,LISO,,,,,,0.8,nao,
+studios,STUDIOS,STUDIOS T-SHIRT,Azul Marinho,frente,MATERIAL QUALITY 100%/PALLACIO STUDIOS T-SHIRT/Untitled - 03 de agosto de 2026 às 16.55.30.png,escura,0.6000,0.2000,0.0000,padrao,0.85,nao,
+stop,STOP,STOP T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/STOP DRINKING T-SHIRT/Design sem nome.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+stop,STOP,STOP T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+stop,STOP,STOP T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/STOP DRINKING T-SHIRT/Design sem nome.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+stop,STOP,STOP T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+stop,STOP,STOP T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/STOP DRINKING T-SHIRT/Design sem nome (1).png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+stop,STOP,STOP T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+sorry-mamma,SORRY-MAMMA,SORRY MAMMA T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/SORRY MAMMA T-SHIRT/Sem título - 31 de julho de 2026 às 06.11.53.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+sorry-mamma,SORRY-MAMMA,SORRY MAMMA T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+sorry-mamma,SORRY-MAMMA,SORRY MAMMA T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/SORRY MAMMA T-SHIRT/Sem título - 31 de julho de 2026 às 06.11.53.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+sorry-mamma,SORRY-MAMMA,SORRY MAMMA T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+sorry-mamma,SORRY-MAMMA,SORRY MAMMA T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/SORRY MAMMA T-SHIRT/Sem título - 31 de julho de 2026 às 06.09.57.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+sorry-mamma,SORRY-MAMMA,SORRY MAMMA T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+sorry-mamma,SORRY-MAMMA,SORRY MAMMA T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/SORRY MAMMA T-SHIRT/Sem título - 31 de julho de 2026 às 06.09.57.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+sorry-mamma,SORRY-MAMMA,SORRY MAMMA T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+sole-mar,SOLE-MAR,SOLE MAR T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/SOLE MAR T-SHIRT/SOLEMAREVINO-COSTAS.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+sole-mar,SOLE-MAR,SOLE MAR T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+sole-mar,SOLE-MAR,SOLE MAR T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/SOLE MAR T-SHIRT/SOLEMAREVINO-COSTAS.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+sole-mar,SOLE-MAR,SOLE MAR T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+sole-mar,SOLE-MAR,SOLE MAR T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/SOLE MAR T-SHIRT/SOLEMAREVINO-COSTAS.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+sole-mar,SOLE-MAR,SOLE MAR T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+sole-mar,SOLE-MAR,SOLE MAR T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/SOLE MAR T-SHIRT/SOLEMAREVINO-COSTAS.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+sole-mar,SOLE-MAR,SOLE MAR T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+silence,SILENCE,SILENCE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/SILENCE T-SHIRT/Sem título - 30 de julho de 2026 às 23.17.38.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+silence,SILENCE,SILENCE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+silence,SILENCE,SILENCE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/SILENCE T-SHIRT/Sem título - 30 de julho de 2026 às 23.17.38.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+silence,SILENCE,SILENCE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+silence,SILENCE,SILENCE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/SILENCE T-SHIRT/Sem título - 30 de julho de 2026 às 23.14.14.png,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+silence,SILENCE,SILENCE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+silence,SILENCE,SILENCE T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/SILENCE T-SHIRT/Sem título - 30 de julho de 2026 às 23.14.14.png,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+silence,SILENCE,SILENCE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+senna,SENNA,SENNA T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/SENNA BRANCA OFF WHITE.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+senna,SENNA,SENNA T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+senna,SENNA,SENNA T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/SENNA BRANCA OFF WHITE.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+senna,SENNA,SENNA T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+senna,SENNA,SENNA T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/SENNA T-SHIRT/Create_100%_identical_2K_202607311134 (1).png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+senna,SENNA,SENNA T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+self-control,SELF-CONTROL,SELF CONTROL T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/NOT INVITE T-SHIRT/CREATE_THIS_IMAGE_100%_IDENTICAL_202607301724.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+self-control,SELF-CONTROL,SELF CONTROL T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+self-control,SELF-CONTROL,SELF CONTROL T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/NOT INVITE T-SHIRT/CREATE_THIS_IMAGE_100%_IDENTICAL_202607301724.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+self-control,SELF-CONTROL,SELF CONTROL T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+self-control,SELF-CONTROL,SELF CONTROL T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/NOT INVITE T-SHIRT/Recrie_100%_igual_2K_202607301723.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+self-control,SELF-CONTROL,SELF CONTROL T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+self-control,SELF-CONTROL,SELF CONTROL T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/NOT INVITE T-SHIRT/Recrie_100%_igual_2K_202607301723.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+self-control,SELF-CONTROL,SELF CONTROL T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+saint-tropez,SAINT-TROPEZ,SAINT TROPEZ T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/SAINT TROPEZ ESTAMPAS/SAINT TROPEZ BRANCA-OFF-WHITE.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+saint-tropez,SAINT-TROPEZ,SAINT TROPEZ T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+saint-tropez,SAINT-TROPEZ,SAINT TROPEZ T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/SAINT TROPEZ ESTAMPAS/SAINT TROPEZ BRANCA-OFF-WHITE.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+saint-tropez,SAINT-TROPEZ,SAINT TROPEZ T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+saint-tropez,SAINT-TROPEZ,SAINT TROPEZ T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/SAINT TROPEZ ESTAMPAS/SAINT TROPEZ AZUL-MARINHO.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+saint-tropez,SAINT-TROPEZ,SAINT TROPEZ T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+saint-tropez,SAINT-TROPEZ,SAINT TROPEZ T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/SAINT TROPEZ ESTAMPAS/SAINT TROPEZ AZUL-MARINHO.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+saint-tropez,SAINT-TROPEZ,SAINT TROPEZ T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+running,RUNNING,RUNNING T-SHIRT,Branca,costas,"MATERIAL QUALITY 100%/5AM /ChatGPT Image 23 de ago. de 2026, 01_15_57 (1).png",clara,0.6715,0.1900,0.0000,padrao,0.85,nao,
+running,RUNNING,RUNNING T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+running,RUNNING,RUNNING T-SHIRT,Off White,costas,"MATERIAL QUALITY 100%/5AM /ChatGPT Image 23 de ago. de 2026, 01_15_57 (1).png",clara,0.6715,0.1900,0.0000,padrao,0.85,nao,
+running,RUNNING,RUNNING T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+running,RUNNING,RUNNING T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/RUNNING ESTAMPAS/RUNNING PRETA.png,escura,0.6714,0.1900,0.0000,padrao,0.85,nao,
+running,RUNNING,RUNNING T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+running,RUNNING,RUNNING T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/RUNNING ESTAMPAS/RUNNING PRETA.png,escura,0.6714,0.1900,0.0000,padrao,0.85,nao,
+running,RUNNING,RUNNING T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+rules,RULES,RULES T-SHIRT,Branca,costas,,,,,,,0,sim,falta a estampa das costas
+rules,RULES,RULES T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+rules,RULES,RULES T-SHIRT,Preta,costas,,,,,,,0,sim,falta a estampa das costas
+rules,RULES,RULES T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+rules,RULES,RULES T-SHIRT,Azul Marinho,costas,,,,,,,0,sim,falta a estampa das costas
+rules,RULES,RULES T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+red-flag,RED-FLAG,RED FLAG T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/RED FLAG T-SHIRT/Change_background_to_white_2K_202607310534.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+red-flag,RED-FLAG,RED FLAG T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+red-flag,RED-FLAG,RED FLAG T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/RED FLAG T-SHIRT/Change_background_to_white_2K_202607310534.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+red-flag,RED-FLAG,RED FLAG T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+red-flag,RED-FLAG,RED FLAG T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/RED FLAG T-SHIRT/APAGUE_TEXTO_FRASED_ABAIXO_IM_202607310534.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+red-flag,RED-FLAG,RED FLAG T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+psychotic,PSYCHOTIC,PSYCHOTIC T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/HOT GIRL T-SHIRT/Untitled - 31 de julho de 2026 às 11.49.40.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+psychotic,PSYCHOTIC,PSYCHOTIC T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+psychotic,PSYCHOTIC,PSYCHOTIC T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/HOT GIRL T-SHIRT/Untitled - 31 de julho de 2026 às 11.49.40.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+psychotic,PSYCHOTIC,PSYCHOTIC T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+psychotic,PSYCHOTIC,PSYCHOTIC T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/HOT GIRL T-SHIRT/Untitled - 31 de julho de 2026 às 11.48.32.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+psychotic,PSYCHOTIC,PSYCHOTIC T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+pretty,PRETTY,PRETTY T-SHIRT,Branca,costas,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Branca ou não bate com a foto atual: falta a versão para camisa clara"
+pretty,PRETTY,PRETTY T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+pretty,PRETTY,PRETTY T-SHIRT,Off White,costas,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Off White ou não bate com a foto atual: falta a versão para camisa clara"
+pretty,PRETTY,PRETTY T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+pretty,PRETTY,PRETTY T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/PRETTY ESTAMPAS/PRETTY PRETA.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+pretty,PRETTY,PRETTY T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+pretty,PRETTY,PRETTY T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/PRETTY ESTAMPAS/PRETTY PRETA.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+pretty,PRETTY,PRETTY T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+pre-rich,PRE-RICH,PRE RICH T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/PRE RICH T-SHIRT/CREATE_IMAGE_100%_EQUAL_2K_202608031802.png,clara,0.6459,0.1900,0.0000,padrao,0.85,nao,
+pre-rich,PRE-RICH,PRE RICH T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+pre-rich,PRE-RICH,PRE RICH T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/PRE RICH T-SHIRT/CREATE_IMAGE_100%_EQUAL_2K_202608031802.png,clara,0.6459,0.1900,0.0000,padrao,0.85,nao,
+pre-rich,PRE-RICH,PRE RICH T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+pre-rich,PRE-RICH,PRE RICH T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/PRE RICH T-SHIRT/INVERT_COLORS._2K_202608031803.png,escura,0.6450,0.1900,0.0000,padrao,0.85,nao,
+pre-rich,PRE-RICH,PRE RICH T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+pre-rich,PRE-RICH,PRE RICH T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/PRE RICH T-SHIRT/INVERT_COLORS._2K_202608031803.png,escura,0.6450,0.1900,0.0000,padrao,0.85,nao,
+pre-rich,PRE-RICH,PRE RICH T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+portofino,PORTOFINO,PORTOFINO T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/PORTOFINO ESTAMPAS/PORTOFINO COSTAS BRANCA OFF WHITE.png,clara,0.6745,0.1900,0.0000,padrao,0.85,nao,
+portofino,PORTOFINO,PORTOFINO T-SHIRT,Branca,frente,ESTAMPAS PRONTAS P: IZZY/PORTOFINO ESTAMPAS/PORTO FINO FRENTE BRANCA OFF WHITE.png.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+portofino,PORTOFINO,PORTOFINO T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/PORTOFINO ESTAMPAS/PORTOFINO COSTAS BRANCA OFF WHITE.png,clara,0.6745,0.1900,0.0000,padrao,0.85,nao,
+portofino,PORTOFINO,PORTOFINO T-SHIRT,Off White,frente,ESTAMPAS PRONTAS P: IZZY/PORTOFINO ESTAMPAS/PORTO FINO FRENTE BRANCA OFF WHITE.png.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+portofino,PORTOFINO,PORTOFINO T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/PORTOFINO ESTAMPAS/PORTOFINO COSTAS PRETA E AZUL MARINHO.png,escura,0.6745,0.1900,0.0000,padrao,0.85,nao,
+portofino,PORTOFINO,PORTOFINO T-SHIRT,Preta,frente,ESTAMPAS PRONTAS P: IZZY/PORTOFINO ESTAMPAS/PORTO FINO FRENTE PRETA AZULMARINHO.png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+portofino,PORTOFINO,PORTOFINO T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/PORTOFINO ESTAMPAS/PORTOFINO COSTAS PRETA E AZUL MARINHO.png,escura,0.6745,0.1900,0.0000,padrao,0.85,nao,
+portofino,PORTOFINO,PORTOFINO T-SHIRT,Azul Marinho,frente,ESTAMPAS PRONTAS P: IZZY/PORTOFINO ESTAMPAS/PORTO FINO FRENTE PRETA AZULMARINHO.png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+playing,PLAYING,PLAYING T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/NOT DJ T-SHIRT/Untitled - 03 de agosto de 2026 às 21.44.37.png,clara,0.6807,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado?
+playing,PLAYING,PLAYING T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+playing,PLAYING,PLAYING T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/NOT DJ T-SHIRT/Untitled - 03 de agosto de 2026 às 21.44.37.png,clara,0.6807,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado?
+playing,PLAYING,PLAYING T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+playing,PLAYING,PLAYING T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/NOT DJ T-SHIRT/Untitled - 03 de agosto de 2026 às 21.46.09.png,escura,0.6812,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado?
+playing,PLAYING,PLAYING T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+playlist,PLAYLIST,PLAYLIST T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/PLAYLIST T-SHIRT/Background_white_texts_black_2K_202608031931.png,clara,0.6992,0.1900,0.0000,padrao,0.85,nao,
+playlist,PLAYLIST,PLAYLIST T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+playlist,PLAYLIST,PLAYLIST T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/PLAYLIST T-SHIRT/Background_white_texts_black_2K_202608031931.png,clara,0.6992,0.1900,0.0000,padrao,0.85,nao,
+playlist,PLAYLIST,PLAYLIST T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+playlist,PLAYLIST,PLAYLIST T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/PLAYLIST T-SHIRT/Create_identical_image_2K_202608031930.png,escura,0.6996,0.1900,0.0000,padrao,0.85,nao,
+playlist,PLAYLIST,PLAYLIST T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+playlist,PLAYLIST,PLAYLIST T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/PLAYLIST T-SHIRT/Create_identical_image_2K_202608031930.png,escura,0.6996,0.1900,0.0000,padrao,0.85,nao,
+playlist,PLAYLIST,PLAYLIST T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+perignon-verde,PERIGNON-VERDE,PERIGNON VERDE T-SHIRT,Branca,costas,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Branca ou não bate com a foto atual: falta a versão para camisa clara"
+perignon-verde,PERIGNON-VERDE,PERIGNON VERDE T-SHIRT,Branca,frente,ESTAMPAS PRONTAS P: IZZY/PERIGNON VERDE ESTAMPAS/PERIGNON VERDE FRENTE.png,?,0.2260,0.2570,0.2580,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+perignon-verde,PERIGNON-VERDE,PERIGNON VERDE T-SHIRT,Off White,costas,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Off White ou não bate com a foto atual: falta a versão para camisa clara"
+perignon-verde,PERIGNON-VERDE,PERIGNON VERDE T-SHIRT,Off White,frente,ESTAMPAS PRONTAS P: IZZY/PERIGNON VERDE ESTAMPAS/PERIGNON VERDE FRENTE.png,?,0.2260,0.2570,0.2580,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+perignon-verde,PERIGNON-VERDE,PERIGNON VERDE T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/PERIGNON VERDE ESTAMPAS/PERIGNON VERDE COSTAS.png,?,0.6744,0.1900,0.0000,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+perignon-verde,PERIGNON-VERDE,PERIGNON VERDE T-SHIRT,Preta,frente,ESTAMPAS PRONTAS P: IZZY/PERIGNON VERDE ESTAMPAS/PERIGNON VERDE FRENTE.png,?,0.2260,0.2570,0.2580,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+perignon-roxa,PERIGNON-ROXA,PERIGNON ROXA T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/PERIGNON ROXA T-SHIRT COSTAS.png,?,0.6740,0.1900,0.0000,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+perignon-roxa,PERIGNON-ROXA,PERIGNON ROXA T-SHIRT,Branca,frente,ESTAMPAS PRONTAS P: IZZY/PERIGNON ROXA T-SHIRT FRENTE.png,?,0.2260,0.2570,0.2580,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+perignon-roxa,PERIGNON-ROXA,PERIGNON ROXA T-SHIRT,Off White,costas,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Off White ou não bate com a foto atual: falta a versão para camisa clara"
+perignon-roxa,PERIGNON-ROXA,PERIGNON ROXA T-SHIRT,Off White,frente,ESTAMPAS PRONTAS P: IZZY/PERIGNON ROXA T-SHIRT FRENTE.png,?,0.2260,0.2570,0.2580,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+perignon-roxa,PERIGNON-ROXA,PERIGNON ROXA T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/PERIGNON ROXA T-SHIRT COSTAS.png,?,0.6740,0.1900,0.0000,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+perignon-roxa,PERIGNON-ROXA,PERIGNON ROXA T-SHIRT,Preta,frente,ESTAMPAS PRONTAS P: IZZY/PERIGNON ROXA T-SHIRT FRENTE.png,?,0.2260,0.2570,0.2580,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+perignon-dourada,PERIGNON-DOURADA,PERIGNON DOURADA T-SHIRT,Branca,costas,"MATERIAL QUALITY 100%/DON PERIGNON - VERDE, ROXO DOURADO/Sem título - 29 de julho de 2026 às 18.07.06.png",todas,0.6740,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+perignon-dourada,PERIGNON-DOURADA,PERIGNON DOURADA T-SHIRT,Branca,frente,"MATERIAL QUALITY 100%/DON PERIGNON - VERDE, ROXO DOURADO/Sem título - 29 de julho de 2026 às 18.12.08.png",todas,0.2260,0.2570,0.2580,padrao,0.55,sim,arte única para todas as cores; arte com problema: baixa_resolucao
+perignon-dourada,PERIGNON-DOURADA,PERIGNON DOURADA T-SHIRT,Off White,costas,"MATERIAL QUALITY 100%/DON PERIGNON - VERDE, ROXO DOURADO/Sem título - 29 de julho de 2026 às 18.07.06.png",todas,0.6740,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+perignon-dourada,PERIGNON-DOURADA,PERIGNON DOURADA T-SHIRT,Off White,frente,"MATERIAL QUALITY 100%/DON PERIGNON - VERDE, ROXO DOURADO/Sem título - 29 de julho de 2026 às 18.12.08.png",todas,0.2260,0.2570,0.2580,padrao,0.55,sim,arte única para todas as cores; arte com problema: baixa_resolucao
+perignon-dourada,PERIGNON-DOURADA,PERIGNON DOURADA T-SHIRT,Preta,costas,"MATERIAL QUALITY 100%/DON PERIGNON - VERDE, ROXO DOURADO/Sem título - 29 de julho de 2026 às 18.07.06.png",todas,0.6740,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+perignon-dourada,PERIGNON-DOURADA,PERIGNON DOURADA T-SHIRT,Preta,frente,"MATERIAL QUALITY 100%/DON PERIGNON - VERDE, ROXO DOURADO/Sem título - 29 de julho de 2026 às 18.12.08.png",todas,0.2260,0.2570,0.2580,padrao,0.55,sim,arte única para todas as cores; arte com problema: baixa_resolucao
+pastasexwine,PASTASEXWINE,PASTASEXWINE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/WINE T-SHIRT/Sem título - 31 de julho de 2026 às 09.54.35.png,todas,0.6651,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+pastasexwine,PASTASEXWINE,PASTASEXWINE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+pastasexwine,PASTASEXWINE,PASTASEXWINE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/WINE T-SHIRT/Sem título - 31 de julho de 2026 às 09.54.35.png,todas,0.6651,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+pastasexwine,PASTASEXWINE,PASTASEXWINE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+pastasexwine,PASTASEXWINE,PASTASEXWINE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/WINE T-SHIRT/Sem título - 31 de julho de 2026 às 09.54.35.png,todas,0.6651,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+pastasexwine,PASTASEXWINE,PASTASEXWINE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+pastasexwine,PASTASEXWINE,PASTASEXWINE T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/WINE T-SHIRT/Sem título - 31 de julho de 2026 às 09.54.35.png,todas,0.6651,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+pastasexwine,PASTASEXWINE,PASTASEXWINE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+party-or-me,PARTY-OR-ME,PARTY OR ME T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/PARTY OR ME T-SHIRT/Stamp_with_plain_background_2K_202608032112.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+party-or-me,PARTY-OR-ME,PARTY OR ME T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+party-or-me,PARTY-OR-ME,PARTY OR ME T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/PARTY OR ME T-SHIRT/Stamp_with_plain_background_2K_202608032112.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+party-or-me,PARTY-OR-ME,PARTY OR ME T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+party-or-me,PARTY-OR-ME,PARTY OR ME T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/PARTY OR ME T-SHIRT/Leave_text_#D5EFF4_2K_202608032114.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+party-or-me,PARTY-OR-ME,PARTY OR ME T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+party-or-me,PARTY-OR-ME,PARTY OR ME T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/PARTY OR ME T-SHIRT/Leave_text_#D5EFF4_2K_202608032114.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+party-or-me,PARTY-OR-ME,PARTY OR ME T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+paris-madame,PARIS-MADAME,PARIS MADAME T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/PARIS MADAME T-SHIRT/Untitled - 03 de agosto de 2026 às 19.39.20.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+paris-madame,PARIS-MADAME,PARIS MADAME T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+paris-madame,PARIS-MADAME,PARIS MADAME T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/PARIS MADAME T-SHIRT/Untitled - 03 de agosto de 2026 às 19.39.20.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+paris-madame,PARIS-MADAME,PARIS MADAME T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+paris-madame,PARIS-MADAME,PARIS MADAME T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/PARIS MADAME T-SHIRT/Untitled - 03 de agosto de 2026 às 19.38.07.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+paris-madame,PARIS-MADAME,PARIS MADAME T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+paris-madame,PARIS-MADAME,PARIS MADAME T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/PARIS MADAME T-SHIRT/Untitled - 03 de agosto de 2026 às 19.38.07.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+paris-madame,PARIS-MADAME,PARIS MADAME T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+papa,PAPA,PAPA T-SHIRT,Branca,costas,,,,,,,0,sim,falta a estampa das costas
+papa,PAPA,PAPA T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+papa,PAPA,PAPA T-SHIRT,Off White,costas,,,,,,,0,sim,falta a estampa das costas
+papa,PAPA,PAPA T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+offline,OFFLINE,OFFLINE T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/OFFLINE ESTAMPAS/OFFLINE BRANCA.png,clara,0.6255,0.1900,0.0000,padrao,0.85,nao,
+offline,OFFLINE,OFFLINE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+offline,OFFLINE,OFFLINE T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/OFFLINE ESTAMPAS/OFFLINE BRANCA.png,clara,0.6255,0.1900,0.0000,padrao,0.85,nao,
+offline,OFFLINE,OFFLINE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+offline,OFFLINE,OFFLINE T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/OFFLINE ESTAMPAS/OFFLINE PRETA.png,escura,0.6242,0.1900,0.0000,padrao,0.85,nao,
+offline,OFFLINE,OFFLINE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+offline,OFFLINE,OFFLINE T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/OFFLINE ESTAMPAS/OFFLINE PRETA.png,escura,0.6242,0.1900,0.0000,padrao,0.85,nao,
+offline,OFFLINE,OFFLINE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+off-shore,OFF-SHORE,OFF SHORE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/GOOD BLESS/Sem título - 30 de julho de 2026 às 23.32.47.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+off-shore,OFF-SHORE,OFF SHORE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+off-shore,OFF-SHORE,OFF SHORE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/GOOD BLESS/Sem título - 30 de julho de 2026 às 23.32.47.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+off-shore,OFF-SHORE,OFF SHORE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+off-shore,OFF-SHORE,OFF SHORE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/GOOD BLESS/Sem título - 30 de julho de 2026 às 23.28.48.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+off-shore,OFF-SHORE,OFF SHORE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+off-shore,OFF-SHORE,OFF SHORE T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/GOOD BLESS/Sem título - 30 de julho de 2026 às 23.28.48.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+off-shore,OFF-SHORE,OFF SHORE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+number,NUMBER,NUMBER T-SHIRT,Branca,costas,,,,,,,0,sim,falta a estampa das costas
+number,NUMBER,NUMBER T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+number,NUMBER,NUMBER T-SHIRT,Off White,costas,,,,,,,0,sim,falta a estampa das costas
+number,NUMBER,NUMBER T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+number,NUMBER,NUMBER T-SHIRT,Preta,costas,,,,,,,0,sim,falta a estampa das costas
+number,NUMBER,NUMBER T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+not-bad,NOT-BAD,NOT BAD T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/NOT BAD T-SHIRT/Sem título - 29 de julho de 2026 às 21.08.44.png,clara,0.7145,0.1900,0.0000,padrao,0.85,nao,
+not-bad,NOT-BAD,NOT BAD T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+not-bad,NOT-BAD,NOT BAD T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/NOT BAD T-SHIRT/Sem título - 29 de julho de 2026 às 21.08.44.png,clara,0.7145,0.1900,0.0000,padrao,0.85,nao,
+not-bad,NOT-BAD,NOT BAD T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+not-bad,NOT-BAD,NOT BAD T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/NOT BAD T-SHIRT/Sem título - 29 de julho de 2026 às 21.02.24.png,escura,0.7125,0.1900,0.0000,padrao,0.85,nao,
+not-bad,NOT-BAD,NOT BAD T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+nightlife,NIGHTLIFE,NIGHTLIFE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/MY NIGHTLIFE T-SHIRT/Sem título - 30 de julho de 2026 às 17.48.33.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+nightlife,NIGHTLIFE,NIGHTLIFE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+nightlife,NIGHTLIFE,NIGHTLIFE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/MY NIGHTLIFE T-SHIRT/Sem título - 30 de julho de 2026 às 17.48.33.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+nightlife,NIGHTLIFE,NIGHTLIFE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+nightlife,NIGHTLIFE,NIGHTLIFE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/MY NIGHTLIFE T-SHIRT/Sem título - 30 de julho de 2026 às 17.49.49.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+nightlife,NIGHTLIFE,NIGHTLIFE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+nightlife,NIGHTLIFE,NIGHTLIFE T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/MY NIGHTLIFE T-SHIRT/Sem título - 30 de julho de 2026 às 17.49.49.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+nightlife,NIGHTLIFE,NIGHTLIFE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+need-money,NEED-MONEY,NEED MONEY T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/NEED PORSCHE T-SHIRT/Invert_colors_2K_202608031849.png,clara,0.5382,0.1900,0.0000,padrao,0.85,nao,
+need-money,NEED-MONEY,NEED MONEY T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+need-money,NEED-MONEY,NEED MONEY T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/NEED PORSCHE T-SHIRT/Invert_colors_2K_202608031849.png,clara,0.5382,0.1900,0.0000,padrao,0.85,nao,
+need-money,NEED-MONEY,NEED MONEY T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+need-money,NEED-MONEY,NEED MONEY T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/NEED PORSCHE T-SHIRT/Create_identical_image_2K_202608031848.png,escura,0.5423,0.1900,0.0000,padrao,0.85,nao,
+need-money,NEED-MONEY,NEED MONEY T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+need-drink,NEED-DRINK,NEED DRINK T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/NEED DRINK T-SHIRT/Sem título - 31 de julho de 2026 às 05.42.10.png,clara,0.6651,0.1900,0.0000,padrao,0.85,nao,
+need-drink,NEED-DRINK,NEED DRINK T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+need-drink,NEED-DRINK,NEED DRINK T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/NEED DRINK T-SHIRT/Sem título - 31 de julho de 2026 às 05.42.10.png,clara,0.6651,0.1900,0.0000,padrao,0.85,nao,
+need-drink,NEED-DRINK,NEED DRINK T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+need-drink,NEED-DRINK,NEED DRINK T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/NEED DRINK T-SHIRT/Sem título - 31 de julho de 2026 às 05.42.59.png,escura,0.6651,0.1900,0.0000,padrao,0.85,nao,
+need-drink,NEED-DRINK,NEED DRINK T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+need-drink,NEED-DRINK,NEED DRINK T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/NEED DRINK T-SHIRT/Sem título - 31 de julho de 2026 às 05.42.59.png,escura,0.6651,0.1900,0.0000,padrao,0.85,nao,
+need-drink,NEED-DRINK,NEED DRINK T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+mykonos,MYKONOS,MYKONOS T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/MYKONOS ESTAMPAS (SÓ BRANCA)/MYKONOS-T-SHIRT-BRANCA.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+mykonos,MYKONOS,MYKONOS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+mykonos,MYKONOS,MYKONOS T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/MYKONOS ESTAMPAS (SÓ BRANCA)/MYKONOS-T-SHIRT-BRANCA.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+mykonos,MYKONOS,MYKONOS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+mykonos,MYKONOS,MYKONOS T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/MYKONOS ESTAMPAS (SÓ BRANCA)/MYKONOS PRETA.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+mykonos,MYKONOS,MYKONOS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+mykonos,MYKONOS,MYKONOS T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/MYKONOS ESTAMPAS (SÓ BRANCA)/MYKONOS PRETA.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+mykonos,MYKONOS,MYKONOS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+my-ex,MY-EX,MY EX T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/BIGGEST FAN T-SHIRT/Sem título - 31 de julho de 2026 às 09.57.58.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+my-ex,MY-EX,MY EX T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+my-ex,MY-EX,MY EX T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/BIGGEST FAN T-SHIRT/Sem título - 31 de julho de 2026 às 09.57.58.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+my-ex,MY-EX,MY EX T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+my-ex,MY-EX,MY EX T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/BIGGEST FAN T-SHIRT/Sem título - 31 de julho de 2026 às 09.58.50.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+my-ex,MY-EX,MY EX T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+my-ex,MY-EX,MY EX T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/BIGGEST FAN T-SHIRT/Sem título - 31 de julho de 2026 às 09.58.50.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+my-ex,MY-EX,MY EX T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+more-drinks,MORE-DRINKS,MORE DRINKS T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/MORE DRINKS T-SHIRT/Untitled - 03 de agosto de 2026 às 17.15.01.png,clara,0.6478,0.1900,0.0000,padrao,0.85,nao,
+more-drinks,MORE-DRINKS,MORE DRINKS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+more-drinks,MORE-DRINKS,MORE DRINKS T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/MORE DRINKS T-SHIRT/Untitled - 03 de agosto de 2026 às 17.15.01.png,clara,0.6478,0.1900,0.0000,padrao,0.85,nao,
+more-drinks,MORE-DRINKS,MORE DRINKS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+more-drinks,MORE-DRINKS,MORE DRINKS T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/MORE DRINKS T-SHIRT/Untitled - 03 de agosto de 2026 às 17.13.18.png,escura,0.6472,0.1900,0.0000,padrao,0.85,nao,
+more-drinks,MORE-DRINKS,MORE DRINKS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+more-amor,MORE-AMOR,MORE AMOR T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/MORE AMOR ESTAMPAS 100%/MORE AMOR BRANCA.png,Branca,0.5406,0.1900,0.0000,padrao,0.90,nao,há 1 outra(s) arte(s) diferentes para este lado
+more-amor,MORE-AMOR,MORE AMOR T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+more-amor,MORE-AMOR,MORE AMOR T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/MORE AMOR ESTAMPAS 100%/MORE AMOR OFF WHITE.png,Off White,0.5395,0.1900,0.0000,padrao,0.90,nao,há 1 outra(s) arte(s) diferentes para este lado
+more-amor,MORE-AMOR,MORE AMOR T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+more-amor,MORE-AMOR,MORE AMOR T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/MORE AMOR ESTAMPAS 100%/MORE AMOR PRETA.png,escura,0.5406,0.1900,0.0000,padrao,0.85,nao,
+more-amor,MORE-AMOR,MORE AMOR T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+more-amor,MORE-AMOR,MORE AMOR T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/MORE AMOR ESTAMPAS 100%/MORE AMOR PRETA.png,escura,0.5406,0.1900,0.0000,padrao,0.85,nao,
+more-amor,MORE-AMOR,MORE AMOR T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+money-made,MONEY-MADE,MONEY MADE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/MONEY MADE/Create_image_of_print_2K_202607301840.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+money-made,MONEY-MADE,MONEY MADE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+money-made,MONEY-MADE,MONEY MADE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/MONEY MADE/Create_image_of_print_2K_202607301840.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+money-made,MONEY-MADE,MONEY MADE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+money-made,MONEY-MADE,MONEY MADE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/MONEY MADE/Create_image_of_print_2K_202607301839.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+money-made,MONEY-MADE,MONEY MADE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+money-made,MONEY-MADE,MONEY MADE T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/MONEY MADE/Create_image_of_print_2K_202607301839.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+money-made,MONEY-MADE,MONEY MADE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+models,MODELS,MODELS T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/MODELS T-SHIRT/Create_image_of_print_2K_202607301738.png,clara,0.7153,0.1900,0.0000,padrao,0.85,nao,
+models,MODELS,MODELS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+models,MODELS,MODELS T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/MODELS T-SHIRT/Create_image_of_print_2K_202607301738.png,clara,0.7153,0.1900,0.0000,padrao,0.85,nao,
+models,MODELS,MODELS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+models,MODELS,MODELS T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/MODELS T-SHIRT PRETA.png,escura,0.7000,0.1900,0.0000,padrao,0.85,nao,
+models,MODELS,MODELS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+models,MODELS,MODELS T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/MODELS T-SHIRT PRETA.png,escura,0.7000,0.1900,0.0000,padrao,0.85,nao,
+models,MODELS,MODELS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+mistakes,MISTAKES,MISTAKES T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/NO EX T-SHIRT/Sem título - 31 de julho de 2026 às 06.58.03.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+mistakes,MISTAKES,MISTAKES T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+mistakes,MISTAKES,MISTAKES T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/NO EX T-SHIRT/Sem título - 31 de julho de 2026 às 06.58.03.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+mistakes,MISTAKES,MISTAKES T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+mistakes,MISTAKES,MISTAKES T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/NO EX T-SHIRT/Sem título - 31 de julho de 2026 às 06.59.00.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+mistakes,MISTAKES,MISTAKES T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+members,MEMBERS,MEMBERS T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/PALLACIO CLUB T-SHIRT/Recrie_100%_igual_2K_202607310218.png,clara,0.6723,0.1900,0.0000,padrao,0.85,nao,
+members,MEMBERS,MEMBERS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+members,MEMBERS,MEMBERS T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/PALLACIO CLUB T-SHIRT/Recrie_100%_igual_2K_202607310218.png,clara,0.6723,0.1900,0.0000,padrao,0.85,nao,
+members,MEMBERS,MEMBERS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+members,MEMBERS,MEMBERS T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/Improve_quality_2K_20261001125537 (1).png,escura,0.6698,0.1900,0.0000,padrao,0.85,nao,
+members,MEMBERS,MEMBERS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+members,MEMBERS,MEMBERS T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/Improve_quality_2K_20261001125537 (1).png,escura,0.6698,0.1900,0.0000,padrao,0.85,nao,
+members,MEMBERS,MEMBERS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+matcha,MATCHA,MATCHA T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/WTF MATCHA T-SHIRT/dsdsd_VHUPbnoM (2).png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+matcha,MATCHA,MATCHA T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+matcha,MATCHA,MATCHA T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/WTF MATCHA T-SHIRT/dsdsd_VHUPbnoM (2).png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+matcha,MATCHA,MATCHA T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+matcha,MATCHA,MATCHA T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/MATCHA ESTAMPAS/MATCHA PRETA.png,escura,0.6183,0.1900,0.0000,padrao,0.85,nao,
+matcha,MATCHA,MATCHA T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+matcha,MATCHA,MATCHA T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/MATCHA ESTAMPAS/MATCHA PRETA.png,escura,0.6183,0.1900,0.0000,padrao,0.85,nao,
+matcha,MATCHA,MATCHA T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+make-money,MAKE-MONEY,MAKE MONEY T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/MAKE MONEY T-SHIRT/RECREATE_IMAGE_100%_EQUAL_2K_202607301944 (1).png,clara,0.6927,0.1900,0.0000,padrao,0.85,nao,
+make-money,MAKE-MONEY,MAKE MONEY T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+make-money,MAKE-MONEY,MAKE MONEY T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/MAKE MONEY T-SHIRT/RECREATE_IMAGE_100%_EQUAL_2K_202607301944 (1).png,clara,0.6927,0.1900,0.0000,padrao,0.85,nao,
+make-money,MAKE-MONEY,MAKE MONEY T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+make-money,MAKE-MONEY,MAKE MONEY T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/MAKE MONEY ESTAMPAS (SÓ PRETA)/MAKE-MONEY-T-SHIRT-PRETA.png,escura,0.6931,0.1900,0.0000,padrao,0.85,nao,
+make-money,MAKE-MONEY,MAKE MONEY T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+make-money,MAKE-MONEY,MAKE MONEY T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/MAKE MONEY ESTAMPAS (SÓ PRETA)/MAKE-MONEY-T-SHIRT-PRETA.png,escura,0.6931,0.1900,0.0000,padrao,0.85,nao,
+make-money,MAKE-MONEY,MAKE MONEY T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+magic,MAGIC,MAGIC T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/MAGIC T-SHIRT/Untitled - 03 de agosto de 2026 às 22.16.54.png,todas,0.6400,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+magic,MAGIC,MAGIC T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+magic,MAGIC,MAGIC T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/MAGIC T-SHIRT/Untitled - 03 de agosto de 2026 às 22.16.54.png,todas,0.6400,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+magic,MAGIC,MAGIC T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+magic,MAGIC,MAGIC T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/MAGIC T-SHIRT/Untitled - 03 de agosto de 2026 às 22.16.54.png,todas,0.6400,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+magic,MAGIC,MAGIC T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+magic,MAGIC,MAGIC T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/MAGIC T-SHIRT/Untitled - 03 de agosto de 2026 às 22.16.54.png,todas,0.6400,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+magic,MAGIC,MAGIC T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+luck,LUCK,LUCK T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/MY LUCK T-SHIRT/INVERT_COLORS._2K_202607310239.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+luck,LUCK,LUCK T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+luck,LUCK,LUCK T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/MY LUCK T-SHIRT/INVERT_COLORS._2K_202607310239.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+luck,LUCK,LUCK T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+luck,LUCK,LUCK T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/MY LUCK T-SHIRT/Translate_image_prompt_TROQUE_FR…_202607310235.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+luck,LUCK,LUCK T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+luck,LUCK,LUCK T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/MY LUCK T-SHIRT/Translate_image_prompt_TROQUE_FR…_202607310235.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+luck,LUCK,LUCK T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+love-test,LOVE-TEST,LOVE TEST T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/LOVE TEST T-SHIRT/Create_image_of_print_2K_202608031701.png,todas,0.6400,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+love-test,LOVE-TEST,LOVE TEST T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+love-test,LOVE-TEST,LOVE TEST T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/LOVE TEST T-SHIRT/Create_image_of_print_2K_202608031701.png,todas,0.6400,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+love-test,LOVE-TEST,LOVE TEST T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+love-test,LOVE-TEST,LOVE TEST T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/LOVE TEST T-SHIRT/Create_image_of_print_2K_202608031701.png,todas,0.6400,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+love-test,LOVE-TEST,LOVE TEST T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+love-is,LOVE-IS,LOVE IS T-SHIRT,Branca,costas,,,,,,,0,sim,falta a estampa das costas
+love-is,LOVE-IS,LOVE IS T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+love-is,LOVE-IS,LOVE IS T-SHIRT,Off White,costas,,,,,,,0,sim,falta a estampa das costas
+love-is,LOVE-IS,LOVE IS T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+love-is,LOVE-IS,LOVE IS T-SHIRT,Preta,costas,,,,,,,0,sim,falta a estampa das costas
+love-is,LOVE-IS,LOVE IS T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+lobster,LOBSTER,LOBSTER T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/LOBSTER BRANCA OFF WHITE.png,clara,0.5503,0.1900,0.0000,padrao,0.85,nao,
+lobster,LOBSTER,LOBSTER T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+lobster,LOBSTER,LOBSTER T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/LOBSTER BRANCA OFF WHITE.png,clara,0.5503,0.1900,0.0000,padrao,0.85,nao,
+lobster,LOBSTER,LOBSTER T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+lobster,LOBSTER,LOBSTER T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/LOBSTER T-SHIRT/Leave_stripes_of_clothing_color_202608040228.png,escura,0.5448,0.1900,0.0000,padrao,0.85,nao,
+lobster,LOBSTER,LOBSTER T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+lobster,LOBSTER,LOBSTER T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/LOBSTER T-SHIRT/Leave_stripes_of_clothing_color_202608040228.png,escura,0.5448,0.1900,0.0000,padrao,0.85,nao,
+lobster,LOBSTER,LOBSTER T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+legal-money,LEGAL-MONEY,LEGAL MONEY T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/LEGAL MONEY T-SHIRT/Sem título - 29 de julho de 2026 às 20.47.08.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+legal-money,LEGAL-MONEY,LEGAL MONEY T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+legal-money,LEGAL-MONEY,LEGAL MONEY T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/LEGAL MONEY T-SHIRT/Sem título - 29 de julho de 2026 às 20.47.08.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+legal-money,LEGAL-MONEY,LEGAL MONEY T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+legal-money,LEGAL-MONEY,LEGAL MONEY T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/LEGAL MONEY T-SHIRT/Sem título - 29 de julho de 2026 às 20.48.15.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+legal-money,LEGAL-MONEY,LEGAL MONEY T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+legal-money,LEGAL-MONEY,LEGAL MONEY T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/LEGAL MONEY T-SHIRT/Sem título - 29 de julho de 2026 às 20.48.15.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+legal-money,LEGAL-MONEY,LEGAL MONEY T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+lawyer,LAWYER,LAWYER T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/MY LAYER/Invert_colors_2K_202607310036.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+lawyer,LAWYER,LAWYER T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+lawyer,LAWYER,LAWYER T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/MY LAYER/Invert_colors_2K_202607310036.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+lawyer,LAWYER,LAWYER T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+lawyer,LAWYER,LAWYER T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/MY LAYER/troque_texto_por_MY_LAWYER_202607310035.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+lawyer,LAWYER,LAWYER T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+lawyer,LAWYER,LAWYER T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/MY LAYER/troque_texto_por_MY_LAWYER_202607310035.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+lawyer,LAWYER,LAWYER T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+latina,LATINA,LATINA T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/ LATINA T-SHIRT/Sem título - 29 de julho de 2026 às 19.24.11.png,clara,0.7200,0.1900,0.0000,padrao,0.50,sim,"a arte está marcada para camisa clara, mas a tinta medida quase não aparece na Branca — conferir"
+latina,LATINA,LATINA T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+latina,LATINA,LATINA T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/ LATINA T-SHIRT/Sem título - 29 de julho de 2026 às 19.24.11.png,clara,0.7200,0.1900,0.0000,padrao,0.50,sim,"a arte está marcada para camisa clara, mas a tinta medida quase não aparece na Off White — conferir"
+latina,LATINA,LATINA T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+latina,LATINA,LATINA T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/ LATINA T-SHIRT/Sem título - 29 de julho de 2026 às 19.24.11.png,clara,0.7200,0.1900,0.0000,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Preta, mas confira"
+latina,LATINA,LATINA T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+latina,LATINA,LATINA T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/ LATINA T-SHIRT/Sem título - 29 de julho de 2026 às 19.24.11.png,clara,0.7200,0.1900,0.0000,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Azul Marinho, mas confira"
+latina,LATINA,LATINA T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+last-night,LAST-NIGHT,LAST NIGHT T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/STILL DRUNK T-SHIRT/Sem título - 30 de julho de 2026 às 18.34.46.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+last-night,LAST-NIGHT,LAST NIGHT T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+last-night,LAST-NIGHT,LAST NIGHT T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/STILL DRUNK T-SHIRT/Sem título - 30 de julho de 2026 às 18.34.46.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+last-night,LAST-NIGHT,LAST NIGHT T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+last-night,LAST-NIGHT,LAST NIGHT T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/STILL DRUNK T-SHIRT/Sem título - 30 de julho de 2026 às 18.31.36.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+last-night,LAST-NIGHT,LAST NIGHT T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+language,LANGUAGE,LANGUAGE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/MONEY LANGUAGE T-SHIRT/Untitled - 03 de agosto de 2026 às 17.50.31.png,clara,0.6446,0.1900,0.0000,padrao,0.85,nao,
+language,LANGUAGE,LANGUAGE T-SHIRT,Branca,frente,MATERIAL QUALITY 100%/MONEY LANGUAGE T-SHIRT/Untitled - 03 de agosto de 2026 às 17.41.24.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+language,LANGUAGE,LANGUAGE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/MONEY LANGUAGE T-SHIRT/Untitled - 03 de agosto de 2026 às 17.50.31.png,clara,0.6446,0.1900,0.0000,padrao,0.85,nao,
+language,LANGUAGE,LANGUAGE T-SHIRT,Off White,frente,MATERIAL QUALITY 100%/MONEY LANGUAGE T-SHIRT/Untitled - 03 de agosto de 2026 às 17.41.24.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+language,LANGUAGE,LANGUAGE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/MONEY LANGUAGE T-SHIRT/Untitled - 03 de agosto de 2026 às 17.48.14.png,escura,0.6453,0.1900,0.0000,padrao,0.85,nao,
+language,LANGUAGE,LANGUAGE T-SHIRT,Preta,frente,MATERIAL QUALITY 100%/MONEY LANGUAGE T-SHIRT/Untitled - 03 de agosto de 2026 às 17.41.24 - cópia.png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+language,LANGUAGE,LANGUAGE T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/MONEY LANGUAGE T-SHIRT/Untitled - 03 de agosto de 2026 às 17.48.14.png,escura,0.6453,0.1900,0.0000,padrao,0.85,nao,
+language,LANGUAGE,LANGUAGE T-SHIRT,Azul Marinho,frente,MATERIAL QUALITY 100%/MONEY LANGUAGE T-SHIRT/Untitled - 03 de agosto de 2026 às 17.41.24 - cópia.png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+kiss-me,KISS-ME,KISS ME T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/JUST KISS T-SHIRT/DEIXE_JUST_KISS_ME_MAIS_202607310623.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+kiss-me,KISS-ME,KISS ME T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+kiss-me,KISS-ME,KISS ME T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/JUST KISS T-SHIRT/DEIXE_JUST_KISS_ME_MAIS_202607310623.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+kiss-me,KISS-ME,KISS ME T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+kiss-me,KISS-ME,KISS ME T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/JUST KISS T-SHIRT/white_text_2K_202607310631.png,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+kiss-me,KISS-ME,KISS ME T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+kiss-me,KISS-ME,KISS ME T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/JUST KISS T-SHIRT/white_text_2K_202607310631.png,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+kiss-me,KISS-ME,KISS ME T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+karma,KARMA,KARMA T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/KARMA T-SHIRT/APAGUE_TEXTO_ABAIXO_YOU_GIVE_202607310550.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+karma,KARMA,KARMA T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+karma,KARMA,KARMA T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/KARMA T-SHIRT/APAGUE_TEXTO_ABAIXO_YOU_GIVE_202607310550.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+karma,KARMA,KARMA T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+karma,KARMA,KARMA T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/KARMA T-SHIRT/Translate_image_prompt_to_English_202607310554.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+karma,KARMA,KARMA T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+inteligencia-artificial,INTELIGENCIA-ARTIFICIAL,INTELIGÊNCIA ARTIFICIAL T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/NOT ME T-SHIRT/Sem título - 30 de julho de 2026 às 18.48.08.png,clara,0.7023,0.1900,0.0000,padrao,0.85,nao,
+inteligencia-artificial,INTELIGENCIA-ARTIFICIAL,INTELIGÊNCIA ARTIFICIAL T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+inteligencia-artificial,INTELIGENCIA-ARTIFICIAL,INTELIGÊNCIA ARTIFICIAL T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/NOT ME T-SHIRT/Sem título - 30 de julho de 2026 às 18.48.08.png,clara,0.7023,0.1900,0.0000,padrao,0.85,nao,
+inteligencia-artificial,INTELIGENCIA-ARTIFICIAL,INTELIGÊNCIA ARTIFICIAL T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+inteligencia-artificial,INTELIGENCIA-ARTIFICIAL,INTELIGÊNCIA ARTIFICIAL T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/INTELIGÊNCIA ARTIFICIAL ESTAMPAS (SÓ PRETA)/INTELIGÊNCIA-ARTIFICIAL-T-SHIRT-PRETA.png,escura,0.7052,0.1900,0.0000,padrao,0.85,nao,
+inteligencia-artificial,INTELIGENCIA-ARTIFICIAL,INTELIGÊNCIA ARTIFICIAL T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+inteligencia-artificial,INTELIGENCIA-ARTIFICIAL,INTELIGÊNCIA ARTIFICIAL T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/INTELIGÊNCIA ARTIFICIAL ESTAMPAS (SÓ PRETA)/INTELIGÊNCIA-ARTIFICIAL-T-SHIRT-PRETA.png,escura,0.7052,0.1900,0.0000,padrao,0.85,nao,
+inteligencia-artificial,INTELIGENCIA-ARTIFICIAL,INTELIGÊNCIA ARTIFICIAL T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+instagram,INSTAGRAM,INSTAGRAM T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/=INSTAGRAM T-SHIRT/Sem título - 31 de julho de 2026 às 05.03.48.png,clara,0.7148,0.1900,0.0000,padrao,0.85,nao,
+instagram,INSTAGRAM,INSTAGRAM T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+instagram,INSTAGRAM,INSTAGRAM T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/=INSTAGRAM T-SHIRT/Sem título - 31 de julho de 2026 às 05.03.48.png,clara,0.7148,0.1900,0.0000,padrao,0.85,nao,
+instagram,INSTAGRAM,INSTAGRAM T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+instagram,INSTAGRAM,INSTAGRAM T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/=INSTAGRAM T-SHIRT/Sem título - 31 de julho de 2026 às 05.02.58.png,escura,0.7145,0.1900,0.0000,padrao,0.85,nao,
+instagram,INSTAGRAM,INSTAGRAM T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+instagram,INSTAGRAM,INSTAGRAM T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/=INSTAGRAM T-SHIRT/Sem título - 31 de julho de 2026 às 05.02.58.png,escura,0.7145,0.1900,0.0000,padrao,0.85,nao,
+instagram,INSTAGRAM,INSTAGRAM T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+ibiza,IBIZA,IBIZA T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/IBIZA T-SHIRT/Recrie_100%_igual_2K_202607302301.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+ibiza,IBIZA,IBIZA T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+ibiza,IBIZA,IBIZA T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/IBIZA T-SHIRT/Recrie_100%_igual_2K_202607302301.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+ibiza,IBIZA,IBIZA T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+ibiza,IBIZA,IBIZA T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/IBIZA T-SHIRT/Recrie_100%_igual_2K_202607302259.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+ibiza,IBIZA,IBIZA T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+house-music,HOUSE-MUSIC,HOUSE MUSIC T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/VYNILT-SHIRT/Untitled - 03 de agosto de 2026 às 21.53.24.png,clara,0.6724,0.1900,0.0000,padrao,0.85,nao,
+house-music,HOUSE-MUSIC,HOUSE MUSIC T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+house-music,HOUSE-MUSIC,HOUSE MUSIC T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/VYNILT-SHIRT/Untitled - 03 de agosto de 2026 às 21.53.24.png,clara,0.6724,0.1900,0.0000,padrao,0.85,nao,
+house-music,HOUSE-MUSIC,HOUSE MUSIC T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+house-music,HOUSE-MUSIC,HOUSE MUSIC T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/VYNILT-SHIRT/Untitled - 03 de agosto de 2026 às 21.57.07.png,escura,0.6729,0.1900,0.0000,padrao,0.85,nao,
+house-music,HOUSE-MUSIC,HOUSE MUSIC T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+house-music,HOUSE-MUSIC,HOUSE MUSIC T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/VYNILT-SHIRT/Untitled - 03 de agosto de 2026 às 21.57.07.png,escura,0.6729,0.1900,0.0000,padrao,0.85,nao,
+house-music,HOUSE-MUSIC,HOUSE MUSIC T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+happy,HAPPY,HAPPY T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/HAPPY T-SHIRT/Create_identical_image_prompt_2K_202608040148.png,todas,0.7068,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+happy,HAPPY,HAPPY T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+happy,HAPPY,HAPPY T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/HAPPY T-SHIRT/Create_identical_image_prompt_2K_202608040148.png,todas,0.7068,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+happy,HAPPY,HAPPY T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+happy,HAPPY,HAPPY T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/HAPPY T-SHIRT/Create_identical_image_prompt_2K_202608040148.png,todas,0.7068,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+happy,HAPPY,HAPPY T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+happy,HAPPY,HAPPY T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/HAPPY T-SHIRT/Create_identical_image_prompt_2K_202608040148.png,todas,0.7068,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+happy,HAPPY,HAPPY T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+guestlist,GUESTLIST,GUESTLIST T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/GUESTLIST ESTAMPAS/GUESTLIST BRANCA.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+guestlist,GUESTLIST,GUESTLIST T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+guestlist,GUESTLIST,GUESTLIST T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/GUESTLIST ESTAMPAS/GUESTLIST BRANCA.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+guestlist,GUESTLIST,GUESTLIST T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+guestlist,GUESTLIST,GUESTLIST T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/GUESTLIST ESTAMPAS/GUESTLIST PRETA .png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+guestlist,GUESTLIST,GUESTLIST T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+guestlist,GUESTLIST,GUESTLIST T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/GUESTLIST ESTAMPAS/GUESTLIST PRETA .png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+guestlist,GUESTLIST,GUESTLIST T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+glory,GLORY,GLORY T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/BLONDES & GLORY T-SHIRT/Make_red_color_#F1060E_2K_202607310318.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+glory,GLORY,GLORY T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+glory,GLORY,GLORY T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/BLONDES & GLORY T-SHIRT/Make_red_color_#F1060E_2K_202607310318.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+glory,GLORY,GLORY T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+glory,GLORY,GLORY T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/BLONDES & GLORY T-SHIRT/Make_the_red_more_vibrant._202607310317.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+glory,GLORY,GLORY T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+girls-love,GIRLS-LOVE,GIRLS LOVE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/HOUSE MUSIC T-SHIRT/Untitled - 03 de agosto de 2026 às 20.45.34.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+girls-love,GIRLS-LOVE,GIRLS LOVE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+girls-love,GIRLS-LOVE,GIRLS LOVE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/HOUSE MUSIC T-SHIRT/Untitled - 03 de agosto de 2026 às 20.45.34.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+girls-love,GIRLS-LOVE,GIRLS LOVE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+girls-love,GIRLS-LOVE,GIRLS LOVE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/HOUSE MUSIC T-SHIRT/Untitled - 03 de agosto de 2026 às 20.44.27.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+girls-love,GIRLS-LOVE,GIRLS LOVE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+girls-love,GIRLS-LOVE,GIRLS LOVE T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/HOUSE MUSIC T-SHIRT/Untitled - 03 de agosto de 2026 às 20.44.27.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+girls-love,GIRLS-LOVE,GIRLS LOVE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+flirting,FLIRTING,FLIRTING T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/FLIRTING T-SHIRT/Change_text_color_cooperate_2K_202607311015.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+flirting,FLIRTING,FLIRTING T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+flirting,FLIRTING,FLIRTING T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/FLIRTING T-SHIRT/Change_text_color_cooperate_2K_202607311015.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+flirting,FLIRTING,FLIRTING T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+flirting,FLIRTING,FLIRTING T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/FLIRTING T-SHIRT/Change_text_color_cooperate_2K_202607311015.png,clara,0.7200,0.1900,0.0000,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Preta, mas confira"
+flirting,FLIRTING,FLIRTING T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+flirting,FLIRTING,FLIRTING T-SHIRT,Azul Marinho,costas,,,,,,,0,sim,"só existe a versão para camisa clara (tinta escura), que some na Azul Marinho ou não bate com a foto atual: falta a versão para camisa escura"
+flirting,FLIRTING,FLIRTING T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+fast-cars,FAST-CARS,FAST CARS T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/FAST CARS T-SHIRT/Design sem nome.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+fast-cars,FAST-CARS,FAST CARS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+fast-cars,FAST-CARS,FAST CARS T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/FAST CARS T-SHIRT/Design sem nome.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+fast-cars,FAST-CARS,FAST CARS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+fast-cars,FAST-CARS,FAST CARS T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/FAST CARS T-SHIRT/Design sem nome (1).png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+fast-cars,FAST-CARS,FAST CARS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+fast-cars,FAST-CARS,FAST CARS T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/FAST CARS T-SHIRT/Design sem nome (1).png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+fast-cars,FAST-CARS,FAST CARS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+fake,FAKE,FAKE T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/FAKE ESTAMPAS/FAKE BRANCA.png,clara,0.7195,0.1900,0.0000,padrao,0.85,nao,
+fake,FAKE,FAKE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+fake,FAKE,FAKE T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/FAKE ESTAMPAS/FAKE BRANCA.png,clara,0.7195,0.1900,0.0000,padrao,0.85,nao,
+fake,FAKE,FAKE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+fake,FAKE,FAKE T-SHIRT,Preta,costas,,,,,,,0,sim,"só existe a versão para camisa clara (tinta escura), que some na Preta ou não bate com a foto atual: falta a versão para camisa escura"
+fake,FAKE,FAKE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+fake,FAKE,FAKE T-SHIRT,Azul Marinho,costas,,,,,,,0,sim,"só existe a versão para camisa clara (tinta escura), que some na Azul Marinho ou não bate com a foto atual: falta a versão para camisa escura"
+fake,FAKE,FAKE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+fake-love,FAKE-LOVE,FAKE LOVE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/FAKE LOVE T-SHIRT/Black_text_white_background_2K_202607301804.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+fake-love,FAKE-LOVE,FAKE LOVE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+fake-love,FAKE-LOVE,FAKE LOVE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/FAKE LOVE T-SHIRT/Black_text_white_background_2K_202607301804.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+fake-love,FAKE-LOVE,FAKE LOVE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+fake-love,FAKE-LOVE,FAKE LOVE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/FAKE LOVE T-SHIRT/RECREATE_IMAGE_100%_EQUAL_2K_202607301803.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+fake-love,FAKE-LOVE,FAKE LOVE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+fake-love,FAKE-LOVE,FAKE LOVE T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/FAKE LOVE T-SHIRT/RECREATE_IMAGE_100%_EQUAL_2K_202607301803.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+fake-love,FAKE-LOVE,FAKE LOVE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+euros,EUROS,EUROS T-SHIRT,Branca,costas,"MATERIAL QUALITY 100%/SUMMER PAID T-SHIRT/ChatGPT Image 23 de ago. de 2026, 01_33_52 (1).png",clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+euros,EUROS,EUROS T-SHIRT,Branca,frente,"MATERIAL QUALITY 100%/SUMMER PAID T-SHIRT/ChatGPT Image 23 de ago. de 2026, 01_44_47 (1).png",todas,0.2260,0.2570,0.2580,padrao,0.80,nao,arte única para todas as cores
+euros,EUROS,EUROS T-SHIRT,Off White,costas,"MATERIAL QUALITY 100%/SUMMER PAID T-SHIRT/ChatGPT Image 23 de ago. de 2026, 01_33_52 (1).png",clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+euros,EUROS,EUROS T-SHIRT,Off White,frente,"MATERIAL QUALITY 100%/SUMMER PAID T-SHIRT/ChatGPT Image 23 de ago. de 2026, 01_44_47 (1).png",todas,0.2260,0.2570,0.2580,padrao,0.80,nao,arte única para todas as cores
+euros,EUROS,EUROS T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/SUMMER PAID T-SHIRT/Sem título - 29 de julho de 2026 às 21.19.08.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+euros,EUROS,EUROS T-SHIRT,Preta,frente,"MATERIAL QUALITY 100%/SUMMER PAID T-SHIRT/ChatGPT Image 23 de ago. de 2026, 01_44_47 (1).png",todas,0.2260,0.2570,0.2580,padrao,0.80,nao,arte única para todas as cores
+euros,EUROS,EUROS T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/SUMMER PAID T-SHIRT/Sem título - 29 de julho de 2026 às 21.19.08.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+euros,EUROS,EUROS T-SHIRT,Azul Marinho,frente,"MATERIAL QUALITY 100%/SUMMER PAID T-SHIRT/ChatGPT Image 23 de ago. de 2026, 01_44_47 (1).png",todas,0.2260,0.2570,0.2580,padrao,0.80,nao,arte única para todas as cores
+essentials,ESSENTIALS,ESSENTIALS T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/CLUB T-SHIRT/PORSCHE..png,clara,0.6932,0.1900,0.0000,padrao,0.85,nao,
+essentials,ESSENTIALS,ESSENTIALS T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+essentials,ESSENTIALS,ESSENTIALS T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/CLUB T-SHIRT/PORSCHE..png,clara,0.6932,0.1900,0.0000,padrao,0.85,nao,
+essentials,ESSENTIALS,ESSENTIALS T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+essentials,ESSENTIALS,ESSENTIALS T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/CLUB T-SHIRT/PORSCHE. - cópia.png,escura,0.6932,0.1900,0.0000,padrao,0.85,nao,
+essentials,ESSENTIALS,ESSENTIALS T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+essentials,ESSENTIALS,ESSENTIALS T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/CLUB T-SHIRT/PORSCHE. - cópia.png,escura,0.6932,0.1900,0.0000,padrao,0.85,nao,
+essentials,ESSENTIALS,ESSENTIALS T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+eat-right,EAT-RIGHT,EAT RIGHT T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/EAT RIGHT T-SHIRT/Leave_background_white_texts_black_202608031904.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+eat-right,EAT-RIGHT,EAT RIGHT T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+eat-right,EAT-RIGHT,EAT RIGHT T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/EAT RIGHT T-SHIRT/Leave_background_white_texts_black_202608031904.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+eat-right,EAT-RIGHT,EAT RIGHT T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+eat-right,EAT-RIGHT,EAT RIGHT T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/EAT RIGHT T-SHIRT/CREATE_IMAGE_100%_EQUAL_2K_202608031904.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+eat-right,EAT-RIGHT,EAT RIGHT T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+eat-right,EAT-RIGHT,EAT RIGHT T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/EAT RIGHT T-SHIRT/CREATE_IMAGE_100%_EQUAL_2K_202608031904.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+eat-right,EAT-RIGHT,EAT RIGHT T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+drunk,DRUNK,DRUNK T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/DRUNK ESTAMPAS 100%/DRUNK-T-SHIRT-BRANCA.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+drunk,DRUNK,DRUNK T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+drunk,DRUNK,DRUNK T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/DRUNK ESTAMPAS 100%/DRUNK-T-SHIRT-BRANCA.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+drunk,DRUNK,DRUNK T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+drunk,DRUNK,DRUNK T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/DRUNK ESTAMPAS 100%/DRUNK-T-SHIRT-PRETA.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+drunk,DRUNK,DRUNK T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+dont-sleep,DONT-SLEEP,DONT SLEEP T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/DREAM T-SHIRT/recrie_imagem_100%_igual_2K_202607302002.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+dont-sleep,DONT-SLEEP,DONT SLEEP T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+dont-sleep,DONT-SLEEP,DONT SLEEP T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/DREAM T-SHIRT/recrie_imagem_100%_igual_2K_202607302002.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+dont-sleep,DONT-SLEEP,DONT SLEEP T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+dont-sleep,DONT-SLEEP,DONT SLEEP T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/DREAM T-SHIRT/recrie_imagem_100%_igual_2K_202607302003.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+dont-sleep,DONT-SLEEP,DONT SLEEP T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+dont-sleep,DONT-SLEEP,DONT SLEEP T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/DREAM T-SHIRT/recrie_imagem_100%_igual_2K_202607302003.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+dont-sleep,DONT-SLEEP,DONT SLEEP T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Branca,costas,,,,,,,0,sim,falta a estampa das costas
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Off White,costas,,,,,,,0,sim,falta a estampa das costas
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Preta,costas,,,,,,,0,sim,falta a estampa das costas
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Preta / Vermelha,costas,,,,,,,0,sim,cor especial (bicolor) sem mockup liso; falta a estampa das costas
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Preta / Vermelha,frente,LISO,,,,,,0.8,nao,cor especial (bicolor) sem mockup liso
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Azul Marinho,costas,,,,,,,0,sim,falta a estampa das costas
+dj-booth,DJ-BOOTH,DJ BOOTH T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+date,DATE,DATE T-SHIRT,Branca,costas,"ESTAMPAS PRONTAS P: IZZY/Desculpe, Só Saio com Modelos (1).png",clara,0.7079,0.1900,0.0000,padrao,0.85,nao,
+date,DATE,DATE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+date,DATE,DATE T-SHIRT,Off White,costas,"ESTAMPAS PRONTAS P: IZZY/Desculpe, Só Saio com Modelos (1).png",clara,0.7079,0.1900,0.0000,padrao,0.85,nao,
+date,DATE,DATE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+date,DATE,DATE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/ONLY MODELS/Untitled - 03 de agosto de 2026 às 23.22.15.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+date,DATE,DATE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+crazy-girlfriend,CRAZY-GIRLFRIEND,CRAZY GIRLFRIEND T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/CRAZY GIRLFRIEND T-SHIRT/Sem título - 23 de agosto de 2026 às 01.14.38.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+crazy-girlfriend,CRAZY-GIRLFRIEND,CRAZY GIRLFRIEND T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+crazy-girlfriend,CRAZY-GIRLFRIEND,CRAZY GIRLFRIEND T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/CRAZY GIRLFRIEND T-SHIRT/Sem título - 23 de agosto de 2026 às 01.14.38.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+crazy-girlfriend,CRAZY-GIRLFRIEND,CRAZY GIRLFRIEND T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+crazy-girlfriend,CRAZY-GIRLFRIEND,CRAZY GIRLFRIEND T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/CRAZY GIRLFRIEND T-SHIRT/Sem título - 31 de julho de 2026 às 09.48.20.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+crazy-girlfriend,CRAZY-GIRLFRIEND,CRAZY GIRLFRIEND T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+crazy-girlfriend,CRAZY-GIRLFRIEND,CRAZY GIRLFRIEND T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/CRAZY GIRLFRIEND T-SHIRT/Sem título - 31 de julho de 2026 às 09.48.20.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+crazy-girlfriend,CRAZY-GIRLFRIEND,CRAZY GIRLFRIEND T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+ciao-ciao,CIAO,CIAO T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/CIAO ESTAMPAS/CIAO COSTAS BRANCA OFF WHITE.png,clara,0.4067,0.1900,0.0000,padrao,0.85,nao,
+ciao-ciao,CIAO,CIAO T-SHIRT,Branca,frente,ESTAMPAS PRONTAS P: IZZY/CIAO ESTAMPAS/CIAO FRENTE BRANCA OFF WHITE.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+ciao-ciao,CIAO,CIAO T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/CIAO ESTAMPAS/CIAO COSTAS BRANCA OFF WHITE.png,clara,0.4067,0.1900,0.0000,padrao,0.85,nao,
+ciao-ciao,CIAO,CIAO T-SHIRT,Off White,frente,ESTAMPAS PRONTAS P: IZZY/CIAO ESTAMPAS/CIAO FRENTE BRANCA OFF WHITE.png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+ciao-ciao,CIAO,CIAO T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/CIAO ESTAMPAS/CIAO COSTAS BRANCA OFF WHITE.png,clara,0.4067,0.1900,0.0000,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Preta, mas confira"
+ciao-ciao,CIAO,CIAO T-SHIRT,Preta,frente,ESTAMPAS PRONTAS P: IZZY/CIAO ESTAMPAS/CIAO FRENTE BRANCA OFF WHITE.png,clara,0.2260,0.2570,0.2580,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Preta, mas confira"
+ciao-ciao,CIAO,CIAO T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/CIAO ESTAMPAS/CIAO COSTAS BRANCA OFF WHITE.png,clara,0.4067,0.1900,0.0000,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Azul Marinho, mas confira"
+ciao-ciao,CIAO,CIAO T-SHIRT,Azul Marinho,frente,ESTAMPAS PRONTAS P: IZZY/CIAO ESTAMPAS/CIAO FRENTE BRANCA OFF WHITE.png,clara,0.2260,0.2570,0.2580,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Azul Marinho, mas confira"
+chatgpt,CHATGPT,CHATGPT T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/CHAT GPT T-SHIRT/Sem título - 31 de julho de 2026 às 09.30.31.png,clara,0.7047,0.1900,0.0000,padrao,0.85,nao,
+chatgpt,CHATGPT,CHATGPT T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+chatgpt,CHATGPT,CHATGPT T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/CHAT GPT T-SHIRT/Sem título - 31 de julho de 2026 às 09.30.31.png,clara,0.7047,0.1900,0.0000,padrao,0.85,nao,
+chatgpt,CHATGPT,CHATGPT T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+chatgpt,CHATGPT,CHATGPT T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/CHAT GPT T-SHIRT/Sem título - 31 de julho de 2026 às 09.28.00.png,escura,0.7047,0.1900,0.0000,padrao,0.85,nao,
+chatgpt,CHATGPT,CHATGPT T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+chatgpt,CHATGPT,CHATGPT T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/CHAT GPT T-SHIRT/Sem título - 31 de julho de 2026 às 09.28.00.png,escura,0.7047,0.1900,0.0000,padrao,0.85,nao,
+chatgpt,CHATGPT,CHATGPT T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+champagne,CHAMPAGNE,CHAMPAGNE T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/CHAMPAGNE ESTAMPAS 100%/CHAMPAGNE-T-SHIRT-BRANCA.png,clara,0.6626,0.1900,0.0000,padrao,0.85,nao,
+champagne,CHAMPAGNE,CHAMPAGNE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+champagne,CHAMPAGNE,CHAMPAGNE T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/CHAMPAGNE ESTAMPAS 100%/CHAMPAGNE-T-SHIRT-BRANCA.png,clara,0.6626,0.1900,0.0000,padrao,0.85,nao,
+champagne,CHAMPAGNE,CHAMPAGNE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+champagne,CHAMPAGNE,CHAMPAGNE T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/CHAMPAGNE ESTAMPAS 100%/CHAMPAGNE-T-SHIRT-PRETA.png,escura,0.6632,0.1900,0.0000,padrao,0.85,nao,
+champagne,CHAMPAGNE,CHAMPAGNE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+brunette,BRUNETTE,BRUNETTE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/BRUNETTE T-SHIRT/SORRY MAMA - cópia.png,clara,0.6542,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+brunette,BRUNETTE,BRUNETTE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+brunette,BRUNETTE,BRUNETTE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/BRUNETTE T-SHIRT/SORRY MAMA - cópia.png,clara,0.6542,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+brunette,BRUNETTE,BRUNETTE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+brunette,BRUNETTE,BRUNETTE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/BRUNETTE T-SHIRT/SORRY MAMA.png,escura,0.6765,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+brunette,BRUNETTE,BRUNETTE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+break-bed,BREAK-BED,BREAK BED T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/BREAK BED T-SHIRT/Create_identical_image_2K_202608032016.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+break-bed,BREAK-BED,BREAK BED T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+break-bed,BREAK-BED,BREAK BED T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/BREAK BED T-SHIRT/Create_identical_image_2K_202608032016.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+break-bed,BREAK-BED,BREAK BED T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+break-bed,BREAK-BED,BREAK BED T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/BREAK BED T-SHIRT/Create_identical_image_2K_202608032015 (1).png,escura,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: cor_diferente
+break-bed,BREAK-BED,BREAK BED T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+break-bed,BREAK-BED,BREAK BED T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/BREAK BED T-SHIRT/Create_identical_image_2K_202608032015 (1).png,escura,0.7200,0.1900,0.0000,padrao,0.55,sim,arte com problema: cor_diferente
+break-bed,BREAK-BED,BREAK BED T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+brazilian,BRAZILIAN,BRAZILIAN T-SHIRT,Branca,costas,,,,,,,0,sim,falta a estampa das costas
+brazilian,BRAZILIAN,BRAZILIAN T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+brazilian,BRAZILIAN,BRAZILIAN T-SHIRT,Off White,costas,,,,,,,0,sim,falta a estampa das costas
+brazilian,BRAZILIAN,BRAZILIAN T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+brazilian,BRAZILIAN,BRAZILIAN T-SHIRT,Preta,costas,,,,,,,0,sim,falta a estampa das costas
+brazilian,BRAZILIAN,BRAZILIAN T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+brasil-madame,BRASIL-MADAME,BRASIL MADAME T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/BRAZIL MADAME T-SHIRT/Untitled - 03 de agosto de 2026 às 19.59.24.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+brasil-madame,BRASIL-MADAME,BRASIL MADAME T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+brasil-madame,BRASIL-MADAME,BRASIL MADAME T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/BRAZIL MADAME T-SHIRT/Untitled - 03 de agosto de 2026 às 19.59.24.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+brasil-madame,BRASIL-MADAME,BRASIL MADAME T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+brasil-madame,BRASIL-MADAME,BRASIL MADAME T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/BRAZIL MADAME T-SHIRT/Untitled - 03 de agosto de 2026 às 19.59.05.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+brasil-madame,BRASIL-MADAME,BRASIL MADAME T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+blonde,BLONDE,BLONDE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/BLONDE T-SHIRT/SORRY MAMA.png,clara,0.6467,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+blonde,BLONDE,BLONDE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+blonde,BLONDE,BLONDE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/BLONDE T-SHIRT/SORRY MAMA.png,clara,0.6467,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+blonde,BLONDE,BLONDE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+blonde,BLONDE,BLONDE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/BLONDE T-SHIRT/SORRY MAMA - cópia.png,escura,0.6839,0.1900,0.0000,padrao,0.55,sim,arte com problema: texto_errado
+blonde,BLONDE,BLONDE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+birkin,BIRKIN,BIRKIN T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/BIRKIN T-SHIRT/Create_identical_image_2K_202608040100.png,clara,0.7043,0.1900,0.0000,padrao,0.85,nao,
+birkin,BIRKIN,BIRKIN T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+birkin,BIRKIN,BIRKIN T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/BIRKIN T-SHIRT/Create_identical_image_2K_202608040100.png,clara,0.7043,0.1900,0.0000,padrao,0.85,nao,
+birkin,BIRKIN,BIRKIN T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+birkin,BIRKIN,BIRKIN T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/BIRKIN ESTAMPAS (SÓ PRETA)/BIRKIN-T-SHIRT-PRETA.png,escura,0.7047,0.1900,0.0000,padrao,0.85,nao,
+birkin,BIRKIN,BIRKIN T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+birkin,BIRKIN,BIRKIN T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/BIRKIN ESTAMPAS (SÓ PRETA)/BIRKIN-T-SHIRT-PRETA.png,escura,0.7047,0.1900,0.0000,padrao,0.85,nao,
+birkin,BIRKIN,BIRKIN T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+bilionario,BILIONARIO,BILIONARIO T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/BILLIONAIRE T SHIRT/Create_identical_image_2K_202607310110.png,clara,0.6759,0.1900,0.0000,padrao,0.85,nao,
+bilionario,BILIONARIO,BILIONARIO T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+bilionario,BILIONARIO,BILIONARIO T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/BILLIONAIRE T SHIRT/Create_identical_image_2K_202607310110.png,clara,0.6759,0.1900,0.0000,padrao,0.85,nao,
+bilionario,BILIONARIO,BILIONARIO T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+bilionario,BILIONARIO,BILIONARIO T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/BILLIONAIRE T SHIRT/Leave_black_background_white_texts_202607310112 (1).png,escura,0.6721,0.1900,0.0000,padrao,0.85,nao,
+bilionario,BILIONARIO,BILIONARIO T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+bilionario,BILIONARIO,BILIONARIO T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/BILLIONAIRE T SHIRT/Leave_black_background_white_texts_202607310112 (1).png,escura,0.6721,0.1900,0.0000,padrao,0.85,nao,
+bilionario,BILIONARIO,BILIONARIO T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+big-money,BIG-MONEY,BIG MONEY T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/BIG MONEY ESTAMPAS (SÓ PRETA)/BIG MONEY BRANCA.PNG,clara,0.6619,0.1900,0.0000,padrao,0.85,nao,
+big-money,BIG-MONEY,BIG MONEY T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+big-money,BIG-MONEY,BIG MONEY T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/BIG MONEY ESTAMPAS (SÓ PRETA)/BIG MONEY BRANCA.PNG,clara,0.6619,0.1900,0.0000,padrao,0.85,nao,
+big-money,BIG-MONEY,BIG MONEY T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+big-money,BIG-MONEY,BIG MONEY T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/BIG MONEY ESTAMPAS (SÓ PRETA)/BIG-MONEY-T-SHIRT-PRETA.png,escura,0.6607,0.1900,0.0000,padrao,0.85,nao,
+big-money,BIG-MONEY,BIG MONEY T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+big-money,BIG-MONEY,BIG MONEY T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/BIG MONEY ESTAMPAS (SÓ PRETA)/BIG-MONEY-T-SHIRT-PRETA.png,escura,0.6607,0.1900,0.0000,padrao,0.85,nao,
+big-money,BIG-MONEY,BIG MONEY T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+big-fan,BIG-FAN,BIG FAN T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/BIG FAN T-SHIRT/Sem título - 31 de julho de 2026 às 09.19.40.png,clara,0.6992,0.1900,0.0000,padrao,0.85,nao,
+big-fan,BIG-FAN,BIG FAN T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+big-fan,BIG-FAN,BIG FAN T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/BIG FAN T-SHIRT/Sem título - 31 de julho de 2026 às 09.19.40.png,clara,0.6992,0.1900,0.0000,padrao,0.85,nao,
+big-fan,BIG-FAN,BIG FAN T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+big-fan,BIG-FAN,BIG FAN T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/BIG FAN T-SHIRT/Sem título - 31 de julho de 2026 às 09.20.12.png,escura,0.6988,0.1900,0.0000,padrao,0.85,nao,
+big-fan,BIG-FAN,BIG FAN T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+big-fan,BIG-FAN,BIG FAN T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/BIG FAN T-SHIRT/Sem título - 31 de julho de 2026 às 09.20.12.png,escura,0.6988,0.1900,0.0000,padrao,0.85,nao,
+big-fan,BIG-FAN,BIG FAN T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+bad-bitch,BAD-BITCH,BAD BITCH T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/nao tem azul/HUG T-SHIRT/Creating_identical_image_2K_202608032224.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+bad-bitch,BAD-BITCH,BAD BITCH T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+bad-bitch,BAD-BITCH,BAD BITCH T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/nao tem azul/HUG T-SHIRT/Creating_identical_image_2K_202608032224.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+bad-bitch,BAD-BITCH,BAD BITCH T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+bad-bitch,BAD-BITCH,BAD BITCH T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/nao tem azul/HUG T-SHIRT/Creating_identical_image_2K_202608032224.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+bad-bitch,BAD-BITCH,BAD BITCH T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+backstage,BACKSTAGE,BACKSTAGE T-SHIRT,Branca,costas,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Branca ou não bate com a foto atual: falta a versão para camisa clara"
+backstage,BACKSTAGE,BACKSTAGE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+backstage,BACKSTAGE,BACKSTAGE T-SHIRT,Off White,costas,,,,,,,0,sim,"só existe a versão para camisa escura (tinta clara), que some na Off White ou não bate com a foto atual: falta a versão para camisa clara"
+backstage,BACKSTAGE,BACKSTAGE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+backstage,BACKSTAGE,BACKSTAGE T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/BACKSTAGE ESTAMPAS 100%/BACKSTAGE-T-SHIRT.png,?,0.7200,0.1900,0.0000,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+backstage,BACKSTAGE,BACKSTAGE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+backstage,BACKSTAGE,BACKSTAGE T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/BACKSTAGE ESTAMPAS 100%/BACKSTAGE-T-SHIRT.png,?,0.7200,0.1900,0.0000,padrao,0.50,sim,não sei se a arte é para camisa clara ou escura — conferir
+backstage,BACKSTAGE,BACKSTAGE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+attract,ATTRACT,ATTRACT T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/I ATTRACT T-SHIRT/Sem título - 30 de julho de 2026 às 17.31.41.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+attract,ATTRACT,ATTRACT T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+attract,ATTRACT,ATTRACT T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/I ATTRACT T-SHIRT/Sem título - 30 de julho de 2026 às 17.31.41.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+attract,ATTRACT,ATTRACT T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+attract,ATTRACT,ATTRACT T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/I ATTRACT T-SHIRT/Sem título - 30 de julho de 2026 às 17.31.41.png,todas,0.7200,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+attract,ATTRACT,ATTRACT T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+aperol,APEROL,APEROL T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/APEROL T-SHIRT/PORSCHE. (1).png,clara,0.4809,0.1900,0.0000,padrao,0.85,nao,
+aperol,APEROL,APEROL T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+aperol,APEROL,APEROL T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/APEROL T-SHIRT/PORSCHE. (1).png,clara,0.4809,0.1900,0.0000,padrao,0.85,nao,
+aperol,APEROL,APEROL T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+aperol,APEROL,APEROL T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/APEROL T-SHIRT/PORSCHE..png,escura,0.4920,0.1900,0.0000,padrao,0.85,nao,
+aperol,APEROL,APEROL T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+another,ANOTHER,ANOTHER T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/ANOTHER T-SHIRT/iverta_cores._2K_202608032135.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+another,ANOTHER,ANOTHER T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+another,ANOTHER,ANOTHER T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/ANOTHER T-SHIRT/iverta_cores._2K_202608032135.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+another,ANOTHER,ANOTHER T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+another,ANOTHER,ANOTHER T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/ANOTHER T-SHIRT/Create_identical_image_2K_202608032134.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+another,ANOTHER,ANOTHER T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+amalfi-coast,AMALFI-COAST,AMALFI COAST T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/AMALFI COAST ESTAMPAS (SÓ PRETA)/AMALFI BRANCA.png,clara,0.6890,0.1900,0.0000,padrao,0.85,nao,
+amalfi-coast,AMALFI-COAST,AMALFI COAST T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+amalfi-coast,AMALFI-COAST,AMALFI COAST T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/AMALFI COAST ESTAMPAS (SÓ PRETA)/AMALFI BRANCA.png,clara,0.6890,0.1900,0.0000,padrao,0.85,nao,
+amalfi-coast,AMALFI-COAST,AMALFI COAST T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+amalfi-coast,AMALFI-COAST,AMALFI COAST T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/AMALFI COAST ESTAMPAS (SÓ PRETA)/AMALFI-COAST-T-SHIRT-PRETA.png,escura,0.6942,0.1900,0.0000,padrao,0.85,nao,
+amalfi-coast,AMALFI-COAST,AMALFI COAST T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+amalfi-coast,AMALFI-COAST,AMALFI COAST T-SHIRT,Azul Marinho,costas,ESTAMPAS PRONTAS P: IZZY/AMALFI COAST ESTAMPAS (SÓ PRETA)/AMALFI-COAST-T-SHIRT-PRETA.png,escura,0.6942,0.1900,0.0000,padrao,0.85,nao,
+amalfi-coast,AMALFI-COAST,AMALFI COAST T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+already-late,ALREADY-LATE,ALREADY LATE T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/ALREADY LATE T-SHIRT/Untitled - 03 de agosto de 2026 às 23.34.45.png,todas,0.6729,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+already-late,ALREADY-LATE,ALREADY LATE T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+already-late,ALREADY-LATE,ALREADY LATE T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/ALREADY LATE T-SHIRT/Untitled - 03 de agosto de 2026 às 23.34.45.png,todas,0.6729,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+already-late,ALREADY-LATE,ALREADY LATE T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+already-late,ALREADY-LATE,ALREADY LATE T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/ALREADY LATE T-SHIRT/Untitled - 03 de agosto de 2026 às 23.34.45.png,todas,0.6729,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+already-late,ALREADY-LATE,ALREADY LATE T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,
+already-late,ALREADY-LATE,ALREADY LATE T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/ALREADY LATE T-SHIRT/Untitled - 03 de agosto de 2026 às 23.34.45.png,todas,0.6729,0.1900,0.0000,padrao,0.80,nao,arte única para todas as cores
+already-late,ALREADY-LATE,ALREADY LATE T-SHIRT,Azul Marinho,frente,LISO,,,,,,0.8,nao,
+alcohol-intelligence,ALCOOL,ÁLCOOL T-SHIRT,Branca,costas,ESTAMPAS PRONTAS P: IZZY/Create_higher_quality_image_2K_20261001165028-Photoroom (1).png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+alcohol-intelligence,ALCOOL,ÁLCOOL T-SHIRT,Branca,frente,,,,,,,0,sim,falta a estampa da frente
+alcohol-intelligence,ALCOOL,ÁLCOOL T-SHIRT,Off White,costas,ESTAMPAS PRONTAS P: IZZY/Create_higher_quality_image_2K_20261001165028-Photoroom (1).png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+alcohol-intelligence,ALCOOL,ÁLCOOL T-SHIRT,Off White,frente,,,,,,,0,sim,falta a estampa da frente
+alcohol-intelligence,ALCOOL,ÁLCOOL T-SHIRT,Preta,costas,ESTAMPAS PRONTAS P: IZZY/Create_higher_quality_image_2K_20261001165028-Photoroom (1).png,clara,0.7200,0.1900,0.0000,padrao,0.45,sim,"só existe a versão para camisa clara; parece legível na Preta, mas confira"
+alcohol-intelligence,ALCOOL,ÁLCOOL T-SHIRT,Preta,frente,,,,,,,0,sim,falta a estampa da frente
+alcohol-intelligence,ALCOOL,ÁLCOOL T-SHIRT,Azul Marinho,costas,,,,,,,0,sim,"só existe a versão para camisa clara (tinta escura), que some na Azul Marinho ou não bate com a foto atual: falta a versão para camisa escura"
+alcohol-intelligence,ALCOOL,ÁLCOOL T-SHIRT,Azul Marinho,frente,,,,,,,0,sim,falta a estampa da frente
+airdrop,AIRDROP,AIRDROP T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/AIR DROP T-SHIRT/Translating_image_prompt_2K_202608032205.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+airdrop,AIRDROP,AIRDROP T-SHIRT,Branca,frente,MATERIAL QUALITY 100%/AIR DROP T-SHIRT/Untitled - 03 de agosto de 2026 às 22.11.10 (1).png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+airdrop,AIRDROP,AIRDROP T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/AIR DROP T-SHIRT/Translating_image_prompt_2K_202608032205.png,clara,0.6400,0.1900,0.0000,padrao,0.85,nao,
+airdrop,AIRDROP,AIRDROP T-SHIRT,Off White,frente,MATERIAL QUALITY 100%/AIR DROP T-SHIRT/Untitled - 03 de agosto de 2026 às 22.11.10 (1).png,clara,0.2260,0.2570,0.2580,padrao,0.85,nao,
+airdrop,AIRDROP,AIRDROP T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/AIR DROP T-SHIRT/Create_image_equal_2K_202608032204.png,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+airdrop,AIRDROP,AIRDROP T-SHIRT,Preta,frente,MATERIAL QUALITY 100%/AIR DROP T-SHIRT/Untitled - 03 de agosto de 2026 às 22.11.10.png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+airdrop,AIRDROP,AIRDROP T-SHIRT,Azul Marinho,costas,MATERIAL QUALITY 100%/AIR DROP T-SHIRT/Create_image_equal_2K_202608032204.png,escura,0.6400,0.1900,0.0000,padrao,0.85,nao,
+airdrop,AIRDROP,AIRDROP T-SHIRT,Azul Marinho,frente,MATERIAL QUALITY 100%/AIR DROP T-SHIRT/Untitled - 03 de agosto de 2026 às 22.11.10.png,escura,0.2260,0.2570,0.2580,padrao,0.85,nao,
+after-party,AFTER-PARTY,AFTER PARTY T-SHIRT,Branca,costas,MATERIAL QUALITY 100%/AFTER PARTY T-SHIRT/Sem título - 29 de julho de 2026 às 19.00.54.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+after-party,AFTER-PARTY,AFTER PARTY T-SHIRT,Branca,frente,LISO,,,,,,0.8,nao,
+after-party,AFTER-PARTY,AFTER PARTY T-SHIRT,Off White,costas,MATERIAL QUALITY 100%/AFTER PARTY T-SHIRT/Sem título - 29 de julho de 2026 às 19.00.54.png,clara,0.7200,0.1900,0.0000,padrao,0.85,nao,
+after-party,AFTER-PARTY,AFTER PARTY T-SHIRT,Off White,frente,LISO,,,,,,0.8,nao,
+after-party,AFTER-PARTY,AFTER PARTY T-SHIRT,Preta,costas,MATERIAL QUALITY 100%/AFTER PARTY T-SHIRT/Sem título - 29 de julho de 2026 às 19.00.23.png,escura,0.7200,0.1900,0.0000,padrao,0.85,nao,
+after-party,AFTER-PARTY,AFTER PARTY T-SHIRT,Preta,frente,LISO,,,,,,0.8,nao,

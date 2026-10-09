@@ -1,2 +1,26 @@
 __pycache__/
 *.pyc
+# pastas de trabalho (geradas pelo programa)
+atuais/
+analise/
+estampas_normalizadas/
+saida*/
+# dados da loja e arquivos gerados por rodada
+products_export*.csv
+*export*.csv
+diagnostico.csv
+analise.csv
+relatorio.csv
+mapa.csv
+calibracao.json
+config.json
+diagnostico.html
+revisao.html
+antes_depois.html
+folha_contato*.jpg
+.DS_Store
+inventario_novos.csv
+mapa.anterior.csv
+# dados conferidos que vêm com o programa
+!dados/mapa.csv
+!dados/inventario.csv

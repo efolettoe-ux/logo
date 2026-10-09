@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calibrador PALLACIO</title>
+<style>
+:root{--fundo:#f4f3ef;--card:#fff;--texto:#1d1d1f;--sub:#6e6e73;--linha:#dedcd6;--acento:#1f4fd1;--tronco:#14a44d;--estampa:#e0245e}
+@media (prefers-color-scheme: dark){:root{--fundo:#141414;--card:#1e1e1e;--texto:#f1f1f1;--sub:#9a9a9a;--linha:#333;--acento:#7aa2ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif}
+header{padding:16px;border-bottom:1px solid var(--linha)}
+h1{font-size:20px;margin:0}
+.sub{color:var(--sub)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;padding:16px;max-width:1400px;margin:0 auto}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+.palco{background:var(--card);border:1px solid var(--linha);border-radius:12px;padding:8px;min-height:300px;position:relative}
+canvas{width:100%;height:auto;display:block;touch-action:none;background:
+ repeating-conic-gradient(#ddd 0% 25%, #f7f7f7 0% 50%) 50% / 24px 24px;border-radius:8px}
+aside{display:flex;flex-direction:column;gap:12px}
+.bloco{background:var(--card);border:1px solid var(--linha);border-radius:12px;padding:12px}
+.bloco h2{font-size:14px;margin:0 0 8px}
+label{display:block;margin:6px 0 2px;color:var(--sub);font-size:12px}
+input[type=text],input[type=number],select{width:100%;padding:7px 9px;border:1px solid var(--linha);border-radius:8px;background:var(--card);color:var(--texto);font-size:14px}
+input[type=range]{width:100%}
+.linha{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+button{padding:8px 12px;border-radius:8px;border:1px solid var(--linha);background:var(--card);color:var(--texto);cursor:pointer;font-size:14px}
+button.primario{background:var(--acento);border-color:var(--acento);color:#fff}
+.botoes{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+pre{white-space:pre-wrap;word-break:break-all;font-size:11px;max-height:180px;overflow:auto;background:var(--fundo);padding:8px;border-radius:8px;margin:8px 0 0}
+.legenda span{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:middle}
+</style>
+</head>
+<body>
+<header>
+  <h1>Calibrador PALLACIO</h1>
+  <div class="sub">Funciona sem internet. 1) Abra um mockup liso. 2) Confira o retângulo verde (tronco: laterais do corpo, gola e barra). 3) Opcional: abra uma estampa e posicione. 4) Baixe os ajustes (calibracao.json) e coloque na pasta do projeto.</div>
+</header>
+<main>
+  <div class="palco">
+    <canvas id="tela" width="900" height="1200" aria-label="Pré-visualização do mockup"></canvas>
+    <div class="sub legenda" style="margin-top:6px"><span style="background:var(--tronco)"></span>tronco (arraste as bordas) &nbsp; <span style="background:var(--estampa)"></span>estampa (arraste para mover; canto de baixo à direita muda o tamanho)</div>
+  </div>
+  <aside>
+    <div class="bloco">
+      <h2>1. Mockup liso</h2>
+      <input type="file" id="arqMockup" accept="image/*">
+      <div class="sub" id="infoMockup">Nenhum mockup aberto.</div>
+      <label>Tronco (frações da imagem)</label>
+      <div class="linha">
+        <div><label>esquerda</label><input type="number" step="0.001" id="t_x0"></div>
+        <div><label>direita</label><input type="number" step="0.001" id="t_x1"></div>
+        <div><label>gola (topo)</label><input type="number" step="0.001" id="t_topo"></div>
+      </div>
+      <div class="linha">
+        <div><label>barra</label><input type="number" step="0.001" id="t_base"></div>
+        <div><label>axila</label><input type="number" step="0.001" id="t_axila"></div>
+        <div style="align-self:end"><button id="btAuto" title="Recalcular pelo contorno">Automático</button></div>
+      </div>
+    </div>
+    <div class="bloco">
+      <h2>2. Estampa do produto (opcional)</h2>
+      <input type="file" id="arqEstampa" accept="image/*">
+      <label>Produto (handle ou NOME, como no mapa.csv)</label>
+      <input type="text" id="produto" placeholder="ex.: martini">
+      <label>Lado</label>
+      <select id="lado"><option value="costas">costas</option><option value="frente">frente</option></select>
+      <label>largura_rel (largura da estampa / largura do tronco): <b id="v_larg"></b></label>
+      <input type="range" id="g_larg" min="0.05" max="1" step="0.001" value="0.64">
+      <label>topo_rel ((topo da estampa − gola) / altura do tronco): <b id="v_topo"></b></label>
+      <input type="range" id="g_topo" min="-0.05" max="0.8" step="0.001" value="0.19">
+      <label>centro_x_rel ((centro da estampa − centro do tronco) / largura): <b id="v_cx"></b></label>
+      <input type="range" id="g_cx" min="-0.5" max="0.5" step="0.001" value="0">
+      <div class="botoes">
+        <button id="btCostas">Padrão costas</button><button id="btPeito">Padrão peito</button>
+      </div>
+    </div>
+    <div class="bloco">
+      <h2>3. Salvar</h2>
+      <div class="botoes">
+        <button id="btGuardarTronco">Guardar tronco deste mockup</button>
+        <button id="btGuardarEstampa">Guardar posição da estampa</button>
+      </div>
+      <div class="botoes">
+        <button class="primario" id="btBaixar">Baixar ajustes (calibracao.json)</button>
+        <label style="margin:0"><input type="file" id="arqCal" accept=".json" style="display:none"><span class="sub" style="cursor:pointer;text-decoration:underline" onclick="document.getElementById('arqCal').click()">abrir calibracao.json existente</span></label>
+      </div>
+      <pre id="saida">{}</pre>
+    </div>
+  </aside>
+</main>
+<script>
+"use strict";
+// Mesmos valores padrão do config.json (medidos nas fotos JA FOI)
+const PADRAO = {costas:{largura_rel:0.64, topo_rel:0.19, centro_x_rel:0.0}, frente:{largura_rel:0.226, topo_rel:0.257, centro_x_rel:0.258}};
+const tela = document.getElementById("tela"), ctx = tela.getContext("2d");
+let mockup = null, nomeMockup = "", estampa = null, alphaMask = null;
+let tronco = {x0:0.25, x1:0.75, topo:0.1, base:0.9, axila:0.5};
+let calib = {mockups:{torso_manual:{}}, geometria_manual:{}};
+const $ = id => document.getElementById(id);
+
+function abrirImagem(arquivo, cb){
+  const url = URL.createObjectURL(arquivo); const im = new Image();
+  im.onload = () => cb(im); im.onerror = () => alert("Não consegui abrir esta imagem."); im.src = url;
+}
+$("arqMockup").onchange = e => { const f = e.target.files[0]; if(!f) return; nomeMockup = f.name;
+  abrirImagem(f, im => { mockup = im; tela.width = im.naturalWidth; tela.height = im.naturalHeight;
+    $("infoMockup").textContent = `${f.name} — ${im.naturalWidth}×${im.naturalHeight}`;
+    const salvo = calib.mockups.torso_manual[nomeMockup];
+    if (salvo) tronco = Object.assign({}, salvo); else autoTronco();
+    sincronizarCampos(); desenhar(); }); };
+$("arqEstampa").onchange = e => { const f = e.target.files[0]; if(!f) return;
+  abrirImagem(f, im => { estampa = recortarTransparente(im); desenhar(); }); };
+$("arqCal").onchange = e => { const f = e.target.files[0]; if(!f) return; const r = new FileReader();
+  r.onload = () => { try { const d = JSON.parse(r.result); calib.mockups.torso_manual = Object.assign({}, (d.mockups||{}).torso_manual||{});
+    calib.geometria_manual = Object.assign({}, d.geometria_manual||{}); mostrarSaida(); } catch(err){ alert("Arquivo inválido."); } };
+  r.readAsText(f); };
+
+function recortarTransparente(im){
+  const c = document.createElement("canvas"); c.width = im.naturalWidth; c.height = im.naturalHeight;
+  const g = c.getContext("2d"); g.drawImage(im, 0, 0);
+  const d = g.getImageData(0, 0, c.width, c.height).data; let x0=c.width, y0=c.height, x1=-1, y1=-1;
+  for (let y=0; y<c.height; y++) for (let x=0; x<c.width; x++) { if (d[(y*c.width+x)*4+3] > 24) { if(x<x0)x0=x; if(x>x1)x1=x; if(y<y0)y0=y; if(y>y1)y1=y; } }
+  if (x1 < 0) return c;
+  const o = document.createElement("canvas"); o.width = x1-x0+1; o.height = y1-y0+1;
+  o.getContext("2d").drawImage(c, x0, y0, o.width, o.height, 0, 0, o.width, o.height); return o;
+}
+
+// Mesmo método do pallacio.py: largura do corpo = mediana das linhas entre 58% e 85% da altura da peça.
+function autoTronco(){
+  if (!mockup) return;
+  const W = mockup.naturalWidth, H = mockup.naturalHeight, s = Math.min(1, 600/Math.max(W,H));
+  const w = Math.round(W*s), h = Math.round(H*s), c = document.createElement("canvas"); c.width=w; c.height=h;
+  const g = c.getContext("2d"); g.drawImage(mockup, 0, 0, w, h); const d = g.getImageData(0,0,w,h).data;
+  const dentro = (x,y) => d[(y*w+x)*4+3] > 128;
+  const esq = [], dir = []; let topo=-1, fim=-1;
+  for (let y=0; y<h; y++){ let a=-1,b=-1; for(let x=0;x<w;x++){ if(dentro(x,y)){ if(a<0)a=x; b=x; } } esq.push(a); dir.push(b); if(a>=0){ if(topo<0) topo=y; fim=y; } }
+  if (topo < 0) { alert("Este mockup não tem transparência; ajuste o tronco à mão."); return; }
+  const alt = fim-topo+1, ya = topo+Math.floor(0.58*alt), yb = topo+Math.floor(0.85*alt);
+  const larg = [], cen = []; for (let y=ya; y<yb; y++){ if(esq[y]>=0){ larg.push(dir[y]-esq[y]+1); cen.push((esq[y]+dir[y])/2); } }
+  const med = v => { const o=[...v].sort((p,q)=>p-q); return o[Math.floor(o.length/2)]; };
+  const L = med(larg), cx = med(cen);
+  let base = fim+1; for (let y=fim; y>topo; y--) { if (dir[y]-esq[y]+1 > 0.5*L) { base = y+1; break; } }
+  let axila = topo+0.3*alt; for (let y=ya; y>topo; y--) { if (dir[y]-esq[y]+1 > 1.12*L) { axila = y+1; break; } }
+  // gola: ponto mais alto perto do centro
+  const tops = []; for (let x=Math.max(0,Math.floor(cx-0.35*L)); x<Math.min(w,cx+0.35*L); x++){ for (let y=0;y<h;y++){ if(dentro(x,y)){ tops.push(y); break; } } }
+  tops.sort((p,q)=>p-q); const gola = tops.length ? tops[Math.floor(tops.length*0.03)] : topo;
+  tronco = {x0:(cx-L/2)/w, x1:(cx+L/2)/w, topo:gola/h, base:base/h, axila:axila/h};
+}
+$("btAuto").onclick = () => { autoTronco(); sincronizarCampos(); desenhar(); };
+
+function sincronizarCampos(){
+  for (const k of ["x0","x1","topo","base","axila"]) $("t_"+k).value = tronco[k].toFixed(4);
+  $("v_larg").textContent = (+$("g_larg").value).toFixed(3);
+  $("v_topo").textContent = (+$("g_topo").value).toFixed(3);
+  $("v_cx").textContent = (+$("g_cx").value).toFixed(3);
+}
+for (const k of ["x0","x1","topo","base","axila"]) $("t_"+k).oninput = e => { tronco[k] = +e.target.value; desenhar(); };
+for (const id of ["g_larg","g_topo","g_cx"]) $(id).oninput = () => { sincronizarCampos(); desenhar(); };
+$("btCostas").onclick = () => aplicarGeo(PADRAO.costas, "costas");
+$("btPeito").onclick = () => aplicarGeo(PADRAO.frente, "frente");
+function aplicarGeo(g, lado){ $("g_larg").value=g.largura_rel; $("g_topo").value=g.topo_rel; $("g_cx").value=g.centro_x_rel; $("lado").value=lado; sincronizarCampos(); desenhar(); }
+
+function px(){ const W=tela.width, H=tela.height; return {x0:tronco.x0*W, x1:tronco.x1*W, topo:tronco.topo*H, base:tronco.base*H, axila:tronco.axila*H}; }
+function caixaEstampa(){
+  const t = px(), tw = t.x1-t.x0, th = t.base-t.topo;
+  const asp = estampa ? estampa.height/estampa.width : 1.0;
+  const w = +$("g_larg").value*tw, h = w*asp;
+  return {x: (t.x0+t.x1)/2 + (+$("g_cx").value)*tw - w/2, y: t.topo + (+$("g_topo").value)*th, w, h};
+}
+function desenhar(){
+  ctx.clearRect(0,0,tela.width,tela.height);
+  if (!mockup){ ctx.fillStyle="#888"; ctx.font="28px sans-serif"; ctx.fillText("Abra um mockup liso (PNG).", 40, 80); return; }
+  ctx.drawImage(mockup, 0, 0);
+  const t = px(), lw = Math.max(2, tela.width/400);
+  const cx = getComputedStyle(document.documentElement);
+  if (estampa){ const b = caixaEstampa(); ctx.globalAlpha = 0.95; ctx.drawImage(estampa, b.x, b.y, b.w, b.h); ctx.globalAlpha = 1;
+    ctx.strokeStyle = cx.getPropertyValue("--estampa"); ctx.lineWidth = lw; ctx.setLineDash([lw*4, lw*3]); ctx.strokeRect(b.x, b.y, b.w, b.h); ctx.setLineDash([]);
+    ctx.fillStyle = cx.getPropertyValue("--estampa"); ctx.fillRect(b.x+b.w-lw*5, b.y+b.h-lw*5, lw*10, lw*10); }
+  else { const b = caixaEstampa(); ctx.strokeStyle = cx.getPropertyValue("--estampa"); ctx.lineWidth = lw; ctx.setLineDash([lw*4, lw*3]); ctx.strokeRect(b.x,b.y,b.w,b.h); ctx.setLineDash([]); }
+  ctx.strokeStyle = cx.getPropertyValue("--tronco"); ctx.lineWidth = lw; ctx.strokeRect(t.x0, t.topo, t.x1-t.x0, t.base-t.topo);
+  ctx.beginPath(); ctx.moveTo(t.x0, t.axila); ctx.lineTo(t.x1, t.axila); ctx.stroke();
+}
+
+// arrastar: bordas do tronco, estampa (mover) e canto da estampa (tamanho)
+let arraste = null;
+function ponto(e){ const r = tela.getBoundingClientRect(); return {x:(e.clientX-r.left)*tela.width/r.width, y:(e.clientY-r.top)*tela.height/r.height, k:tela.width/r.width}; }
+tela.addEventListener("pointerdown", e => { if (!mockup) return; const p = ponto(e), t = px(), b = caixaEstampa(), tol = 10*p.k;
+  if (Math.abs(p.x-(b.x+b.w))<tol*1.5 && Math.abs(p.y-(b.y+b.h))<tol*1.5) arraste = {tipo:"tam", p0:p, larg:+$("g_larg").value};
+  else if (p.x>b.x && p.x<b.x+b.w && p.y>b.y && p.y<b.y+b.h) arraste = {tipo:"mover", p0:p, topo:+$("g_topo").value, cx:+$("g_cx").value};
+  else if (Math.abs(p.x-t.x0)<tol) arraste = {tipo:"x0"}; else if (Math.abs(p.x-t.x1)<tol) arraste = {tipo:"x1"};
+  else if (Math.abs(p.y-t.topo)<tol) arraste = {tipo:"topo"}; else if (Math.abs(p.y-t.base)<tol) arraste = {tipo:"base"};
+  else if (Math.abs(p.y-t.axila)<tol) arraste = {tipo:"axila"};
+  if (arraste) tela.setPointerCapture(e.pointerId); });
+tela.addEventListener("pointermove", e => { if (!arraste) return; const p = ponto(e), t = px(), tw = t.x1-t.x0, th = t.base-t.topo;
+  if (arraste.tipo==="mover"){ $("g_cx").value = arraste.cx + (p.x-arraste.p0.x)/tw; $("g_topo").value = arraste.topo + (p.y-arraste.p0.y)/th; }
+  else if (arraste.tipo==="tam"){ $("g_larg").value = Math.max(0.03, arraste.larg + 2*(p.x-arraste.p0.x)/tw); }
+  else if (arraste.tipo==="x0"||arraste.tipo==="x1") tronco[arraste.tipo] = p.x/tela.width;
+  else tronco[arraste.tipo] = p.y/tela.height;
+  sincronizarCampos(); desenhar(); });
+tela.addEventListener("pointerup", () => arraste = null);
+
+$("btGuardarTronco").onclick = () => { if (!mockup) return alert("Abra um mockup primeiro.");
+  const r = {}; for (const k in tronco) r[k] = +tronco[k].toFixed(5); calib.mockups.torso_manual[nomeMockup] = r; mostrarSaida(); };
+$("btGuardarEstampa").onclick = () => { const prod = $("produto").value.trim(); if (!prod) return alert("Escreva o produto (handle ou NOME).");
+  const lado = $("lado").value; calib.geometria_manual[prod] = calib.geometria_manual[prod] || {};
+  calib.geometria_manual[prod][lado] = {largura_rel:+(+$("g_larg").value).toFixed(4), topo_rel:+(+$("g_topo").value).toFixed(4), centro_x_rel:+(+$("g_cx").value).toFixed(4)};
+  mostrarSaida(); };
+function mostrarSaida(){ $("saida").textContent = JSON.stringify(calib, null, 1); }
+$("btBaixar").onclick = () => { const blob = new Blob([JSON.stringify(calib, null, 2)], {type:"application/json"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "calibracao.json"; a.click(); };
+sincronizarCampos(); desenhar(); mostrarSaida();
+</script>
+</body>
+</html>

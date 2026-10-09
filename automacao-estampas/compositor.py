@@ -199,8 +199,19 @@ def aplicar_estampa(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[floa
     cor = ink_rgb / np.maximum(ink_a, 1e-4)[..., None]
     cor_lin = srgb_para_linear(np.clip(cor, 0.0, 1.0))
     cor_lin = cor_lin * (sombra * textura)[..., None] + brilho[..., None]
-    out_lin = fab_lin * (1.0 - a[..., None]) + cor_lin * a[..., None]
-    out = np.clip(linear_para_srgb(out_lin) * 255.0 + 0.5, 0, 255).astype(np.uint8)
+    # luz em espaço linear (física), mas a cobertura da tinta em espaço perceptual: misturar 5% de
+    # tecido branco em linear deixaria o preto cinza (~60/255); a tinta de verdade cobre bem.
+    tinta = linear_para_srgb(cor_lin)
+    # granulado da tinta sobre a malha (o mockup liso quase não tem textura visível): ruído fino,
+    # fixo (semente), do tamanho do fio da malha na escala desta imagem
+    gr = float(r.get("granulado_tinta", 0.018))
+    if gr > 0:
+        rng = np.random.default_rng(12345 + ch * 7 + cw)
+        ruido = desfocar(rng.standard_normal((ch, cw)).astype(np.float32), max(0.5, 0.6 * k_det * mk.escala))
+        ruido /= max(float(ruido.std()), 1e-6)
+        tinta = np.clip(tinta + (gr * ruido)[..., None] * (0.35 + 0.65 * tinta), 0.0, 1.0)
+    out_s = fab * (1.0 - a[..., None]) + tinta * a[..., None]
+    out = np.clip(out_s * 255.0 + 0.5, 0, 255).astype(np.uint8)
 
     escrever = a > 0.002
     novo = fonte_rgb.copy()
@@ -262,7 +273,7 @@ def enquadrar(im: Image.Image, cfg: dict, lado: Optional[int] = None, foco_y: Op
     else:
         x0, y0, x1, y1 = _bbox_alpha(im)
         pw, ph = x1 - x0, y1 - y0
-        s = min(e.get("ocupacao_largura", 0.584) * lado / pw, e.get("ocupacao_altura", 0.600) * lado / ph)
+        s = min(e.get("ocupacao_largura", 0.572) * lado / pw, e.get("ocupacao_altura", 0.590) * lado / ph)
         peca = im.crop((x0, y0, x1, y1))
         nw, nh = max(1, round(pw * s)), max(1, round(ph * s))
         peca = _redimensionar_rgba(peca, nw, nh)
