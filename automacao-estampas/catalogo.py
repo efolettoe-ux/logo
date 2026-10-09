@@ -146,6 +146,8 @@ CONFIG_PADRAO: dict = {
         # Fotos extras das costas: a inclinada (mockup "*-costas-inclinada.png") entra como 03 sempre que
         # existir; o close ("*-close-costas.png") só entra se usar_close for true (vira 04).
         "usar_close": False,
+        # Tamanho da estampa na foto inclinada (1.0 = proporção exata do corpo em perspectiva).
+        "escala_inclinada": 0.85,
     },
     # Estampa da frente com largura_rel acima disso é "grande" (centralizada), abaixo é logo de peito.
     "limite_frente_grande": 0.40,

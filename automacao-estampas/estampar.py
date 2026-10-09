@@ -483,6 +483,10 @@ def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, 
     if abs(f - 1.0) > 1e-3:
         geo = (geo[0] * f, geo[1], geo[2])
     x, y, w, h = caixa_no_mockup(costas.torso, geo, art.size[1] / float(art.size[0]))
+    # a perspectiva da foto inclinada alarga o corpo; "escala_inclinada" reduz a estampa em volta do
+    # centro dela (1.0 = proporção exata do corpo)
+    ei = float(cfg.get("estampar", {}).get("escala_inclinada", 0.85))
+    x, y, w, h = x + w * (1 - ei) / 2.0, y + h * (1 - ei) / 2.0, w * ei, h * ei
     # px de trabalho das costas -> px do arquivo -> px do arquivo inclinado -> px de trabalho da inclinada
     kc, ki = costas.escala, mk.escala
     # os 4 cantos da caixa (px das costas -> px do arquivo inclinado -> px de trabalho da inclinada)
