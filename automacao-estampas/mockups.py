@@ -84,10 +84,17 @@ def achar_pasta_mockups(raiz: Path, cfg: dict, tipo: str = "camiseta", informada
     cand = cfg["tipos"][tipo].get("pasta_mockups", [])
     if isinstance(cand, str):
         cand = [cand]
-    for c in cand:
-        p = raiz / c
-        if p.is_dir():
-            return p
+    # procura na pasta do projeto, na pasta das artes (casar.pasta_arquivos) e na pasta de cima
+    bases = [raiz]
+    pa = str(cfg.get("casar", {}).get("pasta_arquivos", "") or "").strip()
+    if pa:
+        bases.append(Path(pa).expanduser())
+    bases.append(raiz.parent)
+    for base in bases:
+        for c in cand:
+            p = base / c
+            if p.is_dir():
+                return p
     return None
 
 

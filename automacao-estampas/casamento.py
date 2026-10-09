@@ -545,6 +545,8 @@ def legivel(l: dict, cor: str, cfg: dict, estrito: bool = False) -> bool:
     # preto com um detalhe colorido passava e o texto sumia na camisa preta.
     l10 = _f(l["tinta_l10"]) if l.get("tinta_l10") not in (None, "") else l25
     l90 = _f(l["tinta_l90"]) if l.get("tinta_l90") not in (None, "") else l75
+    if estrito == "mediana":  # arte sem tom definido (colorida): basta a maior parte contrastar
+        l10, l90 = l50, l50
     if lt < 50:   # camisa escura: a tinta precisa ser mais clara que o tecido
         return (l10 if estrito else l75) - lt >= lim
     return lt - (l90 if estrito else l25) >= lim
@@ -586,7 +588,7 @@ def escolher_arte(cands: List[dict], cor: str, cfg: dict, visual: Optional[Dict[
         if not ls:
             continue
         if n >= 4:
-            ls = [l for l in ls if legivel(l, cor, cfg, estrito=True)
+            ls = [l for l in ls if legivel(l, cor, cfg, estrito=True if n == 5 else "mediana")
                   and (not visual or visual.get(l["caminho"], 1.0) >= 0.45)]
             if not ls:
                 continue
