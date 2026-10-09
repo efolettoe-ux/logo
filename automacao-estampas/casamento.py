@@ -486,6 +486,20 @@ def tinta_arte(mini: Image.Image, rgb_tecido, tamanho: Optional[Tuple[int, int]]
     return _resumo_tinta(lab, fl)
 
 
+def extremos_tinta(caminho_mini: str) -> Optional[Tuple[str, str]]:
+    """L* dos 10% mais escuros e dos 10% mais claros da tinta opaca da miniatura sem fundo."""
+    try:
+        with Image.open(caminho_mini) as m:
+            arr = np.asarray(m.convert("RGBA"))
+    except Exception:
+        return None
+    sel = arr[..., 3] > 200
+    if sel.sum() < 30:
+        return None
+    L = _lab_l(arr[..., :3][sel].astype(np.float32)[None, :, :] / 255.0)[0]
+    return f"{np.percentile(L, 10):.1f}", f"{np.percentile(L, 90):.1f}"
+
+
 def comparar_tinta(foto: Optional[dict], arte: Optional[dict]) -> Optional[dict]:
     """Diferença da tinta (arte - foto) em Lab: claridade dL, saturação dC, distância dE."""
     if not foto or not arte:
@@ -526,11 +540,14 @@ def legivel(l: dict, cor: str, cfg: dict, estrito: bool = False) -> bool:
     lt = l_tecido(cor, cfg)
     lim = float(cfg["casar"].get("contraste_minimo", 28.0))
     l25, l50, l75 = _f(l["tinta_l25"]), _f(l["tinta_l50"]), _f(l["tinta_l75"])
+    # estrito: até a parte MENOS contrastante da tinta (10% mais escuros na camisa escura, 10% mais
+    # claros na clara; sem essa medida, o quartil) tem de aparecer. Com a mediana, uma arte de texto
+    # preto com um detalhe colorido passava e o texto sumia na camisa preta.
+    l10 = _f(l["tinta_l10"]) if l.get("tinta_l10") not in (None, "") else l25
+    l90 = _f(l["tinta_l90"]) if l.get("tinta_l90") not in (None, "") else l75
     if lt < 50:   # camisa escura: a tinta precisa ser mais clara que o tecido
-        # estrito: até a parte mais ESCURA da tinta (quartil inferior) tem de aparecer; com a mediana,
-        # uma arte de texto preto com um detalhe colorido passava e o texto sumia na camisa preta
-        return (l25 if estrito else l75) - lt >= lim
-    return lt - (l75 if estrito else l25) >= lim
+        return (l10 if estrito else l75) - lt >= lim
+    return lt - (l90 if estrito else l25) >= lim
 
 
 def tom_da_cor(cor: str, cfg: dict) -> str:
@@ -1066,6 +1083,13 @@ def comando(proj, args) -> None:
             info = fic.get(str(raiz / c))
             if info and info.get("miniatura"):
                 miniaturas[c] = info["miniatura"]
+        # extremos da tinta (10% / 90%) para o teste de legibilidade: detalhes pequenos (um texto
+        # preto numa arte colorida) não aparecem nos quartis do inventário
+        for l in todas:
+            if l["caminho"] in miniaturas and not l.get("tinta_l10"):
+                ext = extremos_tinta(miniaturas[l["caminho"]])
+                if ext:
+                    l["tinta_l10"], l["tinta_l90"] = ext
         # notas visuais
         mini_img: Dict[str, Image.Image] = {}
         for (h, cor, lado), la in fotos_rec.items():
