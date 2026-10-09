@@ -133,6 +133,17 @@ def cmd_casar(args) -> None:
     casamento.comando(proj, args)
 
 
+def cmd_extrair(args) -> None:
+    proj = _projeto(args)
+    from extrair import extrair
+    if not (proj.raiz / "analise.csv").exists():
+        raise ErroUsuario("Rode antes: python3 pallacio.py baixar e python3 pallacio.py analisar")
+    prods = [x.strip() for v in (args.produto or []) for x in v.split(",") if x.strip()]
+    r = extrair(proj.raiz, prods or None, args.fator, args.incluir_revisar)
+    print(f"Estampas tiradas das fotos da loja: {r['extraidas']} (em estampas_da_loja/). "
+          f"Sem foto com estampa: {r['sem_foto']}. Agora rode o estampar.")
+
+
 def cmd_estampar(args) -> None:
     import estampar as E
     from catalogo import escrever_csv_dicts
@@ -282,6 +293,13 @@ def montar_parser() -> argparse.ArgumentParser:
     p.add_argument("--workers", type=int, default=4, help="processos em paralelo (padrão 4)")
     p.add_argument("--sem-miniaturas", action="store_true", help="mais rápido: prévia só das artes escolhidas")
     p.set_defaults(func=cmd_casar)
+
+    p = sub.add_parser("extrair", help="tira a estampa das fotos da loja onde falta o arquivo da arte")
+    comum(p)
+    p.add_argument("--produto", action="append", help="só estes produtos (NOME; vírgula ou repetido)")
+    p.add_argument("--fator", type=float, default=3.0, help="ampliação da estampa recortada (padrão 3)")
+    p.add_argument("--incluir-revisar", action="store_true", help="também nas linhas marcadas revisar=sim")
+    p.set_defaults(func=cmd_extrair)
 
     p = sub.add_parser("estampar", help="gera as imagens novas (saida/, saida_web/)")
     comum(p)
