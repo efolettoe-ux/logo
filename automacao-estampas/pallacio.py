@@ -182,7 +182,7 @@ def cmd_estampar(args) -> None:
                            int(cfg["saida"].get("contato_por_folha", 240)))
         print(f"Folha de contato: {', '.join(p.name for p in fc)}")
         pares = _pares_antes_depois(tarefas, analise)
-        antes_depois(pares, proj.arquivo("antes_depois_html"))
+        antes_depois(pares, proj.arquivo("antes_depois_html"), _pendencias(tarefas))
         print(f"Antes x depois: {proj.arquivo('antes_depois_html').name}")
     if cont.get("revisar"):
         print(f"Atenção: {cont['revisar']} imagem(ns) NÃO foram geradas porque a arte precisa de revisão "
@@ -206,11 +206,25 @@ def _pares_antes_depois(tarefas, analise):
             if v.status in ("ok", "liso", "pulado") and Path(v.arquivo_png).exists():
                 lado = "costas" if v.vista == "close-costas" else v.vista
                 antes = fotos.get((t.handle, t.cor, lado), "")
-                pares.append({"titulo": f"{t.nome} — {t.cor} — {v.numero:02d} {v.vista}",
+                pares.append({"produto": t.nome, "titulo": f"{t.nome} — {t.cor} — {v.numero:02d} {v.vista}",
                               "antes": antes if v.vista != "close-costas" else "",
                               "depois": v.arquivo_web if v.arquivo_web and Path(v.arquivo_web).exists() else v.arquivo_png,
                               "obs": f"geometria: {v.origem_geometria}" if v.estampa else "lado liso"})
     return pares
+
+
+def _pendencias(tarefas):
+    """produto -> textos do que NÃO foi gerado (falta arte, revisar, erro)."""
+    nomes = {"sem_estampa": "falta a arte", "revisar": "arte para revisar", "erro": "erro", "sem_mockup": "sem mockup"}
+    out = {}
+    for t in tarefas:
+        if t.status in nomes:
+            out.setdefault(t.nome, []).append(f"{t.cor}: {nomes[t.status]} — {t.observacao}")
+        for v in t.vistas:
+            if v.status in nomes:
+                out.setdefault(t.nome, []).append(f"{t.cor} {v.numero:02d} {v.vista}: {nomes[v.status]} — "
+                                                  f"{v.observacao.split(' [')[0]}")
+    return out
 
 
 def cmd_calibrador(args) -> None:

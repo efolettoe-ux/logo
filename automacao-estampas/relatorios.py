@@ -141,26 +141,93 @@ def folha_contato(itens: Sequence[Tuple[str, str]], destino: Path, miniatura: in
 # Antes x depois
 # ---------------------------------------------------------------------------
 
-def antes_depois(pares: Sequence[dict], destino: Path) -> None:
-    """pares: [{"titulo", "antes" (caminho ou ''), "depois" (caminho), "obs"}]. Caminhos relativos à página."""
+def antes_depois(pares: Sequence[dict], destino: Path, pendencias: Optional[Dict[str, List[str]]] = None) -> None:
+    """Página de conferência agrupada por produto.
+
+    pares: [{"produto", "titulo", "antes" (caminho ou ''), "depois" (caminho), "obs"}].
+    pendencias: produto -> lista de textos (lados sem arte, artes para revisar...), mostradas no topo do grupo.
+    As fotos atuais são copiadas (miniatura JPEG) para a pasta antes_depois_fotos/ ao lado da página:
+    assim a página continua funcionando se a pasta do projeto mudar de lugar.
+    """
+    import hashlib
     base = destino.parent.resolve()
-    blocos = []
-    for p in pares:
-        def rel(c):
-            if not c:
-                return ""
+    pasta_fotos = base / (destino.stem + "_fotos")
+    pendencias = pendencias or {}
+
+    def rel(c):
+        try:
+            return html.escape(Path(os.path.relpath(Path(c).resolve(), base)).as_posix())
+        except ValueError:
+            return html.escape(Path(c).resolve().as_uri())
+
+    def copia_local(c: str) -> str:
+        if not c or not Path(c).exists():
+            return ""
+        p = Path(c).resolve()
+        try:
+            p.relative_to(base)
+            return rel(p)  # já está dentro do projeto
+        except ValueError:
+            pass
+        nome = hashlib.sha1(str(p).encode("utf-8")).hexdigest()[:16] + ".jpg"
+        alvo = pasta_fotos / nome
+        if not alvo.exists():
             try:
-                return html.escape(os.path.relpath(Path(c).resolve(), base))
-            except ValueError:
-                return html.escape(Path(c).resolve().as_uri())
-        antes = (f"<img loading='lazy' src='{rel(p['antes'])}' alt='foto atual'>" if p.get("antes")
-                 else "<div class='sub' style='padding:40px 10px'>sem foto atual (rode baixar + analisar)</div>")
-        depois = f"<img loading='lazy' src='{rel(p['depois'])}' alt='nova'>"
-        busca = html.escape(p["titulo"].lower())
-        blocos.append(f"<div class='par' data-busca='{busca}'><div class='tit'>{html.escape(p['titulo'])} "
-                      f"<span class='sub'>{html.escape(p.get('obs', ''))}</span></div>"
-                      f"<div><div class='sub'>Atual (loja)</div>{antes}</div><div><div class='sub'>Nova</div>{depois}</div></div>")
-    corpo = (f"<h1>Antes x depois</h1><p class='sub'>Esquerda: foto atual da loja. Direita: imagem nova. "
-             f"Confira tamanho e posição da estampa.</p><input placeholder='Buscar…' oninput='filtrar(this.value)'>"
+                pasta_fotos.mkdir(parents=True, exist_ok=True)
+                with Image.open(p) as im:
+                    im = im.convert("RGB")
+                    im.thumbnail((900, 900))
+                    im.save(alvo, quality=85)
+            except Exception:
+                return ""
+        return rel(alvo)
+
+    grupos: Dict[str, List[dict]] = {}
+    for p in pares:
+        grupos.setdefault(p.get("produto") or p["titulo"].split(" — ")[0], []).append(p)
+    for prod in pendencias:
+        grupos.setdefault(prod, [])
+    com_foto = {g for g, ps in grupos.items() if any(p.get("antes") for p in ps)}
+    ordem = sorted(grupos, key=lambda g: (g not in com_foto, g))
+    blocos = []
+    for g in ordem:
+        ps = grupos[g]
+        pend = pendencias.get(g, [])
+        cartoes = []
+        for p in ps:
+            antes = copia_local(p.get("antes", ""))
+            antes_html = (f"<img loading='lazy' src='{antes}' alt='foto atual'>" if antes
+                          else "<div class='vazio'>sem foto atual</div>")
+            cartoes.append(f"<div class='par2'><div class='tit2'>{html.escape(p['titulo'].split(' — ', 1)[-1])}"
+                           f" <span class='sub'>{html.escape(p.get('obs', ''))}</span></div>"
+                           f"{antes_html}<img loading='lazy' src='{rel(p['depois'])}' alt='nova'></div>")
+        pend_html = ("<ul class='pend'>" + "".join(f"<li>{html.escape(t)}</li>" for t in pend) + "</ul>") if pend else ""
+        busca = html.escape(g.lower())
+        tag_pend = " <span class='tag aviso'>pendências</span>" if pend else ""
+        blocos.append(f"<section class='grupo' data-busca='{busca}' data-foto='{'1' if g in com_foto else '0'}' "
+                      f"data-pend='{'1' if pend else '0'}'><h2>{html.escape(g)} "
+                      f"<span class='sub'>{len(ps)} imagem(ns){' · sem foto atual' if g not in com_foto else ''}</span>"
+                      f"{tag_pend}</h2>{pend_html}"
+                      f"<div class='grade'>{''.join(cartoes)}</div></section>")
+    css = ("<style>.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:10px}"
+           ".par2{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--card);border:1px solid var(--linha);"
+           "border-radius:10px;padding:8px}.par2 img{width:100%;height:auto;border-radius:6px;background:#eee}"
+           ".tit2{grid-column:1/3;font-size:13px;font-weight:600}.vazio{display:flex;align-items:center;justify-content:center;"
+           "text-align:center;color:var(--sub);font-size:12px;border:1px dashed var(--linha);border-radius:6px;min-height:120px}"
+           ".pend{margin:4px 0 10px;padding-left:20px;color:var(--aviso);font-size:13px}.grupo{margin-bottom:22px}"
+           "label{margin-right:14px;font-size:14px}</style>")
+    js = ("<script>function aplicar(){var v=document.getElementById('b').value.toLowerCase(),"
+          "f=document.getElementById('f').checked,p=document.getElementById('p').checked;"
+          "document.querySelectorAll('.grupo').forEach(function(el){var ok=el.getAttribute('data-busca').indexOf(v)>=0"
+          "&&(!f||el.getAttribute('data-foto')==='1')&&(!p||el.getAttribute('data-pend')==='1');"
+          "el.style.display=ok?'':'none';});}</script>")
+    n_pend = sum(1 for g in grupos if pendencias.get(g))
+    corpo = (f"{css}{js}<h1>Antes x depois</h1><p class='sub'>Em cada par: à esquerda a foto atual da loja, à direita "
+             f"a imagem nova. Confira tamanho, posição e cor da estampa. {len(grupos)} produtos; {len(com_foto)} com "
+             f"foto atual; {n_pend} com pendências (lado sem arte ou arte para revisar — essas imagens não foram "
+             f"geradas).</p>"
+             f"<input id='b' placeholder='Buscar produto…' oninput='aplicar()'> "
+             f"<label><input type='checkbox' id='f' onchange='aplicar()' style='width:auto'> só com foto atual</label>"
+             f"<label><input type='checkbox' id='p' onchange='aplicar()' style='width:auto'> só com pendências</label>"
              + "".join(blocos))
     destino.write_text(_pagina("Antes x depois PALLACIO", corpo), encoding="utf-8")

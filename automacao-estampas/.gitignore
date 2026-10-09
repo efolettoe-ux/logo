@@ -17,6 +17,7 @@ config.json
 diagnostico.html
 revisao.html
 antes_depois.html
+antes_depois_fotos/
 folha_contato*.jpg
 .DS_Store
 inventario_novos.csv
