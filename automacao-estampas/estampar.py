@@ -514,9 +514,11 @@ def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, 
         cg, sg = math.cos(tg), math.sin(tg)
         quad = [(mx + cg * (qx_ - mx) + sg * (qy_ - my), my - sg * (qx_ - mx) + cg * (qy_ - my)) for qx_, qy_ in quad]
     # "mover_inclinada": desloca a estampa na horizontal da foto (fração da largura da imagem; negativo = esquerda)
-    mv = float(ecfg.get("mover_inclinada", -0.015)) * mk.rgb.shape[1]
-    if mv:
-        quad = [(qx_ + mv, qy_) for qx_, qy_ in quad]
+    mv = float(ecfg.get("mover_inclinada", -0.011)) * mk.rgb.shape[1]
+    # "mover_inclinada_vertical": fração da altura da foto (positivo = para cima)
+    mvv = float(ecfg.get("mover_inclinada_vertical", 0.002)) * mk.rgb.shape[0]
+    if mv or mvv:
+        quad = [(qx_ + mv, qy_ - mvv) for qx_, qy_ in quad]
     qx = [q[0] for q in quad]
     qy = [q[1] for q in quad]
     bx0, by0 = math.floor(min(qx)), math.floor(min(qy))
