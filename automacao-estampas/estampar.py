@@ -212,7 +212,10 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
             codigo = info.codigo if info else _norm(cor).upper()[:6]
             t = Tarefa(p.handle, p.nome, cor, codigo)
             tarefas.append(t)
-            if info is None or info.especial or not info.ativa or not (mk.tem(cor, "frente") and mk.tem(cor, "costas")):
+            # cores "camiseta / estampa" usam o mockup da cor indicada em "mockup"
+            cor_mk = (info.mockup if info is not None and info.mockup else cor)
+            if (info is None or (info.especial and not info.mockup) or not info.ativa
+                    or not (mk.tem(cor_mk, "frente") and mk.tem(cor_mk, "costas"))):
                 t.status = "sem_mockup"
                 t.observacao = (f"cor '{cor}' sem mockup liso (frente e costas)" if info is None or info.especial
                                 or info.ativa else f"cor '{cor}' desativada no config.json")
@@ -244,10 +247,10 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
             vistas = [(lado, n) for lado, n in nums.items()]
             # fotos extras das costas: inclinada (03) e, se ligado no config, o close
             extra = 3
-            if tem["costas"] and mk.tem(cor, "costas-inclinada"):
+            if tem["costas"] and mk.tem(cor_mk, "costas-inclinada"):
                 vistas.append(("costas-inclinada", extra))
                 extra += 1
-            if tem["costas"] and ecfg.get("usar_close", False) and mk.tem(cor, "close-costas"):
+            if tem["costas"] and ecfg.get("usar_close", False) and mk.tem(cor_mk, "close-costas"):
                 vistas.append(("close-costas", extra))
             for vista, n in sorted(vistas, key=lambda v: v[1]):
                 lado = "costas" if vista in VISTAS_DAS_COSTAS else vista
@@ -255,7 +258,7 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
                 nome_v = NOME_VISTA_SAIDA[vista]
                 arq = nome_arquivo_saida(p.nome, codigo, n, nome_v, "png", cfg)
                 if lado in falta:
-                    v = Vista(vista, n, str(mk.caminho(cor, vista)), str(mk.caminho(cor, "costas")), None, None, "",
+                    v = Vista(vista, n, str(mk.caminho(cor_mk, vista)), str(mk.caminho(cor_mk, "costas")), None, None, "",
                               str(pasta_saida / p.nome / arq), "", "")
                     v.status = "sem_estampa"
                     v.observacao = (f"falta a arte {'das costas' if lado == 'costas' else 'da frente'} "
@@ -290,7 +293,7 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
                     if aj:
                         geo = (round(geo[0] * float(aj.get("escala", 1.0)), 4),
                                round(geo[1] + float(aj.get("deslocar_topo_rel", 0.0)), 4), geo[2])
-                v = Vista(vista, n, str(mk.caminho(cor, vista)), str(mk.caminho(cor, "costas")),
+                v = Vista(vista, n, str(mk.caminho(cor_mk, vista)), str(mk.caminho(cor_mk, "costas")),
                           str(est) if est else None, geo, origem,
                           str(pasta_saida / p.nome / arq),
                           "" if previa else str(pasta_web / arq.replace(".png", ".jpg")),

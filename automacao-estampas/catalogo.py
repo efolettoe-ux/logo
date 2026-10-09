@@ -79,17 +79,18 @@ CONFIG_PADRAO: dict = {
         # 5a cor: já tem mockup ("chumbo-*.png"). Para ativar, troque "ativa" para true.
         {"nome": "Chumbo", "codigo": "CH", "tom": "escuro", "rgb_referencia": [49, 48, 50], "ativa": False,
          "apelidos": ["chumbo", "grafite", "cinza chumbo", "ch"]},
-        # Cores especiais (bicolor): precisam de mockups próprios; sem eles o status é sem_mockup.
+        # Cores "camiseta / cor da estampa" (ex.: Branca / Azul = camiseta branca com estampa azul): usam o
+        # mockup da cor em "mockup"; a estampa vem do mapa (ou da foto da loja, pelo extrair).
         {"nome": "Branca / Azul Claro", "codigo": "BR-AZC", "tom": "claro", "rgb_referencia": [240, 240, 238],
-         "apelidos": ["branca azul claro"], "especial": True},
+         "apelidos": ["branca azul claro"], "especial": True, "mockup": "Branca"},
         {"nome": "Branca / Azul Escuro", "codigo": "BR-AZE", "tom": "claro", "rgb_referencia": [240, 240, 238],
-         "apelidos": ["branca azul escuro"], "especial": True},
+         "apelidos": ["branca azul escuro"], "especial": True, "mockup": "Branca"},
         {"nome": "Branca / Azul", "codigo": "BR-AZL", "tom": "claro", "rgb_referencia": [240, 240, 238],
-         "apelidos": ["branca azul"], "especial": True},
+         "apelidos": ["branca azul"], "especial": True, "mockup": "Branca"},
         {"nome": "Branca / Preta", "codigo": "BR-PT", "tom": "claro", "rgb_referencia": [240, 240, 238],
-         "apelidos": ["branca preta"], "especial": True},
+         "apelidos": ["branca preta"], "especial": True, "mockup": "Branca"},
         {"nome": "Preta / Vermelha", "codigo": "PT-VM", "tom": "escuro", "rgb_referencia": [30, 30, 32],
-         "apelidos": ["preta vermelha"], "especial": True},
+         "apelidos": ["preta vermelha"], "especial": True, "mockup": "Preta"},
     ],
     "palavras_lado": {
         "frente": ["frente", "front", "frontal", "peito", "frt"],
@@ -332,6 +333,7 @@ class Cor:
     apelidos: List[str]
     especial: bool = False
     ativa: bool = True
+    mockup: str = ""          # cor do mockup a usar (cores "camiseta / estampa")
 
 
 def tabela_cores(cfg: dict) -> List[Cor]:
@@ -339,7 +341,7 @@ def tabela_cores(cfg: dict) -> List[Cor]:
     for c in cfg["cores"]:
         out.append(Cor(c["nome"], c["codigo"], c.get("tom", "claro"), tuple(c.get("rgb_referencia", [128, 128, 128])),
                        [chave_cor(a) for a in c.get("apelidos", [])], bool(c.get("especial", False)),
-                       bool(c.get("ativa", True))))
+                       bool(c.get("ativa", True)), c.get("mockup", "")))
     return out
 
 
