@@ -278,6 +278,11 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
                             geo, origem = medidas[(p.handle, lado)], "analise"
                         else:
                             geo, origem = geometria_padrao(lado, cfg, p)
+                    # tamanho das costas (01 e 03): "escala_costas" no config (1.0 = igual à loja)
+                    if lado == "costas":
+                        ec = float(ecfg.get("escala_costas", 0.85))
+                        if abs(ec - 1.0) > 1e-6:
+                            geo = (round(geo[0] * ec, 4), geo[1], geo[2])
                     aj = cfg.get("ajuste_global", {})
                     if aj:
                         geo = (round(geo[0] * float(aj.get("escala", 1.0)), 4),
@@ -483,10 +488,13 @@ def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, 
     if abs(f - 1.0) > 1e-3:
         geo = (geo[0] * f, geo[1], geo[2])
     x, y, w, h = caixa_no_mockup(costas.torso, geo, art.size[1] / float(art.size[0]))
-    # a perspectiva da foto inclinada alarga o corpo; "escala_inclinada" reduz a estampa em volta do
-    # centro dela (1.0 = proporção exata do corpo)
-    ei = float(cfg.get("estampar", {}).get("escala_inclinada", 0.85))
-    x, y, w, h = x + w * (1 - ei) / 2.0, y + h * (1 - ei) / 2.0, w * ei, h * ei
+    # a perspectiva da foto inclinada alarga o corpo; "escala_inclinada" ajusta a estampa só nela,
+    # mantendo o topo (1.0 = mesmo tamanho proporcional da foto 01)
+    ecfg = cfg.get("estampar", {})
+    ei = float(ecfg.get("escala_inclinada", 1.0))
+    x, y, w, h = x + w * (1 - ei) / 2.0, y, w * ei, h * ei
+    # "subir_inclinada": sobe a estampa na foto inclinada (fração da altura do tronco)
+    y -= float(ecfg.get("subir_inclinada", 0.03)) * costas.torso.altura
     # px de trabalho das costas -> px do arquivo -> px do arquivo inclinado -> px de trabalho da inclinada
     kc, ki = costas.escala, mk.escala
     # os 4 cantos da caixa (px das costas -> px do arquivo inclinado -> px de trabalho da inclinada)
