@@ -405,6 +405,23 @@ def segmentar_peca(im: Image.Image, cfg: dict) -> Segmentacao:
         m = _limpar_mascara(m)
         return Segmentacao(m, s, rgb, (255, 255, 255), True)
     rgb = np.asarray(peq.convert("RGB"))
+    peca = _segmentar_fundo_liso(rgb, acfg)
+    h, w, _ = rgb.shape
+    borda = np.zeros((h, w), bool)
+    b = max(2, int(0.006 * max(h, w)))
+    borda[:b, :] = borda[-b:, :] = True
+    borda[:, :b] = borda[:, -b:] = True
+    fr = tuple(int(v) for v in np.median(rgb[borda], axis=0))
+    return Segmentacao(peca, s, rgb, fr, False)
+
+
+def _segmentar_fundo_liso(rgb: np.ndarray, acfg: dict) -> np.ndarray:
+    """Fundo liso (com vinheta suave) -> máscara da peça.
+
+    O fundo é tudo que se liga à borda sem atravessar um contorno (gradiente de luminância) nem mudar
+    muito de cor. Funciona até com camiseta branca em fundo cinza-claro (diferença de 2-3 níveis):
+    o contorno fino da peça vira uma "cerca" que o preenchimento não atravessa.
+    """
     h, w, _ = rgb.shape
     lab = rgb_para_lab(desfocar(rgb.astype(np.float32), 0.7))
     borda = np.zeros((h, w), bool)
@@ -412,23 +429,44 @@ def segmentar_peca(im: Image.Image, cfg: dict) -> Segmentacao:
     borda[:b, :] = borda[-b:, :] = True
     borda[:, :b] = borda[:, -b:] = True
     fundo = np.median(lab[borda], axis=0)
-    spread = np.median(np.abs(lab[borda] - fundo), axis=0)
-    tol = max(float(acfg.get("tolerancia_fundo", 14.0)), 4.0 * float(np.linalg.norm(spread)))
-    dif = lab - fundo
-    dist = np.linalg.norm(dif, axis=-1)
-    croma = np.linalg.norm(dif[..., 1:], axis=-1)
-    # sombra projetada: mesma cor do fundo, só mais escura e suave
-    sombra = (croma < tol * 0.5) & (dif[..., 0] < 0) & (lab[..., 0] > fundo[0] * 0.55)
-    L = lab[..., 0]
-    gy, gx = np.gradient(desfocar(L, 0.8))
+    dist = np.linalg.norm(lab - fundo, axis=-1)
+    spread = float(np.percentile(dist[borda], 95))
+    tol = max(float(acfg.get("tolerancia_fundo", 14.0)), 2.5 * spread)
+    gy, gx = np.gradient(lab[..., 0])
     grad = np.hypot(gx, gy)
-    limiar_grad = max(2.2, float(np.percentile(grad[borda], 99)) * 2.5)
-    permitido = ((dist < tol) | sombra) & (grad < limiar_grad)
-    fundo_m = propagar(borda & permitido, permitido)
-    peca = ~fundo_m
-    peca = _limpar_mascara(peca)
-    fr = tuple(int(v) for v in np.median(rgb[borda], axis=0))
-    return Segmentacao(peca, s, rgb, fr, False)
+    ruido = float(np.percentile(grad[borda], 99.9))
+    melhor = None
+    for fator in (2.5, 1.6, 4.0, 7.0):
+        lim = float(np.clip(fator * ruido, float(acfg.get("limiar_borda_min", 0.12)), 3.0))
+        cerca = dilatar((grad >= lim) | (dist >= tol), 1)
+        fundo_m = propagar(borda & ~cerca, ~cerca)
+        peca = _limpar_mascara(dilatar(~fundo_m, 1))
+        frac = float(peca.mean())
+        if 0.03 < frac < 0.85:
+            return _refinar_contorno(peca, lab, fundo)
+        if melhor is None or abs(frac - 0.3) < abs(float(melhor.mean()) - 0.3):
+            melhor = peca
+    return melhor
+
+
+def _refinar_contorno(peca: np.ndarray, lab: np.ndarray, fundo: np.ndarray) -> np.ndarray:
+    """O preenchimento para no meio do degradê do contorno: numa faixa fina na borda da máscara,
+    cada pixel vai para o lado (tecido ou fundo) cuja cor está mais perto. Só quando tecido e fundo
+    são bem diferentes (camiseta branca em fundo cinza-claro fica como está)."""
+    h, w = peca.shape
+    r = max(2, int(round(0.008 * max(h, w))))
+    miolo = erodir(peca, r + 2)
+    if miolo.sum() < 100:
+        return peca
+    tecido = np.median(lab[miolo], axis=0)
+    sep = float(np.linalg.norm(tecido - fundo))
+    if sep < 12.0:
+        return peca
+    faixa = peca & ~erodir(peca, r)
+    d_t = np.linalg.norm(lab - tecido, axis=-1)
+    d_f = np.linalg.norm(lab - fundo, axis=-1)
+    tirar = faixa & (d_f < d_t)
+    return _limpar_mascara(peca & ~tirar)
 
 
 def _limpar_mascara(m: np.ndarray) -> np.ndarray:
@@ -531,7 +569,7 @@ def classificar_cor(rgb: Tuple[int, int, int], cfg: dict) -> ClassificacaoCor:
     lab = rgb_para_lab(np.array([rgb], np.uint8))[0]
     res = []
     for c in tabela_cores(cfg):
-        if c.especial:
+        if c.especial or not c.ativa:
             continue
         ref = rgb_para_lab(np.array([c.rgb], np.uint8))[0]
         d = lab - ref
@@ -584,6 +622,7 @@ class EstampaDetectada:
     bbox: Tuple[int, int, int, int]  # x0,y0,x1,y1 na imagem original (x1/y1 exclusivos)
     area_rel: float                   # área de tinta / área do tronco
     n_partes: int
+    partes: List[Tuple[int, int, int, int]] = field(default_factory=list)  # bbox de cada pedaço (original)
 
 
 def geometria_relativa(bbox: Tuple[float, float, float, float], torso: Torso) -> dict:
@@ -609,7 +648,7 @@ def caixa_da_geometria(torso: Torso, largura_rel: float, topo_rel: float, centro
 
 
 def detectar_estampa(im: Image.Image, torso: Torso, rgb_tecido: Tuple[int, int, int], cfg: dict,
-                     gola_rel: float = 0.0) -> Optional[EstampaDetectada]:
+                     gola_rel: float = 0.0, mascara: Optional[np.ndarray] = None) -> Optional[EstampaDetectada]:
     """Acha a tinta dentro do tronco: pixels que fogem da cor do tecido (compensando dobras)."""
     acfg = cfg["analise"]
     peq, s = _reduzir(im, int(acfg.get("lado_max_estampa", 1200)))
@@ -618,33 +657,41 @@ def detectar_estampa(im: Image.Image, torso: Torso, rgb_tecido: Tuple[int, int, 
     x0 = int(max(0, t.x0 + 0.03 * t.largura))
     x1 = int(min(W, t.x1 - 0.03 * t.largura))
     y0 = int(max(0, t.topo + max(gola_rel * t.largura, 0.03 * t.largura) + 0.012 * t.largura))
-    y1 = int(min(H, t.base - 0.015 * t.altura))
+    y1 = int(min(H, t.base - 0.04 * t.altura))
     if x1 - x0 < 10 or y1 - y0 < 10:
         return None
     rgb = np.asarray(peq.convert("RGB"))[y0:y1, x0:x1]
+    if mascara is not None:
+        mk = np.asarray(Image.fromarray((mascara * 255).astype(np.uint8)).resize((W, H), Image.BILINEAR)) > 127
+        dentro = erodir(mk, max(2, int(round(float(acfg.get("margem_costura_rel", 0.045)) * t.largura))))[y0:y1, x0:x1]
+    else:
+        dentro = np.ones(rgb.shape[:2], bool)
     lab = rgb_para_lab(rgb)
     ref = rgb_para_lab(np.array([rgb_tecido], np.uint8))[0]
     pl = float(acfg.get("peso_luminancia", 0.55))
     d0 = np.linalg.norm((lab - ref) * np.array([pl, 1, 1], np.float32), axis=-1)
     lim_min = float(acfg.get("limiar_estampa_min", 13.0))
     # 1a passada: candidatos grosseiros; 2a: luminância local do tecido (tira dobras/sombras)
-    cand = dilatar(d0 > lim_min, max(1, int(0.006 * t.largura)))
-    peso = (~cand).astype(np.float32)
+    cand = dilatar((d0 > lim_min) & dentro, max(1, int(0.006 * t.largura)))
+    peso = ((~cand) & dentro).astype(np.float32)
     sig = 0.035 * t.largura
     L_loc = desfocar(lab[..., 0] * peso, sig) / np.maximum(desfocar(peso, sig), 1e-3)
     L_loc = np.where(desfocar(peso, sig) > 0.05, L_loc, ref[0])
     dif = lab - ref
     dif[..., 0] = lab[..., 0] - L_loc
     d = np.linalg.norm(dif * np.array([pl, 1, 1], np.float32), axis=-1)
-    base = d[~cand] if (~cand).sum() > 100 else d.ravel()
+    livre = ~cand & dentro
+    base = d[livre] if livre.sum() > 100 else d[dentro].ravel()
     med = float(np.median(base))
     mad = float(np.median(np.abs(base - med))) * 1.4826
     limiar = max(lim_min, med + 4.0 * mad)
     m = d > limiar
     # limpeza: fecha traços de letras, remove pontinhos
     rc = max(1, int(round(0.004 * t.largura)))
-    m = erodir(dilatar(m, rc), rc) & (d > limiar * 0.5)
+    m = erodir(dilatar(m, rc), rc) & (d > limiar * 0.5) & dentro
     comp = rotular(m)
+    borda_util = dentro & ~erodir(dentro, max(3, int(0.04 * t.largura)))
+    borda_util[[0, -1], :] = True
     area_torso = t.largura * t.altura
     amin = float(acfg.get("area_min_componente", 0.00025)) * area_torso
     manter = []
@@ -652,16 +699,57 @@ def detectar_estampa(im: Image.Image, torso: Torso, rgb_tecido: Tuple[int, int, 
         bx0, by0, bx1, by1 = comp.bbox[i]
         if comp.area[i] < amin or (bx1 - bx0) < 3 or (by1 - by0) < 3:
             continue
+        # risco comprido e fino encostado na borda do tecido = costura, barra ou dobra
+        lw, lh = bx1 - bx0, by1 - by0
+        if ((min(lw, lh) < 0.06 * max(lw, lh) and max(lw, lh) > 0.15 * t.largura)
+                or min(lw, lh) < 0.03 * t.largura):
+            enc = borda_util[by0:by1, bx0:bx1] & (comp.rotulos[by0:by1, bx0:bx1] == i + 1)
+            if enc.any():
+                continue
+        # linha fina na lateral (costura da manga sobre o corpo, perto da axila)
+        ccx0 = (bx0 + bx1) / 2.0 + x0
+        if lw < 0.03 * t.largura and lh > 2.0 * lw and abs(ccx0 - t.cx) > 0.33 * t.largura:
+            continue
+        # etiqueta da gola (logo "Pallacio" pequeno logo abaixo da gola, no centro): não é estampa
+        ccx = (bx0 + bx1) / 2.0 + x0
+        if (abs(ccx - t.cx) < 0.08 * t.largura and by0 + y0 < t.topo + 0.16 * t.largura
+                and (bx1 - bx0) < 0.14 * t.largura and (by1 - by0) < 0.12 * t.largura):
+            continue
         manter.append(i)
     if not manter:
         return None
+    manter = _agrupar_principal(manter, comp, 0.12 * t.largura)
     bb = comp.bbox[manter]
     bx0, by0 = bb[:, 0].min() + x0, bb[:, 1].min() + y0
     bx1, by1 = bb[:, 2].max() + x0, bb[:, 3].max() + y0
     k = 1.0 / s
     area = float(comp.area[manter].sum()) / area_torso
+    partes = [tuple(int(round(v * k)) for v in (b[0] + x0, b[1] + y0, b[2] + x0, b[3] + y0)) for b in bb]
     return EstampaDetectada((int(round(bx0 * k)), int(round(by0 * k)), int(round(bx1 * k)), int(round(by1 * k))),
-                            round(area, 5), len(manter))
+                            round(area, 5), len(manter), partes)
+
+
+def _agrupar_principal(ids: List[int], comp: "Componentes", folga: float) -> List[int]:
+    """Fica com o grupo da maior mancha: junta pedaços próximos (letras, partes do desenho) e descarta
+    pontinhos soltos longe (fiapo, sombra de costura). Pedaço grande (>=15% do maior) sempre fica."""
+    ids = sorted(ids, key=lambda i: -comp.area[i])
+    maior = comp.area[ids[0]]
+    grupo = [ids[0]]
+    caixa = comp.bbox[ids[0]].astype(float).copy()
+    resto = ids[1:]
+    mudou = True
+    while mudou and resto:
+        mudou = False
+        for i in list(resto):
+            b = comp.bbox[i]
+            dx = max(0.0, caixa[0] - b[2], b[0] - caixa[2])
+            dy = max(0.0, caixa[1] - b[3], b[1] - caixa[3])
+            if comp.area[i] >= 0.15 * maior or max(dx, dy) <= folga:
+                grupo.append(i)
+                resto.remove(i)
+                caixa = np.array([min(caixa[0], b[0]), min(caixa[1], b[1]), max(caixa[2], b[2]), max(caixa[3], b[3])], float)
+                mudou = True
+    return grupo
 
 
 # ---------------------------------------------------------------------------
@@ -715,7 +803,7 @@ def analisar_imagem(fonte, cfg: dict, margem_recorte: float = 0.06) -> AnaliseIm
     rgb_tec = cor_tecido(seg.rgb, seg.mascara, t_red)
     cor = classificar_cor(rgb_tec, cfg)
     gola = medir_gola(seg.rgb, seg.mascara, t_red, rgb_tec)
-    est = detectar_estampa(im, torso, rgb_tec, cfg, gola)
+    est = detectar_estampa(im, torso, rgb_tec, cfg, gola, seg.mascara)
     geo = geometria_relativa(est.bbox, torso) if est else None
     rec = None
     if est:
@@ -726,34 +814,110 @@ def analisar_imagem(fonte, cfg: dict, margem_recorte: float = 0.06) -> AnaliseIm
     return AnaliseImagem(im.size[0], im.size[1], torso, rgb_tec, cor, gola, est, geo, rec)
 
 
-def remover_fundo(im: Image.Image, tolerancia: float = 18.0) -> Tuple[Image.Image, bool]:
-    """Arte sem transparência (JPG...): tira a cor lisa da borda por flood fill a partir das bordas.
+def _fundo_suave(rgb: np.ndarray, borda: np.ndarray) -> np.ndarray:
+    """Modelo do fundo: superfície quadrática (por canal, em Lab) ajustada nos pixels da borda.
 
-    Mantém brancos internos (só some o que encosta na borda). Retorna (RGBA, removeu?).
+    Aguenta vinheta/degradê leve das artes geradas por IA (fundo mais escuro nos cantos etc.).
+    """
+    h, w, _ = rgb.shape
+    lab = rgb_para_lab(rgb)
+    ys, xs = np.nonzero(borda)
+    sel = slice(None, None, max(1, len(ys) // 4000))
+    ys, xs = ys[sel], xs[sel]
+    def base(yv, xv):
+        u, v = xv / float(w) - 0.5, yv / float(h) - 0.5
+        return np.stack([np.ones_like(u), u, v, u * u, v * v, u * v], axis=-1)
+    A = base(ys.astype(np.float32), xs.astype(np.float32))
+    alvo = lab[ys, xs]
+    # ajuste robusto: 2 passadas descartando pixels de borda que já são arte
+    peso = np.ones(len(ys), bool)
+    coef = None
+    for _ in range(3):
+        coef, *_ = np.linalg.lstsq(A[peso], alvo[peso], rcond=None)
+        res = np.linalg.norm(A @ coef - alvo, axis=-1)
+        lim = max(3.0, 3.0 * float(np.median(res[peso])))
+        peso = res < lim
+        if peso.sum() < 20:
+            break
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    return (base(yy, xx) @ coef).astype(np.float32), lab, float(np.median(res[peso])) if peso.any() else 99.0
+
+
+def remover_fundo(im: Image.Image, tolerancia: float = 16.0, buracos_area_max: float = 0.004) -> Tuple[Image.Image, bool]:
+    """Arte sem transparência (JPG...): tira o fundo liso (branco, preto ou outra cor, com degradê leve).
+
+    1. modela o fundo a partir da borda (superfície suave);
+    2. preenche a partir da borda tudo que é "fundo" (perto do modelo) e conectado à borda;
+    3. buracos pequenos fechados da cor exata do fundo (miolo de letras: o, a, e) também saem;
+       áreas internas grandes da mesma cor (ex.: um desenho branco numa arte de fundo branco) ficam;
+    4. na transição, "color to alpha": alfa = quanto o pixel se afasta do fundo e a cor é
+       descontaminada (tira a mistura com o fundo) — sem halo branco/preto na camiseta.
+    Retorna (RGBA, removeu?). Se a borda não for lisa, devolve a imagem como está.
     """
     rgb = np.asarray(im.convert("RGB"))
     h, w, _ = rgb.shape
-    lab = rgb_para_lab(rgb)
     borda = np.zeros((h, w), bool)
-    borda[0, :] = borda[-1, :] = True
-    borda[:, 0] = borda[:, -1] = True
-    fundo = np.median(lab[borda], axis=0)
-    if np.median(np.linalg.norm(lab[borda] - fundo, axis=-1)) > tolerancia:
+    b = max(1, int(0.004 * max(h, w)))
+    borda[:b, :] = borda[-b:, :] = True
+    borda[:, :b] = borda[:, -b:] = True
+    fundo_lab, lab, ruido = _fundo_suave(rgb, borda)
+    dist = np.linalg.norm(lab - fundo_lab, axis=-1)
+    if float(np.median(dist[borda])) > tolerancia * 0.6 or float(np.mean(dist[borda] < tolerancia)) < 0.6:
         return im.convert("RGBA"), False  # borda não é lisa: não mexe
-    dist = np.linalg.norm(lab - fundo, axis=-1)
-    fora = propagar(borda & (dist < tolerancia), dist < tolerancia)
+    tol = max(tolerancia, 4.0 * ruido)
+    fora = propagar(borda & (dist < tol), dist < tol)
     if fora.mean() < 0.02:
         return im.convert("RGBA"), False
-    # alpha suave na transição (antisserrilhado) + "descontaminação" da cor do fundo
-    a = np.clip((dist - tolerancia * 0.35) / (tolerancia * 0.65), 0, 1).astype(np.float32)
-    perto = dilatar(fora, 1)
-    alpha = np.where(fora & ~(perto & ~erodir(fora, 1)), 0.0, 1.0).astype(np.float32)
-    borda_t = perto & ~erodir(fora, 1)
-    alpha[borda_t] = a[borda_t]
-    alpha[~perto] = 1.0
-    cor = rgb.astype(np.float32)
-    fr = np.median(rgb[borda], axis=0).astype(np.float32)
+    # buracos pequenos (miolo de letras) da cor do fundo
+    resto = ~fora & (dist < tol * 0.6)
+    if resto.any() and buracos_area_max > 0:
+        comp = rotular(resto)
+        lim = buracos_area_max * h * w
+        for i in range(comp.n):
+            if comp.area[i] <= lim:
+                x0, y0, x1, y1 = comp.bbox[i]
+                fora[y0:y1, x0:x1] |= comp.rotulos[y0:y1, x0:x1] == i + 1
+    # alfa: 0 no fundo; transição suave numa faixa estreita em volta do fundo; 1 no resto
+    faixa = dilatar(fora, 2) & ~erodir(fora, 1)
+    a_suave = np.clip((dist - tol * 0.5) / (tol * 1.5), 0.0, 1.0).astype(np.float32)
+    alpha = np.ones((h, w), np.float32)
+    alpha[fora] = 0.0
+    alpha[faixa] = np.where(fora[faixa], np.minimum(a_suave[faixa], 0.5) * (a_suave[faixa] > 0.15), a_suave[faixa])
+    alpha[faixa & ~fora] = np.maximum(alpha[faixa & ~fora], 0.0)
+    # descontaminação: p = a*c + (1-a)*fundo -> c = (p - (1-a)*fundo) / a
+    fundo_rgb = _lab_para_rgb(fundo_lab)
+    cor = rgb.astype(np.float32) / 255.0
     am = np.maximum(alpha, 1e-3)[..., None]
-    cor = np.where(borda_t[..., None], np.clip((cor - fr * (1 - am)) / am, 0, 255), cor)
-    out = np.dstack([cor, alpha * 255]).round().astype(np.uint8)
+    lin = srgb_para_linear(cor)
+    flin = srgb_para_linear(fundo_rgb)
+    limpo = np.clip((lin - (1 - am) * flin) / am, 0.0, 1.0)
+    cor = np.where((faixa & (alpha < 0.999))[..., None], linear_para_srgb(limpo), cor)
+    out = np.dstack([cor * 255.0, alpha * 255.0]).round().clip(0, 255).astype(np.uint8)
     return Image.fromarray(out, "RGBA"), True
+
+
+def _lab_para_rgb(lab: np.ndarray) -> np.ndarray:
+    """Lab (D65) -> sRGB 0-1."""
+    L, A, B = lab[..., 0], lab[..., 1], lab[..., 2]
+    fy = (L + 16) / 116
+    fx = fy + A / 500
+    fz = fy - B / 200
+    def inv(f):
+        return np.where(f ** 3 > 0.008856, f ** 3, (f - 16 / 116) / 7.787)
+    xyz = np.stack([inv(fx) * 0.95047, inv(fy), inv(fz) * 1.08883], axis=-1)
+    M = np.array([[3.2406, -1.5372, -0.4986], [-0.9689, 1.8758, 0.0415], [0.0557, -0.2040, 1.0570]], np.float32)
+    lin = np.clip(xyz @ M.T, 0, 1)
+    return linear_para_srgb(lin)
+
+
+def carregar_estampa(caminho, cfg: Optional[dict] = None) -> Tuple[Image.Image, bool]:
+    """Arte pronta para estampar: RGBA, fundo liso removido se não tiver transparência, bordas cortadas.
+
+    Retorna (RGBA, fundo_removido).
+    """
+    im = carregar_imagem(caminho)
+    removido = False
+    if not tem_transparencia(im):
+        fcfg = (cfg or {}).get("fundo_estampa", {})
+        im, removido = remover_fundo(im, float(fcfg.get("tolerancia", 16.0)), float(fcfg.get("buracos_area_max", 0.004)))
+    return recortar_alpha(im.convert("RGBA")), removido

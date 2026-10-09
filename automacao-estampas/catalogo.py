@@ -50,12 +50,14 @@ CONFIG_PADRAO: dict = {
         "camiseta": {
             "tipo_csv": ["T-Shirt"],
             "sufixos_titulo": [" T-SHIRT", " TSHIRT", " T SHIRT", " TEE"],
-            "pasta_mockups": "MOCKUPS FINAIS/CAMISETAS 5 CORES",
+            # Primeira pasta que existir (relativa à pasta do projeto). Também dá para usar --mockups.
+            "pasta_mockups": ["mockups", "CAMISETAS 5 CORES", "CAMISETAS 5 CORES - cópia",
+                              "MOCKUPS FINAIS/CAMISETAS 5 CORES"],
         },
         "moletom": {
             "tipo_csv": ["Hoodie"],
             "sufixos_titulo": [" HOODIE", " MOLETOM"],
-            "pasta_mockups": "MOCKUPS FINAIS/MOLETONS",
+            "pasta_mockups": ["mockups-moletom", "MOCKUPS FINAIS/MOLETONS"],
         },
     },
     "produtos": {
@@ -65,14 +67,18 @@ CONFIG_PADRAO: dict = {
     },
     # Tabela de cores: adicione a 5a cor aqui (nome, código, apelidos, tom e RGB de referência).
     "cores": [
-        {"nome": "Branca", "codigo": "BR", "tom": "claro", "rgb_referencia": [240, 240, 238],
+        # rgb_referencia = cor do tecido medida nas fotos atuais da loja (JA FOI, mediana de 24 fotos por cor)
+        {"nome": "Branca", "codigo": "BR", "tom": "claro", "rgb_referencia": [241, 241, 243],
          "apelidos": ["branca", "branco", "white", "br", "wht"]},
-        {"nome": "Off White", "codigo": "OW", "tom": "claro", "rgb_referencia": [236, 229, 212],
+        {"nome": "Off White", "codigo": "OW", "tom": "claro", "rgb_referencia": [240, 234, 221],
          "apelidos": ["off white", "offwhite", "off-white", "off", "ow", "creme", "cream", "perola"]},
-        {"nome": "Preta", "codigo": "PT", "tom": "escuro", "rgb_referencia": [30, 30, 32],
+        {"nome": "Preta", "codigo": "PT", "tom": "escuro", "rgb_referencia": [23, 23, 22],
          "apelidos": ["preta", "preto", "black", "pt", "blk"]},
-        {"nome": "Azul Marinho", "codigo": "AZ", "tom": "escuro", "rgb_referencia": [34, 40, 64],
+        {"nome": "Azul Marinho", "codigo": "AZ", "tom": "escuro", "rgb_referencia": [40, 47, 67],
          "apelidos": ["azul marinho", "marinho", "navy", "azul", "az"]},
+        # 5a cor: já tem mockup ("chumbo-*.png"). Para ativar, troque "ativa" para true.
+        {"nome": "Chumbo", "codigo": "CH", "tom": "escuro", "rgb_referencia": [49, 48, 50], "ativa": False,
+         "apelidos": ["chumbo", "grafite", "cinza chumbo", "ch"]},
         # Cores especiais (bicolor): precisam de mockups próprios; sem eles o status é sem_mockup.
         {"nome": "Branca / Azul Claro", "codigo": "BR-AZC", "tom": "claro", "rgb_referencia": [240, 240, 238],
          "apelidos": ["branca azul claro"], "especial": True},
@@ -89,13 +95,49 @@ CONFIG_PADRAO: dict = {
         "frente": ["frente", "front", "frontal", "peito", "frt"],
         "costas": ["costas", "back", "verso", "tras", "traseira", "costa"],
     },
-    # Nome de arquivo do mockup -> {"cor": "...", "lado": "frente|costas"}; vence a detecção automática.
-    "mockups_explicitos": {},
+    # Mockups lisos: o nome do arquivo diz cor e vista (ex.: "preta-costas.png", "off-white-close-costas.png").
+    "mockups": {
+        "palavras_vista": {
+            "close-costas": ["close costas", "close", "detalhe", "zoom"],
+            "frente": ["frente", "front", "frontal"],
+            "costas": ["costas", "back", "verso"],
+        },
+        # Nome do arquivo -> {"cor": "Preta", "vista": "frente|costas|close-costas"}; vence a detecção pelo nome.
+        "explicitos": {},
+        # Tronco marcado à mão no calibrador (frações da imagem), por nome de arquivo do mockup.
+        "torso_manual": {},
+    },
     "nomes": {
         "prefixo": "PALL",
         # Frente sem estampa (produto só com costas): "exportar" gera a frente lisa como 02; "pular" não gera.
         "frente_lisa": "exportar",
         "costas_lisa": "pular",
+    },
+    # Onde a estampa vai quando o produto ainda não tem medida (origem=padrao). Medido nas 12 camisetas
+    # JA FOI (96 fotos): costas = mediana de 48 fotos; frente = logo pequeno no peito esquerdo (36 fotos).
+    # largura_rel = largura da estampa / largura do tronco; topo_rel = (topo da estampa - gola) / altura do
+    # tronco; centro_x_rel = (centro da estampa - centro do tronco) / largura do tronco (+ = direita da foto).
+    "geometria_padrao": {
+        "costas": {"largura_rel": 0.63, "topo_rel": 0.196, "centro_x_rel": 0.0},
+        "frente": {"largura_rel": 0.22, "topo_rel": 0.255, "centro_x_rel": 0.255},
+        "frente_grande": {"largura_rel": 0.60, "topo_rel": 0.20, "centro_x_rel": 0.0},
+    },
+    # Estampa da frente com largura_rel acima disso é "grande" (centralizada), abaixo é logo de peito.
+    "limite_frente_grande": 0.40,
+    # Imagem final igual às fotos da loja: quadrado, fundo cinza-claro, peça ocupando a mesma fração.
+    # Medido nas fotos JA FOI (1254x1254): fundo RGB(237,237,237) (230-244 com a vinheta); peça com
+    # 58,4% da largura e 60,0% da altura do quadro, centro em (50,1%, 51,2%).
+    "enquadramento": {
+        "formato": "quadrado",          # quadrado | original
+        "lado": 2048,
+        "fundo": "cor",                 # cor | transparente
+        "cor_fundo": [237, 237, 237],
+        "ocupacao_largura": 0.584,
+        "ocupacao_altura": 0.600,
+        "centro": [0.501, 0.512],
+        "sombra_opacidade": 0.0,        # sombra suave sob a peça (0 = sem; experimente 0.12)
+        "close": "preencher",           # close-costas: preencher (quadrado sem bordas) | inteiro
+        "salvar_png_transparente": True,
     },
     "analise": {
         "lado_max_segmentacao": 600,
@@ -104,6 +146,8 @@ CONFIG_PADRAO: dict = {
         "limiar_estampa_min": 13.0,
         "peso_luminancia": 0.55,
         "area_min_componente": 0.00025,
+        "limiar_borda_min": 0.12,
+        "margem_costura_rel": 0.045,
     },
     "realismo": {
         "opacidade_tinta": 0.95,
@@ -122,6 +166,7 @@ CONFIG_PADRAO: dict = {
         "web_lado_max": 2048,
         "web_qualidade": 88,
         "previa_lado_max": 900,
+        "previa_lado": 700,
         "contato_miniatura": 200,
         "contato_por_folha": 240,
     },
@@ -230,13 +275,15 @@ class Cor:
     rgb: Tuple[int, int, int]
     apelidos: List[str]
     especial: bool = False
+    ativa: bool = True
 
 
 def tabela_cores(cfg: dict) -> List[Cor]:
     out = []
     for c in cfg["cores"]:
         out.append(Cor(c["nome"], c["codigo"], c.get("tom", "claro"), tuple(c.get("rgb_referencia", [128, 128, 128])),
-                       [chave_cor(a) for a in c.get("apelidos", [])], bool(c.get("especial", False))))
+                       [chave_cor(a) for a in c.get("apelidos", [])], bool(c.get("especial", False)),
+                       bool(c.get("ativa", True))))
     return out
 
 
