@@ -146,6 +146,8 @@ CONFIG_PADRAO: dict = {
         # Fotos extras das costas: a inclinada (mockup "*-costas-inclinada.png") entra como 03 sempre que
         # existir; o close ("*-close-costas.png") só entra se usar_close for true (vira 04).
         "usar_close": False,
+        # Frente sem arquivo de arte: "liso" gera a frente só na cor; "faltando" deixa sem a foto.
+        "frente_sem_arte": "liso",
         # Tamanho da estampa das costas (fotos 01 e 03) em relação à loja: 0.92 = 8% menor.
         "escala_costas": 0.92,
         # Ajustes só da foto inclinada: tamanho extra (relativo à 01; 0.924 mantém a 03 com 85% do tamanho da loja) e quanto subir a estampa
@@ -183,16 +185,16 @@ CONFIG_PADRAO: dict = {
     "realismo": {
         # cobertura da tinta: <1 deixa a malha aparecer um pouco nos meios-tons; onde a tinta é bem mais
         # clara que o tecido (tinta branca na camisa preta) a cobertura sobe até 1 (branco fica branco).
-        "opacidade_tinta": 0.95,
-        "forca_sombra": 0.9,
-        "forca_luz": 0.35,
+        "opacidade_tinta": 0.93,
+        "forca_sombra": 1.0,
+        "forca_luz": 0.45,
         "brilho_tecido": 0.25,
-        "forca_textura": 0.55,
+        "forca_textura": 0.9,
         "deslocamento_max_rel": 0.006,
         "deslocamento_max_px": 7.0,
         "forca_deslocamento": 1.0,
-        "suavizar_borda_px": 0.5,
-        "granulado_tinta": 0.018,
+        "suavizar_borda_px": 0.9,
+        "granulado_tinta": 0.035,
         "sigma_dobras_rel": 0.006,
     },
     "saida": {

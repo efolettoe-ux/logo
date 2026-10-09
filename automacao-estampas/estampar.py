@@ -224,6 +224,9 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
                 continue
             tem = {lado: bool(l and l.tem_estampa) for lado, l in linhas.items()}
             falta = [lado for lado, l in linhas.items() if l is not None and not l.eh_liso and not l.tem_estampa]
+            # frente sem arquivo de arte: sai a frente lisa (só a cor), para todo produto ter a foto da frente
+            if "frente" in falta and cfg.get("estampar", {}).get("frente_sem_arte", "liso") == "liso":
+                falta.remove("frente")
             ecfg = cfg.get("estampar", {})
             if falta and (ecfg.get("so_cores_completas", False) or not (tem["costas"] or tem["frente"])):
                 # config pede só jogos completos (ou não há arte nenhuma): não gera nada desta cor

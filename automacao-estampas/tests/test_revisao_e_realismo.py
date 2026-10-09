@@ -54,7 +54,14 @@ class TestRevisarEFalta(_Projeto):
         ts2 = {t.cor: t for t in E.planejar(self.proj, mapa, self.mk, self.prods, incluir_revisar=True)}
         self.assertEqual({v.vista: v.status for v in ts2["Preta"].vistas}["costas"], "")
 
+    def test_frente_sem_arte_sai_lisa(self):
+        mapa = [LinhaMapa("x", "X", "Preta", "costas", "a.png"), LinhaMapa("x", "X", "Preta", "frente", "")]
+        t = E.planejar(self.proj, mapa, self.mk, self.prods[:1], filtro_cores=["Preta"])[0]
+        st = {(v.vista, v.numero): (v.status, v.estampa) for v in t.vistas}
+        self.assertEqual(st[("frente", 2)], ("", None))  # padrão: frente lisa, só na cor
+
     def test_falta_so_a_frente_gera_as_costas(self):
+        self.cfg["estampar"]["frente_sem_arte"] = "faltando"
         mapa = [LinhaMapa("x", "X", "Preta", "costas", "a.png"), LinhaMapa("x", "X", "Preta", "frente", "")]
         t = E.planejar(self.proj, mapa, self.mk, self.prods[:1], filtro_cores=["Preta"])[0]
         self.assertFalse(t.status)
@@ -68,6 +75,7 @@ class TestRevisarEFalta(_Projeto):
 
     def test_so_cores_completas(self):
         self.cfg["estampar"]["so_cores_completas"] = True
+        self.cfg["estampar"]["frente_sem_arte"] = "faltando"
         mapa = [LinhaMapa("x", "X", "Preta", "costas", "a.png"), LinhaMapa("x", "X", "Preta", "frente", "")]
         t = E.planejar(self.proj, mapa, self.mk, self.prods[:1], filtro_cores=["Preta"])[0]
         self.assertEqual(t.status, "sem_estampa")
