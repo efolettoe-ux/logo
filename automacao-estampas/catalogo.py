@@ -154,6 +154,10 @@ CONFIG_PADRAO: dict = {
         # (fração da altura do tronco).
         "escala_inclinada": 0.924,
         "subir_inclinada": 0.015,
+        # Giro extra da estampa na inclinada (graus, positivo = anti-horário) e deslocamento horizontal
+        # (fração da largura da foto, negativo = esquerda). Calibrados no mockup inclinado atual.
+        "girar_inclinada": 7.0,
+        "mover_inclinada": -0.015,
     },
     # Estampa da frente com largura_rel acima disso é "grande" (centralizada), abaixo é logo de peito.
     "limite_frente_grande": 0.40,
