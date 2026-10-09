@@ -5,6 +5,7 @@ Planejamento (o que gerar) é separado da execução (pixels), para rodar em par
 from __future__ import annotations
 
 import csv
+import math
 import os
 import statistics
 import time
@@ -452,6 +453,17 @@ def _arte_da_vista(v: Vista, cfg: dict, raiz: str) -> Image.Image:
     return art
 
 
+def _coef_perspectiva(destino, origem):
+    """Coeficientes do PIL (PERSPECTIVE) que levam cada ponto de destino ao ponto de origem."""
+    import numpy as np
+    m, b = [], []
+    for (X, Y), (x, y) in zip(destino, origem):
+        m.append([X, Y, 1, 0, 0, 0, -x * X, -x * Y])
+        m.append([0, 0, 0, X, Y, 1, -y * X, -y * Y])
+        b += [x, y]
+    return tuple(np.linalg.solve(np.array(m, float), np.array(b, float)))
+
+
 def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, manuais):
     """Costas inclinada: calcula a caixa da estampa nas costas retas e leva para a foto inclinada
     pelo mesmo giro/escala da peça, então estampa com a luz e as dobras do mockup inclinado."""
@@ -473,15 +485,27 @@ def _renderizar_inclinada(v: Vista, cfg: dict, raiz: str, lado_max, lado_saida, 
     x, y, w, h = caixa_no_mockup(costas.torso, geo, art.size[1] / float(art.size[0]))
     # px de trabalho das costas -> px do arquivo -> px do arquivo inclinado -> px de trabalho da inclinada
     kc, ki = costas.escala, mk.escala
-    esc = reg.escala * ki / kc
-    W2, H2 = max(1, round(w * esc)), max(1, round(h * esc))
-    # arte já no tamanho final (pré-multiplicada) e girada em volta do centro
-    rgb, a = redimensionar_premultiplicado(art, W2, H2)
+    # os 4 cantos da caixa (px das costas -> px do arquivo inclinado -> px de trabalho da inclinada)
+    cantos = [(x, y), (x + w, y), (x + w, y + h), (x, y + h)]
+    quad = []
+    for px_, py_ in cantos:
+        X, Y = reg.ponto(px_ / kc, py_ / kc)
+        quad.append((X * ki, Y * ki))
+    qx = [q[0] for q in quad]
+    qy = [q[1] for q in quad]
+    bx0, by0 = math.floor(min(qx)), math.floor(min(qy))
+    W2, H2 = int(math.ceil(max(qx))) - bx0 + 1, int(math.ceil(max(qy))) - by0 + 1
+    # arte no tamanho aproximado do destino (pré-multiplicada) e levada ao quadrilátero em perspectiva
+    lw = max(1, round(math.hypot(quad[1][0] - quad[0][0], quad[1][1] - quad[0][1])))
+    lh = max(1, round(math.hypot(quad[3][0] - quad[0][0], quad[3][1] - quad[0][1])))
+    rgb, a = redimensionar_premultiplicado(art, lw, lh)
     arr = np.dstack([np.clip(rgb * 255.0, 0, 255), np.clip(a * 255.0, 0, 255)]).astype(np.uint8)
-    girada = Image.fromarray(arr, "RGBa").rotate(-reg.angulo, resample=Image.BICUBIC, expand=True).convert("RGBA")
-    cx, cy = reg.ponto((x + w / 2.0) / kc, (y + h / 2.0) / kc)
-    cx, cy = cx * ki, cy * ki
-    caixa = (cx - girada.size[0] / 2.0, cy - girada.size[1] / 2.0, float(girada.size[0]), float(girada.size[1]))
+    destino = [(qx_ - bx0, qy_ - by0) for qx_, qy_ in quad]
+    origem = [(0, 0), (lw, 0), (lw, lh), (0, lh)]
+    coef = _coef_perspectiva(destino, origem)
+    girada = Image.fromarray(arr, "RGBa").transform((W2, H2), Image.PERSPECTIVE, coef, Image.BICUBIC).convert("RGBA")
+    cy = sum(qy) / 4.0
+    caixa = (float(bx0), float(by0), float(W2), float(H2))
     im = aplicar_estampa(mk, girada, caixa, cfg, escala_detalhe=1.0)
     return enquadrar(im, cfg, lado_saida, foco_y=cy)
 

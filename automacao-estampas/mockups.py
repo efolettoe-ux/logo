@@ -314,23 +314,51 @@ def registro_em_cache(costas: Path, close: Path, cache_json: Path, manual: Optio
 # ---------------------------------------------------------------------------------------------
 @dataclass
 class RegistroInclinado:
-    """Ponto (x, y) das costas retas (px do arquivo) -> ponto na foto inclinada (px do arquivo)."""
-    angulo: float      # graus (sentido da matriz abaixo, com y para baixo)
-    escala: float
-    ax: float          # centro da peça nas costas retas
-    ay: float
-    bx: float          # centro da peça na inclinada
-    by: float
-    nota: float        # IoU dos contornos (1 = encaixe perfeito)
+    """Leva um ponto das costas retas (px do arquivo) para a foto inclinada (px do arquivo).
+
+    Na foto inclinada a peça está girada e um pouco em perspectiva (corpo mais largo e mais curto, barra
+    torta). Por isso o mapeamento é feito no quadro "desgirado": a altura é proporcional a partir da gola
+    e, em cada altura, a posição horizontal é proporcional entre as duas laterais reais do corpo.
+    """
+    angulo: float            # giro costas -> inclinada (graus; PIL gira anti-horário com valor positivo)
+    c_x0: float              # tronco das costas retas (px do arquivo)
+    c_largura: float
+    c_topo: float
+    c_altura: float
+    u_topo: float            # tronco no quadro desgirado (px reduzidos)
+    u_altura: float
+    esq: Tuple[float, float]  # lateral esquerda do corpo: x = a*y + b (quadro desgirado)
+    dir: Tuple[float, float]
+    centro_u: Tuple[float, float]  # centro do quadro desgirado
+    centro_i: Tuple[float, float]  # centro da imagem inclinada reduzida
+    k: float                 # px reduzidos por px do arquivo inclinado
+    nota: float
 
     def ponto(self, x: float, y: float) -> Tuple[float, float]:
+        v = (y - self.c_topo) / self.c_altura
+        u = (x - self.c_x0) / self.c_largura
+        yu = self.u_topo + v * self.u_altura
+        xl = self.esq[0] * yu + self.esq[1]
+        xr = self.dir[0] * yu + self.dir[1]
+        xu = xl + u * (xr - xl)
         t = np.radians(self.angulo)
         c, s = np.cos(t), np.sin(t)
-        dx, dy = x - self.ax, y - self.ay
-        return (self.bx + self.escala * (c * dx - s * dy), self.by + self.escala * (s * dx + c * dy))
+        dx, dy = xu - self.centro_u[0], yu - self.centro_u[1]
+        # desgirado -> inclinada: gira de volta (mesma convenção do PIL)
+        xi = self.centro_i[0] + c * dx - s * dy
+        yi = self.centro_i[1] + s * dx + c * dy
+        return xi / self.k, yi / self.k
 
     def para_dict(self) -> dict:
-        return {k: float(getattr(self, k)) for k in ("angulo", "escala", "ax", "ay", "bx", "by", "nota")}
+        d = {}
+        for f in self.__dataclass_fields__:
+            v = getattr(self, f)
+            d[f] = [float(x) for x in v] if isinstance(v, tuple) else float(v)
+        return d
+
+    @classmethod
+    def de_dict(cls, d: dict) -> "RegistroInclinado":
+        return cls(**{k: (tuple(v) if isinstance(v, list) else v) for k, v in d.items()})
 
 
 def _mascara_peca(im: Image.Image, lado: int) -> Tuple[np.ndarray, float]:
@@ -343,11 +371,8 @@ def _mascara_peca(im: Image.Image, lado: int) -> Tuple[np.ndarray, float]:
     return a, k
 
 
-def registrar_inclinada(costas: Image.Image, incl: Image.Image) -> RegistroInclinado:
-    """Busca o giro/escala que melhor encaixa o contorno das costas retas no da foto inclinada."""
-    lado = 360
-    A, ka = _mascara_peca(costas, lado)
-    B, kb = _mascara_peca(incl, lado)
+def _angulo_por_contorno(A: np.ndarray, B: np.ndarray) -> Tuple[float, float]:
+    """Giro que melhor encaixa o contorno A (reto) no B (inclinado). Retorna (graus, IoU)."""
     ya, xa = np.nonzero(A)
     yb, xb = np.nonzero(B)
     ac = (xa.mean(), ya.mean())
@@ -356,40 +381,59 @@ def registrar_inclinada(costas: Image.Image, incl: Image.Image) -> RegistroIncli
     imA = Image.fromarray((A * 255).astype(np.uint8))
     Hb, Wb = B.shape
 
-    def iou(ang, esc, dx=0.0, dy=0.0):
+    def iou(ang, esc):
         t = np.radians(ang)
         c, s = np.cos(t), np.sin(t)
-        # inversa: ponto da inclinada -> ponto das costas
         m = [c / esc, s / esc, 0.0, -s / esc, c / esc, 0.0]
-        cx, cy = bc[0] + dx, bc[1] + dy
-        m[2] = ac[0] - (m[0] * cx + m[1] * cy)
-        m[5] = ac[1] - (m[3] * cx + m[4] * cy)
+        m[2] = ac[0] - (m[0] * bc[0] + m[1] * bc[1])
+        m[5] = ac[1] - (m[3] * bc[0] + m[4] * bc[1])
         R = np.asarray(imA.transform((Wb, Hb), Image.AFFINE, m, Image.BILINEAR)) > 128
         return (R & B).sum() / max((R | B).sum(), 1)
 
-    melhor = max(((iou(a, s0 * f), a, s0 * f) for a in range(-60, 61, 3) for f in (0.94, 1.0, 1.06)))
-    _, ang, esc = melhor
-    dx = dy = 0.0
-    for passo_a, passo_s, passo_d in ((1.0, 0.015, 2.0), (0.4, 0.006, 1.0), (0.15, 0.002, 0.5)):
-        melhorou = True
-        while melhorou:
-            melhorou = False
-            base = iou(ang, esc, dx, dy)
-            for da, ds, ddx, ddy in ((passo_a, 0, 0, 0), (-passo_a, 0, 0, 0), (0, passo_s, 0, 0), (0, -passo_s, 0, 0),
-                                     (0, 0, passo_d, 0), (0, 0, -passo_d, 0), (0, 0, 0, passo_d), (0, 0, 0, -passo_d)):
-                v = iou(ang + da, esc * (1 + ds), dx + ddx, dy + ddy)
-                if v > base + 1e-5:
-                    ang, esc, dx, dy, base, melhorou = ang + da, esc * (1 + ds), dx + ddx, dy + ddy, v, True
-    nota = iou(ang, esc, dx, dy)
-    # volta para pixels dos arquivos originais
-    return RegistroInclinado(ang, esc * ka / kb, ac[0] / ka, ac[1] / ka, (bc[0] + dx) / kb, (bc[1] + dy) / kb, nota)
+    nota, ang, esc = max((iou(a, s0 * f), a, s0 * f) for a in range(-60, 61, 3) for f in (0.94, 1.0, 1.06))
+    for passo in (1.0, 0.4, 0.15):
+        for _ in range(20):
+            cand = max((iou(ang + d, esc), ang + d) for d in (-passo, 0.0, passo))
+            if cand[1] == ang:
+                break
+            nota, ang = cand
+    return ang, nota
+
+
+def registrar_inclinada(costas: Image.Image, incl: Image.Image) -> RegistroInclinado:
+    from imagem import medir_torso
+    A, ka = _mascara_peca(costas, 360)
+    B, kb = _mascara_peca(incl, 360)
+    ang, nota = _angulo_por_contorno(A, B)
+    # tronco das costas retas
+    A, ka = _mascara_peca(costas, 900)
+    tc = medir_torso(A, ka, costas.size)
+    # inclinada desgirada: o giro costas->inclinada foi "ang" na convenção do mapeamento; o PIL
+    # desfaz com rotate(ang)
+    B, kb = _mascara_peca(incl, 900)
+    imB = Image.fromarray((B * 255).astype(np.uint8))
+    up = imB.rotate(ang, resample=Image.BILINEAR, expand=True)
+    U = np.asarray(up) > 128
+    tu = medir_torso(U, 1.0)
+    # laterais do corpo (abaixo da axila): reta x = a*y + b de cada lado
+    ys = np.arange(int(tu.axila + 0.08 * tu.altura), int(tu.base - 0.06 * tu.altura))
+    ys = ys[U[ys].any(axis=1)]
+    xe = np.argmax(U[ys], axis=1).astype(float)
+    xd = (U.shape[1] - 1 - np.argmax(U[ys, ::-1], axis=1)).astype(float)
+    esq = tuple(np.polyfit(ys, xe, 1))
+    dirr = tuple(np.polyfit(ys, xd, 1))
+    return RegistroInclinado(
+        angulo=float(ang), c_x0=tc.x0, c_largura=tc.largura, c_topo=tc.topo, c_altura=tc.base - tc.topo,
+        u_topo=tu.topo, u_altura=tu.base - tu.topo, esq=(float(esq[0]), float(esq[1])),
+        dir=(float(dirr[0]), float(dirr[1])), centro_u=(up.size[0] / 2.0, up.size[1] / 2.0),
+        centro_i=(imB.size[0] / 2.0, imB.size[1] / 2.0), k=kb, nota=float(nota))
 
 
 def registro_inclinada_em_cache(costas: Path, incl: Path, cache_json: Path,
                                 manual: Optional[dict] = None) -> RegistroInclinado:
     if manual:
-        return RegistroInclinado(**{k: float(manual[k]) for k in ("angulo", "escala", "ax", "ay", "bx", "by")}, nota=1.0)
-    chave = f"incl|{costas.name}|{incl.name}|{_impressao(costas)}|{_impressao(incl)}"
+        return RegistroInclinado.de_dict(manual)
+    chave = f"incl2|{costas.name}|{incl.name}|{_impressao(costas)}|{_impressao(incl)}"
     dados = {}
     if cache_json.exists():
         try:
@@ -397,7 +441,7 @@ def registro_inclinada_em_cache(costas: Path, incl: Path, cache_json: Path,
         except Exception:
             dados = {}
     if chave in dados:
-        return RegistroInclinado(**dados[chave])
+        return RegistroInclinado.de_dict(dados[chave])
     reg = registrar_inclinada(carregar_imagem(costas), carregar_imagem(incl))
     dados[chave] = reg.para_dict()
     try:
