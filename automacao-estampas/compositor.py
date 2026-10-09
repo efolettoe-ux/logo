@@ -194,7 +194,7 @@ def aplicar_estampa(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[floa
         peca_suave = np.where(erodir(peca, 1), peca_suave, peca_suave * peca_suave)
     else:
         peca_suave = desfocar(erodir(peca, 1).astype(np.float32), 0.8)
-    a = np.clip(ink_a * float(r.get("opacidade_tinta", 0.95)) * peca_suave, 0.0, 1.0)
+    a_base = np.clip(ink_a * peca_suave, 0.0, 1.0)
 
     cor = ink_rgb / np.maximum(ink_a, 1e-4)[..., None]
     cor_lin = srgb_para_linear(np.clip(cor, 0.0, 1.0))
@@ -210,6 +210,12 @@ def aplicar_estampa(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[floa
         ruido = desfocar(rng.standard_normal((ch, cw)).astype(np.float32), max(0.5, 0.6 * k_det * mk.escala))
         ruido /= max(float(ruido.std()), 1e-6)
         tinta = np.clip(tinta + (gr * ruido)[..., None] * (0.35 + 0.65 * tinta), 0.0, 1.0)
+    # cobertura: opacidade_tinta (<1) nos meios-tons; onde a tinta é bem mais clara que o tecido
+    # (branco na camisa preta) a cobertura vai a 1 — senão o branco vira cinza (0,95*255+0,05*16 = 243)
+    op = float(r.get("opacidade_tinta", 0.95))
+    pesos = np.array([0.2126, 0.7152, 0.0722], np.float32)
+    clareia = np.clip(((tinta @ pesos) - (fab @ pesos) - 0.15) / 0.35, 0.0, 1.0)
+    a = a_base * (op + (1.0 - op) * clareia)
     out_s = fab * (1.0 - a[..., None]) + tinta * a[..., None]
     out = np.clip(out_s * 255.0 + 0.5, 0, 255).astype(np.uint8)
 

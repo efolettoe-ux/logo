@@ -161,7 +161,7 @@ def cmd_estampar(args) -> None:
         print("Aviso: sem o CSV do Shopify; uso só os produtos e cores do mapa.csv.")
     analise = ler_csv_dicts(proj.arquivo("analise_csv"))
     tarefas = E.planejar(proj, mapa, mk, produtos, _lista(args.produto), _lista(args.cor), args.limite,
-                         args.forcar, args.previa, analise)
+                         args.forcar, args.previa, analise, incluir_revisar=args.incluir_revisar)
     n_img = sum(1 for t in tarefas for v in t.vistas if not v.status)
     print(f"Mockups: {pasta_mk.name} ({len(mk.mockups)} arquivos"
           + (f"; desativadas: {', '.join(mk.cores_desativadas)}" if mk.cores_desativadas else "") + ")")
@@ -184,6 +184,12 @@ def cmd_estampar(args) -> None:
         pares = _pares_antes_depois(tarefas, analise)
         antes_depois(pares, proj.arquivo("antes_depois_html"))
         print(f"Antes x depois: {proj.arquivo('antes_depois_html').name}")
+    if cont.get("revisar"):
+        print(f"Atenção: {cont['revisar']} imagem(ns) NÃO foram geradas porque a arte precisa de revisão "
+              "(status revisar no relatorio.csv). Confira no revisao.html; se a arte estiver certa, troque "
+              "revisar para nao no mapa.csv e rode de novo.")
+    if cont.get("sem_estampa"):
+        print(f"Faltam artes: {cont['sem_estampa']} lado(s)/cor(es) sem arquivo (status sem_estampa no relatorio.csv).")
     if cont.get("erro"):
         print(f"Atenção: {cont['erro']} imagem(ns) com erro — veja a coluna observacao em relatorio.csv")
     print(f"Relatório: {proj.arquivo('relatorio_csv')}")
@@ -274,6 +280,9 @@ def montar_parser() -> argparse.ArgumentParser:
     p.add_argument("--workers", type=int, default=max(1, min(4, (__import__('os').cpu_count() or 2) - 1)),
                    help="processos em paralelo (padrão: núcleos - 1, até 4)")
     p.add_argument("--previa", action="store_true", help="prévia rápida em baixa resolução (saida_previa/)")
+    p.add_argument("--incluir-revisar", action="store_true",
+                   help="gera também as artes marcadas revisar=sim no mapa.csv (só para conferir; o normal é "
+                        "revisar e trocar para nao)")
     p.set_defaults(func=cmd_estampar)
 
     p = sub.add_parser("calibrador", help="abre o calibrador (ajuste fino do tronco e da estampa)")

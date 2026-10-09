@@ -40,6 +40,9 @@ class Vista:
     arquivo_transparente: str = ""
     status: str = ""                 # preenchido no planejamento (sem_mockup/pulado) ou na execução
     observacao: str = ""
+    razao_loja: Optional[float] = None   # largura/altura do tronco nas fotos da loja (ajuste de tamanho)
+    checar_residuo: bool = True          # confere restos de fundo na arte antes de estampar
+    ajuste_tinta: str = ""               # coluna ajuste_tinta do mapa.csv (cor da tinta -> cor da loja)
 
 
 @dataclass
@@ -118,6 +121,41 @@ def geometrias_da_analise(linhas: List[dict]) -> Dict[Tuple[str, str], Tuple[flo
     return {k: tuple(round(statistics.median(v), 4) for v in zip(*gs)) for k, gs in grupos.items()}
 
 
+def _pede_revisao(linha: LinhaMapa) -> bool:
+    """Linha com arte que o casar marcou para revisar (fundo sujo, pouca confiança...). Manual nunca."""
+    if linha is None or (linha.origem or "").strip().lower() == "manual":
+        return False
+    return (linha.revisar or "").strip().lower() in ("sim", "s", "yes", "x", "1")
+
+
+def razao_tronco_loja(analise: List[dict], cfg: dict) -> Optional[float]:
+    """Largura/altura do tronco nas fotos atuais da loja (mediana). O mockup novo é mais estreito para
+    a altura dele; a arte é dimensionada pela média geométrica das escalas pela largura e pela altura."""
+    rs = []
+    for l in analise:
+        try:
+            w = float(l["torso_x1"]) - float(l["torso_x0"])
+            h = float(l["torso_base"]) - float(l["torso_topo"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        if w > 0 and h > 0 and 0.3 < w / h < 0.9:
+            rs.append(w / h)
+    t = cfg.get("tamanho", {})
+    if len(rs) >= 4:
+        return round(statistics.median(rs), 4)
+    v = t.get("razao_tronco_loja")
+    return float(v) if v else None
+
+
+def fator_tamanho(razao_loja: Optional[float], torso, cfg: dict) -> float:
+    """Escala extra da largura da arte: (razão da loja / razão do mockup) ** peso_altura."""
+    if not razao_loja or torso is None or torso.altura <= 0:
+        return 1.0
+    peso = float(cfg.get("tamanho", {}).get("peso_altura", 0.5))
+    f = (razao_loja / (torso.largura / torso.altura)) ** peso
+    return float(min(1.25, max(0.8, f)))
+
+
 def geometria_padrao(lado: str, cfg: dict, produto: Optional[Produto] = None) -> Tuple[Tuple[float, float, float], str]:
     gp = cfg["geometria_padrao"]
     chave = lado
@@ -132,9 +170,11 @@ def geometria_padrao(lado: str, cfg: dict, produto: Optional[Produto] = None) ->
 def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
              produtos: Optional[List[Produto]] = None, filtro_produtos: Optional[List[str]] = None,
              filtro_cores: Optional[List[str]] = None, limite: Optional[int] = None, forcar: bool = False,
-             previa: bool = False, analise: Optional[List[dict]] = None) -> List[Tarefa]:
+             previa: bool = False, analise: Optional[List[dict]] = None,
+             incluir_revisar: bool = False) -> List[Tarefa]:
     cfg = proj.cfg
     medidas = geometrias_da_analise(analise or [])
+    razao_loja = razao_tronco_loja(analise or [], cfg)
     mapa: Dict[str, List[LinhaMapa]] = {}
     for l in mapa_linhas:
         mapa.setdefault(l.handle, []).append(l)
@@ -182,8 +222,9 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
                 continue
             tem = {lado: bool(l and l.tem_estampa) for lado, l in linhas.items()}
             falta = [lado for lado, l in linhas.items() if l is not None and not l.eh_liso and not l.tem_estampa]
-            if falta:
-                # linha do mapa sem arquivo (e sem LISO): falta a arte; não gera um jogo incompleto
+            ecfg = cfg.get("estampar", {})
+            if falta and (ecfg.get("so_cores_completas", False) or not (tem["costas"] or tem["frente"])):
+                # config pede só jogos completos (ou não há arte nenhuma): não gera nada desta cor
                 t.status = "sem_estampa"
                 t.observacao = ("falta a arte: " + " e ".join(falta) +
                                 " (ponha o arquivo no mapa.csv ou escreva LISO em arquivo_estampa)")
@@ -192,13 +233,25 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
                 t.status = "liso"
                 t.observacao = "mapa marca os dois lados como lisos"
                 continue
-            nums = numeracao_lados(tem["costas"], tem["frente"], cfg)
+            # numeração prevista: o lado que só está sem arquivo continua com o número dele
+            previsto = {lado: tem[lado] or lado in falta for lado in tem}
+            nums = numeracao_lados(previsto["costas"], previsto["frente"], cfg)
             vistas = [(lado, n) for lado, n in nums.items()]
             if tem["costas"] and mk.tem(cor, "close-costas"):
                 vistas.append(("close-costas", 3))
             for vista, n in sorted(vistas, key=lambda v: v[1]):
                 lado = "costas" if vista == "close-costas" else vista
                 linha = linhas.get(lado)
+                nome_v = NOME_VISTA_SAIDA[vista]
+                arq = nome_arquivo_saida(p.nome, codigo, n, nome_v, "png", cfg)
+                if lado in falta:
+                    v = Vista(vista, n, str(mk.caminho(cor, vista)), str(mk.caminho(cor, "costas")), None, None, "",
+                              str(pasta_saida / p.nome / arq), "", "")
+                    v.status = "sem_estampa"
+                    v.observacao = (f"falta a arte {'das costas' if lado == 'costas' else 'da frente'} "
+                                    "(ponha o arquivo no mapa.csv ou escreva LISO); os outros lados foram gerados")
+                    t.vistas.append(v)
+                    continue
                 est = _resolver_estampa(proj, linha) if (linha and tem[lado]) else None
                 geo, origem = None, ""
                 if est is not None:
@@ -222,14 +275,21 @@ def planejar(proj: Projeto, mapa_linhas: List[LinhaMapa], mk: ResultadoMockups,
                     if aj:
                         geo = (round(geo[0] * float(aj.get("escala", 1.0)), 4),
                                round(geo[1] + float(aj.get("deslocar_topo_rel", 0.0)), 4), geo[2])
-                nome_v = NOME_VISTA_SAIDA[vista]
-                arq = nome_arquivo_saida(p.nome, codigo, n, nome_v, "png", cfg)
                 v = Vista(vista, n, str(mk.caminho(cor, vista)), str(mk.caminho(cor, "costas")),
                           str(est) if est else None, geo, origem,
                           str(pasta_saida / p.nome / arq),
                           "" if previa else str(pasta_web / arq.replace(".png", ".jpg")),
                           "" if previa else str(pasta_transp / p.nome / arq))
-                if est is not None and not Path(est).exists():
+                v.razao_loja = razao_loja if origem != "calibrador" else None
+                v.ajuste_tinta = (linha.ajuste_tinta or "") if linha is not None else ""
+                v.checar_residuo = not incluir_revisar and not (linha is not None and
+                                                                (linha.origem or "").strip().lower() == "manual")
+                if est is not None and _pede_revisao(linha) and not incluir_revisar:
+                    v.status = "revisar"
+                    v.observacao = ("o mapa.csv pede revisão desta arte (" + (linha.observacao or
+                                    f"confiança {linha.confianca}") + "). Confira no revisao.html; se estiver certa, "
+                                    "troque revisar para nao no mapa.csv (ou rode com --incluir-revisar)")
+                elif est is not None and not Path(est).exists():
                     v.status = "sem_estampa"
                     v.observacao = f"arquivo da estampa não encontrado: {est}"
                 elif not forcar and Path(v.arquivo_png).exists():
@@ -294,6 +354,18 @@ def _estampa(caminho: str, cfg: dict, pasta_cache: Optional[Path] = None) -> Ima
     return _ESTAMPAS[caminho]
 
 
+_RESIDUO: Dict[str, Optional[str]] = {}
+
+
+def residuo_da_estampa(caminho: str, cfg: dict, raiz: str) -> Optional[str]:
+    """Restos de fundo na arte pronta (guardado por processo)."""
+    from imagem import residuo_de_fundo
+    if caminho not in _RESIDUO:
+        art = _estampa(caminho, cfg, Path(raiz) / cfg["pastas"].get("analise", "analise") / "estampas_prontas")
+        _RESIDUO[caminho] = residuo_de_fundo(art)
+    return _RESIDUO[caminho]
+
+
 def caixa_no_mockup(torso, geo: Tuple[float, float, float], aspecto: float) -> Tuple[float, float, float, float]:
     from imagem import caixa_da_geometria
     return caixa_da_geometria(torso, geo[0], geo[1], geo[2], aspecto)
@@ -302,7 +374,7 @@ def caixa_no_mockup(torso, geo: Tuple[float, float, float], aspecto: float) -> T
 def renderizar_vista(tarefa: Tarefa, v: Vista, cfg: dict, raiz: str, previa: bool) -> Tuple[Image.Image, Optional[Image.Image]]:
     """Gera a imagem de uma vista (sem salvar). Retorna (final, master transparente)."""
     from compositor import MockupPreparado, aplicar_estampa, enquadrar, preparar_mockup
-    from imagem import Torso
+    from imagem import Torso, ajustar_tinta, ler_ajuste_tinta
     lado_max = int(cfg["saida"].get("previa_lado_max", 900)) if previa else None
     lado_saida = int(cfg["saida"].get("previa_lado", 700)) if previa else int(cfg["enquadramento"].get("lado", 2048))
     manuais = cfg["mockups"].get("torso_manual", {})
@@ -333,14 +405,26 @@ def renderizar_vista(tarefa: Tarefa, v: Vista, cfg: dict, raiz: str, previa: boo
             _CACHE[chave] = preparar_mockup(im, cfg, lado_max=lado_max, torso_de=torso_c)
         mk = _CACHE[chave]
         det = reg.escala * (mk.escala / costas.escala)
+        torso_ref = costas.torso
     else:
         mk = _mockup(v.mockup, cfg, lado_max, manuais.get(Path(v.mockup).name))
         det = 1.0
+        torso_ref = mk.torso
     foco_y = None
     if v.estampa:
         art = _estampa(v.estampa, cfg, Path(raiz) / cfg["pastas"].get("analise", "analise") / "estampas_prontas")
+        aj = ler_ajuste_tinta(v.ajuste_tinta)
+        if aj is not None:
+            chave_aj = ("ajuste", v.estampa, aj)
+            if chave_aj not in _CACHE:
+                _CACHE[chave_aj] = ajustar_tinta(art, aj)
+            art = _CACHE[chave_aj]
         aspecto = art.size[1] / float(art.size[0])
-        caixa = caixa_no_mockup(mk.torso, v.geometria, aspecto)
+        geo = v.geometria
+        f = fator_tamanho(v.razao_loja, torso_ref, cfg)
+        if abs(f - 1.0) > 1e-3:
+            geo = (geo[0] * f, geo[1], geo[2])
+        caixa = caixa_no_mockup(mk.torso, geo, aspecto)
         im = aplicar_estampa(mk, art, caixa, cfg, escala_detalhe=det)
         foco_y = caixa[1] + caixa[3] / 2.0
     else:
@@ -373,6 +457,13 @@ def executar_tarefa(tarefa: Tarefa, cfg: dict, raiz: str, previa: bool) -> Taref
             continue
         t0 = time.time()
         try:
+            if v.estampa and v.checar_residuo and cfg.get("estampar", {}).get("verificar_residuo", True):
+                prob = residuo_da_estampa(v.estampa, cfg, raiz)
+                if prob:
+                    v.status = "revisar"
+                    v.observacao = (prob + ". Use uma versão da arte com fundo transparente (PNG) ou limpe o "
+                                    "fundo; para gerar assim mesmo, ponha origem=manual na linha do mapa.csv")
+                    continue
             final, master = renderizar_vista(tarefa, v, cfg, raiz, previa)
             _salvar(final, master, v, cfg)
             v.status = "ok" if v.estampa else "liso"

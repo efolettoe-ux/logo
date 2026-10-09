@@ -128,6 +128,20 @@ CONFIG_PADRAO: dict = {
     },
     # Ajuste para TODAS as estampas (ex.: escala 1.05 = 5% maiores; deslocar_topo_rel 0.01 = um pouco abaixo).
     "ajuste_global": {"escala": 1.0, "deslocar_topo_rel": 0.0},
+    # Tamanho da arte no mockup novo. O tronco do mockup novo é mais estreito para a altura dele
+    # (largura/altura 0,51) que o das fotos da loja (0,56): medir só pela largura deixaria a arte ~10%
+    # menor na peça. A largura é multiplicada por (razão da loja / razão do mockup) ** peso_altura
+    # (0 = só largura, 1 = só altura, 0,5 = meio-termo). razao_tronco_loja é usada quando não há analise.csv.
+    "tamanho": {"razao_tronco_loja": 0.563, "peso_altura": 0.5},
+    # estampar: o que fazer com linhas pendentes do mapa.csv.
+    "estampar": {
+        # true = só gera a cor quando frente E costas têm arte; false = gera os lados que têm arte e
+        # lista o lado que falta como sem_estampa no relatorio.csv.
+        "so_cores_completas": False,
+        # Confere a arte sem fundo antes de estampar: restos de fundo (nuvens cinza, faixas de degradê
+        # nas bordas) bloqueiam a imagem com status "revisar".
+        "verificar_residuo": True,
+    },
     # Estampa da frente com largura_rel acima disso é "grande" (centralizada), abaixo é logo de peito.
     "limite_frente_grande": 0.40,
     # Imagem final igual às fotos da loja: quadrado, fundo cinza-claro, peça ocupando a mesma fração.
@@ -156,6 +170,8 @@ CONFIG_PADRAO: dict = {
         "margem_costura_rel": 0.045,
     },
     "realismo": {
+        # cobertura da tinta: <1 deixa a malha aparecer um pouco nos meios-tons; onde a tinta é bem mais
+        # clara que o tecido (tinta branca na camisa preta) a cobertura sobe até 1 (branco fica branco).
         "opacidade_tinta": 0.95,
         "forca_sombra": 0.9,
         "forca_luz": 0.35,
@@ -571,7 +587,7 @@ def produto_excluido(p: Produto, cfg: dict) -> bool:
 # ---------------------------------------------------------------------------
 
 COLUNAS_MAPA = ["handle", "NOME", "cor", "lado", "arquivo_estampa", "id_normalizado", "confianca",
-                "largura_rel", "topo_rel", "centro_x_rel", "origem", "revisar", "observacao"]
+                "largura_rel", "topo_rel", "centro_x_rel", "origem", "revisar", "observacao", "ajuste_tinta"]
 
 # Valor especial em id_normalizado (ou arquivo_estampa) para "este lado é liso de propósito".
 LISO = "liso"
@@ -598,6 +614,7 @@ class LinhaMapa:
     origem: str = ""
     revisar: str = ""
     observacao: str = ""
+    ajuste_tinta: str = ""     # ex.: "L=+12;a=-2;b=-18" (desloca a cor da tinta, em Lab)
 
     @property
     def eh_liso(self) -> bool:

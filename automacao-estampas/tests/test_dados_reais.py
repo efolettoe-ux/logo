@@ -24,7 +24,9 @@ class TestFotosDaLoja(unittest.TestCase):
         a = analisar_imagem(JA_FOI / "CAPRESE T-SHIRT" / "2.png", CFG)
         self.assertEqual(a.cor.nome, "Preta")
         g = a.geometria
-        self.assertAlmostEqual(g["largura_rel"], 0.61, delta=0.02)
+        # tronco medido na borda nítida do tecido (sem a sombra): ~420 px nesta foto 1254x1254
+        self.assertAlmostEqual(a.torso.largura, 420, delta=6)
+        self.assertAlmostEqual(g["largura_rel"], 0.635, delta=0.02)
         self.assertAlmostEqual(g["topo_rel"], 0.194, delta=0.02)
         self.assertAlmostEqual(g["centro_x_rel"], 0.0, delta=0.02)
 
@@ -36,6 +38,12 @@ class TestFotosDaLoja(unittest.TestCase):
             larg[a.cor.nome] = a.geometria["largura_rel"]
         self.assertEqual(set(larg), {"Preta", "Azul Marinho", "Branca", "Off White"})
         self.assertLess(max(larg.values()) - min(larg.values()), 0.03)
+
+    def test_tronco_sem_sombra_em_todas_as_cores(self):
+        from imagem import analisar_imagem
+        for n in range(1, 9):
+            a = analisar_imagem(JA_FOI / "DOLCE T-SHIRT" / f"{n}.png", CFG)
+            self.assertTrue(408 <= a.torso.largura <= 426, f"{n}.png: {a.torso.largura:.1f}")
 
     def test_frente_lisa_sem_estampa(self):
         from imagem import analisar_imagem

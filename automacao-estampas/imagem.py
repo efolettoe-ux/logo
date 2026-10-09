@@ -831,7 +831,73 @@ def preparar_peca(im: Image.Image, cfg: dict, torso_manual: Optional[dict] = Non
         torso = Torso.de_relativo(torso_manual, im.size[0], im.size[1])
     else:
         torso = medir_torso(seg.mascara, seg.escala, im.size)
+        if not seg.transparente:
+            torso = refinar_largura_torso(im, torso)
     return seg, torso
+
+
+def _borda_no_perfil(p: np.ndarray) -> Optional[float]:
+    """Perfil de luminância de fora (fundo) para dentro (tecido) -> índice do 1º pixel de tecido.
+
+    Nas fotos da loja a peça tem uma sombra suave em volta: uma rampa que escurece do fundo até a
+    borda. A borda de verdade é onde a rampa acaba: um degrau forte para baixo (tecido escuro) ou o
+    ponto mais baixo antes de a luz voltar a subir (tecido claro, mais claro que a sombra).
+    """
+    n = len(p)
+    if n < 8:
+        return None
+    fundo = float(np.median(p[:4]))
+    saiu = False
+    for i in range(1, n):
+        d = float(p[i] - p[i - 1])
+        if not saiu:
+            if p[i] < fundo - 3.0 or d <= -12.0:
+                saiu = True
+            else:
+                continue
+        if d <= -12.0:                       # degrau: tecido escuro começa no pixel i
+            return float(i)
+        if d >= 2.5:                         # a luz volta a subir: tecido claro começa no pixel i
+            return float(i)
+    return None
+
+
+def refinar_largura_torso(im: Image.Image, torso: Torso) -> Torso:
+    """Mede a largura do tronco na borda nítida do tecido, em resolução cheia, sem a sombra em volta.
+
+    A segmentação (reduzida) inclui a sombra suave ao lado da peça, o que deixava o tronco ~5% largo
+    demais nas fotos da loja (e as estampas novas ~5% estreitas). Só ajusta x0/x1; se a medida não
+    for confiável (poucas linhas ou mudança grande), mantém o tronco como estava.
+    """
+    try:
+        cinza = np.asarray(im.convert("L"), np.float32)
+    except Exception:
+        return torso
+    H, W = cinza.shape
+    L = torso.largura
+    y0 = int(torso.axila + 0.35 * max(1.0, torso.base - torso.axila))
+    y1 = int(torso.base - 0.08 * torso.altura)
+    if y1 - y0 < 10 or L < 20:
+        return torso
+    fora, dentro = int(round(0.06 * L)) + 3, int(round(0.07 * L)) + 3
+    esq, dir_ = [], []
+    for y in np.linspace(y0, y1, 41).astype(int):
+        faixa = cinza[max(0, y - 2):min(H, y + 3)].mean(axis=0)
+        a, b = max(0, int(torso.x0) - fora), min(W, int(torso.x0) + dentro)
+        e = _borda_no_perfil(faixa[a:b]) if b - a > 8 else None
+        if e is not None:
+            esq.append(a + e)
+        a, b = max(0, int(torso.x1) - dentro), min(W, int(torso.x1) + fora)
+        d = _borda_no_perfil(faixa[a:b][::-1]) if b - a > 8 else None
+        if d is not None:
+            dir_.append(b - d)
+    if len(esq) < 12 or len(dir_) < 12:
+        return torso
+    x0, x1 = float(np.median(esq)), float(np.median(dir_))
+    nova = x1 - x0
+    if not (0.85 * L <= nova <= 1.02 * L):
+        return torso
+    return Torso(x0, x1, torso.topo, torso.base, torso.axila, torso.largura_img, torso.altura_img)
 
 
 def analisar_imagem(fonte, cfg: dict, margem_recorte: float = 0.06) -> AnaliseImagem:
@@ -968,3 +1034,76 @@ def carregar_estampa(caminho, cfg: Optional[dict] = None) -> Tuple[Image.Image, 
         fcfg = (cfg or {}).get("fundo_estampa", {})
         im, removido = remover_fundo(im, float(fcfg.get("tolerancia", 16.0)), float(fcfg.get("buracos_area_max", 0.004)))
     return recortar_alpha(im.convert("RGBA")), removido
+
+
+def residuo_de_fundo(im: Image.Image) -> Optional[str]:
+    """Procura restos de fundo numa arte já sem fundo (antes de estampar).
+
+    Resto típico de uma remoção que falhou: mancha grande, sem cor (cinza/preto), lisa e em degradê
+    (nuvem cinza, faixa escura na borda). Tinta de verdade com pouca cor (texto preto/branco) tem
+    bordas nítidas ou é chapada; por isso a regra exige as três coisas: pouca cor, degradê e nenhum
+    contorno nítido. Retorna a explicação (em português) ou None.
+    """
+    rgba = im.convert("RGBA")
+    s = 256.0 / max(rgba.size)
+    if s < 1.0:
+        rgba = rgba.resize((max(1, round(rgba.size[0] * s)), max(1, round(rgba.size[1] * s))), Image.BILINEAR)
+    arr = np.asarray(rgba)
+    a = arr[..., 3].astype(np.float32) / 255.0
+    lab = rgb_para_lab(arr[..., :3].astype(np.float32) / 255.0)
+    L = lab[..., 0]
+    C = np.hypot(lab[..., 1], lab[..., 2])
+    gy, gx = np.gradient(L)
+    g = np.hypot(gx, gy)
+    comp = rotular(a > 0.5)
+    h, w = a.shape
+    achados = []
+    for i in range(comp.n):
+        c = comp.rotulos == i + 1
+        area = float(c.sum()) / float(h * w)
+        if area < 0.04:
+            continue
+        p5, p95 = np.percentile(L[c], [5, 95])
+        if float(np.median(C[c])) < 12.0 and (p95 - p5) >= 12.0 and float(np.percentile(g[c], 95)) < 5.0:
+            achados.append(area)
+    if not achados:
+        return None
+    return (f"a arte ficou com restos do fundo ({len(achados)} mancha(s) cinza em degradê, "
+            f"{100 * sum(achados):.0f}% da área): a remoção do fundo falhou")
+
+
+def ler_ajuste_tinta(texto: str) -> Optional[Tuple[float, float, float]]:
+    """'L=+12;a=-2;b=-18' -> (12, -2, -18). Vazio ou inválido -> None."""
+    vals = {"l": 0.0, "a": 0.0, "b": 0.0}
+    achou = False
+    for parte in str(texto or "").replace(",", ";").split(";"):
+        if "=" not in parte:
+            continue
+        k, v = parte.split("=", 1)
+        k = k.strip().lower()
+        if k in vals:
+            try:
+                vals[k] = float(v.strip())
+                achou = True
+            except ValueError:
+                pass
+    return (vals["l"], vals["a"], vals["b"]) if achou else None
+
+
+def ajustar_tinta(im: Image.Image, ajuste: Tuple[float, float, float]) -> Image.Image:
+    """Desloca a cor da tinta principal da arte (Lab). Cores longe da tinta principal (um texto
+    preto pequeno numa arte azul, por exemplo) mudam pouco: o peso cai com a distância de cor."""
+    rgba = np.asarray(im.convert("RGBA"))
+    a = rgba[..., 3]
+    lab = rgb_para_lab(rgba[..., :3].astype(np.float32) / 255.0)
+    opaco = a > 150
+    if opaco.sum() < 20:
+        return im
+    ref = np.median(lab[opaco], axis=0)
+    dist = np.linalg.norm(lab - ref, axis=-1)
+    peso = np.exp(-(dist / 30.0) ** 2)[..., None]
+    novo = lab + peso * np.array(ajuste, np.float32)
+    novo[..., 0] = np.clip(novo[..., 0], 0, 100)
+    rgb = _lab_para_rgb(novo)
+    out = np.dstack([np.clip(rgb * 255.0 + 0.5, 0, 255).astype(np.uint8), a])
+    return Image.fromarray(out, "RGBA")

@@ -38,10 +38,10 @@ INVENTARIO_PADRAO = AQUI / "dados" / "inventario.csv"
 COLUNAS_INVENTARIO = ["caminho", "fonte", "tipo", "produto", "produto_sugerido", "lado", "para_camisa",
                       "cor_especifica", "fundo", "qualidade", "largura", "altura", "tem_alpha", "aspecto_arte",
                       "tinta_l25", "tinta_l50", "tinta_l75", "hash_visual", "sha1", "duplicata_de",
-                      "versao_preferida", "escolhida", "origem", "observacao"]
+                      "versao_preferida", "escolhida", "origem", "observacao", "usar_tambem"]
 
 COLUNAS_MAPA_CASAR = ["handle", "NOME", "titulo", "cor", "lado", "arquivo_estampa", "para_camisa", "largura_rel",
-                      "topo_rel", "centro_x_rel", "origem", "confianca", "revisar", "observacao"]
+                      "topo_rel", "centro_x_rel", "origem", "confianca", "revisar", "observacao", "ajuste_tinta"]
 
 TIPOS_ARTE = {"estampa", "estampa_com_fundo"}
 QUALIDADE_OK = {"", "ok", "n/a"}
@@ -436,6 +436,55 @@ def similaridade(foto: dict, arte: dict) -> float:
     return round(0.55 * max(ncc, 0.0) + 0.25 * cor + 0.20 * asp, 4)
 
 
+def _resumo_tinta(lab: np.ndarray) -> Optional[dict]:
+    if len(lab) < 30:
+        return None
+    med = np.median(lab, axis=0)
+    C = np.hypot(lab[:, 1], lab[:, 2])
+    mono = float((np.linalg.norm(lab - med, axis=1) < 20).mean())
+    return {"lab": med, "C": float(np.median(C)), "mono": mono}
+
+
+def tinta_foto(arquivo: str, bbox: Tuple[float, float, float, float], rgb_tecido) -> Optional[dict]:
+    """Cor típica da tinta na foto atual (pixels bem diferentes do tecido, dentro da caixa da estampa)."""
+    from imagem import rgb_para_lab
+    try:
+        with Image.open(arquivo) as im:
+            rec = im.convert("RGB").crop(tuple(int(round(v)) for v in bbox))
+    except Exception:
+        return None
+    rec.thumbnail((200, 200), Image.BILINEAR)
+    lab = rgb_para_lab(np.asarray(rec, np.float32) / 255.0).reshape(-1, 3)
+    fl = rgb_para_lab(np.array(rgb_tecido, np.float32)[None, None, :] / 255.0)[0, 0]
+    return _resumo_tinta(lab[np.linalg.norm(lab - fl, axis=1) > 25])
+
+
+def tinta_arte(mini: Image.Image, rgb_tecido) -> Optional[dict]:
+    """Cor típica da tinta da arte (sem fundo), só pixels opacos que se destacam do tecido."""
+    from imagem import rgb_para_lab
+    m = mini.convert("RGBA")
+    m.thumbnail((200, 200), Image.BILINEAR)
+    arr = np.asarray(m)
+    lab = rgb_para_lab(arr[..., :3].astype(np.float32) / 255.0).reshape(-1, 3)
+    a = arr[..., 3].reshape(-1)
+    fl = rgb_para_lab(np.array(rgb_tecido, np.float32)[None, None, :] / 255.0)[0, 0]
+    return _resumo_tinta(lab[(a > 150) & (np.linalg.norm(lab - fl, axis=1) > 25)])
+
+
+def comparar_tinta(foto: Optional[dict], arte: Optional[dict]) -> Optional[dict]:
+    """Diferença da tinta (arte - foto) em Lab: claridade dL, saturação dC, distância dE."""
+    if not foto or not arte:
+        return None
+    d = arte["lab"] - foto["lab"]
+    return {"dL": float(d[0]), "da": float(d[1]), "db": float(d[2]), "dE": float(np.linalg.norm(d)),
+            "dC": arte["C"] - foto["C"], "mono": min(foto["mono"], arte["mono"])}
+
+
+def texto_ajuste(dif: dict) -> str:
+    """Ajuste que leva a tinta da arte à cor medida na foto (deslocamento em Lab)."""
+    return f"L={-dif['dL']:+.1f};a={-dif['da']:+.1f};b={-dif['db']:+.1f}"
+
+
 # ---------------------------------------------------------------------------
 # Regras de escolha
 # ---------------------------------------------------------------------------
@@ -453,7 +502,8 @@ def l_tecido(cor: str, cfg: dict) -> float:
 def legivel(l: dict, cor: str, cfg: dict, estrito: bool = False) -> bool:
     """A tinta aparece nesta camisa? (usa tinta_l25/l50/l75 do inventário ou da ficha).
 
-    estrito (arte que não foi feita para este tom): a MAIOR PARTE da tinta (mediana) precisa contrastar.
+    estrito (arte que não foi feita para este tom): QUASE TODA a tinta (o quartil menos contrastante)
+    precisa contrastar — texto escuro some na camisa preta mesmo que a arte tenha partes claras.
     normal (arte feita para este tom): basta a parte mais contrastante (quartil) aparecer.
     """
     if not l.get("tinta_l50"):
@@ -462,8 +512,10 @@ def legivel(l: dict, cor: str, cfg: dict, estrito: bool = False) -> bool:
     lim = float(cfg["casar"].get("contraste_minimo", 28.0))
     l25, l50, l75 = _f(l["tinta_l25"]), _f(l["tinta_l50"]), _f(l["tinta_l75"])
     if lt < 50:   # camisa escura: a tinta precisa ser mais clara que o tecido
-        return (l50 if estrito else l75) - lt >= lim
-    return lt - (l50 if estrito else l25) >= lim
+        # estrito: até a parte mais ESCURA da tinta (quartil inferior) tem de aparecer; com a mediana,
+        # uma arte de texto preto com um detalhe colorido passava e o texto sumia na camisa preta
+        return (l25 if estrito else l75) - lt >= lim
+    return lt - (l75 if estrito else l25) >= lim
 
 
 def tom_da_cor(cor: str, cfg: dict) -> str:
@@ -575,14 +627,19 @@ def medidas_analise(analise: List[dict]) -> Tuple[Dict[tuple, tuple], Dict[tuple
 
 def montar_mapa(produtos: List[Produto], inventario: List[dict], analise: List[dict], cfg: dict,
                 manuais: Optional[List[dict]] = None, existe: Callable[[str], bool] = lambda c: True,
-                visual: Optional[Dict[tuple, Dict[str, float]]] = None) -> List[dict]:
+                visual: Optional[Dict[tuple, Dict[str, float]]] = None,
+                tintas: Optional[Dict[tuple, Dict[str, dict]]] = None) -> List[dict]:
     """Uma linha por camiseta x cor x lado. Linhas manuais (origem=manual) são mantidas como estão."""
     visual = visual or {}
+    tintas = tintas or {}
     por_produto: Dict[str, List[dict]] = defaultdict(list)
     for l in inventario:
-        if eh_arte(l) and l.get("produto") not in ("", "?") and l.get("versao_preferida") != "nao" \
-                and l.get("lado") in ("frente", "costas") and existe(l["caminho"]):
+        if not (eh_arte(l) and l.get("versao_preferida") != "nao" and existe(l["caminho"])):
+            continue
+        if l.get("produto") not in ("", "?") and l.get("lado") in ("frente", "costas"):
             por_produto[chave_titulo(l["produto"])].append(l)
+        for extra in reusos(l):
+            por_produto[chave_titulo(extra["produto"])].append(extra)
     medidas, estado = medidas_analise(analise)
     man = {}
     for m in manuais or []:
@@ -632,6 +689,8 @@ def montar_mapa(produtos: List[Produto], inventario: List[dict], analise: List[d
                     continue
                 row["arquivo_estampa"] = arte["caminho"]
                 row["para_camisa"] = arte.get("cor_especifica") or arte.get("para_camisa", "")
+                if row["para_camisa"] in ("?", ""):
+                    row["para_camisa"] = "indefinida"
                 if (p.handle, lado) in medidas:
                     g, row["origem"] = medidas[(p.handle, lado)], "medido"
                 else:
@@ -643,6 +702,11 @@ def montar_mapa(produtos: List[Produto], inventario: List[dict], analise: List[d
                     conf -= 0.2
                 if arte.get("origem") == "visual":
                     conf = min(conf, 0.55)
+                if arte.get("origem") == "confirmar":
+                    conf = min(conf, 0.55)
+                    obs.append("arte atribuída a este produto por dedução — confirmar com o dono")
+                if arte.get("_reuso"):
+                    obs.append(f"mesma arte de {arte['_reuso']} (reaproveitada)")
                 s = (vis or {}).get(arte["caminho"])
                 if s is not None:
                     conf = round(0.5 * conf + 0.5 * min(1.0, s / 0.75), 3)
@@ -650,6 +714,18 @@ def montar_mapa(produtos: List[Produto], inventario: List[dict], analise: List[d
                         obs.append(f"pouco parecida com a foto atual (nota {s:.2f})")
                 if o:
                     obs.append(o)
+                dif = (tintas.get((p.handle, cor, lado)) or {}).get(arte["caminho"])
+                tinta_ruim = False
+                if dif is not None and (dif["dE"] > LIMITE_TINTA_DE or abs(dif["dC"]) > LIMITE_TINTA_DC):
+                    desc_dif = (f"tinta {'mais clara' if dif['dL'] > 0 else 'mais escura'} que na foto da loja "
+                                f"(ΔL {dif['dL']:+.0f}, saturação ΔC {dif['dC']:+.0f}, ΔE {dif['dE']:.0f})")
+                    if dif["mono"] >= 0.55 and dif["dE"] <= 45:
+                        row["ajuste_tinta"] = texto_ajuste(dif)
+                        obs.append(desc_dif + ": cor da tinta ajustada automaticamente para a da loja "
+                                   "(coluna ajuste_tinta; apague para usar a cor original)")
+                    else:
+                        tinta_ruim = True
+                        obs.append(desc_dif + ": parece outra versão da arte — conferir qual é a oficial")
                 if arte.get("qualidade") not in QUALIDADE_OK:
                     obs.append(f"arte com problema: {arte['qualidade']}")
                     conf = min(conf, 0.55)
@@ -661,6 +737,8 @@ def montar_mapa(produtos: List[Produto], inventario: List[dict], analise: List[d
                               and a.get("para_camisa") == arte.get("para_camisa")]
                     if outras:
                         obs.append(f"há {len(outras)} outra(s) arte(s) diferentes para este lado")
+                if tinta_ruim:
+                    conf = min(conf, 0.55)
                 row["confianca"] = f"{conf:.2f}"
                 row["revisar"] = "sim" if conf < cmin or nivel >= 4 or arte.get("qualidade") not in QUALIDADE_OK \
                     else "nao"
@@ -671,6 +749,29 @@ def montar_mapa(produtos: List[Produto], inventario: List[dict], analise: List[d
     for k, m in man.items():
         if k not in chaves:
             out.append(dict(m))
+    return out
+
+
+# Diferença de tinta (Lab) entre a arte escolhida e a foto atual que manda revisar / ajustar.
+LIMITE_TINTA_DE = 14.0
+LIMITE_TINTA_DC = 18.0
+
+
+def reusos(l: dict) -> List[dict]:
+    """Coluna usar_tambem do inventário: a mesma arte serve para outro produto/lado.
+
+    Formato: "PRODUTO T-SHIRT:lado:para_camisa" separados por ';' (para_camisa: clara|escura|todas).
+    """
+    out = []
+    for item in str(l.get("usar_tambem", "") or "").split(";"):
+        partes = [x.strip() for x in item.split(":")]
+        if len(partes) < 2 or not partes[0] or partes[1] not in ("frente", "costas"):
+            continue
+        d = dict(l)
+        d.update({"produto": partes[0], "lado": partes[1], "cor_especifica": "",
+                  "para_camisa": partes[2] if len(partes) > 2 and partes[2] else l.get("para_camisa", ""),
+                  "_reuso": f"{l.get('produto') or '?'} ({l.get('lado')})"})
+        out.append(d)
     return out
 
 
@@ -920,6 +1021,7 @@ def comando(proj, args) -> None:
     analise = ler_csv_dicts(proj.arquivo("analise_csv"))
     fotos_rec = _recortes_fotos(analise, proj.pasta("analise"))
     visual: Dict[tuple, Dict[str, float]] = {}
+    tintas: Dict[tuple, Dict[str, dict]] = {}
     miniaturas: Dict[str, str] = {}
     fotos_html: Dict[tuple, str] = {}
     pasta_fotos = proj.pasta("analise", criar=True) / "revisao"
@@ -929,6 +1031,8 @@ def comando(proj, args) -> None:
         for l in todas:
             if eh_arte(l) and l.get("versao_preferida") != "nao" and existe(l["caminho"]):
                 por_titulo[chave_titulo(l.get("produto", ""))].append(l)
+                for extra in reusos(l):
+                    por_titulo[chave_titulo(extra["produto"])].append(extra)
         handles = {p.handle: p for p in produtos}
         for (h, cor, lado) in fotos_rec:
             p = handles.get(h)
@@ -957,6 +1061,7 @@ def comando(proj, args) -> None:
             af = assinatura_foto(la["arquivo"], bbox, rgb)
             if af is None:
                 continue
+            tf = tinta_foto(la["arquivo"], bbox, rgb)
             dest = pasta_fotos / h / f"{cor}-{lado}.jpg".replace(" ", "_")
             dest.parent.mkdir(parents=True, exist_ok=True)
             rec = af["recorte"].copy()
@@ -971,6 +1076,9 @@ def comando(proj, args) -> None:
                     with Image.open(miniaturas[l["caminho"]]) as m:
                         mini_img[l["caminho"]] = m.convert("RGBA")
                 notas[l["caminho"]] = similaridade(af, assinatura_arte(mini_img[l["caminho"]], rgb))
+                dif = comparar_tinta(tf, tinta_arte(mini_img[l["caminho"]], rgb))
+                if dif is not None:
+                    tintas.setdefault((h, cor, lado), {})[l["caminho"]] = dif
             visual[(h, cor, lado)] = notas
         # artes novas sem produto: sugere pelo visual
         sem_prod = [l for l in novos if eh_arte(l) and not l.get("produto") and l["caminho"] in miniaturas]
@@ -996,7 +1104,7 @@ def comando(proj, args) -> None:
     marcar_escolhidas(todas, cfg)
     mapa_path = proj.arquivo("mapa_csv")
     manuais = ler_manuais(mapa_path)
-    mapa = montar_mapa(produtos, todas, analise, cfg, manuais, existe, visual)
+    mapa = montar_mapa(produtos, todas, analise, cfg, manuais, existe, visual, tintas)
     from catalogo import escrever_csv_dicts
     if mapa_path.exists():
         import shutil
