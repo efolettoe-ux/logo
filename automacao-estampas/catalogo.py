@@ -151,7 +151,7 @@ CONFIG_PADRAO: dict = {
         # Ajustes só da foto inclinada: tamanho extra (relativo à 01; 0.924 mantém a 03 com 85% do tamanho da loja) e quanto subir a estampa
         # (fração da altura do tronco).
         "escala_inclinada": 0.924,
-        "subir_inclinada": 0.03,
+        "subir_inclinada": 0.015,
     },
     # Estampa da frente com largura_rel acima disso é "grande" (centralizada), abaixo é logo de peito.
     "limite_frente_grande": 0.40,
