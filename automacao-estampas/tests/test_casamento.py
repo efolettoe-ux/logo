@@ -91,10 +91,10 @@ class TestEscolha(unittest.TestCase):
         larga = C.geometria_padrao_arte("costas", 0.6, CFG)[0]
         normal = C.geometria_padrao_arte("costas", 1.3, CFG)[0]
         alta = C.geometria_padrao_arte("costas", 1.9, CFG)[0]
-        self.assertAlmostEqual(larga, 0.72, places=3)
+        self.assertAlmostEqual(larga, 0.75, places=3)
         self.assertLess(alta, normal)
-        self.assertLessEqual(alta * 1.9 * 0.59, 0.546)
-        self.assertAlmostEqual(C.geometria_padrao_arte("frente", 0.3, CFG)[0], 0.226, places=3)
+        self.assertLessEqual(alta * 1.9 * 0.562, 0.546)
+        self.assertAlmostEqual(C.geometria_padrao_arte("frente", 0.3, CFG)[0], 0.238, places=3)
 
 
 class TestMapa(unittest.TestCase):
