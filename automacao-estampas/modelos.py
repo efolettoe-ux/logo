@@ -114,7 +114,8 @@ def preparar_modelo(caminho: str, semente: Optional[Tuple[float, float]] = None,
 
 
 def aplicar_estampa_ps(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[float, float, float, float],
-                       deslocar_px: float = 10.0, desfoque_mapa: float = 2.0, opacidade: float = 1.0) -> Image.Image:
+                       deslocar_px: float = 10.0, desfoque_mapa: float = 2.0, opacidade: float = 1.0,
+                       realismo: float = 0.0) -> Image.Image:
     """O passo a passo clássico do Photoshop, automatizado:
 
     1. Filtro > Distorcer > Deslocar (10 x 10) usando a própria foto em preto e branco como mapa:
@@ -145,9 +146,23 @@ def aplicar_estampa_ps(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[f
     yy, xx = np.mgrid[0:y1 - y0, 0:x1 - x0].astype(np.float32)
     amost = _amostrar_bilinear(quad, yy - d, xx - d)
     a = np.clip(amost[..., 3], 0, 1) * opacidade
+    if realismo > 0:
+        from scipy import ndimage
+        lum0 = foto.mean(-1)
+        fundo = ndimage.gaussian_filter(lum0, 2.5)
+        hp = np.clip((lum0 - fundo) / np.maximum(fundo, 0.04), -0.35, 0.35)   # trama/dobra fina do tecido
+        # tinta mais fina nos "poros" da trama + grão leve de serigrafia (semente fixa: igual sempre)
+        rng = np.random.default_rng(7)
+        grao = ndimage.gaussian_filter(rng.standard_normal(a.shape).astype(np.float32), 0.7)
+        a = a * np.clip(1 - realismo * (0.9 * np.clip(-hp, 0, 1) + 0.06 * np.abs(grao)), 0, 1)
+        a = ndimage.gaussian_filter(a, 0.35 * realismo)                       # borda da tinta, não recorte
     cor = np.where(amost[..., 3:4] > 1e-4, amost[..., :3] / np.maximum(amost[..., 3:4], 1e-4), 0.0)
     cor = np.clip(cor, 0, 1)
     tecido = np.array(mk.rgb_tecido, np.float32) / 255.0
+    if tecido.mean() > 0.45:
+        # fundo claro que sobrou na arte (creme/branco quase da cor do tecido) não é impresso de verdade
+        dif = np.abs(cor - tecido).max(-1)
+        a = a * np.clip((dif - 0.07) / 0.08, 0, 1)
     if tecido.mean() > 0.45:
         # camiseta clara: Multiplicar de verdade (tinta x tecido)
         tinta = cor * foto
@@ -158,6 +173,9 @@ def aplicar_estampa_ps(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[f
         # sombra suavizada: dobra funda escurece a tinta, mas sem sumir com ela
         rel = np.clip(rel ** 0.6, 0.6, 1.4)
         tinta = np.clip(cor * rel, 0, 1)
+    if realismo > 0:
+        # a trama aparece por cima da tinta (em tecido claro o Multiplicar já faz isso)
+        tinta = np.clip(tinta * (1 + realismo * (1.2 if tecido.mean() <= 0.45 else 0.4) * hp[..., None]), 0, 1)
     pode = mk.mascara[y0:y1, x0:x1].astype(np.float32)
     a = a * pode
     out = foto * (1 - a[..., None]) + tinta * a[..., None]
@@ -220,3 +238,63 @@ def curvar_estampa(estampa: Image.Image, caixa: Tuple[float, float, float, float
     arr = np.clip(amost * 255 + 0.5, 0, 255).astype(np.uint8)
     out = Image.fromarray(arr, "RGBa").convert("RGBA").resize((max(1, W2 // 2), max(1, H2 // 2)), Image.LANCZOS)
     return out, (X0, Y0, X1 - X0, Y1 - Y0)
+
+
+def mascara_tecido_suave(im: Image.Image, topo: float, barra: float) -> np.ndarray:
+    """Máscara 0..1 da camiseta em resolução cheia, com borda suave, para recolorir o tecido.
+
+    Silhueta da pessoa, menos pele, entre a gola e a barra (as sombras das laterais entram, o que
+    uma máscara só por cor perde). Perto da barra, onde começa a calça, decide pela cor do tecido.
+    """
+    from scipy import ndimage
+    rgba = im.convert("RGBA")
+    arr = np.asarray(rgba)
+    H = arr.shape[0]
+    pessoa = arr[..., 3] > 20
+    pele = ndimage.binary_dilation(mascara_pele(arr[..., :3]), iterations=3)
+    yy = np.arange(H)[:, None]
+    geo = pessoa & ~pele & (yy >= topo - 40) & (yy <= barra + 40)
+    # metade de baixo: cada pixel vai para o tecido ou para a calça, o que tiver a cor mais próxima
+    base = mascara_camiseta(rgba)
+    L = _lab(arr[..., :3].astype(np.float32))
+    w = np.array([0.3, 1.5, 1.5])
+    ref = np.median(L[base], axis=0)
+    calca_zona = pessoa & ~pele & (yy > barra + 40) & (yy < barra + 160)
+    ref_c = np.median(L[calca_zona], axis=0) if calca_zona.sum() > 200 else ref + 100
+    d_s = np.linalg.norm((L - ref) * w, axis=-1)
+    d_c = np.linalg.norm((L - ref_c) * w, axis=-1)
+    pele_ref = np.median(L[mascara_pele(arr[..., :3]) & pessoa], axis=0)
+    d_p = np.linalg.norm((L - pele_ref) * w, axis=-1)
+    tecido = ndimage.median_filter((d_s < d_c).astype(np.uint8), 5).astype(bool)
+    nao_pele = ndimage.median_filter((d_s < d_p).astype(np.uint8), 5).astype(bool)   # sombra de braço fica fora
+    baixo = yy > topo + 0.45 * (barra - topo)
+    m = geo & nao_pele & (~baixo | tecido)
+    m = ndimage.binary_closing(ndimage.binary_opening(m, iterations=2), iterations=3)
+    # só a peça ligada ao tronco (tira relógio, pedaços soltos)
+    rot, n = ndimage.label(m)
+    if n > 1:
+        tam = ndimage.sum(m, rot, range(1, n + 1))
+        m = rot == (1 + int(np.argmax(tam)))
+    m = ndimage.binary_fill_holes(m)
+    mf = ndimage.gaussian_filter(m.astype(np.float32), 1.2) * (arr[..., 3] / 255.0)
+    return mf
+
+
+def recolorir_camiseta(mk: "MockupPreparado", cor_alvo: Tuple[int, int, int], mascara: np.ndarray) -> None:
+    """Troca a cor do tecido pela cor do mockup, mantendo luz, sombra e trama da foto.
+
+    Ganho por canal em luz linear (cor alvo / cor medida do tecido): cada pixel da camiseta é
+    multiplicado por ele, então dobras e textura continuam iguais, só o tom muda.
+    """
+    from imagem import srgb_para_linear, linear_para_srgb
+    lin = srgb_para_linear(mk.rgb.astype(np.float32) / 255.0)
+    pesos = mascara > 0.8
+    atual = np.median(lin[pesos], axis=0)
+    alvo = srgb_para_linear(np.array(cor_alvo, np.float32) / 255.0)
+    ganho = alvo / np.maximum(atual, 1e-4)
+    novo = np.clip(lin * ganho, 0, 1)
+    out = lin * (1 - mascara[..., None]) + novo * mascara[..., None]
+    mk.rgb = np.clip(linear_para_srgb(out) * 255 + 0.5, 0, 255).astype(np.uint8)
+    mk.rgb_tecido = tuple(int(v) for v in np.median(mk.rgb[pesos], axis=0))
+    mk.imagem = Image.fromarray(mk.rgb, "RGB").convert("RGBA")
+    mk.imagem.putalpha(Image.fromarray(mk.alpha))
