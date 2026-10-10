@@ -1,0 +1,164 @@
+{
+ "produto": "AFTER-PARTY",
+ "handle": "after-party",
+ "ordem_cores": [
+  "Preta",
+  "Branca",
+  "Off White"
+ ],
+ "itens": [
+  {
+   "nome": "PALL-AFTER-PARTY-PT_01-costas.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-AFTER-PARTY-PT_01-costas.png",
+   "cor": "Preta",
+   "nn": "01",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-PT_02-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-AFTER-PARTY-PT_02-close.png",
+   "cor": "Preta",
+   "nn": "02",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-PT_03-frente.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-AFTER-PARTY-PT_03-frente.png",
+   "cor": "Preta",
+   "nn": "03",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-PT_04-modelo-costas-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-preta/PALL-AFTER-PARTY-PT_04-modelo-costas-close.png",
+   "cor": "Preta",
+   "nn": "04",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-PT_05-modelo-frente-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-preta/PALL-AFTER-PARTY-PT_05-modelo-frente-close.png",
+   "cor": "Preta",
+   "nn": "05",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-PT_06-modelo-costas-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-preta/PALL-AFTER-PARTY-PT_06-modelo-costas-corpo.png",
+   "cor": "Preta",
+   "nn": "06",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-PT_07-modelo-frente-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-preta/PALL-AFTER-PARTY-PT_07-modelo-frente-corpo.png",
+   "cor": "Preta",
+   "nn": "07",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-BR_01-costas.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-AFTER-PARTY-BR_01-costas.png",
+   "cor": "Branca",
+   "nn": "01",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-BR_02-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-AFTER-PARTY-BR_02-close.png",
+   "cor": "Branca",
+   "nn": "02",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-BR_03-frente.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-AFTER-PARTY-BR_03-frente.png",
+   "cor": "Branca",
+   "nn": "03",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-BR_04-modelo-costas-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-branca/PALL-AFTER-PARTY-BR_04-modelo-costas-close.png",
+   "cor": "Branca",
+   "nn": "04",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-BR_05-modelo-frente-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-branca/PALL-AFTER-PARTY-BR_05-modelo-frente-close.png",
+   "cor": "Branca",
+   "nn": "05",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-BR_06-modelo-costas-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-branca/PALL-AFTER-PARTY-BR_06-modelo-costas-corpo.png",
+   "cor": "Branca",
+   "nn": "06",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-BR_07-modelo-frente-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-branca/PALL-AFTER-PARTY-BR_07-modelo-frente-corpo.png",
+   "cor": "Branca",
+   "nn": "07",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-OW_01-costas.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-AFTER-PARTY-OW_01-costas.png",
+   "cor": "Off White",
+   "nn": "01",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-OW_02-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-AFTER-PARTY-OW_02-close.png",
+   "cor": "Off White",
+   "nn": "02",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-OW_03-frente.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-AFTER-PARTY-OW_03-frente.png",
+   "cor": "Off White",
+   "nn": "03",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-OW_04-modelo-costas-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-off-white/PALL-AFTER-PARTY-OW_04-modelo-costas-close.png",
+   "cor": "Off White",
+   "nn": "04",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-OW_05-modelo-frente-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-off-white/PALL-AFTER-PARTY-OW_05-modelo-frente-close.png",
+   "cor": "Off White",
+   "nn": "05",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-OW_06-modelo-costas-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-off-white/PALL-AFTER-PARTY-OW_06-modelo-costas-corpo.png",
+   "cor": "Off White",
+   "nn": "06",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-AFTER-PARTY-OW_07-modelo-frente-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-off-white/PALL-AFTER-PARTY-OW_07-modelo-frente-corpo.png",
+   "cor": "Off White",
+   "nn": "07",
+   "origem": "modelo"
+  }
+ ],
+ "faltando": [],
+ "sem_url": [],
+ "pendente_manual": false,
+ "completo": true,
+ "cor_principal": "Preta",
+ "motivo": "imagem principal = imagem das variantes desta cor"
+}

@@ -1,0 +1,16 @@
+{"produto":"BACKSTAGE","product_id":"gid://shopify/Product/8433089937455","handle":"backstage","cor_principal_original":"Azul Marinho",
+"featured":"gid://shopify/MediaImage/30882312159279",
+"midias_antigas":[
+["gid://shopify/MediaImage/30882312159279","PALL-BACKSTAGE-AZ_01-costas.png"],
+["gid://shopify/MediaImage/30882312192047","PALL-BACKSTAGE-AZ_02-frente-padrao.png"],
+["gid://shopify/MediaImage/30882311995439","PALL-BACKSTAGE_01-costas.png"],
+["gid://shopify/MediaImage/30882311962671","PALL-BACKSTAGE-BR_01-frente-padrao.png"],
+["gid://shopify/MediaImage/30882312028207","PALL-BACKSTAGE-OW_01-costas.png"],
+["gid://shopify/MediaImage/30882312060975","PALL-BACKSTAGE-OW_02-frente-padrao.png"],
+["gid://shopify/MediaImage/30882312093743","PALL-BACKSTAGE-PT_01-costas.png"],
+["gid://shopify/MediaImage/30882312126511","PALL-BACKSTAGE-PT_02-frente-padrao.png"]],
+"variantes_por_cor":{"Branca":["45864563310639","45864563343407","45864563376175","45864563408943","45864563441711","45864563474479"],
+"Off White":["45864563507247","45864563540015","45864563572783","45864563605551","45864563638319","45864563671087"],
+"Preta":["45864563703855","45864563736623","45864563769391","45864563802159","45864563834927","45864563867695"],
+"Azul Marinho":["45864563900463","45864563933231","45864563965999","45864563998767","45864564031535","45864564064303"]},
+"midia_antiga_por_cor":{"Branca":"30882311995439","Off White":"30882312028207","Preta":"30882312093743","Azul Marinho":"30882312159279"}}

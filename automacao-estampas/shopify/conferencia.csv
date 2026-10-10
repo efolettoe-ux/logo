@@ -1,0 +1,6 @@
+produto,product_id,cor_principal_original,cor_principal_final,imagens_drive,imagens_modelo,imagens_enviadas,imagens_antigas_removidas,status,observacoes
+BACKSTAGE,gid://shopify/Product/8433089937455,Azul Marinho,Azul Marinho,12,16,28,8,atualizado,teste só costas; variantes verificadas
+CAPRESE,gid://shopify/Product/8467946373167,Preta,Preta,12,16,28,8,atualizado,teste frente+costas; variantes verificadas
+8-BILLION,gid://shopify/Product/8433130602543,Branca,Branca,9,12,21,6,atualizado,variantes verificadas; principal = imagem das variantes Branca
+AFRO,gid://shopify/Product/8469780496431,Branca,Branca,9,12,21,6,atualizado,variantes verificadas; frentes BR/OW com estampa do mockup oficial
+AFTER-PARTY,gid://shopify/Product/8433089675311,Preta,Preta,9,12,21,6,atualizado,variantes verificadas

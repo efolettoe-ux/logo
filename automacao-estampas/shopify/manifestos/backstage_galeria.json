@@ -1,0 +1,212 @@
+{
+ "produto": "BACKSTAGE",
+ "handle": "backstage",
+ "ordem_cores": [
+  "Azul Marinho",
+  "Branca",
+  "Off White",
+  "Preta"
+ ],
+ "itens": [
+  {
+   "nome": "PALL-BACKSTAGE-AZ_01-costas.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-AZ_01-costas.png",
+   "cor": "Azul Marinho",
+   "nn": "01",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-AZ_02-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-AZ_02-close.png",
+   "cor": "Azul Marinho",
+   "nn": "02",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-AZ_03-frente.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-AZ_03-frente.png",
+   "cor": "Azul Marinho",
+   "nn": "03",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-AZ_04-modelo-costas-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-azul-marinho/PALL-BACKSTAGE-AZ_04-modelo-costas-close.png",
+   "cor": "Azul Marinho",
+   "nn": "04",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-AZ_05-modelo-frente-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-azul-marinho/PALL-BACKSTAGE-AZ_05-modelo-frente-close.png",
+   "cor": "Azul Marinho",
+   "nn": "05",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-AZ_06-modelo-costas-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-azul-marinho/PALL-BACKSTAGE-AZ_06-modelo-costas-corpo.png",
+   "cor": "Azul Marinho",
+   "nn": "06",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-AZ_07-modelo-frente-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-azul-marinho/PALL-BACKSTAGE-AZ_07-modelo-frente-corpo.png",
+   "cor": "Azul Marinho",
+   "nn": "07",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-BR_01-costas.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-BR_01-costas.png",
+   "cor": "Branca",
+   "nn": "01",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-BR_02-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-BR_02-close.png",
+   "cor": "Branca",
+   "nn": "02",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-BR_03-frente.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-BR_03-frente.png",
+   "cor": "Branca",
+   "nn": "03",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-BR_04-modelo-costas-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-branca/PALL-BACKSTAGE-BR_04-modelo-costas-close.png",
+   "cor": "Branca",
+   "nn": "04",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-BR_05-modelo-frente-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-branca/PALL-BACKSTAGE-BR_05-modelo-frente-close.png",
+   "cor": "Branca",
+   "nn": "05",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-BR_06-modelo-costas-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-branca/PALL-BACKSTAGE-BR_06-modelo-costas-corpo.png",
+   "cor": "Branca",
+   "nn": "06",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-BR_07-modelo-frente-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-branca/PALL-BACKSTAGE-BR_07-modelo-frente-corpo.png",
+   "cor": "Branca",
+   "nn": "07",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-OW_01-costas.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-OW_01-costas.png",
+   "cor": "Off White",
+   "nn": "01",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-OW_02-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-OW_02-close.png",
+   "cor": "Off White",
+   "nn": "02",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-OW_03-frente.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-OW_03-frente.png",
+   "cor": "Off White",
+   "nn": "03",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-OW_04-modelo-costas-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-off-white/PALL-BACKSTAGE-OW_04-modelo-costas-close.png",
+   "cor": "Off White",
+   "nn": "04",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-OW_05-modelo-frente-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-off-white/PALL-BACKSTAGE-OW_05-modelo-frente-close.png",
+   "cor": "Off White",
+   "nn": "05",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-OW_06-modelo-costas-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-off-white/PALL-BACKSTAGE-OW_06-modelo-costas-corpo.png",
+   "cor": "Off White",
+   "nn": "06",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-OW_07-modelo-frente-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-off-white/PALL-BACKSTAGE-OW_07-modelo-frente-corpo.png",
+   "cor": "Off White",
+   "nn": "07",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-PT_01-costas.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-PT_01-costas.png",
+   "cor": "Preta",
+   "nn": "01",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-PT_02-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-PT_02-close.png",
+   "cor": "Preta",
+   "nn": "02",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-PT_03-frente.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/mockups-drive-lote-01/PALL-BACKSTAGE-PT_03-frente.png",
+   "cor": "Preta",
+   "nn": "03",
+   "origem": "drive"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-PT_04-modelo-costas-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-preta/PALL-BACKSTAGE-PT_04-modelo-costas-close.png",
+   "cor": "Preta",
+   "nn": "04",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-PT_05-modelo-frente-close.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-preta/PALL-BACKSTAGE-PT_05-modelo-frente-close.png",
+   "cor": "Preta",
+   "nn": "05",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-PT_06-modelo-costas-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-preta/PALL-BACKSTAGE-PT_06-modelo-costas-corpo.png",
+   "cor": "Preta",
+   "nn": "06",
+   "origem": "modelo"
+  },
+  {
+   "nome": "PALL-BACKSTAGE-PT_07-modelo-frente-corpo.png",
+   "url": "https://raw.githubusercontent.com/efolettoe-ux/logo/modelos-v32-preta/PALL-BACKSTAGE-PT_07-modelo-frente-corpo.png",
+   "cor": "Preta",
+   "nn": "07",
+   "origem": "modelo"
+  }
+ ],
+ "faltando": [],
+ "sem_url": [],
+ "pendente_manual": false,
+ "completo": true
+}
