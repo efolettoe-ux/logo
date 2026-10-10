@@ -1,5 +1,5 @@
 {
- "_leia": "Ajustes por produto pedidos pelo dono. escala_costas: multiplica o tamanho da estampa das costas (topo fica no lugar). giro_graus: gira a arte em volta do centro, + = para a direita (horário), em todas as fotos. realismo: forca_luz amplia luz/sombra das dobras na tinta, textura = trama do tecido na tinta, granulado/opacidade = acabamento de tinta do mockup liso. giro_extra: graus a mais por '{cor}-{lado}'. realismo_cor: sobrescreve o realismo numa cor.",
+ "_leia": "Ajustes por produto pedidos pelo dono. escala_costas: multiplica o tamanho da estampa das costas (topo fica no lugar). giro_graus: gira a arte em volta do centro, + = para a direita (horário), em todas as fotos. realismo: forca_luz amplia luz/sombra das dobras na tinta, textura = trama do tecido na tinta, granulado/opacidade = acabamento de tinta do mockup liso. giro_extra: graus a mais por '{cor}-{lado}'. realismo_cor: sobrescreve o realismo numa cor. arte_mockup: '{cor}-{lado}' -> arte copiada do mockup liso oficial (arte do mapa quebrada ou clara); caixa_cor = cor cujo mockup liso dá a posição/tamanho. escala_frente: tamanho da estampa centralizada da frente. caixa_cor: '{cor}-{lado}' -> usa a posição/tamanho do mockup liso de outra cor (liso antigo errado).",
  "PORTOFINO": {
   "escala_costas": 1.08
  },
@@ -24,6 +24,39 @@
     "opacidade": 1.0,
     "granulado": 0.01
    }
+  }
+ },
+ "AFRO": {
+  "arte_mockup": {
+   "branca-frente": {
+    "arte": "dados/artes_do_mockup/AFRO-BR-frente.png"
+   },
+   "off-white-frente": {
+    "arte": "dados/artes_do_mockup/AFRO-OW-frente.png"
+   }
+  }
+ },
+ "MEMBERS": {
+  "arte_mockup": {
+   "off-white-costas": {
+    "arte": "dados/artes_do_mockup/MEMBERS-OW-costas.png",
+    "caixa_cor": "branca"
+   }
+  }
+ },
+ "PERIGNON-ROXA": {
+  "arte_mockup": {
+   "branca-frente": {
+    "arte": "dados/artes_do_mockup/PERIGNON-ROXA-BR-frente.png",
+    "caixa_cor": "off-white"
+   }
+  }
+ },
+ "STUDIOS": {},
+ "AIRLINES": {
+  "caixa_cor": {
+   "azul-marinho-frente": "branca",
+   "preta-frente": "branca"
   }
  }
 }

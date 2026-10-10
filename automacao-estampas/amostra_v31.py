@@ -61,6 +61,10 @@ def arte_e_posicao(prod, c, lado):
     if a.strip().upper() == 'LISO':
         return None
     p = R + a if os.path.exists(R + a) else UP + a
+    c_caixa = AP.get(prod, {}).get('caixa_cor', {}).get(f'{c}-{lado}', c)   # posição/tamanho do liso de outra cor
+    ov = AP.get(prod, {}).get('arte_mockup', {}).get(f'{c}-{lado}')
+    if ov:                       # arte do mapa quebrada/clara: estampa copiada do mockup oficial (extrair_arte_mockup.py)
+        a = ov['arte']; p = f'{AQUI}/{a}'; c_caixa = ov.get('caixa_cor', c)
     arte, (fx0, fy0, fx1, fy1), tem_alpha = carregar_arte_fiel(p)
     from imagem import carregar_estampa
     velha = carregar_estampa(p)[0]                     # só para saber onde o recorte antigo começava
@@ -70,11 +74,15 @@ def arte_e_posicao(prod, c, lado):
     else:
         ox0, oy0 = fx0, fy0
     n = {'costas': '01-costas', 'frente': '02-frente'}[lado]
-    liso = f'{SAIDA_LISOS}{prod}/PALL-{prod}-{COD[c]}_{n}.png'
+    so_frente = [r for r in mapa if r['NOME'] == prod and r['cor'] == COR[c] and r['lado'] == 'costas'
+                 and r['arquivo_estampa'].strip().upper() == 'LISO']
+    if lado == 'frente' and so_frente:
+        n = '01-frente'                                 # produto só com frente (STUDIOS)
+    liso = f'{SAIDA_LISOS}{prod}/PALL-{prod}-{COD[c_caixa]}_{n}.png'
     if not os.path.exists(liso):                       # pasta única (sem subpastas)
-        liso = f'{SAIDA_LISOS}PALL-{prod}-{COD[c]}_{n}.png'
+        liso = f'{SAIDA_LISOS}PALL-{prod}-{COD[c_caixa]}_{n}.png'
     f = np.asarray(Image.open(liso).convert('RGBA')).astype(int)
-    b = np.asarray(Image.open(f'{R}mockups/{c}-{lado}.png').convert('RGBA')).astype(int)
+    b = np.asarray(Image.open(f'{R}mockups/{c_caixa}-{lado}.png').convert('RGBA')).astype(int)
     d = ndimage.binary_opening(np.abs(f[..., :3] - b[..., :3]).sum(-1) > 40, iterations=2)
     ys, xs = np.nonzero(d)
     bx0, by0, bx1 = xs.min(), ys.min(), xs.max() + 1
@@ -179,15 +187,54 @@ for n in sys.argv[2].split(','):
     info = _arte_cache[(c, lado)]
     if info is None:
         res = base; detalhe = 'lisa'
+    elif lado == 'frente' and not CALIBRAR and abs(float([r for r in mapa if r['NOME'] == prod and r['cor'] == COR[c]
+                                                      and r['lado'] == 'frente'][0]['centro_x_rel'] or 0)) < 0.1:
+        # ESTAMPA CENTRALIZADA NA FRENTE: enrolada no tronco (como as costas), ancorada pela logo aprovada da
+        # CAPRESE: o topo-centro da estampa fica, em fração do tronco e em altura, no mesmo deslocamento que
+        # tem em relação à logo da CAPRESE no mockup liso.
+        A = info['A']; arte = info['arte']
+        from motor_v3 import Pontos
+        # tronco medido à mão (torsos_modelos.json): na frente o contorno automático inclui a manga e
+        # exagera o giro do corpo, o que cortaria a ponta de uma estampa larga
+        pf = Pontos(p=pf.p, cx=(T[n]['x0'] + T[n]['x1']) / 2.0, raio=(T[n]['x1'] - T[n]['x0']) / 2.0, gola_x=pf.gola_x)
+        cC = CAL[n]['centro_m']
+        _, g0 = afim_logo(pm, pf, tuple(cC), f_centro=F_LOGO, y_centro_f=REF[n]['cy'])
+        ancora_m = tuple((A @ np.array([arte.size[0] / 2, 0, 1]))[:2])
+        f_a = (ancora_m[0] - pm.gola_x) / pm.raio          # posição horizontal do próprio mockup (meio = 0)
+        y_a = REF[n]['cy'] + (ancora_m[1] - cC[1]) * g0['k']
+        _, ga = afim_logo(pm, pf, ancora_m, f_centro=f_a, y_centro_f=y_a)
+        yy_, xx_ = np.nonzero(camisa > 0.05)            # área de desenho = a camiseta inteira (não só o tronco)
+        cf = (max(0, int(xx_.min()) - 4), max(0, int(yy_.min()) - 4), min(W, int(xx_.max()) + 5), min(H, int(yy_.max()) + 5))
+        esc = float(AP.get(prod, {}).get('escala_frente', 1.0))
+        lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=ga['centro'][1], x_ancora_f=ga['centro'][0],
+                           escala_mult=esc)
+        integ = params_integracao(n, mk.alpha) if INTEGRA else None
+        if INTEGRA:
+            res, sg = escolher_desfoque(lambda ig: compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0), integra=ig),
+                                        integ, lambda: compor_v31.tinta, 'costas')
+        else:
+            res = compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
+        detalhe = dict(tipo='estampa centralizada na frente (elipse do tronco; âncora = logo CAPRESE)',
+                       ajuste_escala=round(esc, 3))
     elif lado == 'frente':
         A = info['A']; arte = info['arte']
         centro_m = tuple((A @ np.array([arte.size[0] / 2, arte.size[1] / 2, 1]))[:2])
+        giro_aj = AJ.get(n, {}).get('giro_extra_graus', 0.0)
+        centralizada = False
         if CALIBRAR:
             CAL.setdefault(n, {})['centro_m'] = [float(v) for v in centro_m]
+            f_c, y_c = F_LOGO, REF[n]['cy']
+        elif centralizada:
+            # estampa no meio do peito: o centro DELA vai para a foto pela curvatura do tronco (giro do corpo),
+            # com o mesmo deslocamento que tem em relação à logo da CAPRESE no mockup liso
+            cC = CAL[n]['centro_m']
+            _, g0 = afim_logo(pm, pf, tuple(cC), f_centro=F_LOGO, y_centro_f=REF[n]['cy'], giro_extra_graus=giro_aj)
+            f_c = F_LOGO + (centro_m[0] - cC[0]) / pm.raio
+            y_c = REF[n]['cy'] + (centro_m[1] - cC[1]) * g0['k']
         else:
             centro_m = tuple(CAL[n]['centro_m'])         # âncora da CAPRESE; a arte vem pelo seu próprio A
-        M, geo = afim_logo(pm, pf, centro_m, f_centro=F_LOGO, y_centro_f=REF[n]['cy'],
-                           giro_extra_graus=AJ.get(n, {}).get('giro_extra_graus', 0.0))
+            f_c, y_c = F_LOGO, REF[n]['cy']
+        M, geo = afim_logo(pm, pf, centro_m, f_centro=f_c, y_centro_f=y_c, giro_extra_graus=giro_aj)
         Maf = (np.vstack([M, [0, 0, 1]]) @ A)[:2]
         lay = render_afim(arte, Maf, (W, H))
         if INTEGRA:
@@ -236,7 +283,7 @@ for n in sys.argv[2].split(','):
     if info is None:
         tinta = np.zeros((H, W), bool)
     else:
-        tinta = (compor_logo.tinta if lado == 'frente' else compor_v31.tinta)
+        tinta = (compor_logo.tinta if lado == 'frente' and 'centralizada' not in str(detalhe) else compor_v31.tinta)
     mudou_fora = int((np.any(res != base, axis=-1) & ~tinta).sum())   # tem que ser 0
     o = Image.fromarray(res, 'RGB').convert('RGBA'); o.putalpha(Image.fromarray(mk.alpha))
     o.save(f'{OUT}/{prod}-{n}.png')
