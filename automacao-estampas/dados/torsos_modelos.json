@@ -1,0 +1,19 @@
+{
+ "_explica": "Tronco da camiseta em cada foto de modelo (px da foto 1344x2400): x0/x1 = laterais do corpo abaixo das axilas, topo = gola, base = barra. Medido à mão sobre grade.",
+ "azul-marinho-costas-close": {"x0": 335, "x1": 945, "topo": 690, "base": 1830},
+ "azul-marinho-costas-corpo": {"x0": 500, "x1": 900, "topo": 535, "base": 1295},
+ "azul-marinho-frente-close": {"x0": 310, "x1": 965, "topo": 720, "base": 1840},
+ "azul-marinho-frente-corpo": {"x0": 500, "x1": 900, "topo": 545, "base": 1305},
+ "branca-costas-close": {"x0": 330, "x1": 965, "topo": 610, "base": 1835},
+ "branca-costas-corpo": {"x0": 465, "x1": 900, "topo": 515, "base": 1300},
+ "branca-frente-close": {"x0": 290, "x1": 840, "topo": 705, "base": 1840},
+ "branca-frente-corpo": {"x0": 480, "x1": 820, "topo": 530, "base": 1290},
+ "off-white-costas-close": {"x0": 360, "x1": 940, "topo": 590, "base": 1700},
+ "off-white-costas-corpo": {"x0": 490, "x1": 900, "topo": 500, "base": 1290},
+ "off-white-frente-close": {"x0": 320, "x1": 890, "topo": 680, "base": 1750},
+ "off-white-frente-corpo": {"x0": 490, "x1": 860, "topo": 525, "base": 1290},
+ "preta-costas-close": {"x0": 360, "x1": 900, "topo": 600, "base": 1720},
+ "preta-costas-corpo": {"x0": 515, "x1": 895, "topo": 510, "base": 1295},
+ "preta-frente-close": {"x0": 360, "x1": 860, "topo": 670, "base": 1700},
+ "preta-frente-corpo": {"x0": 520, "x1": 860, "topo": 525, "base": 1265}
+}
