@@ -19,19 +19,21 @@ from modelos import mascara_tecido_suave, mascara_pele, preparar_modelo, recolor
 from imagem import Torso
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
-R = '/tmp/claude-0/pallacio-work/full/'
-UP = '/tmp/claude-0/-home-user-logo/2cf89407-8e22-55ba-910c-d0e8feb0d3ba/scratchpad/upload/'
-FOTOS_DIR = '/tmp/claude-0/mm/'
-MOCKUPS = '/tmp/claude-0/cores5/mk5/'
+# Pastas (variáveis de ambiente; o padrão é o ambiente onde a v3.2 foi feita)
+R = os.environ.get('PALLACIO_DIR', '/tmp/claude-0/pallacio-work/full/').rstrip('/') + '/'       # mapa.csv, mockups/
+UP = os.environ.get('ESTAMPAS_DIR', '/tmp/claude-0/-home-user-logo/2cf89407-8e22-55ba-910c-d0e8feb0d3ba/scratchpad/upload/').rstrip('/') + '/'
+SAIDA_LISOS = os.environ.get('LISOS_DIR', R + 'saida/').rstrip('/') + '/'   # mockups lisos aprovados (PALL-..._01-costas.png)
+FOTOS_DIR = os.environ.get('FOTOS_DIR', '/tmp/claude-0/mm/').rstrip('/') + '/'
+MOCKUPS = os.environ.get('MOCKUPS_PONTOS_DIR', '/tmp/claude-0/cores5/mk5/').rstrip('/') + '/'
 OUT = os.environ.get('SAIDA_V31', '/tmp/claude-0/amostra_v31_completa')
 os.makedirs(OUT, exist_ok=True)
 T = json.load(open(f'{AQUI}/dados/torsos_modelos.json'))
-TOP = json.load(open('/tmp/claude-0/topos.json'))
+TOP = json.load(open(f'{AQUI}/dados/topos.json'))
 MAN = {k: v for k, v in json.load(open(f'{AQUI}/dados/pontos_manuais.json')).items() if not k.startswith('_')}
 REF = json.load(open(f'{AQUI}/dados/referencia_v2_posicao.json'))
 AJ = {k: v for k, v in json.load(open(f'{AQUI}/dados/ajustes_v31.json')).items() if not k.startswith('_')} \
     if os.path.exists(f'{AQUI}/dados/ajustes_v31.json') else {}
-CM = json.load(open('/tmp/claude-0/cores_mockup.json'))
+CM = json.load(open(f'{AQUI}/dados/cores_mockup.json'))
 mapa = list(csv.DictReader(open(R + 'mapa.csv')))
 COR = {'preta': 'Preta', 'branca': 'Branca', 'off-white': 'Off White', 'azul-marinho': 'Azul Marinho'}
 COD = {'azul-marinho': 'AZ', 'branca': 'BR', 'off-white': 'OW', 'preta': 'PT'}
@@ -65,7 +67,10 @@ def arte_e_posicao(prod, c, lado):
     else:
         ox0, oy0 = fx0, fy0
     n = {'costas': '01-costas', 'frente': '02-frente'}[lado]
-    f = np.asarray(Image.open(f'{R}saida/{prod}/PALL-{prod}-{COD[c]}_{n}.png').convert('RGBA')).astype(int)
+    liso = f'{SAIDA_LISOS}{prod}/PALL-{prod}-{COD[c]}_{n}.png'
+    if not os.path.exists(liso):                       # pasta única (sem subpastas)
+        liso = f'{SAIDA_LISOS}PALL-{prod}-{COD[c]}_{n}.png'
+    f = np.asarray(Image.open(liso).convert('RGBA')).astype(int)
     b = np.asarray(Image.open(f'{R}mockups/{c}-{lado}.png').convert('RGBA')).astype(int)
     d = ndimage.binary_opening(np.abs(f[..., :3] - b[..., :3]).sum(-1) > 40, iterations=2)
     ys, xs = np.nonzero(d)
@@ -105,6 +110,14 @@ def escolher_desfoque(compor, integra, tinta_de, lado):
 
 registro = {}
 prod = sys.argv[1]
+# Calibração por foto tirada da CAPRESE aprovada (v3.2). Para as outras estampas, o ponto de ancoragem
+# no mockup liso, a escala e a posição na foto são os da CAPRESE: cada estampa cai na foto na MESMA
+# posição relativa que tem no seu mockup liso (maior/menor, mais alta/baixa), sem forçar a largura.
+CAL_ARQ = f'{AQUI}/dados/calibracao_caprese.json'
+CALIBRAR = prod == 'CAPRESE'
+CAL = json.load(open(CAL_ARQ)) if os.path.exists(CAL_ARQ) else {}
+if not CALIBRAR and not CAL:
+    sys.exit('falta dados/calibracao_caprese.json: rode antes a CAPRESE (16 fotos)')
 for n in sys.argv[2].split(','):
     c = n.rsplit('-', 2)[0]; lado = 'costas' if '-costas-' in n else 'frente'
     pm = pontos_mockup(lado)
@@ -127,6 +140,10 @@ for n in sys.argv[2].split(','):
     elif lado == 'frente':
         A = info['A']; arte = info['arte']
         centro_m = tuple((A @ np.array([arte.size[0] / 2, arte.size[1] / 2, 1]))[:2])
+        if CALIBRAR:
+            CAL.setdefault(n, {})['centro_m'] = [float(v) for v in centro_m]
+        else:
+            centro_m = tuple(CAL[n]['centro_m'])         # âncora da CAPRESE; a arte vem pelo seu próprio A
         M, geo = afim_logo(pm, pf, centro_m, f_centro=F_LOGO, y_centro_f=REF[n]['cy'],
                            giro_extra_graus=AJ.get(n, {}).get('giro_extra_graus', 0.0))
         Maf = (np.vstack([M, [0, 0, 1]]) @ A)[:2]
@@ -146,18 +163,26 @@ for n in sys.argv[2].split(','):
         cf = (max(0, int(min(xs)) - 40), max(0, int(min(ys)) - 60), min(W, int(max(xs)) + 40), min(H, int(max(ys)) + 40))
         # posição e largura de referência = v2 aprovada (centro, topo e largura), foto por foto.
         # 1ª passada mede a largura que a geometria dá; 2ª corrige só a escala para igualar a v2.
-        xr = (REF[n]['x0'] + REF[n]['x1']) / 2.0
-        lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=REF[n]['topo'], x_ancora_f=xr)
-        xs_t = np.nonzero(lay[..., 3].max(0) > 0.5)[0]
-        larg = float(xs_t.max() - xs_t.min()) if len(xs_t) else 1.0
-        esc = (REF[n]['x1'] - REF[n]['x0']) / larg if larg > 1 else 1.0
-        for _ in range(2):                                     # centro da tinta final = centro da v2
-            lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=REF[n]['topo'], x_ancora_f=xr, escala_mult=esc)
+        if not CALIBRAR:                                       # outras estampas: calibração da CAPRESE
+            k = CAL[n]
+            lay = render_corpo(arte, A, pm, pf, (W, H), cf, tuple(k['ancora_m']), y_ancora_f=REF[n]['topo'],
+                               x_ancora_f=k['xr'], escala_mult=k['esc'])
+            esc = k['esc']
+        if CALIBRAR:
+            xr = (REF[n]['x0'] + REF[n]['x1']) / 2.0
+            lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=REF[n]['topo'], x_ancora_f=xr)
             xs_t = np.nonzero(lay[..., 3].max(0) > 0.5)[0]
-            dx = (REF[n]['x0'] + REF[n]['x1']) / 2.0 - (xs_t.min() + xs_t.max()) / 2.0
-            if abs(dx) < 2:
-                break
-            xr += dx
+            larg = float(xs_t.max() - xs_t.min()) if len(xs_t) else 1.0
+            esc = (REF[n]['x1'] - REF[n]['x0']) / larg if larg > 1 else 1.0
+            for _ in range(2):                                 # centro da tinta final = centro da v2
+                lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=REF[n]['topo'], x_ancora_f=xr, escala_mult=esc)
+                xr_usado = xr
+                xs_t = np.nonzero(lay[..., 3].max(0) > 0.5)[0]
+                dx = (REF[n]['x0'] + REF[n]['x1']) / 2.0 - (xs_t.min() + xs_t.max()) / 2.0
+                if abs(dx) < 2:
+                    break
+                xr += dx
+            CAL.setdefault(n, {}).update(ancora_m=[float(v) for v in ancora_m], xr=float(xr_usado), esc=float(esc))
         if INTEGRA:
             integ = params_integracao(n, mk.alpha)
             res, sg = escolher_desfoque(lambda ig: compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0), integra=ig),
@@ -182,3 +207,7 @@ for n in sys.argv[2].split(','):
                        pixels_alterados_fora_da_tinta=mudou_fora, detalhe=detalhe)
     print(n, registro[n], flush=True)
 json.dump(registro, open(f'{OUT}/registro_{prod}.json', 'w'), indent=1, ensure_ascii=False)
+if CALIBRAR:
+    if os.path.exists(CAL_ARQ):
+        antigo = json.load(open(CAL_ARQ)); antigo.update(CAL); CAL = antigo
+    json.dump(CAL, open(CAL_ARQ, 'w'), indent=1)

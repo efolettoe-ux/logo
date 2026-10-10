@@ -608,8 +608,8 @@ def acabamento_dtf(lin: np.ndarray, tinta: np.ndarray, al: np.ndarray, integra: 
     - cobertura ("opacidade", 0,95): nos meios-tons o tecido aparece um pouco através da tinta;
       onde a tinta é bem mais clara que o tecido (branco na camisa escura) a cobertura vai a 1.
     Recebe/devolve luz linear; o alfa só diminui (nunca cria tinta fora do desenho)."""
-    if not integra:
-        return tinta, al
+    if not integra or (float(integra.get('granulado', 0.0)) <= 0 and float(integra.get('opacidade', 1.0)) >= 1):
+        return tinta, al                       # v3.2: sem acabamento, resultado idêntico
     pesos = np.array([0.2126, 0.7152, 0.0722], np.float32)
     ts = lin_srgb(np.clip(tinta, 0, 1))
     gr = float(integra.get('granulado', 0.0))
