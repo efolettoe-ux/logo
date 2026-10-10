@@ -20,8 +20,10 @@
 - **Luz só suave e trama de 0,5%:** a tinta acompanha a luz da camiseta sem manchar as letras.
 
 ## Estampa grande das costas
-- **Altura igual à v2 aprovada:** o topo da estampa fica onde estava na v2, foto por foto
-  (`dados/referencia_v2_posicao.json`). Tamanho e proporção continuam os da v3, sem mudança.
+- **Posição igual à v2 aprovada:** topo, centro e largura da estampa ficam iguais aos da v2, foto
+  por foto (`dados/referencia_v2_posicao.json`), com tolerância de ±4 px. Na primeira versão da
+  v3.1 só a altura seguia a v2: o centro desviava até 42 px (corpo virado) e a estampa ficava de 3%
+  a 10% maior. A proporção da arte não muda; a curvatura, a luz e a textura continuam da v3.1.
 - **Dobras localizadas:** a estampa só se desloca onde há dobra de verdade, proporcional à força
   da dobra e no máximo 2 px. Antes, toda foto recebia o mesmo deslocamento máximo.
 - **Luz real da camiseta:** o cálculo foto ÷ cor do tecido ganhou uma margem para tecido escuro,

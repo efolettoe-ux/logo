@@ -624,7 +624,8 @@ def _x_de_f(pf: Pontos, f: float, elipse: Elipse = _ELIPSE) -> float:
 
 
 def mapa_corpo_v31(pm: Pontos, pf: Pontos, xs_f: np.ndarray, ys_f: np.ndarray, ancora_m: Tuple[float, float],
-                   y_ancora_f: float, elipse: Elipse = _ELIPSE):
+                   y_ancora_f: float, elipse: Elipse = _ELIPSE, x_ancora_f: Optional[float] = None,
+                   escala_mult: float = 1.0):
     """Igual ao mapa_corpo_v2 (elipse + escala única k), mas a altura da âncora na foto vem de fora
     (referência aprovada) e o mapa é calculado nos pontos xs_f, ys_f (grade supersampled)."""
     giro = elipse.giro_da_gola((pf.gola_x - pf.cx) / pf.raio)
@@ -633,13 +634,15 @@ def mapa_corpo_v31(pm: Pontos, pf: Pontos, xs_f: np.ndarray, ys_f: np.ndarray, a
     meia = np.sqrt(np.cos(giro) ** 2 + (elipse.prof * np.sin(giro)) ** 2)
     xs = pf.cx + R * (np.sin(ts) * np.cos(giro) + elipse.prof * np.cos(ts) * np.sin(giro)) / meia
     arcos = R * elipse.f * elipse.smax / meia
-    k = float((R / meia) * elipse.smax / pm.raio)
+    k = float((R / meia) * elipse.smax / pm.raio) * escala_mult
     comp_m = pm.p["barra_c"][1] - pm.p["gola"][1]
     comp_f = pf.p["barra_c"][1] - pf.p["gola"][1]
     kv = comp_f / comp_m
     xa_m, ya_m = ancora_m
     arco_ancora = kv * (xa_m - pm.gola_x)
     ordem = np.argsort(xs)
+    if x_ancora_f is not None:                     # centro da arte na posição de referência (v2 aprovada)
+        arco_ancora = float(np.interp(x_ancora_f, xs[ordem], arcos[ordem]))
     arco_x = np.interp(xs_f, xs[ordem], arcos[ordem], left=np.nan, right=np.nan)
     mx = xa_m + (arco_x - arco_ancora) / k
     (oex, oey), (odx, ody) = pf.p["ombro_e"], pf.p["ombro_d"]
@@ -652,7 +655,7 @@ def mapa_corpo_v31(pm: Pontos, pf: Pontos, xs_f: np.ndarray, ys_f: np.ndarray, a
 
 def render_corpo(arte, A_arte_mockup: np.ndarray, pm: Pontos, pf: Pontos, tamanho_foto: Tuple[int, int],
                  caixa_foto: Tuple[int, int, int, int], ancora_m: Tuple[float, float], y_ancora_f: float,
-                 ss: int = 3) -> np.ndarray:
+                 ss: int = 3, x_ancora_f: Optional[float] = None, escala_mult: float = 1.0) -> np.ndarray:
     """Estampa grande: do PNG oficial direto para a foto (foto -> mockup -> arte), em grade ss×
     e reduzida por área. Uma única redução prévia da arte (área) para ~ss× o tamanho final."""
     W, H = tamanho_foto
@@ -663,7 +666,7 @@ def render_corpo(arte, A_arte_mockup: np.ndarray, pm: Pontos, pf: Pontos, tamanh
     gx = x0 + (np.arange((x1 - x0) * ss, dtype=np.float32) + 0.5) / ss
     gy = y0 + (np.arange((y1 - y0) * ss, dtype=np.float32) + 0.5) / ss
     XX, YY = np.meshgrid(gx, gy)
-    mx, my, k = mapa_corpo_v31(pm, pf, XX, YY, ancora_m, y_ancora_f)
+    mx, my, k = mapa_corpo_v31(pm, pf, XX, YY, ancora_m, y_ancora_f, x_ancora_f=x_ancora_f, escala_mult=escala_mult)
     p = min(1.0, s * k * ss * 1.25)                      # px da arte reduzida por px da arte original
     if p < 1.0:
         a = cv2.resize(a, (max(1, round(a.shape[1] * p)), max(1, round(a.shape[0] * p))), interpolation=cv2.INTER_AREA)

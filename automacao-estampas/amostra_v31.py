@@ -108,9 +108,23 @@ for n in sys.argv[2].split(','):
         ancora_m = tuple((A @ np.array([arte.size[0] / 2, 0, 1]))[:2])      # topo-centro da arte
         xs = [v[0] for v in pf.p.values()]; ys = [v[1] for v in pf.p.values()]
         cf = (max(0, int(min(xs)) - 40), max(0, int(min(ys)) - 60), min(W, int(max(xs)) + 40), min(H, int(max(ys)) + 40))
-        lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=REF[n]['topo'])
+        # posição e largura de referência = v2 aprovada (centro, topo e largura), foto por foto.
+        # 1ª passada mede a largura que a geometria dá; 2ª corrige só a escala para igualar a v2.
+        xr = (REF[n]['x0'] + REF[n]['x1']) / 2.0
+        lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=REF[n]['topo'], x_ancora_f=xr)
+        xs_t = np.nonzero(lay[..., 3].max(0) > 0.5)[0]
+        larg = float(xs_t.max() - xs_t.min()) if len(xs_t) else 1.0
+        esc = (REF[n]['x1'] - REF[n]['x0']) / larg if larg > 1 else 1.0
+        for _ in range(2):                                     # centro da tinta final = centro da v2
+            lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=REF[n]['topo'], x_ancora_f=xr, escala_mult=esc)
+            xs_t = np.nonzero(lay[..., 3].max(0) > 0.5)[0]
+            dx = (REF[n]['x0'] + REF[n]['x1']) / 2.0 - (xs_t.min() + xs_t.max()) / 2.0
+            if abs(dx) < 2:
+                break
+            xr += dx
         res = compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
-        detalhe = dict(tipo='estampa grande (elipse do tronco, altura v2)')
+        detalhe = dict(tipo='estampa grande (elipse do tronco; centro, topo e largura = v2 aprovada)',
+                       ajuste_escala=round(float(esc), 3))
     if info is None:
         tinta = np.zeros((H, W), bool)
     else:
