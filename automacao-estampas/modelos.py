@@ -115,7 +115,7 @@ def preparar_modelo(caminho: str, semente: Optional[Tuple[float, float]] = None,
 
 def aplicar_estampa_ps(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[float, float, float, float],
                        deslocar_px: float = 10.0, desfoque_mapa: float = 2.0, opacidade: float = 1.0,
-                       realismo: float = 0.0) -> Image.Image:
+                       realismo: float = 0.0, textura: float = 1.0) -> Image.Image:
     """O passo a passo clássico do Photoshop, automatizado:
 
     1. Filtro > Distorcer > Deslocar (10 x 10) usando a própria foto em preto e branco como mapa:
@@ -150,11 +150,11 @@ def aplicar_estampa_ps(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[f
         from scipy import ndimage
         lum0 = foto.mean(-1)
         fundo = ndimage.gaussian_filter(lum0, 2.5)
-        hp = np.clip((lum0 - fundo) / np.maximum(fundo, 0.04), -0.35, 0.35)   # trama/dobra fina do tecido
+        hp = textura * np.clip((lum0 - fundo) / np.maximum(fundo, 0.04), -0.35, 0.35)   # trama/dobra fina do tecido
         # tinta mais fina nos "poros" da trama + grão leve de serigrafia (semente fixa: igual sempre)
         rng = np.random.default_rng(7)
         grao = ndimage.gaussian_filter(rng.standard_normal(a.shape).astype(np.float32), 0.7)
-        a = a * np.clip(1 - realismo * (0.9 * np.clip(-hp, 0, 1) + 0.06 * np.abs(grao)), 0, 1)
+        a = a * np.clip(1 - realismo * (0.9 * np.clip(-hp, 0, 1) + 0.06 * textura * np.abs(grao)), 0, 1)
         a = ndimage.gaussian_filter(a, 0.35 * realismo)                       # borda da tinta, não recorte
     cor = np.where(amost[..., 3:4] > 1e-4, amost[..., :3] / np.maximum(amost[..., 3:4], 1e-4), 0.0)
     cor = np.clip(cor, 0, 1)
@@ -169,6 +169,10 @@ def aplicar_estampa_ps(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[f
     else:
         # camiseta escura: sombra relativa ao tom do tecido (multiplicar normalizado), sem apagar a tinta
         lum = foto.mean(-1, keepdims=True)
+        if textura < 1:
+            from scipy import ndimage
+            liso = ndimage.gaussian_filter(lum[..., 0], 2.0)[..., None]   # sombra das dobras fica, a trama some
+            lum = liso + textura * (lum - liso)
         rel = np.clip(lum / max(float(tecido.mean()), 1e-3), 1e-3, None)
         # sombra suavizada: dobra funda escurece a tinta, mas sem sumir com ela
         rel = np.clip(rel ** 0.6, 0.6, 1.4)
