@@ -33,7 +33,10 @@
   "x1": 965,
   "topo": 610,
   "base": 1835,
-  "gola_x": 640
+  "gola_x": 640,
+  "ajuste": {
+   "mover": -0.025
+  }
  },
  "branca-costas-corpo": {
   "x0": 465,
@@ -47,7 +50,10 @@
   "x1": 840,
   "topo": 705,
   "base": 1840,
-  "gola_x": 560
+  "gola_x": 560,
+  "ajuste": {
+   "girar": 8
+  }
  },
  "branca-frente-corpo": {
   "x0": 480,
@@ -111,5 +117,6 @@
   "topo": 525,
   "base": 1265,
   "gola_x": 660
- }
+ },
+ "_ajuste": "ajuste (opcional, por foto): escala (x), subir (fração da altura), girar (graus, + = para a esquerda), mover (fração da largura, - = para a esquerda)"
 }
