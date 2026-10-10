@@ -49,3 +49,15 @@
 `amostras/v3.1-completa/`: CAPRESE em 7 fotos (as 6 da v3 + foto 8), mais
 `comparacao_v2_v3_v31.jpg`, `zoom_costas_v3_v31.jpg` e `registro_CAPRESE.json` (arquivo exato
 usado em cada foto e a conferência dos pixels).
+
+## v3.3: acabamento de tinta igual ao dos mockups lisos
+
+Pedido: a estampa nas fotos de modelo deve parecer impressa como nos mockups lisos aprovados (ex.: AFRO preta), e não "jogada por cima".
+Medido: no liso a tinta tem granulado fino da malha (1,8%) e cobertura de 95% nos meios-tons; na v3.2 a tinta era lisa.
+
+- `motor_v3.acabamento_dtf`: o mesmo granulado (ruído fixo, semente, 0,6 px, mais forte na tinta clara) e a mesma cobertura
+  (0,95; vai a 1 onde a tinta é bem mais clara que o tecido, para o branco na camisa escura não virar cinza) do
+  `compositor.aplicar_estampa`. Ele entra depois da luz das dobras, da faixa de tons e da suavidade da câmera da v3.2.
+- O desenho não muda, e o alfa só diminui. Posição e tamanho são idênticos aos da v3.1/v3.2 aprovadas.
+- Pixels fora da tinta alterados: 0 nas 16 fotos.
+- Amostra: `amostras/v3.3` (`INTEGRA=1 ACABAMENTO=1 python3 amostra_v31.py CAPRESE ...`).

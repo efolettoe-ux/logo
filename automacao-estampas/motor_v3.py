@@ -601,6 +601,33 @@ def integrar_tinta(tinta_lin: np.ndarray, al: np.ndarray, integra: Optional[dict
     return t, al
 
 
+def acabamento_dtf(lin: np.ndarray, tinta: np.ndarray, al: np.ndarray, integra: Optional[dict]):
+    """Acabamento igual ao dos mockups lisos aprovados (compositor.aplicar_estampa), sem mudar o desenho:
+    - granulado da tinta sobre a malha: ruído fino e fixo (semente), do tamanho do fio
+      ("granulado", 1,8% como no liso), mais forte na tinta clara;
+    - cobertura ("opacidade", 0,95): nos meios-tons o tecido aparece um pouco através da tinta;
+      onde a tinta é bem mais clara que o tecido (branco na camisa escura) a cobertura vai a 1.
+    Recebe/devolve luz linear; o alfa só diminui (nunca cria tinta fora do desenho)."""
+    if not integra:
+        return tinta, al
+    pesos = np.array([0.2126, 0.7152, 0.0722], np.float32)
+    ts = lin_srgb(np.clip(tinta, 0, 1))
+    gr = float(integra.get('granulado', 0.0))
+    if gr > 0:
+        h, w = al.shape
+        rng = np.random.default_rng(12345 + h * 7 + w)
+        ruido = cv2.GaussianBlur(rng.standard_normal((h, w)).astype(np.float32), (0, 0),
+                                 float(integra.get('granulado_px', 0.6)))
+        ruido /= max(float(ruido.std()), 1e-6)
+        ts = np.clip(ts + (gr * ruido)[..., None] * (0.35 + 0.65 * ts), 0, 1)
+    op = float(integra.get('opacidade', 1.0))
+    if op < 1:
+        fab = lin_srgb(lin)
+        clareia = np.clip(((ts @ pesos) - (fab @ pesos) - 0.15) / 0.35, 0, 1)
+        al = al * (op + (1 - op) * clareia)
+    return srgb_lin(ts), al
+
+
 def compor_logo(foto_u8: np.ndarray, camisa: np.ndarray, pele: np.ndarray, camada: np.ndarray,
                 cor_tecido: Tuple[float, float, float], textura: float = 0.005,
                 integra: Optional[dict] = None) -> np.ndarray:
@@ -630,6 +657,7 @@ def compor_logo(foto_u8: np.ndarray, camisa: np.ndarray, pele: np.ndarray, camad
     base_t, al = integrar_tinta(srgb_lin(cor), al, integra)
     tinta = base_t * ilum[..., None] * (1 + trama[..., None])
     al = al * camisa[y0:y1, x0:x1] * (1 - pele[y0:y1, x0:x1]) if integra and integra.get('desfoque', 0) > 0 else al
+    tinta, al = acabamento_dtf(lin, tinta, al, integra)
     out = lin_srgb(lin * (1 - al[..., None]) + tinta * al[..., None])
     novo = np.clip(out * 255 + 0.5, 0, 255).astype(np.uint8)
     regiao = res[y0:y1, x0:x1]
@@ -753,6 +781,7 @@ def compor_v31(foto_u8: np.ndarray, camisa: np.ndarray, pele: np.ndarray, camada
     if integra and integra.get('desfoque', 0) > 0:
         al = al * camisa[y0:y1, x0:x1] * (1 - pele[y0:y1, x0:x1])
     tinta = base_t * ilum_s[..., None] * (1 + trama[..., None])
+    tinta, al = acabamento_dtf(lin, tinta, al, integra)
     out = lin_srgb(lin * (1 - al[..., None]) + tinta * al[..., None])
     novo = np.clip(out * 255 + 0.5, 0, 255).astype(np.uint8)
     regiao = res[y0:y1, x0:x1]

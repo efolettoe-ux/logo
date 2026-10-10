@@ -90,7 +90,12 @@ def params_integracao(n, alpha):
     lo, hi = np.percentile(lum[pessoa], [0.5, 99.5]) / 255.0
     from motor_v3 import srgb_lin
     return dict(branco=float(srgb_lin(np.float32(hi))), preto=float(srgb_lin(np.float32(lo))), dessat=0.05,
-                nitidez_foto=nitidez(orig, pessoa & (np.arange(orig.shape[0])[:, None] > 0)))
+                nitidez_foto=nitidez(orig, pessoa & (np.arange(orig.shape[0])[:, None] > 0)),
+                **(ACABAMENTO if os.environ.get('ACABAMENTO') == '1' else {}))
+
+# v3.3: mesmo acabamento de tinta dos mockups lisos aprovados (compositor.aplicar_estampa)
+ACABAMENTO = dict(granulado=float(os.environ.get('GRANULADO', 0.018)), granulado_px=0.6,
+                  opacidade=float(os.environ.get('OPACIDADE', 0.95)))
 
 DESFOQUE = {'costas': 0.55, 'frente': 0.35}   # suavidade de câmera (px); logo pequena protegida
 
