@@ -1,5 +1,15 @@
 {
  "_explica": "Ajustes finos aprovados por foto na v3.1. giro_extra_graus: + = girar a estampa para a esquerda (anti-horário), além da inclinação dos ombros.",
- "off-white-frente-close": {"giro_extra_graus": 3.0},
- "off-white-frente-corpo": {"giro_extra_graus": 3.0}
+ "off-white-frente-close": {
+  "giro_extra_graus": 3.0
+ },
+ "off-white-frente-corpo": {
+  "giro_extra_graus": 3.0
+ },
+ "branca-frente-close": {
+  "giro_extra_graus": 3.0
+ },
+ "branca-frente-corpo": {
+  "giro_extra_graus": 3.0
+ }
 }

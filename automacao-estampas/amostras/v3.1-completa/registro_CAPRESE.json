@@ -1,5 +1,5 @@
 {
- "off-white-frente-close": {
+ "branca-frente-close": {
   "gerada": true,
   "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_09_02.png",
   "png_oficial_com_transparencia": true,
@@ -16,11 +16,11 @@
   "pixels_alterados_fora_da_tinta": 0,
   "detalhe": {
    "tipo": "logo pequena (transformação mínima)",
-   "giro_graus": -4.3,
-   "achatamento": 0.968
+   "giro_graus": -6.72,
+   "achatamento": 0.957
   }
  },
- "off-white-frente-corpo": {
+ "branca-frente-corpo": {
   "gerada": true,
   "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_09_02.png",
   "png_oficial_com_transparencia": true,
@@ -37,8 +37,8 @@
   "pixels_alterados_fora_da_tinta": 0,
   "detalhe": {
    "tipo": "logo pequena (transformação mínima)",
-   "giro_graus": -4.38,
-   "achatamento": 0.969
+   "giro_graus": -12.42,
+   "achatamento": 0.998
   }
  }
 }
