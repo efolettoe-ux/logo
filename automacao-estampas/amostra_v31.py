@@ -75,6 +75,29 @@ def arte_e_posicao(prod, c, lado):
     return dict(arte=arte, A=A, arquivo=a, png_com_transparencia=tem_alpha, tamanho_png=Image.open(p).size,
                 recorte_fiel=[int(fx0), int(fy0), int(fx1), int(fy1)])
 
+INTEGRA = os.environ.get('INTEGRA') == '1'      # v3.2: tinta integrada à fotografia
+
+def nitidez(img_u8, mascara):
+    g = cv2.cvtColor(img_u8, cv2.COLOR_RGB2GRAY).astype(np.float32)
+    e = np.abs(cv2.Laplacian(g, cv2.CV_32F))
+    return float(np.percentile(e[mascara], 99.5)) if mascara.any() else 0.0
+
+def params_integracao(n, alpha):
+    """Branco/preto da cena e nitidez da câmera, medidos na própria foto do modelo."""
+    orig = np.asarray(Image.open(f'{FOTOS_DIR}{n}.png').convert('RGB'))
+    pessoa = alpha > 200
+    lum = cv2.cvtColor(orig, cv2.COLOR_RGB2GRAY)
+    lo, hi = np.percentile(lum[pessoa], [0.5, 99.5]) / 255.0
+    from motor_v3 import srgb_lin
+    return dict(branco=float(srgb_lin(np.float32(hi))), preto=float(srgb_lin(np.float32(lo))), dessat=0.05,
+                nitidez_foto=nitidez(orig, pessoa & (np.arange(orig.shape[0])[:, None] > 0)))
+
+DESFOQUE = {'costas': 0.55, 'frente': 0.35}   # suavidade de câmera (px); logo pequena protegida
+
+def escolher_desfoque(compor, integra, tinta_de, lado):
+    integra['desfoque'] = DESFOQUE[lado]
+    return compor(integra), integra['desfoque']
+
 registro = {}
 prod = sys.argv[1]
 for n in sys.argv[2].split(','):
@@ -103,7 +126,12 @@ for n in sys.argv[2].split(','):
                            giro_extra_graus=AJ.get(n, {}).get('giro_extra_graus', 0.0))
         Maf = (np.vstack([M, [0, 0, 1]]) @ A)[:2]
         lay = render_afim(arte, Maf, (W, H))
-        res = compor_logo(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
+        if INTEGRA:
+            integ = params_integracao(n, mk.alpha)
+            res, sg = escolher_desfoque(lambda ig: compor_logo(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0), integra=ig),
+                                        integ, lambda: compor_logo.tinta, 'frente')
+        else:
+            res = compor_logo(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
         detalhe = dict(tipo='logo pequena (transformação mínima)', giro_graus=round(float(geo['inclinacao_graus']), 2),
                        achatamento=round(float(geo['sx'] / geo['sy']), 3))
     else:
@@ -125,7 +153,12 @@ for n in sys.argv[2].split(','):
             if abs(dx) < 2:
                 break
             xr += dx
-        res = compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
+        if INTEGRA:
+            integ = params_integracao(n, mk.alpha)
+            res, sg = escolher_desfoque(lambda ig: compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0), integra=ig),
+                                        integ, lambda: compor_v31.tinta, 'costas')
+        else:
+            res = compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
         detalhe = dict(tipo='estampa grande (elipse do tronco; centro, topo e largura = v2 aprovada)',
                        ajuste_escala=round(float(esc), 3))
     if info is None:
@@ -135,6 +168,8 @@ for n in sys.argv[2].split(','):
     mudou_fora = int((np.any(res != base, axis=-1) & ~tinta).sum())   # tem que ser 0
     o = Image.fromarray(res, 'RGB').convert('RGBA'); o.putalpha(Image.fromarray(mk.alpha))
     o.save(f'{OUT}/{prod}-{n}.png')
+    if INTEGRA and info is not None:
+        detalhe = dict(detalhe, integracao={k: round(float(v), 4) for k, v in integ.items()})
     registro[n] = dict(gerada=True, arquivo_estampa=info['arquivo'] if info else 'LISO',
                        png_oficial_com_transparencia=info['png_com_transparencia'] if info else None,
                        tamanho_png=info['tamanho_png'] if info else None,
