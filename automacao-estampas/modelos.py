@@ -154,7 +154,9 @@ def aplicar_estampa_ps(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[f
     else:
         # camiseta escura: sombra relativa ao tom do tecido (multiplicar normalizado), sem apagar a tinta
         lum = foto.mean(-1, keepdims=True)
-        rel = np.clip(lum / max(float(tecido.mean()), 1e-3), 0.35, 1.6)
+        rel = np.clip(lum / max(float(tecido.mean()), 1e-3), 1e-3, None)
+        # sombra suavizada: dobra funda escurece a tinta, mas sem sumir com ela
+        rel = np.clip(rel ** 0.6, 0.6, 1.4)
         tinta = np.clip(cor * rel, 0, 1)
     pode = mk.mascara[y0:y1, x0:x1].astype(np.float32)
     a = a * pode

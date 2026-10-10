@@ -5,7 +5,12 @@
   "x1": 945,
   "topo": 690,
   "base": 1830,
-  "gola_x": 635
+  "gola_x": 635,
+  "ajuste": {
+   "escala": 1.108,
+   "subir": 0.0477,
+   "mover": 0.0025
+  }
  },
  "azul-marinho-costas-corpo": {
   "x0": 500,
@@ -43,7 +48,12 @@
   "x1": 900,
   "topo": 515,
   "base": 1300,
-  "gola_x": 690
+  "gola_x": 690,
+  "ajuste": {
+   "escala": 1.103,
+   "subir": 0.0764,
+   "mover": -0.0279
+  }
  },
  "branca-frente-close": {
   "x0": 290,
@@ -60,63 +70,120 @@
   "x1": 820,
   "topo": 530,
   "base": 1290,
-  "gola_x": 640
+  "gola_x": 640,
+  "ajuste": {
+   "escala": 1.228,
+   "subir": -0.0075,
+   "mover": -0.0077
+  },
+  "cilindro": [
+   488,
+   868
+  ]
  },
  "off-white-costas-close": {
   "x0": 360,
   "x1": 940,
   "topo": 590,
   "base": 1700,
-  "gola_x": 630
+  "gola_x": 630,
+  "ajuste": {
+   "escala": 1.103,
+   "subir": 0.0588,
+   "mover": -0.029
+  }
  },
  "off-white-costas-corpo": {
   "x0": 490,
   "x1": 900,
   "topo": 500,
   "base": 1290,
-  "gola_x": 680
+  "gola_x": 680,
+  "ajuste": {
+   "escala": 1.178,
+   "subir": 0.0713,
+   "mover": -0.037
+  }
  },
  "off-white-frente-close": {
   "x0": 320,
   "x1": 890,
   "topo": 680,
   "base": 1750,
-  "gola_x": 630
+  "gola_x": 630,
+  "ajuste": {
+   "escala": 1.308,
+   "subir": 0.0028,
+   "mover": 0.0168
+  }
  },
  "off-white-frente-corpo": {
   "x0": 490,
   "x1": 860,
   "topo": 525,
   "base": 1290,
-  "gola_x": 660
+  "gola_x": 660,
+  "ajuste": {
+   "escala": 1.179,
+   "subir": 0.0033,
+   "mover": -0.0182
+  },
+  "cilindro": [
+   489,
+   882
+  ]
  },
  "preta-costas-close": {
   "x0": 360,
   "x1": 900,
   "topo": 600,
   "base": 1720,
-  "gola_x": 600
+  "gola_x": 600,
+  "ajuste": {
+   "escala": 1.253,
+   "subir": 0.0308,
+   "mover": -0.0095
+  }
  },
  "preta-costas-corpo": {
   "x0": 515,
   "x1": 895,
   "topo": 510,
   "base": 1295,
-  "gola_x": 700
+  "gola_x": 700,
+  "ajuste": {
+   "escala": 1.243,
+   "subir": 0.0431,
+   "mover": -0.0038
+  }
  },
  "preta-frente-close": {
   "x0": 360,
   "x1": 860,
   "topo": 670,
   "base": 1700,
-  "gola_x": 600
+  "gola_x": 600,
+  "ajuste": {
+   "escala": 1.177,
+   "subir": -0.024,
+   "mover": 0.0351
+  }
  },
  "preta-frente-corpo": {
   "x0": 520,
   "x1": 860,
   "topo": 525,
   "base": 1265,
-  "gola_x": 660
+  "gola_x": 660,
+  "ajuste": {
+   "escala": 1.178,
+   "subir": -0.018,
+   "mover": 0.0257
+  },
+  "cilindro": [
+   509,
+   870
+  ]
  },
  "_ajuste": "ajuste (opcional, por foto): escala (x), subir (fração da altura), girar (graus, + = para a esquerda), mover (fração da largura, - = para a esquerda)"
 }
