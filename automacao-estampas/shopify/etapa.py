@@ -93,3 +93,23 @@ if __name__ == '__main__' and sys.argv[1] == 'mk':
                 midia_por_cor=dict(x.split('=') for x in mpc.split(',')), antigas=ant.split(','))
     json.dump(spec, open('/tmp/claude-0/spec.json', 'w'), ensure_ascii=False)
     print('spec ok', h, len(ids), 'variantes')
+
+if __name__ == '__main__' and sys.argv[1] == 'var2':
+    # etapa.py var2 SPEC primeiro_id_novo  (IDs das mídias novas são sequenciais de 32768 na ordem enviada)
+    spec = json.load(open(sys.argv[2])); g = json.load(open(f"{D}/manifestos/{spec['handle']}_galeria.json"))
+    p0 = int(sys.argv[3]); m = {}
+    for k, i in enumerate(g['itens']):
+        if i['nn'] == '01': m[i['cor']] = str(p0 + k * 32768)
+    print('01:', m, file=sys.stderr)
+    print(json.dumps(variantes_por_ids(spec, m)))
+
+if __name__ == '__main__' and sys.argv[1] == 'mk2':
+    # etapa.py mk2 handle pid featured featured_url "Cor=primeiro_var_id|..." "Cor=mid,..." "ant1,ant2" [tamanhos=6]
+    _, _, h, pid, fe, fu, cv, mpc, ant = sys.argv[:9]
+    nt = int(sys.argv[9]) if len(sys.argv) > 9 else 6
+    pares = [x.split('=') for x in cv.split('|')]
+    spec = dict(handle=h, pid=f'gid://shopify/Product/{pid}', featured=fe, featured_url=fu, cores=[c for c, _ in pares],
+                variantes={c: [str(int(v) + i * 32768) for i in range(nt)] for c, v in pares},
+                midia_por_cor=dict(x.split('=') for x in mpc.split(',')), antigas=ant.split(','))
+    json.dump(spec, open('/tmp/claude-0/spec.json', 'w'), ensure_ascii=False)
+    print('spec ok', h, {c: (v[0], v[-1]) for c, v in spec['variantes'].items()})
