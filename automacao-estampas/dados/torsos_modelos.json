@@ -63,9 +63,9 @@
   "base": 1300,
   "gola_x": 690,
   "ajuste": {
-   "escala": 1.1802,
+   "escala": 1.133,
    "subir": 0.0764,
-   "mover": -0.0913
+   "mover": -0.1139
   }
  },
  "branca-frente-close": {
@@ -75,8 +75,9 @@
   "base": 1840,
   "gola_x": 560,
   "ajuste": {
+   "escala": 1.196,
    "subir": -0.0007,
-   "girar": 8,
+   "girar": 8.0,
    "mover": 0.0262
   }
  },
@@ -89,8 +90,8 @@
   "ajuste": {
    "escala": 1.228,
    "subir": -0.0075,
-   "girar": 6.0,
-   "mover": -0.0524
+   "girar": 10.0,
+   "mover": -0.0971
   },
   "cilindro": [
    488,
@@ -106,7 +107,7 @@
   "ajuste": {
    "escala": 1.1802,
    "subir": 0.0588,
-   "mover": 0.0612
+   "mover": 0.072
   }
  },
  "off-white-costas-corpo": {
@@ -118,7 +119,7 @@
   "ajuste": {
    "escala": 1.2605,
    "subir": 0.0713,
-   "mover": -0.037
+   "mover": 0.0008
   }
  },
  "off-white-frente-close": {
@@ -172,7 +173,7 @@
   "ajuste": {
    "escala": 1.2768,
    "subir": 0.0431,
-   "mover": -0.0685
+   "mover": -0.0884
   }
  },
  "preta-frente-close": {
@@ -184,6 +185,7 @@
   "ajuste": {
    "escala": 1.177,
    "subir": -0.0319,
+   "girar": 3.0,
    "mover": 0.0147
   }
  },
@@ -196,6 +198,7 @@
   "ajuste": {
    "escala": 1.178,
    "subir": -0.0371,
+   "girar": 3.0,
    "mover": -0.0593
   },
   "cilindro": [
