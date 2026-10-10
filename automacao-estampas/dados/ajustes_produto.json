@@ -58,5 +58,15 @@
    "azul-marinho-frente": "branca",
    "preta-frente": "branca"
   }
+ },
+ "NAUTIC": {
+  "arte_mockup": {
+   "branca-costas": {
+    "arte": "dados/artes_do_mockup/NAUTIC-BR-costas.png"
+   },
+   "off-white-costas": {
+    "arte": "dados/artes_do_mockup/NAUTIC-OW-costas.png"
+   }
+  }
  }
 }

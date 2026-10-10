@@ -189,33 +189,32 @@ for n in sys.argv[2].split(','):
         res = base; detalhe = 'lisa'
     elif lado == 'frente' and not CALIBRAR and abs(float([r for r in mapa if r['NOME'] == prod and r['cor'] == COR[c]
                                                       and r['lado'] == 'frente'][0]['centro_x_rel'] or 0)) < 0.1:
-        # ESTAMPA CENTRALIZADA NA FRENTE: enrolada no tronco (como as costas), ancorada pela logo aprovada da
-        # CAPRESE: o topo-centro da estampa fica, em fração do tronco e em altura, no mesmo deslocamento que
-        # tem em relação à logo da CAPRESE no mockup liso.
+        # ESTAMPA CENTRALIZADA NA FRENTE (texto/logo no meio do peito). Regra fixa e igual em todas as fotos:
+        # - centro em x: linha do esterno medida à mão (torsos_modelos.json, gola_x);
+        # - centro em y: altura da logo aprovada da CAPRESE nesta foto + a diferença de altura que as duas têm
+        #   no mockup liso (em px da foto);
+        # - escala e inclinação: as MESMAS da logo aprovada da CAPRESE nesta foto (sem deformar letra).
         A = info['A']; arte = info['arte']
-        from motor_v3 import Pontos
-        # tronco medido à mão (torsos_modelos.json): na frente o contorno automático inclui a manga e
-        # exagera o giro do corpo, o que cortaria a ponta de uma estampa larga
-        pf = Pontos(p=pf.p, cx=(T[n]['x0'] + T[n]['x1']) / 2.0, raio=(T[n]['x1'] - T[n]['x0']) / 2.0, gola_x=pf.gola_x)
         cC = CAL[n]['centro_m']
-        _, g0 = afim_logo(pm, pf, tuple(cC), f_centro=F_LOGO, y_centro_f=REF[n]['cy'])
-        ancora_m = tuple((A @ np.array([arte.size[0] / 2, 0, 1]))[:2])
-        f_a = (ancora_m[0] - pm.gola_x) / pm.raio          # posição horizontal do próprio mockup (meio = 0)
-        y_a = REF[n]['cy'] + (ancora_m[1] - cC[1]) * g0['k']
-        _, ga = afim_logo(pm, pf, ancora_m, f_centro=f_a, y_centro_f=y_a)
-        yy_, xx_ = np.nonzero(camisa > 0.05)            # área de desenho = a camiseta inteira (não só o tronco)
-        cf = (max(0, int(xx_.min()) - 4), max(0, int(yy_.min()) - 4), min(W, int(xx_.max()) + 5), min(H, int(yy_.max()) + 5))
-        esc = float(AP.get(prod, {}).get('escala_frente', 1.0))
-        lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=ga['centro'][1], x_ancora_f=ga['centro'][0],
-                           escala_mult=esc)
+        giro_aj = AJ.get(n, {}).get('giro_extra_graus', 0.0)
+        _, g0 = afim_logo(pm, pf, tuple(cC), f_centro=F_LOGO, y_centro_f=REF[n]['cy'], giro_extra_graus=giro_aj)
+        centro_m = (A @ np.array([arte.size[0] / 2, arte.size[1] / 2, 1]))[:2]
+        k = float(g0['sy']) * float(AP.get(prod, {}).get('escala_frente', 1.0))
+        th = np.radians(float(g0['inclinacao_graus']))
+        xc = float(T[n]['gola_x'])
+        yc = float(REF[n]['cy']) + (centro_m[1] - cC[1]) * float(g0['sy'])
+        Rm = np.array([[np.cos(th), -np.sin(th)], [np.sin(th), np.cos(th)]]) * k
+        M = np.hstack([Rm, (np.array([xc, yc]) - Rm @ centro_m)[:, None]])
+        Maf = (np.vstack([M, [0, 0, 1]]) @ A)[:2]
+        lay = render_afim(arte, Maf, (W, H))
         integ = params_integracao(n, mk.alpha) if INTEGRA else None
         if INTEGRA:
-            res, sg = escolher_desfoque(lambda ig: compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0), integra=ig),
-                                        integ, lambda: compor_v31.tinta, 'costas')
+            res, sg = escolher_desfoque(lambda ig: compor_logo(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0), integra=ig),
+                                        integ, lambda: compor_logo.tinta, 'frente')
         else:
-            res = compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
-        detalhe = dict(tipo='estampa centralizada na frente (elipse do tronco; âncora = logo CAPRESE)',
-                       ajuste_escala=round(esc, 3))
+            res = compor_logo(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
+        detalhe = dict(tipo='estampa centralizada na frente (esterno; escala/giro = logo CAPRESE)',
+                       giro_graus=round(float(g0['inclinacao_graus']), 2))
     elif lado == 'frente':
         A = info['A']; arte = info['arte']
         centro_m = tuple((A @ np.array([arte.size[0] / 2, arte.size[1] / 2, 1]))[:2])
@@ -283,7 +282,7 @@ for n in sys.argv[2].split(','):
     if info is None:
         tinta = np.zeros((H, W), bool)
     else:
-        tinta = (compor_logo.tinta if lado == 'frente' and 'centralizada' not in str(detalhe) else compor_v31.tinta)
+        tinta = (compor_logo.tinta if lado == 'frente' else compor_v31.tinta)
     mudou_fora = int((np.any(res != base, axis=-1) & ~tinta).sum())   # tem que ser 0
     o = Image.fromarray(res, 'RGB').convert('RGBA'); o.putalpha(Image.fromarray(mk.alpha))
     o.save(f'{OUT}/{prod}-{n}.png')
