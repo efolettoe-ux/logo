@@ -1,6 +1,29 @@
 {
- "_leia": "Ajustes por produto pedidos pelo dono. escala_costas: multiplica o tamanho da estampa das costas (topo fica no lugar). giro_graus: gira a arte em volta do centro, + = para a direita (horário), em todas as fotos. realismo: forca_luz amplia luz/sombra das dobras na tinta, textura = trama do tecido na tinta, granulado/opacidade = acabamento de tinta do mockup liso.",
- "PORTOFINO": {"escala_costas": 1.08},
- "MARTINI": {"giro_graus": 3.0,
-             "realismo": {"forca_luz": 1.8, "textura": 0.016, "granulado": 0.018, "granulado_px": 0.6, "opacidade": 0.95}}
+ "_leia": "Ajustes por produto pedidos pelo dono. escala_costas: multiplica o tamanho da estampa das costas (topo fica no lugar). giro_graus: gira a arte em volta do centro, + = para a direita (horário), em todas as fotos. realismo: forca_luz amplia luz/sombra das dobras na tinta, textura = trama do tecido na tinta, granulado/opacidade = acabamento de tinta do mockup liso. giro_extra: graus a mais por '{cor}-{lado}'. realismo_cor: sobrescreve o realismo numa cor.",
+ "PORTOFINO": {
+  "escala_costas": 1.08
+ },
+ "MARTINI": {
+  "giro_graus": 5.0,
+  "realismo": {
+   "forca_luz": 1.8,
+   "textura": 0.016,
+   "granulado": 0.018,
+   "granulado_px": 0.6,
+   "opacidade": 0.95
+  },
+  "giro_extra": {
+   "preta-frente": 10.0
+  },
+  "realismo_cor": {
+   "branca": {
+    "opacidade": 1.0,
+    "granulado": 0.01
+   },
+   "off-white": {
+    "opacidade": 1.0,
+    "granulado": 0.01
+   }
+  }
+ }
 }

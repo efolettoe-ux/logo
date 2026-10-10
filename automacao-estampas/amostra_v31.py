@@ -81,6 +81,7 @@ def arte_e_posicao(prod, c, lado):
     s = (bx1 - bx0) / float(velha.size[0])
     A = np.array([[s, 0, bx0 + (fx0 - ox0) * s], [0, s, by0 + (fy0 - oy0) * s], [0, 0, 1]])
     giro = float(AP.get(prod, {}).get('giro_graus', 0.0))   # + = para a direita (horário), em volta do centro da arte
+    giro += float(AP.get(prod, {}).get('giro_extra', {}).get(f'{c}-{lado}', 0.0))   # extra por cor/lado
     if giro:
         cxa, cya = arte.size[0] / 2.0, arte.size[1] / 2.0
         t = np.radians(giro); co, si = np.cos(t), np.sin(t)
@@ -105,8 +106,9 @@ def params_integracao(n, alpha):
     from motor_v3 import srgb_lin
     return dict(branco=float(srgb_lin(np.float32(hi))), preto=float(srgb_lin(np.float32(lo))), dessat=0.05,
                 nitidez_foto=nitidez(orig, pessoa & (np.arange(orig.shape[0])[:, None] > 0)),
-                **(ACABAMENTO if os.environ.get('ACABAMENTO') == '1' else {}),
-                **AP.get(prod, {}).get('realismo', {}))
+                **{**(ACABAMENTO if os.environ.get('ACABAMENTO') == '1' else {}),
+                   **AP.get(prod, {}).get('realismo', {}),
+                   **AP.get(prod, {}).get('realismo_cor', {}).get(n.rsplit('-', 2)[0], {})})
 
 # v3.3: mesmo acabamento de tinta dos mockups lisos aprovados (compositor.aplicar_estampa)
 ACABAMENTO = dict(granulado=float(os.environ.get('GRANULADO', 0.018)), granulado_px=0.6,
