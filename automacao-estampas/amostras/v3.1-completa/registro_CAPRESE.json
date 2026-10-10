@@ -1,24 +1,4 @@
 {
- "azul-marinho-costas-close": {
-  "gerada": true,
-  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/Alterar_cores_de_texto_e_2K_202609081504.jpeg",
-  "png_oficial_com_transparencia": false,
-  "tamanho_png": [
-   1792,
-   2400
-  ],
-  "recorte_fiel": [
-   318,
-   277,
-   1496,
-   2075
-  ],
-  "pixels_alterados_fora_da_tinta": 0,
-  "detalhe": {
-   "tipo": "estampa grande (elipse do tronco; centro, topo e largura = v2 aprovada)",
-   "ajuste_escala": 0.925
-  }
- },
  "branca-costas-close": {
   "gerada": true,
   "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_fundo_mais_claro_2K_202609081220.jpeg",
@@ -37,46 +17,6 @@
   "detalhe": {
    "tipo": "estampa grande (elipse do tronco; centro, topo e largura = v2 aprovada)",
    "ajuste_escala": 0.957
-  }
- },
- "off-white-costas-close": {
-  "gerada": true,
-  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_fundo_mais_claro_2K_202609081220.jpeg",
-  "png_oficial_com_transparencia": false,
-  "tamanho_png": [
-   1792,
-   2400
-  ],
-  "recorte_fiel": [
-   316,
-   276,
-   1498,
-   2076
-  ],
-  "pixels_alterados_fora_da_tinta": 0,
-  "detalhe": {
-   "tipo": "estampa grande (elipse do tronco; centro, topo e largura = v2 aprovada)",
-   "ajuste_escala": 0.94
-  }
- },
- "preta-costas-close": {
-  "gerada": true,
-  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/Alterar_cores_de_texto_e_2K_202609081504.jpeg",
-  "png_oficial_com_transparencia": false,
-  "tamanho_png": [
-   1792,
-   2400
-  ],
-  "recorte_fiel": [
-   318,
-   277,
-   1496,
-   2075
-  ],
-  "pixels_alterados_fora_da_tinta": 0,
-  "detalhe": {
-   "tipo": "estampa grande (elipse do tronco; centro, topo e largura = v2 aprovada)",
-   "ajuste_escala": 0.934
   }
  }
 }

@@ -28,11 +28,12 @@
   "cy": 765.5
  },
  "branca-costas-close": {
-  "topo": 877,
+  "topo": 795,
   "base": 1393,
   "x0": 448,
   "x1": 826,
-  "cy": 1135.0
+  "cy": 1135.0,
+  "topo_v2_original": 877
  },
  "branca-frente-close": {
   "topo": 974,
