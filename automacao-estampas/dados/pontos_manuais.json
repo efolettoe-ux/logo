@@ -1,0 +1,7 @@
+{
+ "_explica": "Pontos do corpo marcados à mão (px da foto 1344x2400) quando a detecção automática falha na validação. Substituem só os pontos listados.",
+ "branca-frente-corpo": {
+  "ombro_e": [420, 640],
+  "axila_e": [400, 905]
+ }
+}

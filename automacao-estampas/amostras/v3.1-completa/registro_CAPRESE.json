@@ -1,0 +1,143 @@
+{
+ "branca-costas-close": {
+  "gerada": true,
+  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_fundo_mais_claro_2K_202609081220.jpeg",
+  "png_oficial_com_transparencia": false,
+  "tamanho_png": [
+   1792,
+   2400
+  ],
+  "recorte_fiel": [
+   316,
+   276,
+   1498,
+   2076
+  ],
+  "pixels_alterados_fora_da_tinta": 0,
+  "detalhe": {
+   "tipo": "estampa grande (elipse do tronco, altura v2)"
+  }
+ },
+ "preta-costas-close": {
+  "gerada": true,
+  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/Alterar_cores_de_texto_e_2K_202609081504.jpeg",
+  "png_oficial_com_transparencia": false,
+  "tamanho_png": [
+   1792,
+   2400
+  ],
+  "recorte_fiel": [
+   318,
+   277,
+   1496,
+   2075
+  ],
+  "pixels_alterados_fora_da_tinta": 0,
+  "detalhe": {
+   "tipo": "estampa grande (elipse do tronco, altura v2)"
+  }
+ },
+ "azul-marinho-costas-corpo": {
+  "gerada": true,
+  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/Alterar_cores_de_texto_e_2K_202609081504.jpeg",
+  "png_oficial_com_transparencia": false,
+  "tamanho_png": [
+   1792,
+   2400
+  ],
+  "recorte_fiel": [
+   318,
+   277,
+   1496,
+   2075
+  ],
+  "pixels_alterados_fora_da_tinta": 0,
+  "detalhe": {
+   "tipo": "estampa grande (elipse do tronco, altura v2)"
+  }
+ },
+ "off-white-frente-close": {
+  "gerada": true,
+  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_09_02.png",
+  "png_oficial_com_transparencia": true,
+  "tamanho_png": [
+   2172,
+   724
+  ],
+  "recorte_fiel": [
+   80,
+   123,
+   2093,
+   616
+  ],
+  "pixels_alterados_fora_da_tinta": 0,
+  "detalhe": {
+   "tipo": "logo pequena (transformação mínima)",
+   "giro_graus": -1.3,
+   "achatamento": 0.968
+  }
+ },
+ "preta-frente-close": {
+  "gerada": true,
+  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_10_03.png",
+  "png_oficial_com_transparencia": true,
+  "tamanho_png": [
+   2172,
+   724
+  ],
+  "recorte_fiel": [
+   79,
+   119,
+   2095,
+   615
+  ],
+  "pixels_alterados_fora_da_tinta": 0,
+  "detalhe": {
+   "tipo": "logo pequena (transformação mínima)",
+   "giro_graus": -8.39,
+   "achatamento": 0.994
+  }
+ },
+ "azul-marinho-frente-corpo": {
+  "gerada": true,
+  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_10_03.png",
+  "png_oficial_com_transparencia": true,
+  "tamanho_png": [
+   2172,
+   724
+  ],
+  "recorte_fiel": [
+   79,
+   119,
+   2095,
+   615
+  ],
+  "pixels_alterados_fora_da_tinta": 0,
+  "detalhe": {
+   "tipo": "logo pequena (transformação mínima)",
+   "giro_graus": -1.51,
+   "achatamento": 0.946
+  }
+ },
+ "branca-frente-corpo": {
+  "gerada": true,
+  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_09_02.png",
+  "png_oficial_com_transparencia": true,
+  "tamanho_png": [
+   2172,
+   724
+  ],
+  "recorte_fiel": [
+   80,
+   123,
+   2093,
+   616
+  ],
+  "pixels_alterados_fora_da_tinta": 0,
+  "detalhe": {
+   "tipo": "logo pequena (transformação mínima)",
+   "giro_graus": -9.42,
+   "achatamento": 0.998
+  }
+ }
+}

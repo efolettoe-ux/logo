@@ -109,6 +109,10 @@ def achar_pontos(mask: np.ndarray, gola_x: Optional[float] = None,
         aye = oe[1] + r_axila * (y_barra - oe[1])
         ayd = od[1] + r_axila * (y_barra - od[1])
         axe, axd = _borda_x(mask, aye, meio_t, -1), _borda_x(mask, ayd, meio_t, +1)
+        # o ombro fica em cima da axila: mede de novo na posição corrigida
+        oe, od = (axe, _topo_y(mask, axe)), (axd, _topo_y(mask, axd))
+        aye = oe[1] + r_axila * (y_barra - oe[1])
+        ayd = od[1] + r_axila * (y_barra - od[1])
     y_ax = (aye + ayd) / 2
     y_lado = y_ax + 0.5 * (y_barra - y_ax)
     le, ld = _borda_x(mask, y_lado, meio_t, -1), _borda_x(mask, y_lado, meio_t, +1)
@@ -131,6 +135,34 @@ def achar_pontos(mask: np.ndarray, gola_x: Optional[float] = None,
         "gola": (gola_x, y_ombro),
     }
     return Pontos(p, cx, raio, float(gola_x))
+
+
+def validar_pontos(pt: Pontos) -> list:
+    """Confere se os pontos do corpo fazem sentido antes de gerar a imagem.
+    Retorna a lista de problemas (vazia = ok). Uma foto com problema NÃO é gerada: precisa de
+    pontos manuais (pontos_manuais.json)."""
+    p = pt.p
+    prob = []
+    comp = p["barra_c"][1] - p["gola"][1]
+    R = max(pt.raio, 1.0)
+    if not (p["ombro_e"][0] < pt.gola_x < p["ombro_d"][0]):
+        prob.append("gola fora do espaço entre os ombros")
+    vao = p["ombro_d"][0] - p["ombro_e"][0]
+    if vao > 0 and not (p["ombro_e"][0] + 0.2 * vao < pt.gola_x < p["ombro_d"][0] - 0.2 * vao):
+        prob.append("gola muito perto de um dos ombros")
+    for l in ("e", "d"):
+        if abs(p["ombro_" + l][0] - p["axila_" + l][0]) > 0.3 * R:
+            prob.append(f"ombro_{l} não está em cima da axila_{l} (ombro na gola ou na manga?)")
+        if not (p["ombro_" + l][1] + 0.15 * comp < p["axila_" + l][1] < p["lado_" + l][1] < p["barra_" + l][1]):
+            prob.append(f"ordem vertical errada no lado {l} (ombro > axila > lateral > barra)")
+    incl = np.degrees(np.arctan2(p["ombro_d"][1] - p["ombro_e"][1], max(p["ombro_d"][0] - p["ombro_e"][0], 1)))
+    if abs(incl) > 15:
+        prob.append(f"inclinação dos ombros exagerada ({incl:.0f}°)")
+    if not (1.0 < comp / (2 * R) < 2.6):
+        prob.append(f"proporção comprimento/largura estranha ({comp / (2 * R):.2f})")
+    if not (p["lado_e"][0] < pt.gola_x < p["lado_d"][0]):
+        prob.append("linha da gola fora do tronco")
+    return prob
 
 
 def proporcao_axila(pt: Pontos) -> float:
@@ -478,7 +510,8 @@ def carregar_arte_fiel(caminho: str):
 # Logo pequena (peito): fidelidade total ao PNG oficial
 # --------------------------------------------------------------------------------------------
 
-def afim_logo(pm: Pontos, pf: Pontos, centro_m: Tuple[float, float], elipse: Elipse = _ELIPSE):
+def afim_logo(pm: Pontos, pf: Pontos, centro_m: Tuple[float, float], elipse: Elipse = _ELIPSE,
+              f_centro: Optional[float] = None, y_centro_f: Optional[float] = None):
     """Transformação MÍNIMA mockup liso -> foto para uma logo pequena, no centro dela:
     giro (inclinação dos ombros) + escala + achatamento da perspectiva (só na horizontal).
     Sem cisalhamento e sem deformação local: a caligrafia não muda.
@@ -495,6 +528,8 @@ def afim_logo(pm: Pontos, pf: Pontos, centro_m: Tuple[float, float], elipse: Eli
     kv = comp_f / comp_m
     xa, ya = centro_m
     arco_c = kv * (xa - pm.gola_x)
+    if f_centro is not None:                       # posição de referência aprovada (fração do tronco)
+        arco_c = float(f_centro) * R * elipse.smax / meia
     ordem = np.argsort(arcos)
     xc = float(np.interp(arco_c, arcos[ordem], xs[ordem]))
     dxdarc = float(np.interp(arco_c, arcos[ordem], np.gradient(xs, arcos)[ordem]))
@@ -502,6 +537,8 @@ def afim_logo(pm: Pontos, pf: Pontos, centro_m: Tuple[float, float], elipse: Eli
     inclin = (ody - oey) / max(odx - oex, 1.0)
     y_ombro_c = pf.p["gola"][1] + inclin * (xc - pf.p["gola"][0])
     yc = y_ombro_c + (ya - pm.p["gola"][1]) * kv
+    if y_centro_f is not None:
+        yc = float(y_centro_f) + inclin * (xc - pf.p["gola"][0])
     sx, sy = k * max(dxdarc, 0.55), k        # achatamento limitado: a logo não some na lateral
     th = float(np.arctan(inclin))
     Rm = np.array([[np.cos(th), -np.sin(th)], [np.sin(th), np.cos(th)]]) @ np.diag([sx, sy])
@@ -571,4 +608,124 @@ def compor_logo(foto_u8: np.ndarray, camisa: np.ndarray, pele: np.ndarray, camad
     novo = np.clip(out * 255 + 0.5, 0, 255).astype(np.uint8)
     regiao = res[y0:y1, x0:x1]
     regiao[al > 0] = novo[al > 0]                # só onde há tinta; o resto é a foto intacta
+    tinta_final = np.zeros(a.shape, bool)
+    tinta_final[y0:y1, x0:x1] = al > 0
+    compor_logo.tinta = tinta_final
+    return res
+
+
+# --------------------------------------------------------------------------------------------
+# v3.1: estampa grande (costas) direto do PNG oficial, uma amostragem, altura de referência
+# --------------------------------------------------------------------------------------------
+
+def _x_de_f(pf: Pontos, f: float, elipse: Elipse = _ELIPSE) -> float:
+    giro = elipse.giro_da_gola((pf.gola_x - pf.cx) / pf.raio)
+    return float(pf.cx + pf.raio * elipse.x_proj(f, giro))
+
+
+def mapa_corpo_v31(pm: Pontos, pf: Pontos, xs_f: np.ndarray, ys_f: np.ndarray, ancora_m: Tuple[float, float],
+                   y_ancora_f: float, elipse: Elipse = _ELIPSE):
+    """Igual ao mapa_corpo_v2 (elipse + escala única k), mas a altura da âncora na foto vem de fora
+    (referência aprovada) e o mapa é calculado nos pontos xs_f, ys_f (grade supersampled)."""
+    giro = elipse.giro_da_gola((pf.gola_x - pf.cx) / pf.raio)
+    R = pf.raio
+    ts = elipse.t
+    meia = np.sqrt(np.cos(giro) ** 2 + (elipse.prof * np.sin(giro)) ** 2)
+    xs = pf.cx + R * (np.sin(ts) * np.cos(giro) + elipse.prof * np.cos(ts) * np.sin(giro)) / meia
+    arcos = R * elipse.f * elipse.smax / meia
+    k = float((R / meia) * elipse.smax / pm.raio)
+    comp_m = pm.p["barra_c"][1] - pm.p["gola"][1]
+    comp_f = pf.p["barra_c"][1] - pf.p["gola"][1]
+    kv = comp_f / comp_m
+    xa_m, ya_m = ancora_m
+    arco_ancora = kv * (xa_m - pm.gola_x)
+    ordem = np.argsort(xs)
+    arco_x = np.interp(xs_f, xs[ordem], arcos[ordem], left=np.nan, right=np.nan)
+    mx = xa_m + (arco_x - arco_ancora) / k
+    (oex, oey), (odx, ody) = pf.p["ombro_e"], pf.p["ombro_d"]
+    inclin = (ody - oey) / max(odx - oex, 1.0)
+    # a âncora acompanha a inclinação dos ombros a partir da gola
+    y_anc = y_ancora_f + inclin * (xs_f - pf.p["gola"][0])
+    my = ya_m + (ys_f - y_anc) / k
+    return np.where(np.isnan(mx), -1e5, mx).astype(np.float32), my.astype(np.float32), k
+
+
+def render_corpo(arte, A_arte_mockup: np.ndarray, pm: Pontos, pf: Pontos, tamanho_foto: Tuple[int, int],
+                 caixa_foto: Tuple[int, int, int, int], ancora_m: Tuple[float, float], y_ancora_f: float,
+                 ss: int = 3) -> np.ndarray:
+    """Estampa grande: do PNG oficial direto para a foto (foto -> mockup -> arte), em grade ss×
+    e reduzida por área. Uma única redução prévia da arte (área) para ~ss× o tamanho final."""
+    W, H = tamanho_foto
+    x0, y0, x1, y1 = caixa_foto
+    a = np.asarray(arte.convert("RGBA")).astype(np.float32) / 255.0
+    a[..., :3] *= a[..., 3:4]
+    s = float(A_arte_mockup[0, 0])                       # px do mockup por px da arte
+    gx = x0 + (np.arange((x1 - x0) * ss, dtype=np.float32) + 0.5) / ss
+    gy = y0 + (np.arange((y1 - y0) * ss, dtype=np.float32) + 0.5) / ss
+    XX, YY = np.meshgrid(gx, gy)
+    mx, my, k = mapa_corpo_v31(pm, pf, XX, YY, ancora_m, y_ancora_f)
+    p = min(1.0, s * k * ss * 1.25)                      # px da arte reduzida por px da arte original
+    if p < 1.0:
+        a = cv2.resize(a, (max(1, round(a.shape[1] * p)), max(1, round(a.shape[0] * p))), interpolation=cv2.INTER_AREA)
+    u = (mx - A_arte_mockup[0, 2]) / s * p - 0.5
+    v = (my - A_arte_mockup[1, 2]) / s * p - 0.5
+    big = cv2.remap(a, u.astype(np.float32), v.astype(np.float32), cv2.INTER_LINEAR,
+                    borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+    small = cv2.resize(big, (x1 - x0, y1 - y0), interpolation=cv2.INTER_AREA)
+    out = np.zeros((H, W, 4), np.float32)
+    out[y0:y1, x0:x1] = np.clip(small, 0, 1)
+    return out
+
+
+def compor_v31(foto_u8: np.ndarray, camisa: np.ndarray, pele: np.ndarray, camada: np.ndarray,
+               cor_tecido: Tuple[float, float, float], dobra_max_px: float = 2.0,
+               textura: float = 0.008) -> np.ndarray:
+    """Tinta (tipo DTF) sobre o tecido, estampa grande:
+    - luz real da camiseta (foto ÷ cor do tecido, com eps para tecido escuro), filtrada acima do
+      ruído da trama: ficam as dobras, a trama não mancha a tinta;
+    - dobras localizadas: deslocamento só onde há dobra de verdade (proporcional à força da dobra,
+      no máximo dobra_max_px), média zero;
+    - trama sutil e fixa (0,8%), igual em todas as cores; sem porosidade/desgaste;
+    - pixels fora da tinta: cópia exata da foto."""
+    res = foto_u8.copy()
+    a0 = camada[..., 3]
+    ys, xs = np.nonzero(a0 > 1e-4)
+    if len(ys) == 0:
+        return res
+    m = 30
+    y0, y1 = max(0, ys.min() - m), min(a0.shape[0], ys.max() + m + 1)
+    x0, x1 = max(0, xs.min() - m), min(a0.shape[1], xs.max() + m + 1)
+    foto = foto_u8[y0:y1, x0:x1].astype(np.float32) / 255.0
+    lin = srgb_lin(foto)
+    pesos = np.array([0.2126, 0.7152, 0.0722], np.float32)
+    lum = lin @ pesos
+    tec = float(srgb_lin(np.array(cor_tecido, np.float32)) @ pesos)
+    eps = 0.02
+    ilum = ((lum + eps) / (tec + eps)).astype(np.float32)
+    ruido = float(np.std(ilum - cv2.GaussianBlur(ilum, (0, 0), 1.5))) + 1e-4
+    ilum_s = cv2.bilateralFilter(cv2.GaussianBlur(ilum, (0, 0), 1.2), 11, 4 * ruido, 5)
+    ilum_s = np.clip(ilum_s, 0.45, 1.35)
+    # dobras: força real (desvio da luz média), não normalizada por foto
+    banda = cv2.GaussianBlur(ilum_s, (0, 0), 3) - cv2.GaussianBlur(ilum_s, (0, 0), 30)
+    gx = cv2.Sobel(banda, cv2.CV_32F, 1, 0, ksize=3) / 8
+    gy = cv2.Sobel(banda, cv2.CV_32F, 0, 1, ksize=3) / 8
+    ganho = 60.0                                         # px por unidade de gradiente da dobra
+    dx = np.clip(gx * ganho, -dobra_max_px, dobra_max_px)
+    dy = np.clip(gy * ganho, -dobra_max_px, dobra_max_px)
+    Hh, Ww = lum.shape
+    XX, YY = np.meshgrid(np.arange(Ww, dtype=np.float32), np.arange(Hh, dtype=np.float32))
+    cam = cv2.remap(camada[y0:y1, x0:x1], XX - dx, YY - dy, cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT)
+    trama = cv2.GaussianBlur(lum, (0, 0), 0.6) - cv2.GaussianBlur(lum, (0, 0), 2.0)
+    sel = camisa[y0:y1, x0:x1] > 0.5
+    trama = trama / (float(np.std(trama[sel])) + 1e-6) * textura if sel.any() else trama * 0
+    al = cam[..., 3] * camisa[y0:y1, x0:x1] * (1 - pele[y0:y1, x0:x1])
+    cor = np.where(cam[..., 3:4] > 1e-4, cam[..., :3] / np.maximum(cam[..., 3:4], 1e-4), 0)
+    tinta = srgb_lin(cor) * ilum_s[..., None] * (1 + trama[..., None])
+    out = lin_srgb(lin * (1 - al[..., None]) + tinta * al[..., None])
+    novo = np.clip(out * 255 + 0.5, 0, 255).astype(np.uint8)
+    regiao = res[y0:y1, x0:x1]
+    regiao[al > 0] = novo[al > 0]
+    tinta_final = np.zeros(a0.shape, bool)
+    tinta_final[y0:y1, x0:x1] = al > 0
+    compor_v31.tinta = tinta_final                 # onde a tinta foi aplicada (para conferência)
     return res

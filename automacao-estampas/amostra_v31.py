@@ -1,0 +1,127 @@
+"""Amostra v3.1 (fotos de modelo): uso python3 amostra_v31.py PRODUTO foto1,foto2,...
+
+- arte: PNG oficial com recorte fiel (sem cortar traços), sem nenhuma alteração de pixels;
+- costas: do PNG direto para a foto (elipse do tronco, escala única), altura = v2 aprovada;
+- frente (logo pequena): uma transformação mínima (giro + escala + perspectiva), posição
+  equilibrada no peito (mesma fração do tronco em todas as fotos) e altura da v2 aprovada;
+- validação dos pontos do corpo antes de gerar (foto com ponto incoerente não é gerada);
+- fora da tinta, os pixels ficam idênticos à foto base (conferido e registrado).
+Saída em SAIDA_V31 (caminho separado; não sobrescreve nada).
+"""
+import sys, json, os, csv
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import numpy as np, cv2
+from PIL import Image
+from scipy import ndimage
+from motor_v3 import (achar_pontos, proporcao_axila, validar_pontos, carregar_arte_fiel, afim_logo, render_afim,
+                      compor_logo, render_corpo, compor_v31, _x_de_f)
+from modelos import mascara_tecido_suave, mascara_pele, preparar_modelo, recolorir_camiseta
+from imagem import Torso
+
+AQUI = os.path.dirname(os.path.abspath(__file__))
+R = '/tmp/claude-0/pallacio-work/full/'
+UP = '/tmp/claude-0/-home-user-logo/2cf89407-8e22-55ba-910c-d0e8feb0d3ba/scratchpad/upload/'
+FOTOS_DIR = '/tmp/claude-0/mm/'
+MOCKUPS = '/tmp/claude-0/cores5/mk5/'
+OUT = os.environ.get('SAIDA_V31', '/tmp/claude-0/amostra_v31_completa')
+os.makedirs(OUT, exist_ok=True)
+T = json.load(open(f'{AQUI}/dados/torsos_modelos.json'))
+TOP = json.load(open('/tmp/claude-0/topos.json'))
+MAN = {k: v for k, v in json.load(open(f'{AQUI}/dados/pontos_manuais.json')).items() if not k.startswith('_')}
+REF = json.load(open(f'{AQUI}/dados/referencia_v2_posicao.json'))
+CM = json.load(open('/tmp/claude-0/cores_mockup.json'))
+mapa = list(csv.DictReader(open(R + 'mapa.csv')))
+COR = {'preta': 'Preta', 'branca': 'Branca', 'off-white': 'Off White', 'azul-marinho': 'Azul Marinho'}
+COD = {'azul-marinho': 'AZ', 'branca': 'BR', 'off-white': 'OW', 'preta': 'PT'}
+F_LOGO = 0.40      # centro da logo da frente: fração do meio tronco (média das frentes aprovadas)
+
+_pm = {}
+def pontos_mockup(lado):
+    if lado not in _pm:
+        im = Image.open(f'{MOCKUPS}branca-{lado}.png')
+        _pm[lado] = achar_pontos((np.asarray(im)[..., 3] > 128).astype(np.uint8), gola_x=im.width / 2)
+    return _pm[lado]
+
+def faixa(perfil):
+    c = np.cumsum(perfil, dtype=np.float64); t = c[-1]
+    return int(np.searchsorted(c, t * 0.0015)), int(np.searchsorted(c, t * 0.9985))
+
+def arte_e_posicao(prod, c, lado):
+    """Arte fiel + transformação arte -> mockup liso. A caixa vem do mockup liso aprovado (saida/),
+    que usou o recorte antigo: alinha pelo mesmo ponto para manter posição e escala aprovadas."""
+    row = [r for r in mapa if r['NOME'] == prod and r['cor'] == COR[c] and r['lado'] == lado][0]
+    a = row['arquivo_estampa']
+    if a.strip().upper() == 'LISO':
+        return None
+    p = R + a if os.path.exists(R + a) else UP + a
+    arte, (fx0, fy0, fx1, fy1), tem_alpha = carregar_arte_fiel(p)
+    from imagem import carregar_estampa
+    velha = carregar_estampa(p)[0]                     # só para saber onde o recorte antigo começava
+    orig = np.asarray(Image.open(p).convert('RGBA'))[..., 3] > 24
+    if tem_alpha:
+        ox0, _ = faixa(orig.sum(0)); oy0, _ = faixa(orig.sum(1))
+    else:
+        ox0, oy0 = fx0, fy0
+    n = {'costas': '01-costas', 'frente': '02-frente'}[lado]
+    f = np.asarray(Image.open(f'{R}saida/{prod}/PALL-{prod}-{COD[c]}_{n}.png').convert('RGBA')).astype(int)
+    b = np.asarray(Image.open(f'{R}mockups/{c}-{lado}.png').convert('RGBA')).astype(int)
+    d = ndimage.binary_opening(np.abs(f[..., :3] - b[..., :3]).sum(-1) > 40, iterations=2)
+    ys, xs = np.nonzero(d)
+    bx0, by0, bx1 = xs.min(), ys.min(), xs.max() + 1
+    s = (bx1 - bx0) / float(velha.size[0])
+    A = np.array([[s, 0, bx0 + (fx0 - ox0) * s], [0, s, by0 + (fy0 - oy0) * s], [0, 0, 1]])
+    return dict(arte=arte, A=A, arquivo=a, png_com_transparencia=tem_alpha, tamanho_png=Image.open(p).size,
+                recorte_fiel=[int(fx0), int(fy0), int(fx1), int(fy1)])
+
+registro = {}
+prod = sys.argv[1]
+for n in sys.argv[2].split(','):
+    c = n.rsplit('-', 2)[0]; lado = 'costas' if '-costas-' in n else 'frente'
+    pm = pontos_mockup(lado)
+    im = Image.open(f'{FOTOS_DIR}{n}.png').convert('RGBA'); W, H = im.size
+    camisa = mascara_tecido_suave(im, TOP[n], T[n]['base'])
+    pf = achar_pontos((camisa > 0.5).astype(np.uint8), gola_x=T[n]['gola_x'], r_axila=proporcao_axila(pm))
+    if n in MAN:
+        pf.p.update({k: tuple(v) for k, v in MAN[n].items()})
+    prob = validar_pontos(pf)
+    if prob:
+        registro[n] = dict(gerada=False, problemas=prob); print(n, 'NÃO GERADA:', prob); continue
+    tor = Torso(T[n]['x0'], T[n]['x1'], TOP[n], T[n]['base'], TOP[n] + 300, W, H)
+    mk = preparar_modelo(f'{FOTOS_DIR}{n}.png', torso_manual=tor)
+    recolorir_camiseta(mk, tuple(CM[c]), camisa)
+    base = mk.rgb.copy()
+    pele = cv2.GaussianBlur(ndimage.binary_dilation(mascara_pele(mk.rgb), iterations=2).astype(np.float32), (0, 0), 1.0)
+    info = arte_e_posicao(prod, c, lado)
+    if info is None:
+        res = base; detalhe = 'lisa'
+    elif lado == 'frente':
+        A = info['A']; arte = info['arte']
+        centro_m = tuple((A @ np.array([arte.size[0] / 2, arte.size[1] / 2, 1]))[:2])
+        M, geo = afim_logo(pm, pf, centro_m, f_centro=F_LOGO, y_centro_f=REF[n]['cy'])
+        Maf = (np.vstack([M, [0, 0, 1]]) @ A)[:2]
+        lay = render_afim(arte, Maf, (W, H))
+        res = compor_logo(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
+        detalhe = dict(tipo='logo pequena (transformação mínima)', giro_graus=round(float(geo['inclinacao_graus']), 2),
+                       achatamento=round(float(geo['sx'] / geo['sy']), 3))
+    else:
+        A = info['A']; arte = info['arte']
+        ancora_m = tuple((A @ np.array([arte.size[0] / 2, 0, 1]))[:2])      # topo-centro da arte
+        xs = [v[0] for v in pf.p.values()]; ys = [v[1] for v in pf.p.values()]
+        cf = (max(0, int(min(xs)) - 40), max(0, int(min(ys)) - 60), min(W, int(max(xs)) + 40), min(H, int(max(ys)) + 40))
+        lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=REF[n]['topo'])
+        res = compor_v31(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))
+        detalhe = dict(tipo='estampa grande (elipse do tronco, altura v2)')
+    if info is None:
+        tinta = np.zeros((H, W), bool)
+    else:
+        tinta = (compor_logo.tinta if lado == 'frente' else compor_v31.tinta)
+    mudou_fora = int((np.any(res != base, axis=-1) & ~tinta).sum())   # tem que ser 0
+    o = Image.fromarray(res, 'RGB').convert('RGBA'); o.putalpha(Image.fromarray(mk.alpha))
+    o.save(f'{OUT}/{prod}-{n}.png')
+    registro[n] = dict(gerada=True, arquivo_estampa=info['arquivo'] if info else 'LISO',
+                       png_oficial_com_transparencia=info['png_com_transparencia'] if info else None,
+                       tamanho_png=info['tamanho_png'] if info else None,
+                       recorte_fiel=info['recorte_fiel'] if info else None,
+                       pixels_alterados_fora_da_tinta=mudou_fora, detalhe=detalhe)
+    print(n, registro[n], flush=True)
+json.dump(registro, open(f'{OUT}/registro_{prod}.json', 'w'), indent=1, ensure_ascii=False)

@@ -1,0 +1,114 @@
+{
+ "azul-marinho-costas-close": {
+  "topo": 812,
+  "base": 1378,
+  "x0": 486,
+  "x1": 846,
+  "cy": 1095.0
+ },
+ "azul-marinho-frente-close": {
+  "topo": 980,
+  "base": 1016,
+  "x0": 745,
+  "x1": 874,
+  "cy": 998.0
+ },
+ "azul-marinho-costas-corpo": {
+  "topo": 612,
+  "base": 996,
+  "x0": 560,
+  "x1": 804,
+  "cy": 804.0
+ },
+ "azul-marinho-frente-corpo": {
+  "topo": 755,
+  "base": 776,
+  "x0": 719,
+  "x1": 806,
+  "cy": 765.5
+ },
+ "branca-costas-close": {
+  "topo": 877,
+  "base": 1393,
+  "x0": 448,
+  "x1": 826,
+  "cy": 1135.0
+ },
+ "branca-frente-close": {
+  "topo": 974,
+  "base": 1029,
+  "x0": 666,
+  "x1": 813,
+  "cy": 1001.5
+ },
+ "branca-costas-corpo": {
+  "topo": 610,
+  "base": 996,
+  "x0": 529,
+  "x1": 777,
+  "cy": 803.0
+ },
+ "branca-frente-corpo": {
+  "topo": 707,
+  "base": 741,
+  "x0": 659,
+  "x1": 755,
+  "cy": 724.0
+ },
+ "off-white-costas-close": {
+  "topo": 747,
+  "base": 1282,
+  "x0": 510,
+  "x1": 853,
+  "cy": 1014.5
+ },
+ "off-white-frente-close": {
+  "topo": 948,
+  "base": 992,
+  "x0": 752,
+  "x1": 884,
+  "cy": 970.0
+ },
+ "off-white-costas-corpo": {
+  "topo": 591,
+  "base": 995,
+  "x0": 562,
+  "x1": 821,
+  "cy": 793.0
+ },
+ "off-white-frente-corpo": {
+  "topo": 739,
+  "base": 762,
+  "x0": 723,
+  "x1": 816,
+  "cy": 750.5
+ },
+ "preta-costas-close": {
+  "topo": 764,
+  "base": 1294,
+  "x0": 457,
+  "x1": 799,
+  "cy": 1029.0
+ },
+ "preta-frente-close": {
+  "topo": 923,
+  "base": 968,
+  "x0": 697,
+  "x1": 827,
+  "cy": 945.5
+ },
+ "preta-costas-corpo": {
+  "topo": 596,
+  "base": 976,
+  "x0": 538,
+  "x1": 777,
+  "cy": 786.0
+ },
+ "preta-frente-corpo": {
+  "topo": 701,
+  "base": 724,
+  "x0": 682,
+  "x1": 773,
+  "cy": 712.5
+ }
+}
