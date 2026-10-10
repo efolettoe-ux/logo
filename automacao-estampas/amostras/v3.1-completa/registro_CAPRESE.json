@@ -1,22 +1,23 @@
 {
- "branca-costas-close": {
+ "azul-marinho-frente-corpo": {
   "gerada": true,
-  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/deixe_fundo_mais_claro_2K_202609081220.jpeg",
-  "png_oficial_com_transparencia": false,
+  "arquivo_estampa": "CAMISETAS 100%/ESTAMPAS 100%/FOI/ChatGPT Image 8 de set. de 2026, 15_10_03.png",
+  "png_oficial_com_transparencia": true,
   "tamanho_png": [
-   1792,
-   2400
+   2172,
+   724
   ],
   "recorte_fiel": [
-   316,
-   276,
-   1498,
-   2076
+   79,
+   119,
+   2095,
+   615
   ],
   "pixels_alterados_fora_da_tinta": 0,
   "detalhe": {
-   "tipo": "estampa grande (elipse do tronco; centro, topo e largura = v2 aprovada)",
-   "ajuste_escala": 0.957
+   "tipo": "logo pequena (transformação mínima)",
+   "giro_graus": -1.51,
+   "achatamento": 0.946
   }
  }
 }
