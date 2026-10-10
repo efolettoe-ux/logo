@@ -34,6 +34,9 @@ REF = json.load(open(f'{AQUI}/dados/referencia_v2_posicao.json'))
 AJ = {k: v for k, v in json.load(open(f'{AQUI}/dados/ajustes_v31.json')).items() if not k.startswith('_')} \
     if os.path.exists(f'{AQUI}/dados/ajustes_v31.json') else {}
 CM = json.load(open(f'{AQUI}/dados/cores_mockup.json'))
+# Ajustes por produto aprovados pelo dono (escala das costas, giro da arte, realismo extra)
+AP_ARQ = f'{AQUI}/dados/ajustes_produto.json'
+AP = {k: v for k, v in json.load(open(AP_ARQ)).items() if not k.startswith('_')} if os.path.exists(AP_ARQ) else {}
 mapa = list(csv.DictReader(open(R + 'mapa.csv')))
 COR = {'preta': 'Preta', 'branca': 'Branca', 'off-white': 'Off White', 'azul-marinho': 'Azul Marinho'}
 COD = {'azul-marinho': 'AZ', 'branca': 'BR', 'off-white': 'OW', 'preta': 'PT'}
@@ -77,6 +80,12 @@ def arte_e_posicao(prod, c, lado):
     bx0, by0, bx1 = xs.min(), ys.min(), xs.max() + 1
     s = (bx1 - bx0) / float(velha.size[0])
     A = np.array([[s, 0, bx0 + (fx0 - ox0) * s], [0, s, by0 + (fy0 - oy0) * s], [0, 0, 1]])
+    giro = float(AP.get(prod, {}).get('giro_graus', 0.0))   # + = para a direita (horário), em volta do centro da arte
+    if giro:
+        cxa, cya = arte.size[0] / 2.0, arte.size[1] / 2.0
+        t = np.radians(giro); co, si = np.cos(t), np.sin(t)
+        Rr = np.array([[co, -si, cxa - co * cxa + si * cya], [si, co, cya - si * cxa - co * cya], [0, 0, 1]])
+        A = A @ Rr
     return dict(arte=arte, A=A, arquivo=a, png_com_transparencia=tem_alpha, tamanho_png=Image.open(p).size,
                 recorte_fiel=[int(fx0), int(fy0), int(fx1), int(fy1)])
 
@@ -96,7 +105,8 @@ def params_integracao(n, alpha):
     from motor_v3 import srgb_lin
     return dict(branco=float(srgb_lin(np.float32(hi))), preto=float(srgb_lin(np.float32(lo))), dessat=0.05,
                 nitidez_foto=nitidez(orig, pessoa & (np.arange(orig.shape[0])[:, None] > 0)),
-                **(ACABAMENTO if os.environ.get('ACABAMENTO') == '1' else {}))
+                **(ACABAMENTO if os.environ.get('ACABAMENTO') == '1' else {}),
+                **AP.get(prod, {}).get('realismo', {}))
 
 # v3.3: mesmo acabamento de tinta dos mockups lisos aprovados (compositor.aplicar_estampa)
 ACABAMENTO = dict(granulado=float(os.environ.get('GRANULADO', 0.018)), granulado_px=0.6,
@@ -165,9 +175,9 @@ for n in sys.argv[2].split(','):
         # 1ª passada mede a largura que a geometria dá; 2ª corrige só a escala para igualar a v2.
         if not CALIBRAR:                                       # outras estampas: calibração da CAPRESE
             k = CAL[n]
+            esc = k['esc'] * float(AP.get(prod, {}).get('escala_costas', 1.0))
             lay = render_corpo(arte, A, pm, pf, (W, H), cf, tuple(k['ancora_m']), y_ancora_f=REF[n]['topo'],
-                               x_ancora_f=k['xr'], escala_mult=k['esc'])
-            esc = k['esc']
+                               x_ancora_f=k['xr'], escala_mult=esc)
         if CALIBRAR:
             xr = (REF[n]['x0'] + REF[n]['x1']) / 2.0
             lay = render_corpo(arte, A, pm, pf, (W, H), cf, ancora_m, y_ancora_f=REF[n]['topo'], x_ancora_f=xr)

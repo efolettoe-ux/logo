@@ -648,6 +648,10 @@ def compor_logo(foto_u8: np.ndarray, camisa: np.ndarray, pele: np.ndarray, camad
     eps = 0.02                                   # tecido escuro: razão sem explodir no brilho/sombra
     ilum = (lum + eps) / (float(tec) + eps)
     ilum = np.clip(cv2.GaussianBlur(ilum.astype(np.float32), (0, 0), 6.0), 0.55, 1.3)   # só luz, não trama
+    if integra and integra.get('forca_luz', 1.0) != 1.0:         # ajuste por produto (mais dobra/sombra)
+        ilum = np.clip(1 + (ilum - 1) * float(integra['forca_luz']), 0.45, 1.4)
+    if integra and 'textura' in integra:
+        textura = float(integra['textura'])
     trama = cv2.GaussianBlur(lum, (0, 0), 0.6) - cv2.GaussianBlur(lum, (0, 0), 2.0)
     sel = camisa[y0:y1, x0:x1] > 0.5
     trama = trama / (float(np.std(trama[sel])) + 1e-6) * textura if sel.any() else trama * 0
@@ -762,6 +766,10 @@ def compor_v31(foto_u8: np.ndarray, camisa: np.ndarray, pele: np.ndarray, camada
     ruido = float(np.std(ilum - cv2.GaussianBlur(ilum, (0, 0), 1.5))) + 1e-4
     ilum_s = cv2.bilateralFilter(cv2.GaussianBlur(ilum, (0, 0), 1.2), 11, 4 * ruido, 5)
     ilum_s = np.clip(ilum_s, 0.45, 1.35)
+    if integra and integra.get('forca_luz', 1.0) != 1.0:         # ajuste por produto (mais dobra/sombra)
+        ilum_s = np.clip(1 + (ilum_s - 1) * float(integra['forca_luz']), 0.4, 1.45)
+    if integra and 'textura' in integra:
+        textura = float(integra['textura'])
     # dobras: força real (desvio da luz média), não normalizada por foto
     banda = cv2.GaussianBlur(ilum_s, (0, 0), 3) - cv2.GaussianBlur(ilum_s, (0, 0), 30)
     gx = cv2.Sobel(banda, cv2.CV_32F, 1, 0, ksize=3) / 8
