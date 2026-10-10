@@ -165,3 +165,56 @@ def aplicar_estampa_ps(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[f
     if mk.alpha is not None:
         res.putalpha(Image.fromarray(mk.alpha))
     return res
+
+
+def curvar_estampa(estampa: Image.Image, caixa: Tuple[float, float, float, float], torso: Torso,
+                   gola_x: Optional[float] = None, curva: float = 0.55, arco: float = 0.025
+                   ) -> Tuple[Image.Image, Tuple[float, float, float, float]]:
+    """Dobra a estampa em volta do corpo (cilindro) em vez de deixá-la reta como numa prancha.
+
+    - O tronco é tratado como um cilindro de raio = meia largura do corpo. A estampa é "enrolada" nele:
+      no meio fica do tamanho certo, perto das laterais vai encolhendo, como numa foto real.
+    - Se o corpo está levemente virado (a gola não está no meio da silhueta), o centro da estampa
+      acompanha a linha da coluna/esterno, que é a gola, e o lado mais longe encolhe mais.
+    - ``arco``: as linhas descem um pouco nas pontas (caimento do tecido sobre o peito/escápulas).
+    Retorna a estampa já deformada e a nova caixa (x, y, w, h) na foto.
+    """
+    from compositor import redimensionar_premultiplicado
+    x, y, w, h = caixa
+    R = torso.largura / 2.0
+    cx = (torso.x0 + torso.x1) / 2.0
+    gx = gola_x if gola_x is not None else cx
+    giro = float(np.arcsin(np.clip((gx - cx) / R, -0.6, 0.6)))
+    # posição plana (como no mockup) medida a partir da gola: d = distância do centro da caixa até a
+    # linha da coluna/esterno. Cada ponto plano s vira um ângulo no cilindro: ang(s) = giro + teta(s).
+    d = (x + w / 2.0) - gx
+    Rc = R * np.cos(giro) + 1e-6
+
+    def teta(sp):
+        return curva * np.arcsin(np.clip(sp / Rc, -0.98, 0.98)) + (1 - curva) * sp / R
+
+    ws, hs = max(2, int(round(w * 2))), max(2, int(round(h * 2)))  # trabalha em 2x para não perder nitidez
+    rgb, a = redimensionar_premultiplicado(estampa, ws, hs)
+    us = np.linspace(-1, 1, 1024)
+    angs = giro + teta(d + us * w / 2.0)                   # crescente em u
+    xs_dest = cx + R * np.sin(np.clip(angs, -1.5, 1.5))
+    X0, X1 = float(xs_dest.min()), float(xs_dest.max())
+    Y0, Y1 = y, y + h + arco * h
+    W2, H2 = max(2, int(round((X1 - X0) * 2))), max(2, int(round((Y1 - Y0) * 2)))
+    # para cada pixel de destino, acha (u, v) de origem invertendo x(u) por interpolação
+    xd = X0 + (np.arange(W2) + 0.5) / 2.0
+    u = np.interp(xd, xs_dest, us, left=-2.0, right=2.0)
+    ud = (u + 1) / 2 * ws
+    yd = Y0 + (np.arange(H2) + 0.5) / 2.0
+    uc = (np.arcsin(np.clip((xd - cx) / R, -1, 1)) - giro) / max(1e-3, teta(w / 2.0 + abs(d)))
+    caida = arco * h * np.clip(uc, -1, 1) ** 2             # as pontas descem um pouco (mais longe da gola)
+    vv = (yd[:, None] - Y0 - caida[None, :]) / h * hs
+    uu = np.broadcast_to(ud[None, :], vv.shape)
+    from compositor import _amostrar_bilinear
+    quad = np.dstack([rgb, a])
+    amost = _amostrar_bilinear(quad, vv - 0.5, uu - 0.5)
+    fora = (np.abs(u) > 1.0)[None, :] | (vv < 0) | (vv > hs)
+    amost[fora] = 0
+    arr = np.clip(amost * 255 + 0.5, 0, 255).astype(np.uint8)
+    out = Image.fromarray(arr, "RGBa").convert("RGBA").resize((max(1, W2 // 2), max(1, H2 // 2)), Image.LANCZOS)
+    return out, (X0, Y0, X1 - X0, Y1 - Y0)
