@@ -29,6 +29,8 @@ T = json.load(open(f'{AQUI}/dados/torsos_modelos.json'))
 TOP = json.load(open('/tmp/claude-0/topos.json'))
 MAN = {k: v for k, v in json.load(open(f'{AQUI}/dados/pontos_manuais.json')).items() if not k.startswith('_')}
 REF = json.load(open(f'{AQUI}/dados/referencia_v2_posicao.json'))
+AJ = {k: v for k, v in json.load(open(f'{AQUI}/dados/ajustes_v31.json')).items() if not k.startswith('_')} \
+    if os.path.exists(f'{AQUI}/dados/ajustes_v31.json') else {}
 CM = json.load(open('/tmp/claude-0/cores_mockup.json'))
 mapa = list(csv.DictReader(open(R + 'mapa.csv')))
 COR = {'preta': 'Preta', 'branca': 'Branca', 'off-white': 'Off White', 'azul-marinho': 'Azul Marinho'}
@@ -97,7 +99,8 @@ for n in sys.argv[2].split(','):
     elif lado == 'frente':
         A = info['A']; arte = info['arte']
         centro_m = tuple((A @ np.array([arte.size[0] / 2, arte.size[1] / 2, 1]))[:2])
-        M, geo = afim_logo(pm, pf, centro_m, f_centro=F_LOGO, y_centro_f=REF[n]['cy'])
+        M, geo = afim_logo(pm, pf, centro_m, f_centro=F_LOGO, y_centro_f=REF[n]['cy'],
+                           giro_extra_graus=AJ.get(n, {}).get('giro_extra_graus', 0.0))
         Maf = (np.vstack([M, [0, 0, 1]]) @ A)[:2]
         lay = render_afim(arte, Maf, (W, H))
         res = compor_logo(base, camisa, pele, lay, tuple(np.array(CM[c]) / 255.0))

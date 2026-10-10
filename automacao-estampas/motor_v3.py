@@ -511,7 +511,8 @@ def carregar_arte_fiel(caminho: str):
 # --------------------------------------------------------------------------------------------
 
 def afim_logo(pm: Pontos, pf: Pontos, centro_m: Tuple[float, float], elipse: Elipse = _ELIPSE,
-              f_centro: Optional[float] = None, y_centro_f: Optional[float] = None):
+              f_centro: Optional[float] = None, y_centro_f: Optional[float] = None,
+              giro_extra_graus: float = 0.0):
     """Transformação MÍNIMA mockup liso -> foto para uma logo pequena, no centro dela:
     giro (inclinação dos ombros) + escala + achatamento da perspectiva (só na horizontal).
     Sem cisalhamento e sem deformação local: a caligrafia não muda.
@@ -540,7 +541,7 @@ def afim_logo(pm: Pontos, pf: Pontos, centro_m: Tuple[float, float], elipse: Eli
     if y_centro_f is not None:
         yc = float(y_centro_f) + inclin * (xc - pf.p["gola"][0])
     sx, sy = k * max(dxdarc, 0.55), k        # achatamento limitado: a logo não some na lateral
-    th = float(np.arctan(inclin))
+    th = float(np.arctan(inclin)) - np.radians(giro_extra_graus)   # + = girar para a esquerda (anti-horário)
     Rm = np.array([[np.cos(th), -np.sin(th)], [np.sin(th), np.cos(th)]]) @ np.diag([sx, sy])
     t = np.array([xc, yc]) - Rm @ np.array([xa, ya])
     M = np.hstack([Rm, t[:, None]])
