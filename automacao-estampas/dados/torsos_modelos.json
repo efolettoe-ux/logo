@@ -7,9 +7,9 @@
   "base": 1830,
   "gola_x": 635,
   "ajuste": {
-   "escala": 1.108,
+   "escala": 1.1856,
    "subir": 0.0477,
-   "mover": 0.0025
+   "mover": 0.0478
   }
  },
  "azul-marinho-costas-corpo": {
@@ -17,14 +17,20 @@
   "x1": 900,
   "topo": 535,
   "base": 1295,
-  "gola_x": 695
+  "gola_x": 695,
+  "ajuste": {
+   "escala": 1.2305
+  }
  },
  "azul-marinho-frente-close": {
   "x0": 310,
   "x1": 965,
   "topo": 720,
   "base": 1840,
-  "gola_x": 650
+  "gola_x": 650,
+  "ajuste": {
+   "mover": 0.0104
+  }
  },
  "azul-marinho-frente-corpo": {
   "x0": 500,
@@ -40,6 +46,7 @@
   "base": 1835,
   "gola_x": 640,
   "ajuste": {
+   "escala": 1.196,
    "mover": -0.025
   }
  },
@@ -50,9 +57,9 @@
   "base": 1300,
   "gola_x": 690,
   "ajuste": {
-   "escala": 1.103,
+   "escala": 1.1802,
    "subir": 0.0764,
-   "mover": -0.0279
+   "mover": -0.0732
   }
  },
  "branca-frente-close": {
@@ -62,7 +69,9 @@
   "base": 1840,
   "gola_x": 560,
   "ajuste": {
-   "girar": 8
+   "subir": -0.0007,
+   "girar": 8,
+   "mover": 0.0262
   }
  },
  "branca-frente-corpo": {
@@ -88,9 +97,9 @@
   "base": 1700,
   "gola_x": 630,
   "ajuste": {
-   "escala": 1.103,
+   "escala": 1.1802,
    "subir": 0.0588,
-   "mover": -0.029
+   "mover": 0.0251
   }
  },
  "off-white-costas-corpo": {
@@ -100,7 +109,7 @@
   "base": 1290,
   "gola_x": 680,
   "ajuste": {
-   "escala": 1.178,
+   "escala": 1.2605,
    "subir": 0.0713,
    "mover": -0.037
   }
@@ -114,7 +123,7 @@
   "ajuste": {
    "escala": 1.308,
    "subir": 0.0028,
-   "mover": 0.0168
+   "mover": 0.0285
   }
  },
  "off-white-frente-corpo": {
@@ -142,7 +151,7 @@
   "ajuste": {
    "escala": 1.253,
    "subir": 0.0308,
-   "mover": -0.0095
+   "mover": 0.0304
   }
  },
  "preta-costas-corpo": {
@@ -152,9 +161,9 @@
   "base": 1295,
   "gola_x": 700,
   "ajuste": {
-   "escala": 1.243,
+   "escala": 1.33,
    "subir": 0.0431,
-   "mover": -0.0038
+   "mover": -0.0436
   }
  },
  "preta-frente-close": {
@@ -165,8 +174,8 @@
   "gola_x": 600,
   "ajuste": {
    "escala": 1.177,
-   "subir": -0.024,
-   "mover": 0.0351
+   "subir": -0.0319,
+   "mover": 0.0147
   }
  },
  "preta-frente-corpo": {
@@ -177,8 +186,8 @@
   "gola_x": 660,
   "ajuste": {
    "escala": 1.178,
-   "subir": -0.018,
-   "mover": 0.0257
+   "subir": -0.0289,
+   "mover": -0.0168
   },
   "cilindro": [
    509,
