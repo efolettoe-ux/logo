@@ -30,6 +30,7 @@
   "base": 1840,
   "gola_x": 650,
   "ajuste": {
+   "girar": 3.0,
    "mover": 0.0104
   }
  },
@@ -42,6 +43,7 @@
   "ajuste": {
    "escala": 1.104,
    "subir": 0.0199,
+   "girar": 3.0,
    "mover": -0.0242
   }
  },
@@ -90,8 +92,8 @@
   "ajuste": {
    "escala": 1.228,
    "subir": -0.0075,
-   "girar": 13.0,
-   "mover": -0.1418
+   "girar": 16.0,
+   "mover": -0.1865
   },
   "cilindro": [
    488,
@@ -131,7 +133,7 @@
   "ajuste": {
    "escala": 1.308,
    "subir": 0.0028,
-   "girar": 6.0,
+   "girar": 4.5,
    "mover": 0.0285
   }
  },
@@ -144,7 +146,7 @@
   "ajuste": {
    "escala": 1.179,
    "subir": 0.0033,
-   "girar": 6.0,
+   "girar": 4.5,
    "mover": -0.0182
   },
   "cilindro": [
@@ -186,7 +188,7 @@
   "ajuste": {
    "escala": 1.177,
    "subir": -0.0319,
-   "girar": 6.0,
+   "girar": 4.5,
    "mover": 0.0147
   }
  },
@@ -199,7 +201,7 @@
   "ajuste": {
    "escala": 1.178,
    "subir": -0.0371,
-   "girar": 6.0,
+   "girar": 9.0,
    "mover": -0.0593
   },
   "cilindro": [
