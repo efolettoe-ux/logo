@@ -111,3 +111,57 @@ def preparar_modelo(caminho: str, semente: Optional[Tuple[float, float]] = None,
     lum_ref = float(np.median(lum)) if lum.size else 0.5
     rgb_tec = tuple(int(v) for v in np.median(rgb[cam][::9], axis=0))
     return MockupPreparado(caminho, im, rgb, alpha, mascara, torso, rgb_tec, max(lum_ref, 1e-4), 1.0)
+
+
+def aplicar_estampa_ps(mk: MockupPreparado, estampa: Image.Image, caixa: Tuple[float, float, float, float],
+                       deslocar_px: float = 10.0, desfoque_mapa: float = 2.0, opacidade: float = 1.0) -> Image.Image:
+    """O passo a passo clássico do Photoshop, automatizado:
+
+    1. Filtro > Distorcer > Deslocar (10 x 10) usando a própria foto em preto e branco como mapa:
+       a estampa anda até ``deslocar_px`` para os lados e para cima/baixo conforme o claro/escuro do
+       tecido, então entorta junto com as dobras.
+    2. Modo de mesclagem Multiplicar: estampa x foto. As sombras, dobras e a trama da camiseta
+       aparecem por cima da tinta. Em camiseta escura, Multiplicar apagaria a estampa; ali a foto é
+       usada normalizada pela cor do tecido (o mesmo efeito de sombra, sem escurecer a tinta).
+    """
+    from compositor import redimensionar_premultiplicado, _amostrar_bilinear
+    x, y, w, h = caixa
+    pw, ph = max(1, int(round(w))), max(1, int(round(h)))
+    px, py = int(np.floor(x)), int(np.floor(y))
+    H, W = mk.rgb.shape[:2]
+    m = int(np.ceil(abs(deslocar_px))) + 4
+    x0, y0, x1, y1 = max(0, px - m), max(0, py - m), min(W, px + pw + m), min(H, py + ph + m)
+    foto = mk.rgb[y0:y1, x0:x1].astype(np.float32) / 255.0
+    # mapa de deslocamento: foto em tons de cinza, levemente desfocada (como salvar o PSD em P&B)
+    cinza = Image.fromarray((foto.mean(-1) * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(desfoque_mapa))
+    mapa = np.asarray(cinza).astype(np.float32) / 255.0
+    # Photoshop: 128 = não move; 0 e 255 = movem o máximo em sentidos opostos
+    d = (mapa - 0.5) * 2.0 * deslocar_px
+    ep_rgb, ep_a = redimensionar_premultiplicado(estampa, pw, ph)
+    quad = np.zeros((y1 - y0, x1 - x0, 4), np.float32)
+    ox, oy = px - x0, py - y0
+    quad[oy:oy + ph, ox:ox + pw, :3] = ep_rgb[:max(0, min(ph, y1 - y0 - oy)), :max(0, min(pw, x1 - x0 - ox))]
+    quad[oy:oy + ph, ox:ox + pw, 3] = ep_a[:max(0, min(ph, y1 - y0 - oy)), :max(0, min(pw, x1 - x0 - ox))]
+    yy, xx = np.mgrid[0:y1 - y0, 0:x1 - x0].astype(np.float32)
+    amost = _amostrar_bilinear(quad, yy - d, xx - d)
+    a = np.clip(amost[..., 3], 0, 1) * opacidade
+    cor = np.where(amost[..., 3:4] > 1e-4, amost[..., :3] / np.maximum(amost[..., 3:4], 1e-4), 0.0)
+    cor = np.clip(cor, 0, 1)
+    tecido = np.array(mk.rgb_tecido, np.float32) / 255.0
+    if tecido.mean() > 0.45:
+        # camiseta clara: Multiplicar de verdade (tinta x tecido)
+        tinta = cor * foto
+    else:
+        # camiseta escura: sombra relativa ao tom do tecido (multiplicar normalizado), sem apagar a tinta
+        lum = foto.mean(-1, keepdims=True)
+        rel = np.clip(lum / max(float(tecido.mean()), 1e-3), 0.35, 1.6)
+        tinta = np.clip(cor * rel, 0, 1)
+    pode = mk.mascara[y0:y1, x0:x1].astype(np.float32)
+    a = a * pode
+    out = foto * (1 - a[..., None]) + tinta * a[..., None]
+    rgb = mk.rgb.copy()
+    rgb[y0:y1, x0:x1] = np.clip(out * 255 + 0.5, 0, 255).astype(np.uint8)
+    res = Image.fromarray(rgb, "RGB").convert("RGBA")
+    if mk.alpha is not None:
+        res.putalpha(Image.fromarray(mk.alpha))
+    return res
