@@ -28,10 +28,12 @@
   "x1": 965,
   "topo": 720,
   "base": 1840,
-  "gola_x": 650,
+  "gola_x": 665,
   "ajuste": {
+   "escala": 1.0181,
+   "subir": 0.0268,
    "girar": 3.0,
-   "mover": 0.0104
+   "mover": -0.0555
   }
  },
  "azul-marinho-frente-corpo": {
@@ -39,12 +41,12 @@
   "x1": 900,
   "topo": 545,
   "base": 1305,
-  "gola_x": 690,
+  "gola_x": 663,
   "ajuste": {
-   "escala": 1.104,
-   "subir": 0.0199,
+   "escala": 0.9666,
+   "subir": -0.0083,
    "girar": 3.0,
-   "mover": -0.0242
+   "mover": -0.0403
   }
  },
  "branca-costas-close": {
@@ -75,12 +77,12 @@
   "x1": 840,
   "topo": 705,
   "base": 1840,
-  "gola_x": 560,
+  "gola_x": 585,
   "ajuste": {
-   "escala": 1.2797,
-   "subir": -0.0007,
+   "escala": 1.4298,
+   "subir": 0.0044,
    "girar": 11.0,
-   "mover": 0.0173
+   "mover": -0.0298
   }
  },
  "branca-frente-corpo": {
@@ -88,12 +90,12 @@
   "x1": 820,
   "topo": 530,
   "base": 1290,
-  "gola_x": 640,
+  "gola_x": 602,
   "ajuste": {
-   "escala": 1.314,
-   "subir": -0.0075,
+   "escala": 1.1869,
+   "subir": -0.0135,
    "girar": 16.0,
-   "mover": -0.1957
+   "mover": -0.0523
   },
   "cilindro": [
    488,
@@ -129,12 +131,12 @@
   "x1": 890,
   "topo": 680,
   "base": 1750,
-  "gola_x": 630,
+  "gola_x": 666,
   "ajuste": {
-   "escala": 1.308,
-   "subir": 0.0128,
+   "escala": 1.3909,
+   "subir": 0.0144,
    "girar": 4.5,
-   "mover": 0.0285
+   "mover": -0.0179
   }
  },
  "off-white-frente-corpo": {
@@ -144,10 +146,10 @@
   "base": 1290,
   "gola_x": 660,
   "ajuste": {
-   "escala": 1.179,
-   "subir": 0.0142,
+   "escala": 1.1518,
+   "subir": -0.0116,
    "girar": 4.5,
-   "mover": -0.0182
+   "mover": -0.0397
   },
   "cilindro": [
    489,
@@ -184,12 +186,12 @@
   "x1": 860,
   "topo": 670,
   "base": 1700,
-  "gola_x": 600,
+  "gola_x": 630,
   "ajuste": {
-   "escala": 1.177,
-   "subir": -0.0319,
+   "escala": 1.4146,
+   "subir": -0.0093,
    "girar": 7.5,
-   "mover": 0.0147
+   "mover": 0.0067
   }
  },
  "preta-frente-corpo": {
@@ -197,12 +199,12 @@
   "x1": 860,
   "topo": 525,
   "base": 1265,
-  "gola_x": 660,
+  "gola_x": 632,
   "ajuste": {
-   "escala": 1.178,
-   "subir": -0.0371,
+   "escala": 1.0911,
+   "subir": -0.0338,
    "girar": 6.0,
-   "mover": -0.1018
+   "mover": -0.0088
   },
   "cilindro": [
    509,
