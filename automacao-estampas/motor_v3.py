@@ -423,3 +423,152 @@ def levar_camada_corpo_v2(camada: np.ndarray, pm: Pontos, pf: Pontos, tamanho_fo
     out = np.zeros((H, W, 4), np.float32)
     out[y0:y1, x0:x1] = cv2.remap(pre, mx, my, cv2.INTER_CUBIC, borderMode=cv2.BORDER_CONSTANT, borderValue=0)
     return np.clip(out, 0, 1)
+
+
+# --------------------------------------------------------------------------------------------
+# Arte fiel ao PNG oficial
+# --------------------------------------------------------------------------------------------
+
+def recorte_fiel(im, limiar: int = 8, area_min_rel: float = 2e-5, area_min_px: int = 12):
+    """Recorta só as margens transparentes, sem cortar nenhum traço da arte.
+
+    O recorte antigo (recortar_alpha) jogava fora 0,15% da tinta em cada ponta e cortava floreios
+    de caligrafia e pontas de letras. Aqui só ficam de fora pedacinhos realmente soltos e minúsculos
+    (resto de fundo); qualquer traço ligado à arte entra inteiro. Os pixels não são alterados.
+    """
+    from PIL import Image
+    a = np.asarray(im.getchannel("A"))
+    m = (a > limiar).astype(np.uint8)
+    if not m.any():
+        return im, (0, 0, im.size[0], im.size[1])
+    n, rot, st, _ = cv2.connectedComponentsWithStats(m, connectivity=8)
+    areas = st[1:, cv2.CC_STAT_AREA]
+    total = float(areas.sum())
+    keep = [i + 1 for i, ar in enumerate(areas) if ar >= max(area_min_px, area_min_rel * total)]
+    if not keep:
+        keep = [int(np.argmax(areas)) + 1]
+    x0 = min(st[i, cv2.CC_STAT_LEFT] for i in keep)
+    y0 = min(st[i, cv2.CC_STAT_TOP] for i in keep)
+    x1 = max(st[i, cv2.CC_STAT_LEFT] + st[i, cv2.CC_STAT_WIDTH] for i in keep)
+    y1 = max(st[i, cv2.CC_STAT_TOP] + st[i, cv2.CC_STAT_HEIGHT] for i in keep)
+    # 1 px de folga para a borda antialiasing não encostar no limite
+    x0, y0 = max(0, x0 - 1), max(0, y0 - 1)
+    x1, y1 = min(im.size[0], x1 + 1), min(im.size[1], y1 + 1)
+    return im.crop((x0, y0, x1, y1)), (x0, y0, x1, y1)
+
+
+def carregar_arte_fiel(caminho: str):
+    """PNG oficial com transparência: usado como está (só recorte das margens).
+    Arte sem transparência (JPG): remove o fundo liso como antes e recorta do mesmo jeito fiel."""
+    from PIL import Image
+    im = Image.open(caminho)
+    im.load()
+    tem_alpha = im.mode in ("RGBA", "LA") or (im.mode == "P" and "transparency" in im.info)
+    if tem_alpha:
+        im = im.convert("RGBA")
+    else:
+        from imagem import remover_fundo
+        im, _ = remover_fundo(im.convert("RGB"), 16.0, 0.004)
+        im = im.convert("RGBA")
+    arte, caixa = recorte_fiel(im)
+    return arte, caixa, tem_alpha
+
+
+# --------------------------------------------------------------------------------------------
+# Logo pequena (peito): fidelidade total ao PNG oficial
+# --------------------------------------------------------------------------------------------
+
+def afim_logo(pm: Pontos, pf: Pontos, centro_m: Tuple[float, float], elipse: Elipse = _ELIPSE):
+    """Transformação MÍNIMA mockup liso -> foto para uma logo pequena, no centro dela:
+    giro (inclinação dos ombros) + escala + achatamento da perspectiva (só na horizontal).
+    Sem cisalhamento e sem deformação local: a caligrafia não muda.
+    Retorna (M 2x3 mockup->foto, info)."""
+    giro = elipse.giro_da_gola((pf.gola_x - pf.cx) / pf.raio)
+    R = pf.raio
+    ts = elipse.t
+    meia = np.sqrt(np.cos(giro) ** 2 + (elipse.prof * np.sin(giro)) ** 2)
+    xs = pf.cx + R * (np.sin(ts) * np.cos(giro) + elipse.prof * np.cos(ts) * np.sin(giro)) / meia
+    arcos = R * elipse.f * elipse.smax / meia
+    k = float((R / meia) * elipse.smax / pm.raio)
+    comp_m = pm.p["barra_c"][1] - pm.p["gola"][1]
+    comp_f = pf.p["barra_c"][1] - pf.p["gola"][1]
+    kv = comp_f / comp_m
+    xa, ya = centro_m
+    arco_c = kv * (xa - pm.gola_x)
+    ordem = np.argsort(arcos)
+    xc = float(np.interp(arco_c, arcos[ordem], xs[ordem]))
+    dxdarc = float(np.interp(arco_c, arcos[ordem], np.gradient(xs, arcos)[ordem]))
+    (oex, oey), (odx, ody) = pf.p["ombro_e"], pf.p["ombro_d"]
+    inclin = (ody - oey) / max(odx - oex, 1.0)
+    y_ombro_c = pf.p["gola"][1] + inclin * (xc - pf.p["gola"][0])
+    yc = y_ombro_c + (ya - pm.p["gola"][1]) * kv
+    sx, sy = k * max(dxdarc, 0.55), k        # achatamento limitado: a logo não some na lateral
+    th = float(np.arctan(inclin))
+    Rm = np.array([[np.cos(th), -np.sin(th)], [np.sin(th), np.cos(th)]]) @ np.diag([sx, sy])
+    t = np.array([xc, yc]) - Rm @ np.array([xa, ya])
+    M = np.hstack([Rm, t[:, None]])
+    return M, dict(k=k, kv=kv, sx=sx, sy=sy, giro_corpo=giro, inclinacao_graus=np.degrees(th), centro=(xc, yc))
+
+
+def render_afim(arte, M_arte_foto: np.ndarray, tamanho_foto: Tuple[int, int], ss: int = 4) -> np.ndarray:
+    """Desenha a arte (PIL RGBA, resolução original) na foto com UMA transformação afim.
+
+    Reduz a arte uma única vez (área, alfa premultiplicado) para ss vezes o tamanho final,
+    aplica a afim nessa grade e reduz por área: antisserrilhado limpo, sem borrar a caligrafia.
+    Retorna camada HxWx4 float (premultiplicada) no espaço da foto."""
+    W, H = tamanho_foto
+    a = np.asarray(arte.convert("RGBA")).astype(np.float32) / 255.0
+    a[..., :3] *= a[..., 3:4]
+    h0, w0 = a.shape[:2]
+    cantos = np.array([[0, 0, 1], [w0, 0, 1], [0, h0, 1], [w0, h0, 1]], np.float32) @ M_arte_foto.T
+    x0, y0 = np.floor(cantos.min(0)).astype(int) - 3
+    x1, y1 = np.ceil(cantos.max(0)).astype(int) + 3
+    x0, y0, x1, y1 = max(0, x0), max(0, y0), min(W, x1), min(H, y1)
+    escala = float(np.sqrt(abs(np.linalg.det(M_arte_foto[:, :2]))))
+    p = min(1.0, escala * ss * 1.5)
+    if p < 1.0:
+        a = cv2.resize(a, (max(1, round(w0 * p)), max(1, round(h0 * p))), interpolation=cv2.INTER_AREA)
+    # arte reduzida -> grade ss× da região
+    S = np.diag([1.0 / p, 1.0 / p, 1.0])
+    T = np.array([[ss, 0, -ss * x0], [0, ss, -ss * y0], [0, 0, 1]], np.float64)
+    M3 = np.vstack([M_arte_foto, [0, 0, 1]])
+    Mg = (T @ M3 @ S)[:2]
+    big = cv2.warpAffine(a, Mg, (ss * (x1 - x0), ss * (y1 - y0)), flags=cv2.INTER_LINEAR,
+                         borderMode=cv2.BORDER_CONSTANT, borderValue=0)
+    small = cv2.resize(big, (x1 - x0, y1 - y0), interpolation=cv2.INTER_AREA)
+    out = np.zeros((H, W, 4), np.float32)
+    out[y0:y1, x0:x1] = np.clip(small, 0, 1)
+    return out
+
+
+def compor_logo(foto_u8: np.ndarray, camisa: np.ndarray, pele: np.ndarray, camada: np.ndarray,
+                cor_tecido: Tuple[float, float, float], textura: float = 0.005) -> np.ndarray:
+    """Tinta sobre o tecido para logo pequena: só luz suave (sem dobras, sem deslocar letra),
+    trama bem sutil. Pixels fora da tinta ficam EXATAMENTE iguais (cópia direta de foto_u8)."""
+    res = foto_u8.copy()
+    a = camada[..., 3]
+    ys, xs = np.nonzero(a > 1e-4)
+    if len(ys) == 0:
+        return res
+    m = 30
+    y0, y1 = max(0, ys.min() - m), min(a.shape[0], ys.max() + m + 1)
+    x0, x1 = max(0, xs.min() - m), min(a.shape[1], xs.max() + m + 1)
+    foto = foto_u8[y0:y1, x0:x1].astype(np.float32) / 255.0
+    lin = srgb_lin(foto)
+    lum = lin @ np.array([0.2126, 0.7152, 0.0722], np.float32)
+    tec = srgb_lin(np.array(cor_tecido, np.float32)) @ np.array([0.2126, 0.7152, 0.0722], np.float32)
+    eps = 0.02                                   # tecido escuro: razão sem explodir no brilho/sombra
+    ilum = (lum + eps) / (float(tec) + eps)
+    ilum = np.clip(cv2.GaussianBlur(ilum.astype(np.float32), (0, 0), 6.0), 0.55, 1.3)   # só luz, não trama
+    trama = cv2.GaussianBlur(lum, (0, 0), 0.6) - cv2.GaussianBlur(lum, (0, 0), 2.0)
+    sel = camisa[y0:y1, x0:x1] > 0.5
+    trama = trama / (float(np.std(trama[sel])) + 1e-6) * textura if sel.any() else trama * 0
+    cam = camada[y0:y1, x0:x1]
+    al = cam[..., 3] * camisa[y0:y1, x0:x1] * (1 - pele[y0:y1, x0:x1])
+    cor = np.where(cam[..., 3:4] > 1e-4, cam[..., :3] / np.maximum(cam[..., 3:4], 1e-4), 0)
+    tinta = srgb_lin(cor) * ilum[..., None] * (1 + trama[..., None])
+    out = lin_srgb(lin * (1 - al[..., None]) + tinta * al[..., None])
+    novo = np.clip(out * 255 + 0.5, 0, 255).astype(np.uint8)
+    regiao = res[y0:y1, x0:x1]
+    regiao[al > 0] = novo[al > 0]                # só onde há tinta; o resto é a foto intacta
+    return res
