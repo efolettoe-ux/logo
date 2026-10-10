@@ -120,6 +120,40 @@ def escolher_desfoque(compor, integra, tinta_de, lado):
     integra['desfoque'] = DESFOQUE[lado]
     return compor(integra), integra['desfoque']
 
+# ---- cache do preparo de cada foto (máscara da camiseta, pontos, foto recolorida, pele) ----------
+# Não depende da estampa: é calculado uma vez por foto e reaproveitado por todos os produtos.
+CACHE_DIR = os.environ.get('CACHE_MODELOS', '/tmp/claude-0/cache_modelos')
+os.makedirs(CACHE_DIR, exist_ok=True)
+if os.environ.get('OMP_NUM_THREADS') == '1':
+    cv2.setNumThreads(1)
+
+def preparo_foto(n, c, pm):
+    from motor_v3 import Pontos
+    arq = f'{CACHE_DIR}/{n}.npz'
+    chave = json.dumps([TOP[n], T[n], MAN.get(n), CM[c]], sort_keys=True)
+    if os.path.exists(arq):
+        z = np.load(arq, allow_pickle=False)
+        if str(z['chave']) == chave:
+            pf = achar_pontos((z['camisa'] > 0.5).astype(np.uint8), gola_x=T[n]['gola_x'], r_axila=proporcao_axila(pm))
+            if n in MAN:
+                pf.p.update({k: tuple(v) for k, v in MAN[n].items()})
+            return dict(camisa=z['camisa'], base=z['base'], alpha=z['alpha'], pele=z['pele'], pf=pf)
+    im = Image.open(f'{FOTOS_DIR}{n}.png').convert('RGBA'); W, H = im.size
+    camisa = mascara_tecido_suave(im, TOP[n], T[n]['base'])
+    pf = achar_pontos((camisa > 0.5).astype(np.uint8), gola_x=T[n]['gola_x'], r_axila=proporcao_axila(pm))
+    if n in MAN:
+        pf.p.update({k: tuple(v) for k, v in MAN[n].items()})
+    tor = Torso(T[n]['x0'], T[n]['x1'], TOP[n], T[n]['base'], TOP[n] + 300, W, H)
+    mk = preparar_modelo(f'{FOTOS_DIR}{n}.png', torso_manual=tor)
+    recolorir_camiseta(mk, tuple(CM[c]), camisa)
+    base = mk.rgb.copy()
+    pele = cv2.GaussianBlur(ndimage.binary_dilation(mascara_pele(mk.rgb), iterations=2).astype(np.float32), (0, 0), 1.0)
+    tmp = f'{arq}.{os.getpid()}.npz'
+    np.savez(tmp, camisa=camisa, base=base, alpha=mk.alpha, pele=pele, chave=np.array(chave))
+    os.replace(tmp, arq)                               # gravação atômica (vários processos ao mesmo tempo)
+    return dict(camisa=camisa, base=base, alpha=mk.alpha, pele=pele, pf=pf)
+
+_arte_cache = {}
 registro = {}
 prod = sys.argv[1]
 # Calibração por foto tirada da CAPRESE aprovada (v3.2). Para as outras estampas, o ponto de ancoragem
@@ -133,20 +167,16 @@ if not CALIBRAR and not CAL:
 for n in sys.argv[2].split(','):
     c = n.rsplit('-', 2)[0]; lado = 'costas' if '-costas-' in n else 'frente'
     pm = pontos_mockup(lado)
-    im = Image.open(f'{FOTOS_DIR}{n}.png').convert('RGBA'); W, H = im.size
-    camisa = mascara_tecido_suave(im, TOP[n], T[n]['base'])
-    pf = achar_pontos((camisa > 0.5).astype(np.uint8), gola_x=T[n]['gola_x'], r_axila=proporcao_axila(pm))
-    if n in MAN:
-        pf.p.update({k: tuple(v) for k, v in MAN[n].items()})
+    W, H = Image.open(f'{FOTOS_DIR}{n}.png').size
+    cache = preparo_foto(n, c, pm)                     # igual para todas as estampas: calculado 1 vez só
+    camisa, pf, base, pele = cache['camisa'], cache['pf'], cache['base'], cache['pele']
+    mk = type('MK', (), {})(); mk.alpha = cache['alpha']
     prob = validar_pontos(pf)
     if prob:
         registro[n] = dict(gerada=False, problemas=prob); print(n, 'NÃO GERADA:', prob); continue
-    tor = Torso(T[n]['x0'], T[n]['x1'], TOP[n], T[n]['base'], TOP[n] + 300, W, H)
-    mk = preparar_modelo(f'{FOTOS_DIR}{n}.png', torso_manual=tor)
-    recolorir_camiseta(mk, tuple(CM[c]), camisa)
-    base = mk.rgb.copy()
-    pele = cv2.GaussianBlur(ndimage.binary_dilation(mascara_pele(mk.rgb), iterations=2).astype(np.float32), (0, 0), 1.0)
-    info = arte_e_posicao(prod, c, lado)
+    if (c, lado) not in _arte_cache:                   # mesma arte nas 2 fotos do mesmo lado
+        _arte_cache[(c, lado)] = arte_e_posicao(prod, c, lado)
+    info = _arte_cache[(c, lado)]
     if info is None:
         res = base; detalhe = 'lisa'
     elif lado == 'frente':
